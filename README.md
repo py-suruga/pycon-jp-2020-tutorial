@@ -1,5 +1,4 @@
 # pycon-jp-2020-tutorial
-PyCon JP 2020 チュートリアルで利用する資料です
 
 ## このサイトは?
 PyCon JP 2020 チュートリアル「Pythonの開発エコシステムを学ぼう Slack Bot編」の当日資料とサポートページです
