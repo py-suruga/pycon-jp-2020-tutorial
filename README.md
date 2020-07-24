@@ -14,9 +14,13 @@ PyCon JP 2020 チュートリアル「Pythonの開発エコシステムを学ぼ
 
 ## 開催コミュニティ
 
-[![Python駿河](./assets/img/python-suruga-512.png)](https://py-suruga.connpass.com/)Python駿河
+[Python駿河](https://py-suruga.connpass.com/)
 
-[![Unagi.py](./assets/img/unagi-py-512.png)](https://unagi-py.connpass.com/)Unagi.py
+[![Python駿河](./assets/img/python-suruga_logo.png)](https://py-suruga.connpass.com/)
+
+[Unagi.py](https://unagi-py.connpass.com/)
+
+[![Unagi.py](./assets/img/unagi-py_logo.png)](https://unagi-py.connpass.com/)
 
 ## 資料の内容
 
