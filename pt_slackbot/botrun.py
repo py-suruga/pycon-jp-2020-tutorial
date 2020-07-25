@@ -40,6 +40,9 @@ slack_bot_token = os.environ["SLACK_BOT_TOKEN"]
 slack_client = WebClient(slack_bot_token)
 
 
+# TODO:2020-07-25 メッセージイベントのフックを共通関数にして、ワードと関数のセットを用意して、パターンマッチさせる（その方が複数のイベントのフック関数を書かずに済む。
+# メッセージのパターンと返答の関数をセットにすれば、返答の関数のテストが可能になる
+
 # Example responder to greetings
 @slack_events_adapter.on("message")
 def handle_message_greeting(event_data):
@@ -77,7 +80,6 @@ def handle_message_greeting_jp(event_data):
             channel = message["channel"]
             res_message = "こんにちは！！:robot_face:私はpysurugabotです！賢くなれるように頑張ります！ :mount_fuji::shrimp::fish:"
             slack_client.chat_postMessage(channel=channel, text=res_message)
-
 
 @slack_events_adapter.on("message")
 def tenki(event_data):
