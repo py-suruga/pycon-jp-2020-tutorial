@@ -73,14 +73,29 @@ kome: Anacondaは今回のチュートリアルはサポートしていません
 <div class="section" id="slack">
 <h3>Slackワークスペースの新規作成<a class="headerlink" href="#slack" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Slackbotを作成するときには、開発用のSlackワークスペースを新規作成することをおすすめします。Slack公式でもアナウンスされています。</p>
+<p><a class="reference external" href="https://slack.com/get-started#/create">Slack を始める | Slack</a></p>
 </div>
 <div class="section" id="ngrok">
 <h3>ngrokのアカウント作成と利用準備<a class="headerlink" href="#ngrok" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>ngrokとは、ローカル開発環境のサーバーを一時的に外部へ公開するプロキシサービスです。</p>
+<p><a class="reference external" href="https://ngrok.com/">ngrok</a> とは、ローカルサーバーを一時的に外部公開するプロキシサービスです。SlackBotはコールバックURLが必要となるため、ローカル開発環境で作成したサーバーアプリを一時的にSlack側にアクセスできるようにします。</p>
+<ul class="simple">
+<li><p>登録: <a class="reference external" href="https://dashboard.ngrok.com/signup">ngrok - secure introspectable tunnels to localhost</a></p></li>
+</ul>
+<p>登録後は、サーバーを公開する際に利用するCLIツールをインストールします。</p>
+<p>ツールのDL先: <a class="reference external" href="https://ngrok.com/download">ngrok - download</a></p>
+<p>zipファイルをDLして、チュートリアルの作業用のディレクトリに配置します。</p>
+<p>Windows 10で <code class="docutils literal notranslate"><span class="pre">C:\Users\[Username]\Document\pyconjp-2020-tutorial</span></code> というディレクトリで作業をする場合、DLしたZipファイルをディレクトリ内で展開し、 <code class="docutils literal notranslate"><span class="pre">ngrok.exe</span></code> という実行ファイルを配置します。</p>
+<p>そのあとに以下のように操作します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ngrokのアカウント認証を行い、コマンド経由でサービスへ接続できるようにします。</span>
+<span class="o">&gt;</span>　<span class="n">ngrok</span><span class="o">.</span><span class="n">exe</span> <span class="n">authtoken</span> <span class="o">&lt;</span><span class="n">your_auth_token</span><span class="o">&gt;</span>
+</pre></div>
 </div>
-<div class="section" id="vscode-livesharegithub">
-<h3>VSCode LiveShare向けにもGitHubアカウント作成<a class="headerlink" href="#vscode-livesharegithub" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>slackbot作成時に作業をするコマンドは、該当のセッションで説明します。</p>
+</div>
+<div class="section" id="github">
+<h3>GitHubアカウント作成<a class="headerlink" href="#github" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Githubアカウントの作成も必須としています。今回操作で利用するエディタであるVSCodeの共有機能LiveShare拡張を利用するときに、アカウントが必要となりますので、こちらも作成します。</p>
+<p><a class="reference external" href="https://github.com/join">Join GitHub · GitHub</a></p>
 </div>
 </div>
 <div class="section" id="visual-studio-code">
@@ -89,10 +104,8 @@ kome: Anacondaは今回のチュートリアルはサポートしていません
 <p>Python向けの拡張機能もあり、Microsoftが公開しているものやOSSで開発されているものもあります。</p>
 <p>このチュートリアル作成中に利用した拡張機能を紹介します。</p>
 <ul class="simple">
-<li><p>Python for VSCode</p></li>
-<li><p>GitGraph</p></li>
-<li><p>GitHUb</p></li>
-<li><p>reStructuredText</p></li>
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python - Visual Studio Marketplace</a></p></li>
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=lextudio.restructuredtext">reStructuredText - Visual Studio Marketplace</a></p></li>
 </ul>
 <div class="section" id="liveshare">
 <h3>Liveshareの設定<a class="headerlink" href="#liveshare" title="このヘッドラインへのパーマリンク">¶</a></h3>

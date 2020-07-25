@@ -48,25 +48,42 @@ Slackワークスペースの新規作成
 
 Slackbotを作成するときには、開発用のSlackワークスペースを新規作成することをおすすめします。Slack公式でもアナウンスされています。
 
+`Slack を始める | Slack <https://slack.com/get-started#/create>`_
 
-.. 
-  - 新規ワークスペース作成のURLを用意
+.. slackワークスペースを作ったほうがいいというアナウンスが入った引用元を記載
 
 ngrokのアカウント作成と利用準備
 --------------------------------------------------------------------------------
 
-ngrokとは、ローカル開発環境のサーバーを一時的に外部へ公開するプロキシサービスです。
+`ngrok <https://ngrok.com/>`_ とは、ローカルサーバーを一時的に外部公開するプロキシサービスです。SlackBotはコールバックURLが必要となるため、ローカル開発環境で作成したサーバーアプリを一時的にSlack側にアクセスできるようにします。
 
-.. 
-  - 解説を用意
-  - サインアップURLをようい　
-  - ngrokを利用するためのアプリインストールの解説も用意
+- 登録: `ngrok - secure introspectable tunnels to localhost <https://dashboard.ngrok.com/signup>`_
 
-VSCode LiveShare向けにもGitHubアカウント作成
+登録後は、サーバーを公開する際に利用するCLIツールをインストールします。
+
+ツールのDL先: `ngrok - download <https://ngrok.com/download>`_
+
+zipファイルをDLして、チュートリアルの作業用のディレクトリに配置します。
+
+.. 作業ディレクトリに配置する様子を画像で載せる
+
+Windows 10で ``C:\Users\[Username]\Document\pyconjp-2020-tutorial`` というディレクトリで作業をする場合、DLしたZipファイルをディレクトリ内で展開し、 ``ngrok.exe`` という実行ファイルを配置します。
+
+そのあとに以下のように操作します。
+
+::
+
+  # ngrokのアカウント認証を行い、コマンド経由でサービスへ接続できるようにします。
+  >　ngrok.exe authtoken <your_auth_token>
+
+slackbot作成時に作業をするコマンドは、該当のセッションで説明します。
+
+GitHubアカウント作成
 --------------------------------------------------------------------------------
 
 Githubアカウントの作成も必須としています。今回操作で利用するエディタであるVSCodeの共有機能LiveShare拡張を利用するときに、アカウントが必要となりますので、こちらも作成します。
 
+`Join GitHub · GitHub <https://github.com/join>`_
 
 エディタの設定:Visual Studio Code
 ================================================================================
@@ -77,16 +94,11 @@ Python向けの拡張機能もあり、Microsoftが公開しているものやOS
 
 このチュートリアル作成中に利用した拡張機能を紹介します。
 
-.. あとでリンクを入れる
-
-- Python for VSCode
-- GitGraph
-- GitHUb
-- reStructuredText
+- `Python - Visual Studio Marketplace <https://marketplace.visualstudio.com/items?itemName=ms-python.python>`_
+- `reStructuredText - Visual Studio Marketplace <https://marketplace.visualstudio.com/items?itemName=lextudio.restructuredtext>`_
 
 .. 
   - python for vscodeだけではなく必要な拡張機能も指示する
-
 
 Liveshareの設定
 ------------------------------
@@ -94,5 +106,5 @@ Liveshareの設定
 ..
   - vscodeとLiveshareについて解説
   - このチュートリアルでどのように利用するかを説明
-  - Liveshareが利用できるまでをステップで用意（もしくは公式のリンクのどこまでを行うかを指示する））
-
+  - Liveshareが利用できるまでをステップで用意（もしくは公式のリンクのどこまでを行うかを指示する）
+  
