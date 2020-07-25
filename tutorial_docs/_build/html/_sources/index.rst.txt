@@ -10,7 +10,7 @@ Welcome to pycon-jp-2020-tutorial-development-slackbot's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   0-prepare
+   prepare
 
 
 

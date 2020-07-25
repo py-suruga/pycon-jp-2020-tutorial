@@ -51,18 +51,24 @@
 <p><a class="reference external" href="https://pythonlinks.python.jp/ja/index.html">非公式Pythonダウンロードリンク - Python downloads</a></p>
 <p>インストール方法は <a class="reference external" href="https://www.python.jp/install/install.html">環境構築ガイド（python.jp）</a> を参照ください。</p>
 <ul class="simple">
-<li><p>Win10: <a class="reference external" href="https://www.python.jp/install/windows/index.html">Windows 環境のPython - python.jp</a>
-- Windows 10では公式インストーラーの利用をおすすめします</p></li>
-<li><p>macOS: <a class="reference external" href="https://www.python.jp/install/macos/index.html">macOS環境のPython - python.jp</a>
-- macOSではCatalinaでは標準のpython, または（そのほかのOSバージョンでは）Homebrewというパッケージマネージャを用いてのインストールをおすすめします。</p></li>
+<li><p>Win10: <a class="reference external" href="https://www.python.jp/install/windows/index.html">Windows 環境のPython - python.jp</a></p>
+<ul>
+<li><p>Windows 10では公式インストーラーの利用をおすすめします</p></li>
+</ul>
+</li>
+<li><p>macOS: <a class="reference external" href="https://www.python.jp/install/macos/index.html">macOS環境のPython - python.jp</a></p>
+<ul>
+<li><p>macOSではCatalinaでは標準のpython, または（そのほかのOSバージョンでは）Homebrewというパッケージマネージャを用いてのインストールをおすすめします。</p></li>
+</ul>
+</li>
 </ul>
 <p>※: そのほかのOSの場合も公式のインストーラーや、OSが提供するパッケージマネージャーからのインストールが利用できます。
 kome: Anacondaは今回のチュートリアルはサポートしていません（動作確認しません）</p>
 </div>
 <div class="section" id="id3">
 <h2>利用するサービスの登録方法<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>チュートリアルでは、slackbotを作成しますが、作成上で必須となるサービスや、開発時に利用するサービスの登録が必要になります。</p>
-<p>主にSlackのワークスペース, ローカル開発環境のサーバーを一時的に外部へ公開するプロキシサービスのngrok、このチュートリアルのソースコード含む資料を公開しているGithubアカウントの3つとなります。</p>
+<p>チュートリアルで課題となるSlackbotを作成する上で必須となるサービスや、開発時に利用するサービスの登録が必要になります。</p>
+<p>主にSlackのワークスペース, ngrok、Githubアカウントの3つとなります。</p>
 <p>GitHUbアカウントは後に開設するVSCode LiveShareでも必要となります。</p>
 <div class="section" id="slack">
 <h3>Slackワークスペースの新規作成<a class="headerlink" href="#slack" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -70,13 +76,27 @@ kome: Anacondaは今回のチュートリアルはサポートしていません
 </div>
 <div class="section" id="ngrok">
 <h3>ngrokのアカウント作成と利用準備<a class="headerlink" href="#ngrok" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ngrokとは、ローカル開発環境のサーバーを一時的に外部へ公開するプロキシサービスです。</p>
 </div>
 <div class="section" id="vscode-livesharegithub">
 <h3>VSCode LiveShare向けにもGitHubアカウント作成<a class="headerlink" href="#vscode-livesharegithub" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Githubアカウントの作成も必須としています。今回操作で利用するエディタであるVSCodeの共有機能LiveShare拡張を利用するときに、アカウントが必要となりますので、こちらも作成します。</p>
 </div>
 </div>
 <div class="section" id="visual-studio-code">
 <h2>エディタの設定:Visual Studio Code<a class="headerlink" href="#visual-studio-code" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>今回利用するエディタであるVisual Studio Code（VSCode）は様々な拡張機能をインストールすることで、便利に扱うことができます。</p>
+<p>Python向けの拡張機能もあり、Microsoftが公開しているものやOSSで開発されているものもあります。</p>
+<p>このチュートリアル作成中に利用した拡張機能を紹介します。</p>
+<ul class="simple">
+<li><p>Python for VSCode</p></li>
+<li><p>GitGraph</p></li>
+<li><p>GitHUb</p></li>
+<li><p>reStructuredText</p></li>
+</ul>
+<div class="section" id="liveshare">
+<h3>Liveshareの設定<a class="headerlink" href="#liveshare" title="このヘッドラインへのパーマリンク">¶</a></h3>
+</div>
 </div>
 </div>
 
@@ -146,7 +166,7 @@ kome: Anacondaは今回のチュートリアルはサポートしていません
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="_sources/0-prepare.rst.txt"
+      <a href="_sources/prepare.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
