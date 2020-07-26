@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slackbotの作成 &#8212; pycon-jp-2020-tutorial-development-slackbot 2020.07.24 ドキュメント</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="PyTest" href="pytest.html" />
+    <link rel="prev" title="チュートリアル開始前の準備" href="prepare.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="slackbot">
+<h1>Slackbotの作成<a class="headerlink" href="#slackbot" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="slack">
+<h2>Slackアプリの作成と設定<a class="headerlink" href="#slack" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>まず初めにBotとなるSlackアプリをSlack上で作成します。</p>
+<p>「Create a Slack App」からApp Nameにアプリ名を入力します。（このアプリ名はHerokuのアプリ名でも利用します。</p>
+<img alt="_images/slackapp1.jpg" src="_images/slackapp1.jpg" />
+<p>Slack WorkSpaceはハンズオン用に新たに取得したワークスペースを利用してください。</p>
+<p>アプリが作成できたら、「OAuth &amp; Permissions」の「Scopes」&gt;「Bot Token Scopes」にスコープの設定を行います。</p>
+<img alt="_images/slackapp2.jpg" src="_images/slackapp2.jpg" />
+<p>「Bot Token Scope」はBotとなるSlackアプリがSlackワークスペースに利用できる権限の範囲（スコープ）です。</p>
+<p>この時点では`chat:write`のみで、botがSlackへメッセージを送るためのスコープのみを設定していますが、後ほどの設定で、いくつか追加されます。</p>
+<img alt="_images/slackapp3.jpg" src="_images/slackapp3.jpg" />
+<p>追加したら、ページの上にある「Install App to Workspace」をクリックし、SlackアプリをSlackワークスペースへ追加します。</p>
+<img alt="_images/slackapp4.jpg" src="_images/slackapp4.jpg" />
+<img alt="_images/slackapp5.jpg" src="_images/slackapp5.jpg" />
+<p>追加が終わると、「Bot User OAuth Access Token」が表示されます。このトークンをまず控えてください。</p>
+<img alt="_images/slackapp6.jpg" src="_images/slackapp6.jpg" />
+<p>次に、右上の「Basic Information」へ戻り、「App Credentials」の中にある「Signing Secret」を控えます。</p>
+<img alt="_images/slackapp7.jpg" src="_images/slackapp7.jpg" />
+<div class="section" id="id1">
+<h3>slackbotのフロー<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>チュートリアルで実装するslackbotについて<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>このチュートリアルでは、三つのslackbotを実装します。人口無能的な挨拶を返すbotから、APIを利用してインタラクティブな結果を返すようにします。</p>
+<div class="section" id="bot">
+<h3>世界の挨拶を返すbot<a class="headerlink" href="#bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
+</div>
+<div class="section" id="livedoorapibot">
+<h3>Livedoor天気APIを使って地域の天気を返すbot<a class="headerlink" href="#livedoorapibot" title="このヘッドラインへのパーマリンク">¶</a></h3>
+</div>
+<div class="section" id="connpass-apibot">
+<h3>connpass APIを利用してオンラインイベントを検索するbot<a class="headerlink" href="#connpass-apibot" title="このヘッドラインへのパーマリンク">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">pycon-jp-2020-tutorial-development-slackbot</a></h1>
+
+
+
+
+
+
+
+
+<h3>ナビゲーション</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="prepare.html">チュートリアル開始前の準備</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Slackbotの作成</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#slack">Slackアプリの作成と設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">チュートリアルで実装するslackbotについて</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pytest.html">PyTest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="prepare.html" title="前の章へ">チュートリアル開始前の準備</a></li>
+      <li>Next: <a href="pytest.html" title="次の章へ">PyTest</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Py-Suruga, Unagi-py, Hiroshi sano.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/slackbot.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

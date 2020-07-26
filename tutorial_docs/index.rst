@@ -11,6 +11,9 @@ Welcome to pycon-jp-2020-tutorial-development-slackbot's documentation!
    :caption: Contents:
 
    prepare
+   slackbot
+   pytest
+   sphinx
 
 
 
