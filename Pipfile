@@ -4,6 +4,8 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+black = "*"
+flake8 = "*"
 
 [packages]
 slackeventsapi = "*"
@@ -13,6 +15,12 @@ slackclient = "*"
 docutils = "*"
 pytest = "*"
 sphinx = "*"
+bs4 = "*"
+lxml = "*"
 
 [requires]
 python_version = "3.7"
+
+
+[pipenv]
+allow_prereleases = true
