@@ -1,4 +1,5 @@
 # coding: utf-8
+import requests
 import itertools
 from bs4 import BeautifulSoup
 
@@ -28,12 +29,30 @@ for name, g in station_by_yohou_list:
     updated = g_new.updated.text
     new_url = g_new.link["href"]
 
-    print(f"{content}: updated:{updated} new_url:{new_url}")
-    tenki_list.append(f"{content}: updated:{updated} new_url:{new_url}\n")
+    # print(f"{content}: updated:{updated} new_url:{new_url}")
+    tenki_list.append((content, updated, new_url))
 
+tenki_str_list = [
+    f"{content}: updated:{updated} new_url:{new_url}\n"
+    for content, updated, new_url in tenki_list
+]
 
 with open("export_tenki_list.txt", "w", encoding="utf-8") as export_file:
-    export_file.writelines(tenki_list)
+    export_file.writelines(tenki_str_list)
 
-#
+from pathlib import Path
 
+syukantenki_dir = Path("./syukantenki_xml/")
+syukantenki_dir.mkdir(exist_ok=True)
+
+# URLから各天気の電文を取得する
+for content, updated, new_url in tenki_list:
+    station_tenki_url = new_url
+    response = requests.get(station_tenki_url)
+    response.encoding = response.apparent_encoding
+
+    # ファイルを保存する
+    savefilepath = syukantenki_dir / "{}.xml".format(content[1:-1])
+
+    with open(savefilepath, "w", encoding="utf-8") as savefile:
+        savefile.write(response.text)
