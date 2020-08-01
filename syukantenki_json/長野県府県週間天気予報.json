@@ -1,0 +1,1037 @@
+{
+    "report": {
+        "body": {
+            "meteorologicalInfos": [
+                {
+                    "meteorologicalInfo": [],
+                    "timeSeriesInfo": [
+                        {
+                            "item": [
+                                {
+                                    "area": {
+                                        "circle": [],
+                                        "cityCodeList": [],
+                                        "cityList": [],
+                                        "code": "200000",
+                                        "coordinate": [],
+                                        "line": [],
+                                        "name": "長野県",
+                                        "polygon": [],
+                                        "prefectureCodeList": [],
+                                        "prefectureList": [],
+                                        "subCityCodeList": [],
+                                        "subCityList": [],
+                                        "subPrefectureCodeList": [],
+                                        "subPrefectureList": []
+                                    },
+                                    "kind": [
+                                        {
+                                            "property": [
+                                                {
+                                                    "any": [],
+                                                    "climateFeaturePart": [],
+                                                    "climateValuesPart": [],
+                                                    "text": [],
+                                                    "type": "天気",
+                                                    "warningAreaPart": [],
+                                                    "weatherCodePart": {
+                                                        "weatherCode": [
+                                                            {
+                                                                "refID": 1,
+                                                                "type": "天気予報用テロップ番号",
+                                                                "value": "313"
+                                                            },
+                                                            {
+                                                                "refID": 2,
+                                                                "type": "天気予報用テロップ番号",
+                                                                "value": "200"
+                                                            },
+                                                            {
+                                                                "refID": 3,
+                                                                "type": "天気予報用テロップ番号",
+                                                                "value": "200"
+                                                            },
+                                                            {
+                                                                "refID": 4,
+                                                                "type": "天気予報用テロップ番号",
+                                                                "value": "202"
+                                                            },
+                                                            {
+                                                                "refID": 5,
+                                                                "type": "天気予報用テロップ番号",
+                                                                "value": "200"
+                                                            },
+                                                            {
+                                                                "refID": 6,
+                                                                "type": "天気予報用テロップ番号",
+                                                                "value": "200"
+                                                            },
+                                                            {
+                                                                "refID": 7,
+                                                                "type": "天気予報用テロップ番号",
+                                                                "value": "201"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "weatherPart": {
+                                                        "becoming": [],
+                                                        "subArea": [],
+                                                        "temporary": [],
+                                                        "weather": [
+                                                            {
+                                                                "refID": 1,
+                                                                "type": "基本天気",
+                                                                "value": "雨後くもり"
+                                                            },
+                                                            {
+                                                                "refID": 2,
+                                                                "type": "基本天気",
+                                                                "value": "くもり"
+                                                            },
+                                                            {
+                                                                "refID": 3,
+                                                                "type": "基本天気",
+                                                                "value": "くもり"
+                                                            },
+                                                            {
+                                                                "refID": 4,
+                                                                "type": "基本天気",
+                                                                "value": "くもり一時雨"
+                                                            },
+                                                            {
+                                                                "refID": 5,
+                                                                "type": "基本天気",
+                                                                "value": "くもり"
+                                                            },
+                                                            {
+                                                                "refID": 6,
+                                                                "type": "基本天気",
+                                                                "value": "くもり"
+                                                            },
+                                                            {
+                                                                "refID": 7,
+                                                                "type": "基本天気",
+                                                                "value": "くもり時々晴れ"
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "property": [
+                                                {
+                                                    "any": [],
+                                                    "climateFeaturePart": [],
+                                                    "climateValuesPart": [],
+                                                    "probabilityOfPrecipitationPart": {
+                                                        "probabilityOfPrecipitation": [
+                                                            {
+                                                                "condition": "値なし",
+                                                                "refID": 1,
+                                                                "type": "日降水確率",
+                                                                "unit": "%",
+                                                                "value": ""
+                                                            },
+                                                            {
+                                                                "description": "４０パーセント",
+                                                                "refID": 2,
+                                                                "type": "日降水確率",
+                                                                "unit": "%",
+                                                                "value": "40"
+                                                            },
+                                                            {
+                                                                "description": "４０パーセント",
+                                                                "refID": 3,
+                                                                "type": "日降水確率",
+                                                                "unit": "%",
+                                                                "value": "40"
+                                                            },
+                                                            {
+                                                                "description": "５０パーセント",
+                                                                "refID": 4,
+                                                                "type": "日降水確率",
+                                                                "unit": "%",
+                                                                "value": "50"
+                                                            },
+                                                            {
+                                                                "description": "４０パーセント",
+                                                                "refID": 5,
+                                                                "type": "日降水確率",
+                                                                "unit": "%",
+                                                                "value": "40"
+                                                            },
+                                                            {
+                                                                "description": "４０パーセント",
+                                                                "refID": 6,
+                                                                "type": "日降水確率",
+                                                                "unit": "%",
+                                                                "value": "40"
+                                                            },
+                                                            {
+                                                                "description": "３０パーセント",
+                                                                "refID": 7,
+                                                                "type": "日降水確率",
+                                                                "unit": "%",
+                                                                "value": "30"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "text": [],
+                                                    "type": "降水確率",
+                                                    "warningAreaPart": []
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "property": [
+                                                {
+                                                    "any": [],
+                                                    "climateFeaturePart": [],
+                                                    "climateValuesPart": [],
+                                                    "reliabilityClassPart": {
+                                                        "reliabilityClass": [
+                                                            {
+                                                                "condition": "値なし",
+                                                                "refID": 1,
+                                                                "type": "信頼度階級",
+                                                                "value": ""
+                                                            },
+                                                            {
+                                                                "condition": "値なし",
+                                                                "refID": 2,
+                                                                "type": "信頼度階級",
+                                                                "value": ""
+                                                            },
+                                                            {
+                                                                "refID": 3,
+                                                                "type": "信頼度階級",
+                                                                "value": "C"
+                                                            },
+                                                            {
+                                                                "refID": 4,
+                                                                "type": "信頼度階級",
+                                                                "value": "C"
+                                                            },
+                                                            {
+                                                                "refID": 5,
+                                                                "type": "信頼度階級",
+                                                                "value": "C"
+                                                            },
+                                                            {
+                                                                "refID": 6,
+                                                                "type": "信頼度階級",
+                                                                "value": "C"
+                                                            },
+                                                            {
+                                                                "refID": 7,
+                                                                "type": "信頼度階級",
+                                                                "value": "C"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "text": [],
+                                                    "type": "信頼度",
+                                                    "warningAreaPart": []
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "otherReport": []
+                                }
+                            ],
+                            "timeDefines": {
+                                "timeDefine": [
+                                    {
+                                        "dateTime": "2020-07-29T00:00:00+09:00",
+                                        "duration": "P1D",
+                                        "timeId": 1
+                                    },
+                                    {
+                                        "dateTime": "2020-07-30T00:00:00+09:00",
+                                        "duration": "P1D",
+                                        "timeId": 2
+                                    },
+                                    {
+                                        "dateTime": "2020-07-31T00:00:00+09:00",
+                                        "duration": "P1D",
+                                        "timeId": 3
+                                    },
+                                    {
+                                        "dateTime": "2020-08-01T00:00:00+09:00",
+                                        "duration": "P1D",
+                                        "timeId": 4
+                                    },
+                                    {
+                                        "dateTime": "2020-08-02T00:00:00+09:00",
+                                        "duration": "P1D",
+                                        "timeId": 5
+                                    },
+                                    {
+                                        "dateTime": "2020-08-03T00:00:00+09:00",
+                                        "duration": "P1D",
+                                        "timeId": 6
+                                    },
+                                    {
+                                        "dateTime": "2020-08-04T00:00:00+09:00",
+                                        "duration": "P1D",
+                                        "timeId": 7
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "type": "区域予報"
+                },
+                {
+                    "meteorologicalInfo": [],
+                    "timeSeriesInfo": [
+                        {
+                            "item": [
+                                {
+                                    "kind": [
+                                        {
+                                            "property": [
+                                                {
+                                                    "any": [],
+                                                    "climateFeaturePart": [],
+                                                    "climateValuesPart": [],
+                                                    "temperaturePart": {
+                                                        "becoming": [],
+                                                        "subArea": [],
+                                                        "temperature": [
+                                                            {
+                                                                "condition": "値なし",
+                                                                "refID": 1,
+                                                                "type": "最低気温",
+                                                                "unit": "度",
+                                                                "value": ""
+                                                            },
+                                                            {
+                                                                "description": "２１度",
+                                                                "refID": 2,
+                                                                "type": "最低気温",
+                                                                "unit": "度",
+                                                                "value": "21"
+                                                            },
+                                                            {
+                                                                "description": "２１度",
+                                                                "refID": 3,
+                                                                "type": "最低気温",
+                                                                "unit": "度",
+                                                                "value": "21"
+                                                            },
+                                                            {
+                                                                "description": "２１度",
+                                                                "refID": 4,
+                                                                "type": "最低気温",
+                                                                "unit": "度",
+                                                                "value": "21"
+                                                            },
+                                                            {
+                                                                "description": "２１度",
+                                                                "refID": 5,
+                                                                "type": "最低気温",
+                                                                "unit": "度",
+                                                                "value": "21"
+                                                            },
+                                                            {
+                                                                "description": "２１度",
+                                                                "refID": 6,
+                                                                "type": "最低気温",
+                                                                "unit": "度",
+                                                                "value": "21"
+                                                            },
+                                                            {
+                                                                "description": "２１度",
+                                                                "refID": 7,
+                                                                "type": "最低気温",
+                                                                "unit": "度",
+                                                                "value": "21"
+                                                            }
+                                                        ],
+                                                        "temporary": []
+                                                    },
+                                                    "text": [],
+                                                    "type": "最低気温",
+                                                    "warningAreaPart": []
+                                                },
+                                                {
+                                                    "any": [],
+                                                    "climateFeaturePart": [],
+                                                    "climateValuesPart": [],
+                                                    "temperaturePart": {
+                                                        "becoming": [],
+                                                        "subArea": [],
+                                                        "temperature": [
+                                                            {
+                                                                "condition": "値なし",
+                                                                "refID": 1,
+                                                                "type": "最低気温予測範囲（上端）",
+                                                                "unit": "度",
+                                                                "value": ""
+                                                            },
+                                                            {
+                                                                "description": "２３度",
+                                                                "refID": 2,
+                                                                "type": "最低気温予測範囲（上端）",
+                                                                "unit": "度",
+                                                                "value": "23"
+                                                            },
+                                                            {
+                                                                "description": "２２度",
+                                                                "refID": 3,
+                                                                "type": "最低気温予測範囲（上端）",
+                                                                "unit": "度",
+                                                                "value": "22"
+                                                            },
+                                                            {
+                                                                "description": "２２度",
+                                                                "refID": 4,
+                                                                "type": "最低気温予測範囲（上端）",
+                                                                "unit": "度",
+                                                                "value": "22"
+                                                            },
+                                                            {
+                                                                "description": "２２度",
+                                                                "refID": 5,
+                                                                "type": "最低気温予測範囲（上端）",
+                                                                "unit": "度",
+                                                                "value": "22"
+                                                            },
+                                                            {
+                                                                "description": "２３度",
+                                                                "refID": 6,
+                                                                "type": "最低気温予測範囲（上端）",
+                                                                "unit": "度",
+                                                                "value": "23"
+                                                            },
+                                                            {
+                                                                "description": "２４度",
+                                                                "refID": 7,
+                                                                "type": "最低気温予測範囲（上端）",
+                                                                "unit": "度",
+                                                                "value": "24"
+                                                            }
+                                                        ],
+                                                        "temporary": []
+                                                    },
+                                                    "text": [],
+                                                    "type": "最低気温予測範囲",
+                                                    "warningAreaPart": []
+                                                },
+                                                {
+                                                    "any": [],
+                                                    "climateFeaturePart": [],
+                                                    "climateValuesPart": [],
+                                                    "temperaturePart": {
+                                                        "becoming": [],
+                                                        "subArea": [],
+                                                        "temperature": [
+                                                            {
+                                                                "condition": "値なし",
+                                                                "refID": 1,
+                                                                "type": "最低気温予測範囲（下端）",
+                                                                "unit": "度",
+                                                                "value": ""
+                                                            },
+                                                            {
+                                                                "description": "２０度",
+                                                                "refID": 2,
+                                                                "type": "最低気温予測範囲（下端）",
+                                                                "unit": "度",
+                                                                "value": "20"
+                                                            },
+                                                            {
+                                                                "description": "１９度",
+                                                                "refID": 3,
+                                                                "type": "最低気温予測範囲（下端）",
+                                                                "unit": "度",
+                                                                "value": "19"
+                                                            },
+                                                            {
+                                                                "description": "１９度",
+                                                                "refID": 4,
+                                                                "type": "最低気温予測範囲（下端）",
+                                                                "unit": "度",
+                                                                "value": "19"
+                                                            },
+                                                            {
+                                                                "description": "１９度",
+                                                                "refID": 5,
+                                                                "type": "最低気温予測範囲（下端）",
+                                                                "unit": "度",
+                                                                "value": "19"
+                                                            },
+                                                            {
+                                                                "description": "１９度",
+                                                                "refID": 6,
+                                                                "type": "最低気温予測範囲（下端）",
+                                                                "unit": "度",
+                                                                "value": "19"
+                                                            },
+                                                            {
+                                                                "description": "１９度",
+                                                                "refID": 7,
+                                                                "type": "最低気温予測範囲（下端）",
+                                                                "unit": "度",
+                                                                "value": "19"
+                                                            }
+                                                        ],
+                                                        "temporary": []
+                                                    },
+                                                    "text": [],
+                                                    "type": "最低気温予測範囲",
+                                                    "warningAreaPart": []
+                                                },
+                                                {
+                                                    "any": [],
+                                                    "climateFeaturePart": [],
+                                                    "climateValuesPart": [],
+                                                    "temperaturePart": {
+                                                        "becoming": [],
+                                                        "subArea": [],
+                                                        "temperature": [
+                                                            {
+                                                                "condition": "値なし",
+                                                                "refID": 1,
+                                                                "type": "最高気温",
+                                                                "unit": "度",
+                                                                "value": ""
+                                                            },
+                                                            {
+                                                                "description": "２８度",
+                                                                "refID": 2,
+                                                                "type": "最高気温",
+                                                                "unit": "度",
+                                                                "value": "28"
+                                                            },
+                                                            {
+                                                                "description": "２８度",
+                                                                "refID": 3,
+                                                                "type": "最高気温",
+                                                                "unit": "度",
+                                                                "value": "28"
+                                                            },
+                                                            {
+                                                                "description": "２９度",
+                                                                "refID": 4,
+                                                                "type": "最高気温",
+                                                                "unit": "度",
+                                                                "value": "29"
+                                                            },
+                                                            {
+                                                                "description": "２９度",
+                                                                "refID": 5,
+                                                                "type": "最高気温",
+                                                                "unit": "度",
+                                                                "value": "29"
+                                                            },
+                                                            {
+                                                                "description": "３０度",
+                                                                "refID": 6,
+                                                                "type": "最高気温",
+                                                                "unit": "度",
+                                                                "value": "30"
+                                                            },
+                                                            {
+                                                                "description": "３１度",
+                                                                "refID": 7,
+                                                                "type": "最高気温",
+                                                                "unit": "度",
+                                                                "value": "31"
+                                                            }
+                                                        ],
+                                                        "temporary": []
+                                                    },
+                                                    "text": [],
+                                                    "type": "最高気温",
+                                                    "warningAreaPart": []
+                                                },
+                                                {
+                                                    "any": [],
+                                                    "climateFeaturePart": [],
+                                                    "climateValuesPart": [],
+                                                    "temperaturePart": {
+                                                        "becoming": [],
+                                                        "subArea": [],
+                                                        "temperature": [
+                                                            {
+                                                                "condition": "値なし",
+                                                                "refID": 1,
+                                                                "type": "最高気温予測範囲（上端）",
+                                                                "unit": "度",
+                                                                "value": ""
+                                                            },
+                                                            {
+                                                                "description": "３１度",
+                                                                "refID": 2,
+                                                                "type": "最高気温予測範囲（上端）",
+                                                                "unit": "度",
+                                                                "value": "31"
+                                                            },
+                                                            {
+                                                                "description": "３０度",
+                                                                "refID": 3,
+                                                                "type": "最高気温予測範囲（上端）",
+                                                                "unit": "度",
+                                                                "value": "30"
+                                                            },
+                                                            {
+                                                                "description": "３１度",
+                                                                "refID": 4,
+                                                                "type": "最高気温予測範囲（上端）",
+                                                                "unit": "度",
+                                                                "value": "31"
+                                                            },
+                                                            {
+                                                                "description": "３０度",
+                                                                "refID": 5,
+                                                                "type": "最高気温予測範囲（上端）",
+                                                                "unit": "度",
+                                                                "value": "30"
+                                                            },
+                                                            {
+                                                                "description": "３３度",
+                                                                "refID": 6,
+                                                                "type": "最高気温予測範囲（上端）",
+                                                                "unit": "度",
+                                                                "value": "33"
+                                                            },
+                                                            {
+                                                                "description": "３４度",
+                                                                "refID": 7,
+                                                                "type": "最高気温予測範囲（上端）",
+                                                                "unit": "度",
+                                                                "value": "34"
+                                                            }
+                                                        ],
+                                                        "temporary": []
+                                                    },
+                                                    "text": [],
+                                                    "type": "最高気温予測範囲",
+                                                    "warningAreaPart": []
+                                                },
+                                                {
+                                                    "any": [],
+                                                    "climateFeaturePart": [],
+                                                    "climateValuesPart": [],
+                                                    "temperaturePart": {
+                                                        "becoming": [],
+                                                        "subArea": [],
+                                                        "temperature": [
+                                                            {
+                                                                "condition": "値なし",
+                                                                "refID": 1,
+                                                                "type": "最高気温予測範囲（下端）",
+                                                                "unit": "度",
+                                                                "value": ""
+                                                            },
+                                                            {
+                                                                "description": "２６度",
+                                                                "refID": 2,
+                                                                "type": "最高気温予測範囲（下端）",
+                                                                "unit": "度",
+                                                                "value": "26"
+                                                            },
+                                                            {
+                                                                "description": "２６度",
+                                                                "refID": 3,
+                                                                "type": "最高気温予測範囲（下端）",
+                                                                "unit": "度",
+                                                                "value": "26"
+                                                            },
+                                                            {
+                                                                "description": "２５度",
+                                                                "refID": 4,
+                                                                "type": "最高気温予測範囲（下端）",
+                                                                "unit": "度",
+                                                                "value": "25"
+                                                            },
+                                                            {
+                                                                "description": "２５度",
+                                                                "refID": 5,
+                                                                "type": "最高気温予測範囲（下端）",
+                                                                "unit": "度",
+                                                                "value": "25"
+                                                            },
+                                                            {
+                                                                "description": "２７度",
+                                                                "refID": 6,
+                                                                "type": "最高気温予測範囲（下端）",
+                                                                "unit": "度",
+                                                                "value": "27"
+                                                            },
+                                                            {
+                                                                "description": "２８度",
+                                                                "refID": 7,
+                                                                "type": "最高気温予測範囲（下端）",
+                                                                "unit": "度",
+                                                                "value": "28"
+                                                            }
+                                                        ],
+                                                        "temporary": []
+                                                    },
+                                                    "text": [],
+                                                    "type": "最高気温予測範囲",
+                                                    "warningAreaPart": []
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "otherReport": [],
+                                    "station": {
+                                        "code": [
+                                            {
+                                                "value": "48156"
+                                            }
+                                        ],
+                                        "coordinate": [],
+                                        "name": "長野"
+                                    }
+                                }
+                            ],
+                            "timeDefines": {
+                                "timeDefine": [
+                                    {
+                                        "dateTime": "2020-07-29T00:00:00+09:00",
+                                        "duration": "P1D",
+                                        "timeId": 1
+                                    },
+                                    {
+                                        "dateTime": "2020-07-30T00:00:00+09:00",
+                                        "duration": "P1D",
+                                        "timeId": 2
+                                    },
+                                    {
+                                        "dateTime": "2020-07-31T00:00:00+09:00",
+                                        "duration": "P1D",
+                                        "timeId": 3
+                                    },
+                                    {
+                                        "dateTime": "2020-08-01T00:00:00+09:00",
+                                        "duration": "P1D",
+                                        "timeId": 4
+                                    },
+                                    {
+                                        "dateTime": "2020-08-02T00:00:00+09:00",
+                                        "duration": "P1D",
+                                        "timeId": 5
+                                    },
+                                    {
+                                        "dateTime": "2020-08-03T00:00:00+09:00",
+                                        "duration": "P1D",
+                                        "timeId": 6
+                                    },
+                                    {
+                                        "dateTime": "2020-08-04T00:00:00+09:00",
+                                        "duration": "P1D",
+                                        "timeId": 7
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "type": "地点予報"
+                },
+                {
+                    "meteorologicalInfo": [],
+                    "timeSeriesInfo": [
+                        {
+                            "item": [
+                                {
+                                    "kind": [
+                                        {
+                                            "property": [
+                                                {
+                                                    "any": [],
+                                                    "climateFeaturePart": [],
+                                                    "climateValuesPart": [],
+                                                    "temperaturePart": {
+                                                        "becoming": [],
+                                                        "subArea": [],
+                                                        "temperature": [
+                                                            {
+                                                                "description": "２１．４度",
+                                                                "refID": 1,
+                                                                "type": "最低気温平年値",
+                                                                "unit": "度",
+                                                                "value": "21.4"
+                                                            },
+                                                            {
+                                                                "description": "２１．５度",
+                                                                "refID": 2,
+                                                                "type": "最低気温平年値",
+                                                                "unit": "度",
+                                                                "value": "21.5"
+                                                            },
+                                                            {
+                                                                "description": "２１．６度",
+                                                                "refID": 3,
+                                                                "type": "最低気温平年値",
+                                                                "unit": "度",
+                                                                "value": "21.6"
+                                                            },
+                                                            {
+                                                                "description": "２１．６度",
+                                                                "refID": 4,
+                                                                "type": "最低気温平年値",
+                                                                "unit": "度",
+                                                                "value": "21.6"
+                                                            },
+                                                            {
+                                                                "description": "２１．７度",
+                                                                "refID": 5,
+                                                                "type": "最低気温平年値",
+                                                                "unit": "度",
+                                                                "value": "21.7"
+                                                            },
+                                                            {
+                                                                "description": "２１．７度",
+                                                                "refID": 6,
+                                                                "type": "最低気温平年値",
+                                                                "unit": "度",
+                                                                "value": "21.7"
+                                                            },
+                                                            {
+                                                                "description": "２１．７度",
+                                                                "refID": 7,
+                                                                "type": "最低気温平年値",
+                                                                "unit": "度",
+                                                                "value": "21.7"
+                                                            }
+                                                        ],
+                                                        "temporary": []
+                                                    },
+                                                    "text": [],
+                                                    "type": "最低気温平年値",
+                                                    "warningAreaPart": []
+                                                },
+                                                {
+                                                    "any": [],
+                                                    "climateFeaturePart": [],
+                                                    "climateValuesPart": [],
+                                                    "temperaturePart": {
+                                                        "becoming": [],
+                                                        "subArea": [],
+                                                        "temperature": [
+                                                            {
+                                                                "description": "３１．２度",
+                                                                "refID": 1,
+                                                                "type": "最高気温平年値",
+                                                                "unit": "度",
+                                                                "value": "31.2"
+                                                            },
+                                                            {
+                                                                "description": "３１．３度",
+                                                                "refID": 2,
+                                                                "type": "最高気温平年値",
+                                                                "unit": "度",
+                                                                "value": "31.3"
+                                                            },
+                                                            {
+                                                                "description": "３１．４度",
+                                                                "refID": 3,
+                                                                "type": "最高気温平年値",
+                                                                "unit": "度",
+                                                                "value": "31.4"
+                                                            },
+                                                            {
+                                                                "description": "３１．５度",
+                                                                "refID": 4,
+                                                                "type": "最高気温平年値",
+                                                                "unit": "度",
+                                                                "value": "31.5"
+                                                            },
+                                                            {
+                                                                "description": "３１．５度",
+                                                                "refID": 5,
+                                                                "type": "最高気温平年値",
+                                                                "unit": "度",
+                                                                "value": "31.5"
+                                                            },
+                                                            {
+                                                                "description": "３１．６度",
+                                                                "refID": 6,
+                                                                "type": "最高気温平年値",
+                                                                "unit": "度",
+                                                                "value": "31.6"
+                                                            },
+                                                            {
+                                                                "description": "３１．６度",
+                                                                "refID": 7,
+                                                                "type": "最高気温平年値",
+                                                                "unit": "度",
+                                                                "value": "31.6"
+                                                            }
+                                                        ],
+                                                        "temporary": []
+                                                    },
+                                                    "text": [],
+                                                    "type": "最高気温平年値",
+                                                    "warningAreaPart": []
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "otherReport": [],
+                                    "station": {
+                                        "code": [
+                                            {
+                                                "value": "48156"
+                                            }
+                                        ],
+                                        "coordinate": [],
+                                        "name": "長野"
+                                    }
+                                }
+                            ],
+                            "timeDefines": {
+                                "timeDefine": [
+                                    {
+                                        "dateTime": "2020-07-29T00:00:00+09:00",
+                                        "duration": "P1D",
+                                        "timeId": 1
+                                    },
+                                    {
+                                        "dateTime": "2020-07-30T00:00:00+09:00",
+                                        "duration": "P1D",
+                                        "timeId": 2
+                                    },
+                                    {
+                                        "dateTime": "2020-07-31T00:00:00+09:00",
+                                        "duration": "P1D",
+                                        "timeId": 3
+                                    },
+                                    {
+                                        "dateTime": "2020-08-01T00:00:00+09:00",
+                                        "duration": "P1D",
+                                        "timeId": 4
+                                    },
+                                    {
+                                        "dateTime": "2020-08-02T00:00:00+09:00",
+                                        "duration": "P1D",
+                                        "timeId": 5
+                                    },
+                                    {
+                                        "dateTime": "2020-08-03T00:00:00+09:00",
+                                        "duration": "P1D",
+                                        "timeId": 6
+                                    },
+                                    {
+                                        "dateTime": "2020-08-04T00:00:00+09:00",
+                                        "duration": "P1D",
+                                        "timeId": 7
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "type": "日別平年値"
+                },
+                {
+                    "meteorologicalInfo": [
+                        {
+                            "dateTime": "2020-07-29T00:00:00+09:00",
+                            "duration": "P7D",
+                            "item": [
+                                {
+                                    "kind": [
+                                        {
+                                            "property": [
+                                                {
+                                                    "any": [],
+                                                    "climateFeaturePart": [],
+                                                    "climateValuesPart": [],
+                                                    "precipitationClassPart": {
+                                                        "thresholdOfAboveNormal": {
+                                                            "description": "２１．９ミリ",
+                                                            "type": "降水量７日間合計階級多い",
+                                                            "unit": "mm",
+                                                            "value": 21.9
+                                                        },
+                                                        "thresholdOfBelowNormal": {
+                                                            "description": "４．８ミリ",
+                                                            "type": "降水量７日間合計階級少ない",
+                                                            "unit": "mm",
+                                                            "value": 4.8
+                                                        },
+                                                        "thresholdOfMaximum": {
+                                                            "description": "７１．６ミリ",
+                                                            "type": "降水量７日間合計階級最大値",
+                                                            "unit": "mm",
+                                                            "value": 71.6
+                                                        },
+                                                        "thresholdOfMinimum": {
+                                                            "description": "０．０ミリ",
+                                                            "type": "降水量７日間合計階級最小値",
+                                                            "unit": "mm",
+                                                            "value": 0.0
+                                                        },
+                                                        "thresholdOfSignificantlyAboveNormal": {
+                                                            "description": "５３．０ミリ",
+                                                            "type": "降水量７日間合計階級かなり多い",
+                                                            "unit": "mm",
+                                                            "value": 53.0
+                                                        },
+                                                        "thresholdOfSignificantlyBelowNormal": {
+                                                            "description": "０．０ミリ",
+                                                            "type": "降水量７日間合計階級かなり少ない",
+                                                            "unit": "mm",
+                                                            "value": 0.0
+                                                        }
+                                                    },
+                                                    "text": [],
+                                                    "type": "降水量７日間合計階級閾値",
+                                                    "warningAreaPart": []
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "otherReport": [],
+                                    "station": {
+                                        "code": [
+                                            {
+                                                "value": "48156"
+                                            }
+                                        ],
+                                        "coordinate": [],
+                                        "name": "長野"
+                                    }
+                                }
+                            ]
+                        }
+                    ],
+                    "timeSeriesInfo": [],
+                    "type": "７日間平年値"
+                }
+            ],
+            "notice": [],
+            "warning": []
+        },
+        "control": {
+            "dateTime": "2020-07-28T07:39:47Z",
+            "editorialOffice": "長野地方気象台",
+            "publishingOffice": [
+                "長野地方気象台"
+            ],
+            "status": "通常",
+            "title": "府県週間天気予報"
+        },
+        "head": {
+            "eventID": "",
+            "headline": {
+                "information": [],
+                "text": ""
+            },
+            "infoKind": "府県週間天気予報",
+            "infoKindVersion": "1.0_0",
+            "infoType": "発表",
+            "reportDateTime": "2020-07-28T17:00:00+09:00",
+            "serial": "",
+            "targetDateTime": "2020-07-29T00:00:00+09:00",
+            "targetDuration": "P7D",
+            "title": "長野県府県週間天気予報"
+        }
+    }
+}
