@@ -1,5 +1,6 @@
 # coding: utf-8
 
+from pprint import pprint
 from pathlib import Path
 from bs4 import BeautifulSoup
 from datetime import datetime
@@ -27,7 +28,6 @@ for file in Path("./syukantenki_xml").glob("*.xml"):
 
     # zipでまとめた
     yohou_set = list(zip(weather_days, yohou_list))
-    from pprint import pprint
 
     pprint(
         [
