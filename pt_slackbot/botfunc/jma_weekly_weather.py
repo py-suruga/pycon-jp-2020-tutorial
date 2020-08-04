@@ -58,3 +58,9 @@ KISYODAI_STATION_MAPS = {
     "秋田県府県週間天気予報": ["秋田", "秋田県"],
     "香川県府県週間天気予報": ["香川", "香川県"],
 }
+
+
+def bot_callback(**args):
+    """
+    botの結果を返すfunction
+    """

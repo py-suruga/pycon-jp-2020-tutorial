@@ -51,7 +51,6 @@ def handle_message(event_data):
         # 文字列をパースしても該当の引数と合わない場合（tryしてargmentの数が合わないエラー）は
         # エラーとして返す
 
-
 # ----
 
 # Example responder to greetings
