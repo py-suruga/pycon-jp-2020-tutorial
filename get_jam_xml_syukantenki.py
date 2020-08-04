@@ -5,38 +5,118 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 from datetime import datetime
 
-# ファイルを読み込んで週間天気予報を表示する
-for file in Path("./syukantenki_xml").glob("*.xml"):
+# 気象台と対象の地域の一覧を生成
+# ここでは、気象台と、気象台で設定されている区域を元に地域設定をする。複数地域名を設定可能なのでリストにする
+KISYODAI_STATION_MAPS = {
+    "東京都府県週間天気予報": ["東京", "東京地方"],
+    "宮崎県府県週間天気予報": ["宮崎", "宮崎県"],
+    "岡山県府県週間天気予報": ["岡山", "岡山県"],
+    "千葉県府県週間天気予報": ["千葉", "千葉県"],
+    "栃木県府県週間天気予報": ["栃木", "栃木県"],
+    "三重県府県週間天気予報": ["三重", "三重県"],
+    "福島県府県週間天気予報": ["福島", "福島県", "中通り・浜通り"],
+    "茨城県府県週間天気予報": ["茨城", "茨城県"],
+    "新潟県府県週間天気予報": ["新潟", "新潟県"],
+    "八重山地方府県週間天気予報": ["八重山地方"],
+    "熊本県府県週間天気予報": ["熊本", "熊本県"],
+    "岐阜県府県週間天気予報": ["岐阜", "岐阜県"],
+    "鳥取県府県週間天気予報": ["鳥取", "鳥取県"],
+    "群馬県府県週間天気予報": ["群馬", "群馬県"],
+    "長野県府県週間天気予報": ["長野", "長野県"],
+    "石川県府県週間天気予報": ["石川", "石川県"],
+    "奈良県府県週間天気予報": ["奈良", "奈良県"],
+    "山梨県府県週間天気予報": ["山梨", "山梨県"],
+    "兵庫県府県週間天気予報": ["兵庫", "兵庫県"],
+    "大東島地方府県週間天気予報": ["大東島地方"],
+    "青森県府県週間天気予報": ["津軽"],
+    "佐賀県府県週間天気予報": ["佐賀", "佐賀県"],
+    "京都府府県週間天気予報": ["京都", "京都府"],
+    "福岡県府県週間天気予報": ["福岡", "福岡県"],
+    "山口県府県週間天気予報": ["山口", "山口県"],
+    "宮古島地方府県週間天気予報": ["宮古島地方"],
+    "岩手県府県週間天気予報": ["岩手", "岩手県", "内陸"],
+    "長崎県府県週間天気予報": ["長崎", "長崎県"],
+    "大阪府府県週間天気予報": ["大阪", "大阪府"],
+    "大分県府県週間天気予報": ["大分", "大分県"],
+    "沖縄本島地方府県週間天気予報": ["沖縄", "沖縄本島地方"],
+    "埼玉県府県週間天気予報": ["埼玉", "埼玉県"],
+    "石狩・空知・後志地方府県週間天気予報": ["石狩・空知・後志地方"],
+    "高知県府県週間天気予報": ["高知", "高知県"],
+    "網走・北見・紋別地方府県週間天気予報": ["網走・北見・紋別地方"],
+    "山形県府県週間天気予報": ["山形", "山形県"],
+    "島根県府県週間天気予報": ["島根", "島根県"],
+    "愛知県府県週間天気予報": ["愛知", "愛知県"],
+    "釧路・根室・十勝地方府県週間天気予報": ["釧路・根室地方"],
+    "愛媛県府県週間天気予報": ["愛媛", "愛媛県"],
+    "福井県府県週間天気予報": ["福井", "福井県"],
+    "渡島・檜山地方府県週間天気予報": ["渡島・檜山地方"],
+    "宗谷地方府県週間天気予報": ["宗谷地方"],
+    "広島県府県週間天気予報": ["広島", "広島県"],
+    "徳島県府県週間天気予報": ["徳島", "徳島県"],
+    "上川・留萌地方府県週間天気予報": ["上川・留萌地方"],
+    "鹿児島県府県週間天気予報": ["鹿児島", "鹿児島県", "鹿児島県（奄美地方除く）"],
+    "滋賀県府県週間天気予報": ["滋賀", "滋賀県"],
+    "静岡県府県週間天気予報": ["静岡", "静岡県"],
+    "富山県府県週間天気予報": ["富山", "富山県"],
+    "宮城県府県週間天気予報": ["宮城", "宮城県", "東部"],
+    "胆振・日高地方府県週間天気予報": ["胆振・日高地方"],
+    "和歌山県府県週間天気予報": ["和歌山", "和歌山県"],
+    "神奈川県府県週間天気予報": ["神奈川", "神奈川県"],
+    "秋田県府県週間天気予報": ["秋田", "秋田県"],
+    "香川県府県週間天気予報": ["香川", "香川県"],
+}
 
-    xml_soup = BeautifulSoup(open(file, encoding="utf-8"), "xml")
 
-    # 地域名
-    kuiki = xml_soup.find("MeteorologicalInfos", type="区域予報")
+def get_syukantenki_by_station(statino_name):
+    # ファイルを読み込んで週間天気予報を表示する
+    for file in Path("./syukantenki_xml").glob("*.xml"):
 
-    print(
-        "{}: {}".format(xml_soup.Head.Title.text, kuiki.TimeSeriesInfo.Area.Name.text)
-    )
-    # 天気を表示
+        xml_soup = BeautifulSoup(open(file, encoding="utf-8"), "xml")
 
-    # 時間とセット
-    weather_days: list = kuiki.TimeSeriesInfo.find_all("TimeDefine")
-    yohou_list = kuiki.find_all("jmx_eb:Weather")
+        # 地域名
+        kuiki = xml_soup.find("MeteorologicalInfos", type="区域予報")
+        # print(
+        #     "{}: {}".format(
+        #         xml_soup.Head.Title.text, kuiki.TimeSeriesInfo.Area.Name.text
+        #     )
+        # )
+        # 天気を表示
 
-    # IDでソートして:しなくても本当は良いけどね（破壊的変更））
-    weather_days.sort(key=lambda t: t["timeId"])
-    yohou_list.sort(key=lambda t: t["refID"])
+        # 時間とセット
+        weather_days: list = kuiki.TimeSeriesInfo.find_all("TimeDefine")
+        yohou_list = kuiki.find_all("jmx_eb:Weather")
 
-    # zipでまとめた
-    yohou_set = list(zip(weather_days, yohou_list))
+        # IDでソートして:しなくても本当は良いけどね（破壊的変更））
+        weather_days.sort(key=lambda t: t["timeId"])
+        yohou_list.sort(key=lambda t: t["refID"])
 
-    pprint(
-        [
-            (
-                datetime.fromisoformat(date_t.DateTime.text).strftime("%m/%d"),
-                yohou_t.text,
-            )
-            for date_t, yohou_t in yohou_set
-        ]
-    )
+        # zipでまとめた
+        yohou_set = list(zip(weather_days, yohou_list))
 
-    # exit()
+        # ここでマッピングした地名と気象台を探索させて、それを元に探しに行く
+        # 天気を聞く地名を元に気象台を見つけて、気象台をキーにしてここで探すといい
+
+        # TODO:2020/08/04 ここでは、KISYODAI_STATION_MAPSをループして、
+        # 気象台のファイル名を作って開いたほうが効率いいよね
+        for kisyodai_name, station_list in KISYODAI_STATION_MAPS.items():
+            # TODO:2020/08/04 station_listはlist自体もループさせて、部分一致するかを見てもいい（石狩とかね）
+            if (
+                statino_name in station_list
+                and xml_soup.Head.Title.text == kisyodai_name
+            ):
+                print(xml_soup.Head.Title.text)
+                pprint(
+                    [
+                        (
+                            datetime.fromisoformat(date_t.DateTime.text).strftime(
+                                "%m/%d"
+                            ),
+                            yohou_t.text,
+                        )
+                        for date_t, yohou_t in yohou_set
+                    ]
+                )
+
+
+if __name__ == "__main__":
+    get_syukantenki_by_station("富山")
