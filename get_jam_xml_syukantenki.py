@@ -116,7 +116,8 @@ def get_syukantenki_by_station(statino_name):
                         for date_t, yohou_t in yohou_set
                     ]
                 )
+                break
 
 
 if __name__ == "__main__":
-    get_syukantenki_by_station("富山")
+    get_syukantenki_by_station("静岡県")
