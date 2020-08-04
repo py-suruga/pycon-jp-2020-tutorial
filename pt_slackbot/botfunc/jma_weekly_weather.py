@@ -1,11 +1,5 @@
-# coding: utf-8
-from pprint import pprint
-from pathlib import Path
-from bs4 import BeautifulSoup
-from datetime import datetime
+# 気象庁の週間天気予報をここで生成する
 
-# 気象台と対象の地域の一覧を生成
-# ここでは、気象台と、気象台で設定されている区域を元に地域設定をする。複数地域名を設定可能なのでリストにする
 KISYODAI_STATION_MAPS = {
     "東京都府県週間天気予報": ["東京", "東京地方"],
     "宮崎県府県週間天気予報": ["宮崎", "宮崎県"],
@@ -66,57 +60,7 @@ KISYODAI_STATION_MAPS = {
 }
 
 
-def get_syukantenki_by_station(statino_name):
-    # ファイルを読み込んで週間天気予報を表示する
-    for file in Path("./syukantenki_xml").glob("*.xml"):
-
-        xml_soup = BeautifulSoup(open(file, encoding="utf-8"), "xml")
-
-        # 地域名
-        kuiki = xml_soup.find("MeteorologicalInfos", type="区域予報")
-        # print(
-        #     "{}: {}".format(
-        #         xml_soup.Head.Title.text, kuiki.TimeSeriesInfo.Area.Name.text
-        #     )
-        # )
-        # 天気を表示
-
-        # 時間とセット
-        weather_days: list = kuiki.TimeSeriesInfo.find_all("TimeDefine")
-        yohou_list = kuiki.find_all("jmx_eb:Weather")
-
-        # IDでソートして:しなくても本当は良いけどね（破壊的変更））
-        weather_days.sort(key=lambda t: t["timeId"])
-        yohou_list.sort(key=lambda t: t["refID"])
-
-        # zipでまとめた
-        yohou_set = list(zip(weather_days, yohou_list))
-
-        # ここでマッピングした地名と気象台を探索させて、それを元に探しに行く
-        # 天気を聞く地名を元に気象台を見つけて、気象台をキーにしてここで探すといい
-
-        # TODO:2020/08/04 ここでは、KISYODAI_STATION_MAPSをループして、
-        # 気象台のファイル名を作って開いたほうが効率いいよね
-        for kisyodai_name, station_list in KISYODAI_STATION_MAPS.items():
-            # TODO:2020/08/04 station_listはlist自体もループさせて、部分一致するかを見てもいい（石狩とかね）
-            if (
-                statino_name in station_list
-                and xml_soup.Head.Title.text == kisyodai_name
-            ):
-                print(xml_soup.Head.Title.text)
-                pprint(
-                    [
-                        (
-                            datetime.fromisoformat(date_t.DateTime.text).strftime(
-                                "%m/%d"
-                            ),
-                            yohou_t.text,
-                        )
-                        for date_t, yohou_t in yohou_set
-                    ]
-                )
-                break
-
-
-if __name__ == "__main__":
-    get_syukantenki_by_station("静岡県")
+def bot_callback(**args):
+    """
+    botの結果を返すfunction
+    """

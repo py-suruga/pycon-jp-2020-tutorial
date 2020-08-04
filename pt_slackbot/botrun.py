@@ -43,6 +43,16 @@ slack_client = WebClient(slack_bot_token)
 # TODO:2020-07-25 メッセージイベントのフックを共通関数にして、ワードと関数のセットを用意して、パターンマッチさせる（その方が複数のイベントのフック関数を書かずに済む。
 # メッセージのパターンと返答の関数をセットにすれば、返答の関数のテストが可能になる
 
+@slack_events_adapter.on("message")
+def handle_message(event_data):
+    # ハンドルするワードパターンとcallするfucntionのリストをみて、
+    # ワードパターンと一致するcall_functionを実行して、得られた結果を表示する
+    # ワードパターンの後に続く文字列はパースして引数として扱う
+        # 文字列をパースしても該当の引数と合わない場合（tryしてargmentの数が合わないエラー）は
+        # エラーとして返す
+
+# ----
+
 # Example responder to greetings
 @slack_events_adapter.on("message")
 def handle_message_greeting(event_data):
