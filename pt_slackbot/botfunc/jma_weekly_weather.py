@@ -138,20 +138,58 @@ def get_jma_xml_files():
 
 
 # TODO:2020/08/05 returnは、str / Noneを返す
-def bot_callback(**args):
+def bot_callback(match_group):
     """
     botの結果を返すfunction
     """
-    # 気象庁XMLのDL
-
-    # DL済みのパスリストを取得
+    # 気象庁の週間天気予報電文XMLをDL
+    get_jma_xml_files()
 
     # KISYODAI_STATION_MAPSをループして、該当の地域かをチェック
-
-    # 該当した場合は、気象台の情報をもとに、気象台のxmlを開いて予報を取得
+    weekly_weather_xml_soup = None
+    for kisyodai_name, station_list in KISYODAI_STATION_MAPS.items():
+        # callbackの引数の文字列に、station_listから検索
+        if match_group in station_list:
+            xml_filepath = JMA_WEEKLY_XMLFILESS_DIR / "{}.xml".format(kisyodai_name)
+            with open(xml_filepath, "r", encoding="utf-8") as weekly_weather_xml:
+                weekly_weather_xml_soup = BeautifulSoup(weekly_weather_xml, "xml")
+            break
 
     # 該当しない場合はNoneを返す
+    if not weekly_weather_xml_soup:
+        return None
 
+    # 該当した場合は、気象台の情報をもとに、気象台のxmlを開いて予報を取得
+    kuiki_weather = weekly_weather_xml_soup.find("MeteorologicalInfos", type="区域予報")
+    # print(
+    #     "{}: {}".format(
+    #         weekly_weather_xml_soup.Head.Title.text, kuiki_weather.TimeSeriesInfo.Area.Name.text
+    #     )
+    # )
+    # 天気を表示
+
+    # 時間とセット
+    daylist: list = kuiki_weather.TimeSeriesInfo.find_all("TimeDefine")
+    weatherlist = kuiki_weather.find_all("jmx_eb:Weather")
+
+    # IDでソートして:しなくても本当は良いけどね（破壊的変更））
+    daylist.sort(key=lambda t: t["timeId"])
+    weatherlist.sort(key=lambda t: t["refID"])
+
+    # zipでまとめた
+    yohou_set = list(zip(daylist, weatherlist))
+    from pprint import pprint
+
+    print(weekly_weather_xml_soup.Head.Title.text)
+    pprint(
+        [
+            (
+                datetime.fromisoformat(date_t.DateTime.text).strftime("%m/%d"),
+                yohou_t.text,
+            )
+            for date_t, yohou_t in yohou_set
+        ]
+    )
     return "tenki bot!"
 
 
