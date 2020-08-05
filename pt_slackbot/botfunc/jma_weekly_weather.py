@@ -64,3 +64,4 @@ def bot_callback(**args):
     """
     botの結果を返すfunction
     """
+    #
