@@ -65,3 +65,52 @@ def bot_callback(**args):
     botの結果を返すfunction
     """
     #
+    return "tenki bot!"
+
+
+# @slack_events_adapter.on("message")
+# def tenki(event_data):
+#     """
+#     # Livedoor 天気予報をきく
+#     # shizuokatenki [西部,中部,東部,伊豆,]
+#     # 今日の天気は ** 気温は**℃です！
+#     """
+
+#     # botが反応する正規表現パターン
+#     message_pattern = "shizuokatenki\\s(.{2})"
+
+#     print("debug:handled function: {}".format(sys._getframe().f_code.co_name))
+#     print("debug:eventdata:{}".format(event_data))
+#     message = event_data["event"]
+
+#     # subtypeがない場合=普通のメッセージ, 自分自身の内容を取得してもスルーするようにしておく必要がある
+#     if message.get("subtype") is None and message.get("bot_id") is None:
+#         # botのパターンとして認識する文字がある場合
+#         matchobj = re.match(message_pattern, message.get("text"))
+#         if matchobj:
+#             # 地域名が存在するか確認する
+#             city_name = matchobj.group(1)
+#             if city_name in LD_TENIKI_CITY_CODE_MAPS:
+#                 print("debug:run tenki ")
+
+#                 # API経由で天気を調べる
+#                 city_code = LD_TENIKI_CITY_CODE_MAPS[matchobj.group(1)]
+
+#                 payload = {"city": city_code}
+#                 api_response = requests.get(LD_TENKI_API_ENDPOINT, params=payload)
+#                 # http://weather.livedoor.com/forecast/webservice/json/v1?code=220010
+
+#                 result = api_response.json()
+#                 print("debug:result_obj:{}".format(result))
+#                 # コマンド実行時の今日の天気予報を抽出
+#                 weather_telop = result["forecasts"][0]["telop"]
+#                 weather_temp = result["forecasts"][0]["temperature"]["max"]
+
+#                 if weather_temp is None:
+#                     res_message = "静岡県{}の今日の天気は {} です！".format(city_name, weather_telop)
+#                 else:
+#                     res_message = "静岡県{}の今日の天気は {} 気温は{}℃です！".format(city_name, weather_telop, weather_temp["celsius"])
+#                 # メッセージを返す
+#                 channel = message["channel"]
+
+#                 slack_client.chat_postMessage(channel=channel, text=res_message)
