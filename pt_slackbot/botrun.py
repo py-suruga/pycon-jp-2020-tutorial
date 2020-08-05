@@ -59,7 +59,6 @@ def handle_message_greeting(event_data):
 def handle_message_and_botrun(event_data):
     # TODO:2020/08/05 できればdebugはlogging.debugにしたい。
     print("debug:eventdata:{}".format(event_data))
-    print("debug:handled function: {}".format(sys._getframe().f_code.co_name))
     message = event_data["event"]
 
     # ハンドルするワードパターンとcallするfucntionのリストをみて、
@@ -67,7 +66,7 @@ def handle_message_and_botrun(event_data):
         matchobj = re.match(handle_map[0], message.get("text"))
         if matchobj:
             # ワードパターンと一致するcall_functionを実行して、得られた結果を表示する
-            # ここの引数をどう入れるかを考える: 引数というかグループ化した結果の文字を取りに行くだけで良いかなと
+            # TODO:2020/08/05 ここの引数をどう入れるかを考える: 引数というかグループ化した結果の文字を取りに行くだけで良いかなと
             bot_result = handle_map[1].bot_callback(matchobj.groups())
             # Noneの場合は返せなかったとして処理（エラーでも良いし、デフォルトの返答不可能機能を使うのも良い）
             if bot_result is None:
