@@ -137,19 +137,15 @@ def get_jma_xml_files():
     pickle.dump(updated_dt, open(latest_dt_filename, "wb"))
 
 
-# TODO:2020/08/05 returnは、str / Noneを返す
-def bot_callback(match_group):
+def get_weekly_weather(station_name: str):
     """
-    botの結果を返すfunction
+    天気予報の結果を取得する
     """
-    # 気象庁の週間天気予報電文XMLをDL
-    get_jma_xml_files()
-
     # KISYODAI_STATION_MAPSをループして、該当の地域かをチェック
     weekly_weather_xml_soup = None
     for kisyodai_name, station_list in KISYODAI_STATION_MAPS.items():
         # callbackの引数の文字列に、station_listから検索
-        if match_group in station_list:
+        if station_name in station_list:
             xml_filepath = JMA_WEEKLY_XMLFILESS_DIR / "{}.xml".format(kisyodai_name)
             with open(xml_filepath, "r", encoding="utf-8") as weekly_weather_xml:
                 weekly_weather_xml_soup = BeautifulSoup(weekly_weather_xml, "xml")
@@ -160,24 +156,20 @@ def bot_callback(match_group):
         return None
 
     # 該当した場合は、気象台の情報をもとに、気象台のxmlを開いて予報を取得
-    kuiki_weather = weekly_weather_xml_soup.find("MeteorologicalInfos", type="区域予報")
-    # print(
-    #     "{}: {}".format(
-    #         weekly_weather_xml_soup.Head.Title.text, kuiki_weather.TimeSeriesInfo.Area.Name.text
-    #     )
-    # )
+    kuiki_yohou = weekly_weather_xml_soup.find("MeteorologicalInfos", type="区域予報")
+
     # 天気を表示
 
     # 時間とセット
-    daylist: list = kuiki_weather.TimeSeriesInfo.find_all("TimeDefine")
-    weatherlist = kuiki_weather.find_all("jmx_eb:Weather")
+    daylist = kuiki_yohou.TimeSeriesInfo.find_all("TimeDefine")
+    weatherlist = kuiki_yohou.find_all("jmx_eb:Weather")
 
-    # IDでソートして:しなくても本当は良いけどね（破壊的変更））
+    # IDでソートしてzipでまとめる:しなくても本当は良いけどね（破壊的変更））
     daylist.sort(key=lambda t: t["timeId"])
     weatherlist.sort(key=lambda t: t["refID"])
-
-    # zipでまとめた
     yohou_set = list(zip(daylist, weatherlist))
+
+    # 一時的に出力用に呼び出す
     from pprint import pprint
 
     print(weekly_weather_xml_soup.Head.Title.text)
@@ -190,52 +182,21 @@ def bot_callback(match_group):
             for date_t, yohou_t in yohou_set
         ]
     )
+    return None
+
+
+# TODO:2020/08/05 returnは、str / Noneを返す
+def bot_callback(match_group):
+    """
+    botの結果を返すfunction
+    """
+    # 気象庁の週間天気予報電文XMLをDL
+    get_jma_xml_files()
+
+    result = get_weekly_weather(match_group)
+
+    if result is None:
+        return None
+    # return result
     return "tenki bot!"
 
-
-# @slack_events_adapter.on("message")
-# def tenki(event_data):
-#     """
-#     # Livedoor 天気予報をきく
-#     # shizuokatenki [西部,中部,東部,伊豆,]
-#     # 今日の天気は ** 気温は**℃です！
-#     """
-
-#     # botが反応する正規表現パターン
-#     message_pattern = "shizuokatenki\\s(.{2})"
-
-#     print("debug:handled function: {}".format(sys._getframe().f_code.co_name))
-#     print("debug:eventdata:{}".format(event_data))
-#     message = event_data["event"]
-
-#     # subtypeがない場合=普通のメッセージ, 自分自身の内容を取得してもスルーするようにしておく必要がある
-#     if message.get("subtype") is None and message.get("bot_id") is None:
-#         # botのパターンとして認識する文字がある場合
-#         matchobj = re.match(message_pattern, message.get("text"))
-#         if matchobj:
-#             # 地域名が存在するか確認する
-#             city_name = matchobj.group(1)
-#             if city_name in LD_TENIKI_CITY_CODE_MAPS:
-#                 print("debug:run tenki ")
-
-#                 # API経由で天気を調べる
-#                 city_code = LD_TENIKI_CITY_CODE_MAPS[matchobj.group(1)]
-
-#                 payload = {"city": city_code}
-#                 api_response = requests.get(LD_TENKI_API_ENDPOINT, params=payload)
-#                 # http://weather.livedoor.com/forecast/webservice/json/v1?code=220010
-
-#                 result = api_response.json()
-#                 print("debug:result_obj:{}".format(result))
-#                 # コマンド実行時の今日の天気予報を抽出
-#                 weather_telop = result["forecasts"][0]["telop"]
-#                 weather_temp = result["forecasts"][0]["temperature"]["max"]
-
-#                 if weather_temp is None:
-#                     res_message = "静岡県{}の今日の天気は {} です！".format(city_name, weather_telop)
-#                 else:
-#                     res_message = "静岡県{}の今日の天気は {} 気温は{}℃です！".format(city_name, weather_telop, weather_temp["celsius"])
-#                 # メッセージを返す
-#                 channel = message["channel"]
-
-#                 slack_client.chat_postMessage(channel=channel, text=res_message)
