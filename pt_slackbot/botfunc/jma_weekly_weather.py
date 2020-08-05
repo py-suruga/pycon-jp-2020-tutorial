@@ -1,13 +1,15 @@
 # coding:utf-8
 
+import itertools
 import pickle
-from datetime import datetime, timedelta
-import requests
-from bs4 import BeautifulSoup
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-# 気象庁の週間天気予報をここで生成する
+import requests
+from bs4 import BeautifulSoup
+from pytz import timezone
 
+# 気象庁の週間天気予報をここで生成する
 
 JMA_WEEKLY_XMLFILESS_DIR = Path(__file__).parent / "jma_weekly_xmlfiles"
 
@@ -78,12 +80,15 @@ def get_jma_xml_files():
     """
     # xml保存のパスとディレクトリ生成を強制: ディレクトリ存在が面倒なのでこうしてるけど、Winで問題あったら変える
     JMA_WEEKLY_XMLFILESS_DIR.mkdir(exist_ok=True)
-    latest_dt_file = JMA_WEEKLY_XMLFILESS_DIR / "latest_dt.dat"
+    latest_dt_filename = JMA_WEEKLY_XMLFILESS_DIR / "latest_dt.dat"
 
-    # 取得日の日付と現在の日付が12時間越えていない場合は、そのまま終了。
-    latest_dt = pickle.load(open(latest_dt_file, "rb"))
-    if (latest_dt - timedelta(hours=12)) < datetime.now():
-        pass
+    # 取得日の日付の12時間経過してない場合は、そのまま終了。
+    if latest_dt_filename.exists():
+        with open(latest_dt_filename, "rb") as latest_dt_file:
+            latest_dt = pickle.load(latest_dt_file)
+            if latest_dt + timedelta(hours=12) > datetime.now(timezone("Asia/Tokyo")):
+                print("12時間越してないので更新しません")
+                return
 
     # 気象庁のatomフィードを取りに行く
     res_jma_feed = requests.get(
@@ -91,13 +96,11 @@ def get_jma_xml_files():
     )
     res_jma_feed.encoding = res_jma_feed.apparent_encoding
 
-    soup_jma_feed = BeautifulSoup(res_jma_feed, "xml")
+    soup_jma_feed = BeautifulSoup(res_jma_feed.content, "xml")
 
-    # soup_jma_feed.find("entry")で取得したときに入っている日付 tag.updated を取得日として記録する
-    updated_dt = datetime.isoformat(soup_jma_feed.find("entry").updated)
-
-    # entityから、府県週間天気予報 > 各気象台の情報を一覧でだして、最新の予報の電文xmlを探しに行く
-    weekly_weather_list = list()
+    # atomフィードのupdatedを取得日として記録する
+    updated_iso_str = soup_jma_feed.updated.text.replace("Z", "")
+    updated_dt = datetime.fromisoformat(updated_iso_str)
 
     # 週間予報のみのリストを作る
     weekly_weather_list = sorted(
@@ -110,32 +113,28 @@ def get_jma_xml_files():
     )
 
     # groupbyで地域事の週間天気予報の電文をまとめる
-    station_by_weekly_weather_list = itertools.groupby(
+    kisyodai_by_weekly_weather_list = itertools.groupby(
         weekly_weather_list, lambda e: e.content.text
     )
 
-    for kisyodai_name, g in station_by_weekly_weather_list:
-        # content = name
-        list_g = list(g)
-
+    for kisyodai_name, g in kisyodai_by_weekly_weather_list:
         # ソートで最新の週間天気予報の電文を取りに行く
-        g_latest_tag = sorted(list_g, key=lambda e: e.updated.text, reverse=True)[0]
+        g_latest_tag = sorted(list(g), key=lambda e: e.updated.text, reverse=True)[0]
 
-        # 最新の電文を取得
-        latest_url = g_latest_tag.link["href"]
-
-        # 電文xmlを気象台名で保存
-        jma_weekly_weather_xml = requests.get(latest_url)
+        # 最新の電文xmlを気象台名で保存
+        jma_weekly_weather_xml = requests.get(g_latest_tag.link["href"])
         jma_weekly_weather_xml.encoding = jma_weekly_weather_xml.apparent_encoding
 
-        # ファイルを保存する:【**県気象台】とあるので、前後のカッコを削る
-        savefilepath = JMA_WEEKLY_XMLFILESS_DIR / "{}.xml".format(kisyodai_name[1:-1])
+        # 【＊＊気象台】とあるので、前後のカッコを削る
+        xml_save_filepath = JMA_WEEKLY_XMLFILESS_DIR / "{}.xml".format(
+            kisyodai_name[1:-1]
+        )
 
-        with open(savefilepath, "w", encoding="utf-8") as savefile:
-            savefile.write(jma_weekly_weather_xml.text)
+        with open(xml_save_filepath, "w", encoding="utf-8") as xml_save_file:
+            xml_save_file.write(jma_weekly_weather_xml.text)
 
     # 取得日をファイルに記載
-    pickle.dump(updated_dt, open())
+    pickle.dump(updated_dt, open(latest_dt_filename, "wb"))
 
 
 # TODO:2020/08/05 returnは、str / Noneを返す

@@ -1,3 +1,6 @@
+# project ignore
+pt_slackbot/botfunc/jma_weekly_xmlfiles
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
