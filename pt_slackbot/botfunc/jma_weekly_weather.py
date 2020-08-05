@@ -1,4 +1,15 @@
+# coding:utf-8
+
+import pickle
+from datetime import datetime, timedelta
+import requests
+from bs4 import BeautifulSoup
+from pathlib import Path
+
 # 気象庁の週間天気予報をここで生成する
+
+
+JMA_WEEKLY_XMLFILESS_DIR = Path(__file__).parent / "jma_weekly_xmlfiles"
 
 KISYODAI_STATION_MAPS = {
     "東京都府県週間天気予報": ["東京", "東京地方"],
@@ -60,11 +71,88 @@ KISYODAI_STATION_MAPS = {
 }
 
 
+def get_jma_xml_files():
+    """
+    気象庁の府県週間天気予報の電文XMLファイルを取得します。
+    すでに取得済みで、取得日が現在の日付より12時間前の場合は取得はされません
+    """
+    # xml保存のパスとディレクトリ生成を強制: ディレクトリ存在が面倒なのでこうしてるけど、Winで問題あったら変える
+    JMA_WEEKLY_XMLFILESS_DIR.mkdir(exist_ok=True)
+    latest_dt_file = JMA_WEEKLY_XMLFILESS_DIR / "latest_dt.dat"
+
+    # 取得日の日付と現在の日付が12時間越えていない場合は、そのまま終了。
+    latest_dt = pickle.load(open(latest_dt_file, "rb"))
+    if (latest_dt - timedelta(hours=12)) < datetime.now():
+        pass
+
+    # 気象庁のatomフィードを取りに行く
+    res_jma_feed = requests.get(
+        "http://www.data.jma.go.jp/developer/xml/feed/regular_l.xml"
+    )
+    res_jma_feed.encoding = res_jma_feed.apparent_encoding
+
+    soup_jma_feed = BeautifulSoup(res_jma_feed, "xml")
+
+    # soup_jma_feed.find("entry")で取得したときに入っている日付 tag.updated を取得日として記録する
+    updated_dt = datetime.isoformat(soup_jma_feed.find("entry").updated)
+
+    # entityから、府県週間天気予報 > 各気象台の情報を一覧でだして、最新の予報の電文xmlを探しに行く
+    weekly_weather_list = list()
+
+    # 週間予報のみのリストを作る
+    weekly_weather_list = sorted(
+        [
+            e
+            for e in soup_jma_feed.find_all("entry")
+            if e.find("title", text="府県週間天気予報")
+        ],
+        key=lambda e: e.author.text,
+    )
+
+    # groupbyで地域事の週間天気予報の電文をまとめる
+    station_by_weekly_weather_list = itertools.groupby(
+        weekly_weather_list, lambda e: e.content.text
+    )
+
+    for kisyodai_name, g in station_by_weekly_weather_list:
+        # content = name
+        list_g = list(g)
+
+        # ソートで最新の週間天気予報の電文を取りに行く
+        g_latest_tag = sorted(list_g, key=lambda e: e.updated.text, reverse=True)[0]
+
+        # 最新の電文を取得
+        latest_url = g_latest_tag.link["href"]
+
+        # 電文xmlを気象台名で保存
+        jma_weekly_weather_xml = requests.get(latest_url)
+        jma_weekly_weather_xml.encoding = jma_weekly_weather_xml.apparent_encoding
+
+        # ファイルを保存する:【**県気象台】とあるので、前後のカッコを削る
+        savefilepath = JMA_WEEKLY_XMLFILESS_DIR / "{}.xml".format(kisyodai_name[1:-1])
+
+        with open(savefilepath, "w", encoding="utf-8") as savefile:
+            savefile.write(jma_weekly_weather_xml.text)
+
+    # 取得日をファイルに記載
+    pickle.dump(updated_dt, open())
+
+
+# TODO:2020/08/05 returnは、str / Noneを返す
 def bot_callback(**args):
     """
     botの結果を返すfunction
     """
-    #
+    # 気象庁XMLのDL
+
+    # DL済みのパスリストを取得
+
+    # KISYODAI_STATION_MAPSをループして、該当の地域かをチェック
+
+    # 該当した場合は、気象台の情報をもとに、気象台のxmlを開いて予報を取得
+
+    # 該当しない場合はNoneを返す
+
     return "tenki bot!"
 
 
