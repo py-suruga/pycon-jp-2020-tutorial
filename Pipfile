@@ -17,10 +17,10 @@ pytest = "*"
 sphinx = "*"
 bs4 = "*"
 lxml = "*"
+pytz = "*"
 
 [requires]
 python_version = "3.7"
-
 
 [pipenv]
 allow_prereleases = true
