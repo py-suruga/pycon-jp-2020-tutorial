@@ -4,6 +4,7 @@ import itertools
 import pickle
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from typing import Union
 
 import requests
 from bs4 import BeautifulSoup
@@ -137,7 +138,7 @@ def get_jma_xml_files():
     pickle.dump(updated_dt, open(latest_dt_filename, "wb"))
 
 
-def get_weekly_weather(station_name: str):
+def get_weekly_weather(station_name: str) -> Union[str, None]:
     """
     天気予報の結果を取得する
     """
@@ -151,7 +152,7 @@ def get_weekly_weather(station_name: str):
                 weekly_weather_xml_soup = BeautifulSoup(weekly_weather_xml, "xml")
             break
 
-    # 該当しない場合はNoneを返す
+    # 該当しない場合は何も返せなかったとしてNoneを返す
     if not weekly_weather_xml_soup:
         return None
 
@@ -164,29 +165,31 @@ def get_weekly_weather(station_name: str):
     daylist = kuiki_yohou.TimeSeriesInfo.find_all("TimeDefine")
     weatherlist = kuiki_yohou.find_all("jmx_eb:Weather")
 
-    # IDでソートしてzipでまとめる:しなくても本当は良いけどね（破壊的変更））
+    # （破壊的変更）zip関数でまとめるためにIDでソート:しなくても本当は良いけど
     daylist.sort(key=lambda t: t["timeId"])
     weatherlist.sort(key=lambda t: t["refID"])
-    yohou_set = list(zip(daylist, weatherlist))
 
-    # 一時的に出力用に呼び出す
-    from pprint import pprint
-
-    print(weekly_weather_xml_soup.Head.Title.text)
-    pprint(
-        [
-            (
-                datetime.fromisoformat(date_t.DateTime.text).strftime("%m/%d"),
-                yohou_t.text,
-            )
-            for date_t, yohou_t in yohou_set
-        ]
+    # 必要な情報だけを抜き出す
+    yohou_set = zip(
+        [datetime.fromisoformat(d.DateTime.text).strftime("%m/%d") for d in daylist],
+        [w.text for w in weatherlist],
     )
-    return None
+
+    # 文字列として流す用に整形する:気象台発表の週間天気予報
+    result_lines = list()
+    result_lines.append(
+        "{}発表、{}の週間天気予報です。".format(
+            weekly_weather_xml_soup.PublishingOffice.text, station_name
+        )
+    )
+    for yohou_date, yohou_weather in yohou_set:
+        result_lines.append("{} : {}".format(yohou_date, yohou_weather))
+
+    return "\n".join(result_lines)
+    # return None
 
 
-# TODO:2020/08/05 returnは、str / Noneを返す
-def bot_callback(match_group):
+def bot_callback(match_group: str) -> Union[str, None]:
     """
     botの結果を返すfunction
     """
@@ -197,6 +200,5 @@ def bot_callback(match_group):
 
     if result is None:
         return None
-    # return result
-    return "tenki bot!"
-
+    return result
+    # return "tenki bot!"
