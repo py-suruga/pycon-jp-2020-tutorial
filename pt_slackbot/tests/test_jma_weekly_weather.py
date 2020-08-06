@@ -14,6 +14,7 @@ station_and_result = [("静岡", "静岡地"), ("東京", "気象庁")]
 @pytest.fixture()
 def setup_xml_dir(monkeypatch):
 
+    # 本来生成されているxmlが置かれているディレクトリをテスト用のディレクトリに置き換え
     monkeypatch.setattr(
         jma_weekly_weather,
         "JMA_WEEKLY_XMLFILESS_DIR",
