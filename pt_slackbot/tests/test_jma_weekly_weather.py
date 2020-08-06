@@ -1,31 +1,39 @@
 # coding:utf-8
 
+from pathlib import Path
 from botfunc import jma_weekly_weather
 import pytest
 
 # 気象庁xmlから天気予報を呼び出すbot機能のテスト
 
-
-# TODO:2020/08/05 条件分岐で使う情報を適当に置き換える必要あり
-# - 更新日時
-# - モジュール側で使うテスト用のxmlファイルを入れたフォルダ
-# （ぐらい？
+# TODO:2020-08-06 このテストだと雑すぎるので、気象台の名称までをちゃんと取れるようにする。
+# 天気の結果もちゃんと見れるようにする。1日分で良し。改行コードでsplitすれば予報最初の文字列とれるし
+station_and_result = [("静岡", "静岡地"), ("東京", "気象庁")]
 
 
-# jma_weekly_weather.get_weekly_weather: 複数の地方を聞いて問題ないか調べる
-@pytest.mark.parametrize
-def test_station_notfound(monkeypatch):
-    # monkeypatch.setattr()
-    # ない地方を聞いたらNoneがもどるか
-    # assert
-    pass
+@pytest.fixture()
+def setup_xml_dir(monkeypatch):
+
+    monkeypatch.setattr(
+        jma_weekly_weather,
+        "JMA_WEEKLY_XMLFILESS_DIR",
+        Path(__file__).parent / "./test_weekly_weather_xmls",
+    )
 
 
-# jma_weekly_weather.get_weekly_weather: 複数の地方を聞いて問題ないか調べる
-@pytest.mark.parametrize
-def test_station_found(monkeypatch):
-    pass
+@pytest.mark.parametrize("station, kisyodai", station_and_result)
+def test_station(setup_xml_dir, station, kisyodai):
+    """
+    定義済みの地域からxmlをパースして正しく結果を返すかのテスト
+    """
+    result = jma_weekly_weather.get_weekly_weather(station)
+    assert result[0:3] == kisyodai
 
 
-# bot callback自体のテストも書く
-
+def test_station_notfound(setup_xml_dir):
+    """
+    未定義の地域名はNoneを返すかのテスト
+    """
+    # 例えば北海道は非対応
+    result = jma_weekly_weather.get_weekly_weather("北海道")
+    assert result == None
