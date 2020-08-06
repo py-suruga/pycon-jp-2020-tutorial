@@ -57,9 +57,14 @@ def handle_message_greeting(event_data):
 # メッセージのパターンと返答の関数をセットにすれば、返答の関数のテストが可能になる
 @slack_events_adapter.on("message")
 def handle_message_and_botrun(event_data):
+
     # TODO:2020/08/05 できればdebugはlogging.debugにしたい。
     print("debug:eventdata:{}".format(event_data))
     message = event_data["event"]
+
+    # subtypeがない場合=普通のメッセージ, botの返答メッセージはスルーする
+    if not message.get("subtype") is None and not message.get("bot_id") is None:
+        return
 
     # ハンドルするワードパターンとcallするfucntionのリストをみて、
     for handle_map in BOT_FUNCTION_MAPS:
@@ -75,6 +80,7 @@ def handle_message_and_botrun(event_data):
                 res_message = bot_result
                 channel = message["channel"]
                 slack_client.chat_postMessage(channel=channel, text=res_message)
+                break
 
 
 # エラー時のイベントのハンドリング
