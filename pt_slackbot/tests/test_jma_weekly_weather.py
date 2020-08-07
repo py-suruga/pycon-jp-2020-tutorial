@@ -8,7 +8,7 @@ import pytest
 
 # TODO:2020-08-06 このテストだと雑すぎるので、気象台の名称までをちゃんと取れるようにする。
 # 天気の結果もちゃんと見れるようにする。1日分で良し。改行コードでsplitすれば予報最初の文字列とれるし
-station_and_result = [("静岡", "静岡地"), ("東京", "気象庁")]
+station_and_result = [("静岡", "静岡地方気象台発表、静岡の週間天気予報です。"), ("東京", "気象庁予報部発表、東京の週間天気予報です。")]
 
 
 @pytest.fixture()
@@ -28,7 +28,8 @@ def test_station(setup_xml_dir, station, kisyodai):
     定義済みの地域からxmlをパースして正しく結果を返すかのテスト
     """
     result = jma_weekly_weather.get_weekly_weather(station)
-    assert result[0:3] == kisyodai
+    # 冒頭の文章で生成できているかをテストする（雑ではある）
+    assert result.split("\n")[0] == kisyodai
 
 
 def test_station_notfound(setup_xml_dir):
