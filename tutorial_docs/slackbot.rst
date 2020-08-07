@@ -10,42 +10,125 @@ Slackアプリの作成と設定
 
 まず初めにBotとなるSlackアプリをSlack上で作成します。
 
-「Create a Slack App」からApp Nameにアプリ名を入力します。（このアプリ名はHerokuのアプリ名でも利用します。
+「Create a Slack App」からApp Nameにアプリ名を入力します。
 
-.. image:: ./doc-img/slackapp1.jpg
+.. image:: ./doc-img/slackbot_1-1.png
 
 Slack WorkSpaceはハンズオン用に新たに取得したワークスペースを利用してください。
 
 アプリが作成できたら、「OAuth & Permissions」の「Scopes」>「Bot Token Scopes」にスコープの設定を行います。
 
-.. image:: ./doc-img/slackapp2.jpg
+.. image:: ./doc-img/slackbot_1-2.png
 
 「Bot Token Scope」はBotとなるSlackアプリがSlackワークスペースに利用できる権限の範囲（スコープ）です。
 
 この時点では`chat:write`のみで、botがSlackへメッセージを送るためのスコープのみを設定していますが、後ほどの設定で、いくつか追加されます。
 
-.. image:: ./doc-img/slackapp3.jpg
+.. image:: ./doc-img/slackbot_1-3.png
 
 追加したら、ページの上にある「Install App to Workspace」をクリックし、SlackアプリをSlackワークスペースへ追加します。
 
-.. image:: ./doc-img/slackapp4.jpg
+.. image:: ./doc-img/slackbot_1-4.png
 
-.. image:: ./doc-img/slackapp5.jpg
+.. image:: ./doc-img/slackbot_1-5.png
 
 追加が終わると、「Bot User OAuth Access Token」が表示されます。このトークンをまず控えてください。
 
-.. image:: ./doc-img/slackapp6.jpg
+.. image:: ./doc-img/slackbot_1-6.png
 
 次に、右上の「Basic Information」へ戻り、「App Credentials」の中にある「Signing Secret」を控えます。
 
-.. image:: ./doc-img/slackapp7.jpg
+.. image:: ./doc-img/slackbot_1-7.png
 
 .. 
     - この後、サンプルアプリを使って権限までを動作させれるかをミル
     - サンプルアプリはeventメッセージを取ってdebug結果を返すような関数のみ
 
+次にngrokコマンドを使い、slackbotを外部公開します。
+
+.. code-block:: bash
+
+    ngrok http 3000
+    python ./pt_slackbot/botrun.py
+
+ngrokコマンドを起動すると以下のような情報が表示されます。ngrokのサービスへサインアップしていない場合は外部公開のセッションは8時間の限定公開になります。
+
+.. code-block:: 
+
+  ngrok by @inconshreveable                                                                                                                       (Ctrl+C to quit)
+                                                                                                                                                                
+  Session Status                online                                                                                                                            
+  Session Expires               7 hours, 58 minutes                                                                                                               
+  Version                       2.3.35                                                                                                                            
+  Region                        United States (us)                                                                                                                
+  Web Interface                 http://127.0.0.1:4040                                                                                                             
+  Forwarding                    http://df702078ccde.ngrok.io -> http://localhost:3000                                                                             
+  Forwarding                    https://df702078ccde.ngrok.io -> http://localhost:3000                                                                            
+                                                                                                                                                                  
+  Connections                   ttl     opn     rt1     rt5     p50     p90                                                                                       
+                                0       0       0.00    0.00    0.00    0.00        
+
+Web InterfaceのURLへアクセスすると、公開したURLのアクセス履歴が見れるようになります。
+
+
+.. image:: ./doc-img/slackbot_1-8.png
+
+登録を行い、ngrokコマンドの authを行うことで、１セッションを無制限に利用可能です。（プランに依存します。）
+
+.. TODO:2020/08/07 authしたあとの画面を見せる
+
+slackbotがSlackワークスペースへのやりとりをおこなうURLを生成したので、Slackアプリの設定を続けます。
+
+Slackbotが利用できるイベントを登録する
+Slack Event APIを使い、Slackワークスペース上に起きたイベントを、Slackbotが動作するサーバー(ここではngrokで公開しているローカル環境)へ伝えることができます。
+
+ここで2つの設定を行います。
+
+1. Slack Event APIが起きたイベントをサーバーに伝えるためのエンドポイントURL
+2. イベントの種類
+
+Slack Event APIが起きたイベントをサーバーに伝えるためのエンドポイントURLを設定します。
+
+「Event Subscriptions」ページの「Enable Events」にある、右上のボタンをOnにします。
+
+「Request URL」にエンドポイントURLを設定します。ngrokのアプリ上でbotアプリが待機しているアドレスを入力します。
+
+.. image:: ./doc-img/slackbot_1-9.png
+
+:: 
+    
+    https://[ngrokが自動的に割り振るランダムな文字列].ngrok.io/slack/events
+
+次に、イベントの種類を登録します。イベントには種類があり、あらかじめアプリで取得したいイベントの種類を登録する必要があります。
+
+Slackアプリのスコープを扱ったときに、イベントによるスコープの決定もあると書きましたが、このイベントを登録することでスコープの変化があります。
+
+「Event Subscriptions」の「Subscribe to bot events」内に ``message.channels`` イベントを登録します。
+
+.. image:: ./doc-img/slackbot_1-10.png
+
+登録後はSlackワークスペースへアプリの再インストールを指示されるので行います。
+
+.. image:: ./doc-img/slackbot_1-11.png
+
+再インストール時の認証画面を見ると、権限が追加されていることがわかります。先ほどはチャンネルにメッセージを送信するだけでしたが、それに加えてチャンネル内のメッセージを見ることができます。
+
+.. TODO:2020/08/07 権限追加の画像を取り直す
+
+デプロイとSlackアプリの権限の設定が終わると、Slackbotが利用できます。最後にSlackワークスペース上でbotを呼び出してみます。
+
+最初に、チャンネルにbotユーザーを追加します。
+
+.. image:: ./doc-img/slackbot_1-12-0.png
+
+.. image:: ./doc-img/slackbot_1-12-1.png
+
+ここまででslackbotを動作させる準備が整いました。
+
 slackbotのフロー
 ---------------------------------------------------------------------------------
+
+ここでは、slackbotがどのようにslackワークスペースとやり取りを行うか解説します。
 
 ..
     - slackbotのシステム概要を説明: どんな技術が利用されているか。ざっくりで。(pysuruga-13-handsonの資料流用）
@@ -58,6 +141,8 @@ slackbotのフロー
 
 世界の挨拶を返すbot
 --------------------------------------------------------------------------------
+
+世界の挨拶を返すbotを作ります。
 
 .. 
     - 挨拶を返すbot: （国ごとの言葉で返したらその国ごとに返す機能）-> 目的:人口無能をまずは試してもらう
