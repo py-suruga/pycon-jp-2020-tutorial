@@ -186,10 +186,9 @@ def get_weekly_weather(station_name: str) -> Union[str, None]:
         result_lines.append("{} : {}".format(yohou_date, yohou_weather))
 
     return "\n".join(result_lines)
-    # return None
 
 
-def bot_callback(match_group: str) -> Union[str, None]:
+def call_function(match_group: Union[str, None]) -> Union[str, None]:
     """
     botの結果を返すfunction
     """
@@ -201,4 +200,3 @@ def bot_callback(match_group: str) -> Union[str, None]:
     if result is None:
         return None
     return result
-    # return "tenki bot!"
