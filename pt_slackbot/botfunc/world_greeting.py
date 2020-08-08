@@ -1,14 +1,24 @@
 # coding:utf-8
-# 世界の挨拶を返すbot
+# こんにちは！と返すと世界のあいさつをランダムに返してくれるbot
 
+# TODO:2020-08-08 余裕があったら、時刻で
+
+import random
 from typing import Union
+
+# 並びは、挨拶, 国旗の絵文字
+GREETING_LIST = [
+    ("こんにちは！", ":jp:"),
+    ("Hello!", ":us:"),
+    ("ニーハオ!", ":cn:"),
+]
 
 
 def call_function(match_group: str) -> Union[str, None]:
     """
     botの結果を返すfunction
+
+    挨拶をすると世界の挨拶をランダムに返す
     """
-
-    result = "hello!!"
-
-    return result
+    greetword, kokki = random.choice(GREETING_LIST)
+    return "{}ノアイサツデス :robot_face: 「{}」".format(kokki, greetword)
