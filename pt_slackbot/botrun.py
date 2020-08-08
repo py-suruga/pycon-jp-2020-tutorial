@@ -59,6 +59,7 @@ def handle_message_and_botrun(event_data):
             if bot_result is not None:
                 break
 
+        # botが見つからない場合の処理=なにも返答しないほうが良いのでは？
         if bot_result is None:
             res_message = "botが見つからずメッセージを返すことができませんでした。"
         else:
@@ -67,7 +68,14 @@ def handle_message_and_botrun(event_data):
             channel = message["channel"]
             slack_client.chat_postMessage(channel=channel, text=res_message)
 
-                    break
+
+"""
+botの状態
+
+- なにも返答しなくてもいい
+- botらしい可能性があるものを調べてあたったらbotが返答
+- botらしい可能性があるものを調べて当たらなければ返答しない
+"""
 
 
 # エラー時のイベントのハンドリング
