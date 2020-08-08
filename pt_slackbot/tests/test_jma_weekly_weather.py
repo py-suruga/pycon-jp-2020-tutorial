@@ -6,15 +6,15 @@ import pytest
 
 # 気象庁xmlから天気予報を呼び出すbot機能のテスト
 
-# TODO:2020-08-06 このテストだと雑すぎるので、気象台の名称までをちゃんと取れるようにする。
-# 天気の結果もちゃんと見れるようにする。1日分で良し。改行コードでsplitすれば予報最初の文字列とれるし
+# TODO:2020-08-08 天気の結果もちゃんと見れるようにする。1日分で良し。改行コードでsplitすれば予報最初の文字列とれるし
 station_and_result = [("静岡", "静岡地方気象台発表、静岡の週間天気予報です。"), ("東京", "気象庁予報部発表、東京の週間天気予報です。")]
 
 
 @pytest.fixture()
 def setup_xml_dir(monkeypatch):
-
+    """
     # 本来生成されているxmlが置かれているディレクトリをテスト用のディレクトリに置き換え
+    """
     monkeypatch.setattr(
         jma_weekly_weather,
         "JMA_WEEKLY_XMLFILESS_DIR",
