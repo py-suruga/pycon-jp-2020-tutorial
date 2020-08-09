@@ -12,9 +12,8 @@ GREETING_LIST = [
     ("Hello!", ":us:"),
     ("ニーハオ!", ":cn:"),
 ]
-
-
-def call_function(match_group: str) -> Union[str, None]:
+# TODO:2020-08-09 個々の引数は**argsにして自由に引数を受け取り、引数の位置で判断しよう
+def call_function(match_group: Union[str, None]) -> Union[str, None]:
     """
     botの結果を返すfunction
 
