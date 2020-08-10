@@ -15,6 +15,7 @@ def mocking_connpass_json(monkeypatch):
         """
         テスト用のconnpass api レスポンス結果をjsonファイルからloadする
         引数ymは受け取るだけ
+        pytest monkeypachで関数の置き換えを行うときに利用する
         """
 
         test_jsonpath = Path(__file__).parent / "test_connpass_api.json"
