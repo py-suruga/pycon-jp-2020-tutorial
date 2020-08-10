@@ -133,3 +133,5 @@ dmypy.json
 
 # vscode setting
 .vscode/
+ngrok.exe
+set_env.ps1
