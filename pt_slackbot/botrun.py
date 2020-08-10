@@ -59,11 +59,10 @@ def handle_message_and_botrun(event_data):
             if bot_result is not None:
                 break
 
-        if bot_result not is None:
+        if bot_result is not None:
             res_message = bot_result
             channel = message["channel"]
             slack_client.chat_postMessage(channel=channel, text=res_message)
-
 
 
 # エラー時のイベントのハンドリング
