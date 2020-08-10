@@ -65,14 +65,6 @@ def handle_message_and_botrun(event_data):
             slack_client.chat_postMessage(channel=channel, text=res_message)
 
 
-"""
-botの状態
-
-- なにも返答しなくてもいい
-- botらしい可能性があるものを調べてあたったらbotが返答
-- botらしい可能性があるものを調べて当たらなければ返答しない
-"""
-
 
 # エラー時のイベントのハンドリング
 @slack_events_adapter.on("error")
