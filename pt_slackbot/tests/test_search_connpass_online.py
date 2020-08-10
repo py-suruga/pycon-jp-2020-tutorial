@@ -8,13 +8,12 @@ from pathlib import Path
 @pytest.fixture()
 def mocking_connpass_json(monkeypatch):
     """
-    connpassAPIのレスポンスになるjsonをjsonファイルに固定する
+    connpassAPIのレスポンスになるjsonをjsonファイルに固定するmonkeypatch
     """
 
     def test_connpass_json(ym):
         """
         テスト用のconnpass api レスポンス結果をjsonファイルからloadする
-
         引数ymは受け取るだけ
         """
 
@@ -28,7 +27,7 @@ def mocking_connpass_json(monkeypatch):
 
 def test_search_online_event(mocking_connpass_json):
     """
-    アイサツの文章が決めたとおりに出力されるかを確認
+    connpass bot側が決めたとおりに文字列を生成するかを調べる
     """
     result = search_connpass_online.search_online_event("202008")
 

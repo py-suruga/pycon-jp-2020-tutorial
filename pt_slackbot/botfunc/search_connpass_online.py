@@ -8,7 +8,9 @@ import requests
 
 def request_connpass_api(ym):
     """
-    connpass APIへのリクエスト
+    connpass APIへのリクエストを行う。
+    connpassで、"Python"に関係する"オンライン"イベントを検索する。
+    年月を指定して、その年月から関係するイベントから先頭20件を取得する
     """
     api_url = "https://connpass.com/api/v1/event/"
     keywords = ["オンライン", "Python"]
@@ -24,9 +26,7 @@ def request_connpass_api(ym):
 
 def search_online_event(ym: str) -> Union[str, None]:
     """
-    connpassで、"Python"に関係する"オンライン"イベントを検索する。
-    年月を指定して、その年月から関係するイベントから先頭20件を取得する
-
+    request_connpass_apiで受け取った結果をbotの戻り文字列として生成する
     """
 
     # jsonをパースする
