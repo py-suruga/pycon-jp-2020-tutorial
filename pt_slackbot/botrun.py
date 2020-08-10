@@ -13,7 +13,7 @@ from botfunc import world_greeting, search_connpass_online, jma_weekly_weather
 # TODO:2020-08-08 これをnamedtuple or dataclassesにするほうがいいかな？
 BOT_FUNCTIONS = [
     (r"^wgreet", world_greeting),
-    (r"^connpass\s(¥d{6})", search_connpass_online),
+    (r"^connpassonline\s(\d{6})", search_connpass_online),
     (r"^tenki\s(.{1,4})", jma_weekly_weather),
 ]
 
