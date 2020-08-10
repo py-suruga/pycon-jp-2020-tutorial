@@ -39,7 +39,7 @@ def handle_message_and_botrun(event_data):
     # subtypeがない場合=普通のメッセージ, botの返答メッセージはスルーする
     if message.get("subtype") is None and message.get("bot_id") is None:
 
-        # 何も返せなかったときのメッセージ
+        # botが返す結果の入れ物
         bot_result = ""
 
         # ハンドルするワードパターンとcallするfucntionのリストをみて、
@@ -55,15 +55,12 @@ def handle_message_and_botrun(event_data):
             # TODO:2020/08/05 ここの引数をどう入れるかを考える:引数というかグループ化した結果の文字を取りに行くだけで良いかなと
             bot_result = bot_module.call_function(matched_obj.groups()[0])
 
+            # botが何かしら返答をしてくれた場合はその時点で終了
             if bot_result is not None:
                 break
 
-        # botが見つからない場合の処理=なにも返答しないほうが良いのでは？
-        if bot_result is None:
-            res_message = "botが見つからずメッセージを返すことができませんでした。"
-        else:
+        if bot_result not is None:
             res_message = bot_result
-            # botが生成された/生成できない場合は出来なかったというメッセージを返す
             channel = message["channel"]
             slack_client.chat_postMessage(channel=channel, text=res_message)
 
