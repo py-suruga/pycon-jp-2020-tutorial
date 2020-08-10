@@ -1,20 +1,19 @@
 # coding:utf-8
 import os
 import re
-import logging
 
 
 from flask import Flask
 from slack import WebClient
 from slackeventsapi import SlackEventAdapter
 
-from botfunc import jma_weekly_weather
-
-logging.basicConfig(level=logging.DEBUG)
+from botfunc import world_greeting, search_connpass_online, jma_weekly_weather
 
 
 # TODO:2020-08-08 これをnamedtuple or dataclassesにするほうがいいかな？
 BOT_FUNCTION_MAPS = [
+    (r"^wgreet", world_greeting),
+    (r"^connpass\s(¥d{6})", search_connpass_online),
     (r"^tenki\s(.{1,4})", jma_weekly_weather),
 ]
 
