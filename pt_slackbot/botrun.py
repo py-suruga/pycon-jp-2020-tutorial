@@ -56,10 +56,10 @@ def handle_message_and_botrun(event_data):
             bot_result = bot_module.call_function(matched_obj.groups()[0])
 
             # botが何かしら返答をしてくれた場合はその時点で終了
-            if bot_result is not None:
+            if bot_result:
                 break
 
-        if bot_result is not None:
+        if bot_result:
             res_message = bot_result
             channel = message["channel"]
             slack_client.chat_postMessage(channel=channel, text=res_message)
