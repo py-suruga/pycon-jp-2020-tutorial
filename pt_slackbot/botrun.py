@@ -32,11 +32,10 @@ slack_client = WebClient(slack_bot_token)
 @slack_events_adapter.on("message")
 def handle_message_and_botrun(event_data):
 
-    # TODO:2020/08/05 できればdebugはlogging.debugにしたい。
     print("debug: eventdata:{}".format(event_data))
     message = event_data["event"]
 
-    # subtypeがない場合=普通のメッセージ, botの返答メッセージはスルーする
+    # subtypeがない場合=普通のメッセージ かつ botの返答メッセージはスルーする
     if message.get("subtype") is None and message.get("bot_id") is None:
 
         # botが返す結果の入れ物
@@ -52,7 +51,8 @@ def handle_message_and_botrun(event_data):
 
             print("info: matched_obj -> bot!:{}".format(bot_module))
 
-            # TODO:2020/08/05 ここの引数をどう入れるかを考える:引数というかグループ化した結果の文字を取りに行くだけで良いかなと
+            # TODO:2020-08-10 この部分は引数を複数取得できる方が理にかなってると思う->**argas
+            # 今回のチュートリアルでは文字列だけ受け取る
             bot_result = bot_module.call_function(matched_obj.groups()[0])
 
             # botが何かしら返答をしてくれた場合はその時点で終了
