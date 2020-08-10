@@ -33,7 +33,7 @@ slack_client = WebClient(slack_bot_token)
 def handle_message_and_botrun(event_data):
 
     # TODO:2020/08/05 できればdebugはlogging.debugにしたい。
-    logging.debug("eventdata:{}".format(event_data))
+    print("debug: eventdata:{}".format(event_data))
     message = event_data["event"]
 
     # subtypeがない場合=普通のメッセージ, botの返答メッセージはスルーする
@@ -44,12 +44,13 @@ def handle_message_and_botrun(event_data):
 
         # ハンドルするワードパターンとcallするfucntionのリストをみて、
         for bot_pattern, bot_module in BOT_FUNCTIONS:
+            print("debug: try matching bot:{}".format(bot_module))
 
             matched_obj = re.match(bot_pattern, message.get("text"))
             if not matched_obj:
                 continue
 
-            logging.info("matched_obj -> bot!:{}".format(bot_module))
+            print("info: matched_obj -> bot!:{}".format(bot_module))
 
             # TODO:2020/08/05 ここの引数をどう入れるかを考える:引数というかグループ化した結果の文字を取りに行くだけで良いかなと
             bot_result = bot_module.call_function(matched_obj.groups()[0])
