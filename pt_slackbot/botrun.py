@@ -53,7 +53,12 @@ def handle_message_and_botrun(event_data):
 
             # TODO:2020-08-10 この部分は引数を複数取得できる方が理にかなってると思う->**argas
             # 今回のチュートリアルでは文字列だけ受け取る
-            bot_result = bot_module.call_function(matched_obj.groups()[0])
+
+            if matched_obj.groups():
+                bot_args = matched_obj.groups()[0]
+            else:
+                bot_args = None
+            bot_result = bot_module.call_function(bot_args)
 
             # botが何かしら返答をしてくれた場合はその時点で終了
             if bot_result:
