@@ -11,7 +11,7 @@ from botfunc import world_greeting, search_connpass_online, jma_weekly_weather
 
 
 # TODO:2020-08-08 これをnamedtuple or dataclassesにするほうがいいかな？
-BOT_FUNCTION_MAPS = [
+BOT_FUNCTIONS = [
     (r"^wgreet", world_greeting),
     (r"^connpass\s(¥d{6})", search_connpass_online),
     (r"^tenki\s(.{1,4})", jma_weekly_weather),
@@ -43,8 +43,7 @@ def handle_message_and_botrun(event_data):
         bot_result = ""
 
         # ハンドルするワードパターンとcallするfucntionのリストをみて、
-        for bot_pattern, bot_module in BOT_FUNCTION_MAPS:
-            logging.debug("try matching bot:{}".format(bot_module))
+        for bot_pattern, bot_module in BOT_FUNCTIONS:
 
             matched_obj = re.match(bot_pattern, message.get("text"))
             if not matched_obj:
