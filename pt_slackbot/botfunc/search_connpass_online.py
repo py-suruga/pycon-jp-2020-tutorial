@@ -6,22 +6,31 @@ from typing import Union
 import requests
 
 
-def search_online_event():
+def request_connpass_api(ym):
     """
-    connpassで"オンライン"イベントを検索する
-    今日を基準に50件ほどの検索結果を出して、オンラインのイベントを返す
+    connpass APIへのリクエスト
     """
     api_url = "https://connpass.com/api/v1/event/"
-    keyword = "オンライン"
-
-    # コマンド情報から年月の数字を抜き出す
+    keywords = ["オンライン", "Python"]
 
     # connpass apiよりイベント情報を取得する
-    payload = {"keyword": keyword, "count": 50}
+    # keywordを複数入れるので、
+    payload = {"keyword": keywords, "count": 20, "ym": ym}
     r = requests.get(api_url, params=payload)
 
     # jsonをパースする
-    result = r.json()
+    return r.json()
+
+
+def search_online_event(ym: str) -> Union[str, None]:
+    """
+    connpassで、"Python"に関係する"オンライン"イベントを検索する。
+    年月を指定して、その年月から関係するイベントから先頭20件を取得する
+
+    """
+
+    # jsonをパースする
+    result = request_connpass_api(ym)
     events: list = copy.copy(result["events"])
 
     # オンラインイベントのみを抽出する。
@@ -42,7 +51,7 @@ def search_online_event():
         ev_link = event["event_url"]
 
         # イベント情報を
-        result_lines.append("- {}:{} {}".format(ev_date, ev_title, ev_link))
+        result_lines.append("- {}|{}|{}".format(ev_date, ev_title, ev_link))
 
     return "\n".join(result_lines)
 
@@ -52,7 +61,7 @@ def call_function(match_group: Union[str, None]) -> Union[str, None]:
     botの結果を返すfunction
     """
 
-    result = search_online_event()
+    result = search_online_event(match_group)
 
     if result is None:
         return None
