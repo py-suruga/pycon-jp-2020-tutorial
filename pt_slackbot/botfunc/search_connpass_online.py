@@ -8,7 +8,7 @@ import requests
 
 def search_online_event():
     """
-    connpassでオンラインイベントを検索する
+    connpassで"オンライン"イベントを検索する
     今日を基準に50件ほどの検索結果を出して、オンラインのイベントを返す
     """
     api_url = "https://connpass.com/api/v1/event/"
