@@ -30,8 +30,18 @@ slack_client = WebClient(slack_bot_token)
 
 
 @slack_events_adapter.on("message")
-def handle_message_and_botrun(event_data):
+def handle_message_and_botrun(event_data: dict):
+    """
+    args:
+        event_data: SlackEventAdapterから取得するSlackのイベント情報
+    
 
+    Slack Events APIのイベントをハンドリングし、botを実行します。
+    
+    各botは botfuncモジュールに同梱し、 ``call_function`` 関数を実装する必要があります。
+   
+
+    """
     print("debug: eventdata:{}".format(event_data))
     message = event_data["event"]
 
