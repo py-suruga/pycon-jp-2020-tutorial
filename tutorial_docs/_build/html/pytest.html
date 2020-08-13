@@ -41,10 +41,9 @@
 <div class="section" id="id1">
 <h2>pytestコマンドの使い方<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>pytestは既にローカル開発環境を用意した段階でインストールされています。 <code class="docutils literal notranslate"><span class="pre">pytest</span></code> コマンドを実行することで確認できます。もしコマンドが存在しないというエラーがある場合はpipコマンドでインストールしてください</p>
-<dl class="simple">
-<dt>::</dt><dd><p>pip install pytest</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pytest</span>
+</pre></div>
+</div>
 <p>pytestを使ったテストケースはpytestコマンドでテストの実行と結果を確認できます。</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">-v</span></code> オプションを利用することで、各テストケースの</dt><dd><ul class="simple">
@@ -56,32 +55,32 @@
 <li><p>pytestを扱ったテストの書き方</p></li>
 </ul>
 <p>pytestを使ったテストケースの書き方を紹介します。</p>
-<p>テストファイルは Pythonのパッケージ内にある <code class="docutils literal notranslate"><span class="pre">tests</span></code> モジュールや、test_**.py or <a href="#id2"><span class="problematic" id="id3">**</span></a>_test.py という名前が認識されます。</p>
+<p>テストファイルは Pythonのパッケージ内にある <code class="docutils literal notranslate"><span class="pre">tests</span></code> モジュールや、<code class="docutils literal notranslate"><span class="pre">test_**.py</span></code>、<code class="docutils literal notranslate"><span class="pre">**_test.py</span></code> という名前が認識されます。</p>
 <p>簡単なテストを作成してみます。</p>
 <p>TODO:2020-08-13 hello test的なコードをファイルに作って記載</p>
 <p>特徴的な部分としては、 pythonのassert文を使ってテストケースを定義します。</p>
 <p>※:Assert式とは:</p>
 <p>Assert文は <cite>assert [真偽判断ができる式]</cite> と書くことで、式が偽となる場合はＡssertＥrrorという例外を発生させます。簡易的なデバッグ用途に扱うことができます。</p>
 <p><a class="reference external" href="https://docs.python.org/ja/3/reference/simple_stmts.html#assert">https://docs.python.org/ja/3/reference/simple_stmts.html#assert</a></p>
+<div class="section" id="id2">
+<h3>テストの失敗<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>実行して失敗した状態からスタート。faild=&gt;pass</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h3>テストの成功<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>実行して失敗した状態からスタート。faild=&gt;pass</p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
 <div class="section" id="id4">
-<h3>テストの失敗<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><p>実行して失敗した状態からスタート。faild=&gt;pass</p></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="id5">
-<h3>テストの成功<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><p>実行して失敗した状態からスタート。faild=&gt;pass</p></li>
-</ul>
-</div></blockquote>
-</div>
-</div>
-<div class="section" id="id6">
-<h2>PyTestの機能<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>PyTestの機能<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="parametrize">
 <h3>parametrize<a class="headerlink" href="#parametrize" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
@@ -142,7 +141,7 @@
 <li class="toctree-l1"><a class="reference internal" href="slackbot.html">Slackbotの作成</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">PyTest</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id1">pytestコマンドの使い方</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id6">PyTestの機能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">PyTestの機能</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#slackbot">slackbotのテストケースを書いてみよう</a></li>
 </ul>
 </li>
