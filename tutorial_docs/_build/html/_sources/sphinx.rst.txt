@@ -99,7 +99,8 @@ autodoc 拡張機能を使ったリファレンス作成
 
 docstirngを書こう
 ---------------------------
-
+- apidocの設定(conf.pyでextentionsやsys.pathにpythonのモジュールパスを入れる）
+- sphinx-apidoc コマンド
 - docstringの足らない部分を書いていく
 - 挨拶bot: ランダムに天気情報を返す関数
 - connpassbot: jsonの取得関数, botが答える文字列生成の関数
@@ -117,8 +118,10 @@ autodocで半自動的にリファレンスを作成する
 
 docstringを用意できたので、autodocを使ってリファレンスを生成してみましょう。
 
-:: 
-    autodocコマンドを実行する
+::
+    - conf.pyを設定
+    - sphinx-apidoc でapidocのひな形を作成
+    - make htmlで生成しよう
 
 実行したautodocの結果は***にあります。それをslackbotのドキュメントの一部として組み込みます。
 

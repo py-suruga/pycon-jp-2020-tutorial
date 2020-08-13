@@ -38,30 +38,26 @@ Pythonは各OSによってインストール方法が違いますが、基本的
 Pythonの動作確認
 --------------------------------------------------------------------------------
 
-
-
-PATHが通っているかのチェック: Powershell上で python --version でインストール済みのバージョンチェック
-
 pythonコマンドが実行できるか確認します。Windows10ならPowershellかコマンドプロンプト、macOSならターミナルアプリを起動して以下のコマンドを実行しましょう。ここではPowershellを利用して確認します。
 
+TODO:2020-08-13 Python古いので当日までに新しいバージョンにして確認しなおす
 
 ::
 
-  PS C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial> python --version
+  PS ...\pycon-jp-2020-tutorial> python --version
   Python 3.7.3
 
 
-
-チュートリアルの資料を取得する
+チュートリアル資料を取得する
 ================================================================================
 
 ＳlackbotチュートリアルはGitHub上のリポジトリで作成しています。以下のURLからDLしてください。
 
+gitリポジトリ: https://github.com/py-suruga/pycon-jp-2020-tutorial.git
 
-https://github.com/py-suruga/pycon-jp-2020-tutorial.git
+リポジトリのZip: https://github.com/py-suruga/pycon-jp-2020-tutorial/archive/master.zip
 
-
-https://github.com/py-suruga/pycon-jp-2020-tutorial/archive/master.zip
+チュートリアル資料の展開先は、普段お使いのユーザーディレクトリのどこかで構いません。例として 
 
 利用するサービスの準備
 ================================================================================
@@ -96,11 +92,13 @@ zipファイルをDLして、チュートリアルの作業用のディレクト
 
 Windows 10で ``C:\Users\[Username]\Document\pyconjp-2020-tutorial`` というディレクトリで作業をする場合、DLしたZipファイルをディレクトリ内で展開し、 ``ngrok.exe`` という実行ファイルを配置します。
 
-ngrokは登録をしなくても、8時間の限定的なURLが割り振られます。今回のチュートリアルでは8時間を超える利用を想定していないのですが、後ほど試したい場合は、ngrokのサービス登録をすることをおススメします。
+ngrokはアカウント作成をしなくても利用することが出来ます。その時には8時間の限定的なURLが割り振られます。今回のチュートリアルでは8時間を超える利用を想定していないのですが、後ほど継続して試したい場合は、ngrokのサービス登録をすることをおススメします。
 
 - 登録: `ngrok - secure introspectable tunnels to localhost <https://dashboard.ngrok.com/signup>`_
 
 登録後は、``ngrok authtoken`` コマンドを使いngrokコマンドのアカウント認証を行うことで、アカウントに紐づいたサービスが利用できます。
+
+詳細: https://ngrok.com/docs#getting-started-authtoken
 
 GitHubアカウント作成
 --------------------------------------------------------------------------------

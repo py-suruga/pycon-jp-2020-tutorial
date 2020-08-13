@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sphinx &#8212; pycon-jp-2020-tutorial-development-slackbot 2020.07.24 ドキュメント</title>
+    <title>Sphinx &#8212; PyCon JP 2020 チュートリアル Slack Bot編 ドキュメント 2020.07.24 ドキュメント</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -121,6 +121,8 @@
 <div class="section" id="docstirng">
 <h3>docstirngを書こう<a class="headerlink" href="#docstirng" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul>
+<li><p>apidocの設定(conf.pyでextentionsやsys.pathにpythonのモジュールパスを入れる）</p></li>
+<li><p>sphinx-apidoc コマンド</p></li>
 <li><p>docstringの足らない部分を書いていく</p></li>
 <li><p>挨拶bot: ランダムに天気情報を返す関数</p></li>
 <li><p>connpassbot: jsonの取得関数, botが答える文字列生成の関数</p></li>
@@ -139,7 +141,11 @@
 <h3>autodocで半自動的にリファレンスを作成する<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>docstringを用意できたので、autodocを使ってリファレンスを生成してみましょう。</p>
 <dl class="simple">
-<dt>::</dt><dd><p>autodocコマンドを実行する</p>
+<dt>::</dt><dd><ul class="simple">
+<li><p>conf.pyを設定</p></li>
+<li><p>sphinx-apidoc でapidocのひな形を作成</p></li>
+<li><p>make htmlで生成しよう</p></li>
+</ul>
 </dd>
 </dl>
 <p>実行したautodocの結果は***にあります。それをslackbotのドキュメントの一部として組み込みます。</p>
@@ -164,7 +170,7 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">pycon-jp-2020-tutorial-development-slackbot</a></h1>
+<h1 class="logo"><a href="index.html">PyCon JP 2020 チュートリアル Slack Bot編 ドキュメント</a></h1>
 
 
 
