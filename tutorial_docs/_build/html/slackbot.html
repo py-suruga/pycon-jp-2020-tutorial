@@ -36,10 +36,10 @@
             
   <div class="section" id="slackbot">
 <h1>Slackbotの作成<a class="headerlink" href="#slackbot" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>チュートリアルで扱うSlackbotを実装します。</p>
+<p>チュートリアルで扱うSlackbotを実装するために、開発環境やSlackのＡPI利用方法を説明し、ステップを踏みながらbotを作成していきましょう。</p>
 <div class="section" id="id1">
 <h2>ローカル開発環境の用意<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Slackbotを作成する上</p>
+<p>Slackbotを作成するために、Pythonの開発環境を用意します。</p>
 <p>Pythonはシステムにインストールされた実行環境以外の仮想環境を用意できます。仮想環境を作ることでシステム側の環境を汚すこと無く開発環境の構築ができます。</p>
 <p>仮想環境は以下のコマンドで作成します</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="p">[</span><span class="n">Username</span><span class="p">]</span>\<span class="n">Document</span>\<span class="n">pyconjp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>
@@ -58,7 +58,8 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">注釈</p>
-<p>Pipenvでの環境作成もできます。このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。</p>
+<p>このチュートリアルを用意するためにPipenvを利用したので、Pipenvでの環境作成も行えます。
+このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。</p>
 </div>
 </div>
 <div class="section" id="slack">
@@ -192,10 +193,10 @@ python ./pt_slackbot/botrun.py
 <p>チュートリアルではＰythonとオンラインというキーワードを元に健作をした結果を20件一覧に表示する機能を実装しています。</p>
 <img alt="_images/slackbot_1-14.jpg" src="_images/slackbot_1-14.jpg" />
 <p>コマンドの実行方法は <code class="docutils literal notranslate"><span class="pre">connpass</span> <span class="pre">[yyyymm]</span></code> と入力します。yyyymmは年月の意味で、 <code class="docutils literal notranslate"><span class="pre">connpass</span> <span class="pre">202008</span></code> と入力すると、2020年8月に関係する、Python, オンラインをキーワードにした検索結果が表示されます。</p>
+<p>このbotの趣旨は以下になります。</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>requests + jsonでAPIから取得したjsonのパースを体験する</p></li>
-<li><p>検索ワードはハードコートしている。検索結果も20件でハードコード</p></li>
 </ul>
 </div></blockquote>
 <ul class="simple">
@@ -207,20 +208,21 @@ python ./pt_slackbot/botrun.py
 </li>
 </ul>
 </div>
-<div class="section" id="xmlbot">
-<h3>気象庁のXML電文を使って地域の天気を返すbot<a class="headerlink" href="#xmlbot" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="xml-tenki-bot">
+<h3>気象庁のXML電文を使って地域の天気を返す <strong>tenki</strong> bot<a class="headerlink" href="#xml-tenki-bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <img alt="_images/slackbot_1-15.jpg" src="_images/slackbot_1-15.jpg" />
-<p>最後に、よくあるbotで、スマートスピーカーでも尋ねる率が高い機能として天気予報を教えてくれるbotを作りましょう。</p>
+<p>最後にスマートスピーカーでも尋ねる率が高い機能でもある、天気予報を教えてくれるbotを作りましょう。</p>
 <p>今回は誰でも無料で利用可能な、気象庁のXML電文を利用した週間天気予報を返すbotを作ります。XMLを扱うため、XMLのパーサーを使いながら、知りたい地域の週間天気予報を実装しましょう。</p>
-<ul class="simple">
-<li><p><strong>tenki [地域名]</strong> 気象庁電文XMLを使って週間天気予報を答える天気bot</p>
-<ul>
+<p><strong>tenki [地域名]</strong></p>
+<blockquote>
+<div><ul class="simple">
 <li><p>-&gt; 目的:最後に実用的なbotを作成する</p></li>
 <li><p>説明的にはxmlのパース周りに絞る（気象庁のサービスとしての話はプログラムの流れ説明の時ぐらいに絞る）</p></li>
 <li><p>requests + bs4を使ってxmlのパースをする</p></li>
 <li><p>対応地域は絞っておいて（減らしておいて）追加してbotの拡張をしてもらう</p></li>
 </ul>
-</li>
+</div></blockquote>
+<ul class="simple">
 <li><p>天気botの実装ステップ</p>
 <ol class="arabic simple">
 <li><p>（既にxmlのDLはやっておいた状態）</p></li>
@@ -228,6 +230,14 @@ python ./pt_slackbot/botrun.py
 </ol>
 </li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>今回の天気情報の元は気象庁が無料で公開しているxmlファイルを利用しました。
+当初はLivedoor 天気から提供されている REST APIを用いる予定でしたが、 2020/7/31にサービスが終了となったため、急遽気象庁XMLサービスを利用しています。</p>
+<p><a class="reference external" href="https://help.livedoor.com/weather/index.html">天気情報 ヘルプ - livedoor ヘルプ</a></p>
+<p>気象庁XMLサービスは天気予報以外にも、多数の予報や災害情報の提供もされているので、より多彩なbot作成ができると思います。
+ただxmlを扱うのは少し難儀でもありますね。</p>
+</div>
 </div>
 </div>
 </div>
