@@ -135,3 +135,5 @@ dmypy.json
 .vscode/
 ngrok.exe
 set_env.ps1
+tutorial_docs/pytest_outline.md
+tutorial_docs/slackbot_outline.md

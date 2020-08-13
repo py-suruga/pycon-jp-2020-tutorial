@@ -52,9 +52,12 @@
 <span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
-<p>Pipenvでの環境作成もできます。このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。</p>
 <p>仮想環境を終了する場合は以下のコマンドを実行します。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span><span class="n">deactivate</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>※:コラム
+Pipenvでの環境作成もできます。このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。
 </pre></div>
 </div>
 </div>
@@ -67,7 +70,7 @@
 <p>アプリが作成できたら、「OAuth &amp; Permissions」の「Scopes」&gt;「Bot Token Scopes」にスコープの設定を行います。</p>
 <img alt="_images/slackbot_1-2.png" src="_images/slackbot_1-2.png" />
 <p>「Bot Token Scope」はBotとなるSlackアプリがSlackワークスペースに利用できる権限の範囲（スコープ）です。</p>
-<p>この時点では`chat:write`のみで、botがSlackへメッセージを送るためのスコープのみを設定していますが、後ほどの設定で、いくつか追加されます。</p>
+<p>この時点では <code class="docutils literal notranslate"><span class="pre">chat:write</span></code> のみで、botがSlackへメッセージを送るためのスコープのみを設定していますが、後ほどの設定で、いくつか追加されます。</p>
 <img alt="_images/slackbot_1-3.png" src="_images/slackbot_1-3.png" />
 <p>追加したら、ページの上にある「Install App to Workspace」をクリックし、SlackアプリをSlackワークスペースへ追加します。</p>
 <img alt="_images/slackbot_1-4.png" src="_images/slackbot_1-4.png" />
@@ -98,10 +101,8 @@ python ./pt_slackbot/botrun.py
 </div>
 <p>Web InterfaceのURLへアクセスすると、公開したURLのアクセス履歴が見れるようになります。</p>
 <img alt="_images/slackbot_1-8.png" src="_images/slackbot_1-8.png" />
-<p>登録を行い、ngrokコマンドの authを行うことで、１セッションを無制限に利用可能です。（プランに依存します。）</p>
 <p>slackbotがSlackワークスペースへのやりとりをおこなうURLを生成したので、Slackアプリの設定を続けます。</p>
-<p>Slackbotが利用できるイベントを登録する
-Slack Event APIを使い、Slackワークスペース上に起きたイベントを、Slackbotが動作するサーバー(ここではngrokで公開しているローカル環境)へ伝えることができます。</p>
+<p>Slack Event APIを使い、Slackワークスペース上に起きたイベントを、Slackbotが動作するサーバー(ここではngrokで公開しているローカル環境)へ伝えることができます。</p>
 <p>ここで2つの設定を行います。</p>
 <ol class="arabic simple">
 <li><p>Slack Event APIが起きたイベントをサーバーに伝えるためのエンドポイントURL</p></li>
@@ -129,27 +130,23 @@ Slack Event APIを使い、Slackワークスペース上に起きたイベント
 <div class="section" id="id2">
 <h3>slackbotのフロー<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ここでは、slackbotがどのようにslackワークスペースとやり取りを行うか解説します。</p>
-<p>SlackbotはWEBで扱われている技術でサービスとbotのアプリがやり取りを行います。主にSlackが公開している複数のWEB APIを用いています。</p>
-<p>今回のSlackbotで利用しているSlackのAPIは二つあります。</p>
-<ul class="simple">
-<li><p>Events API:</p></li>
-<li><p>Web API:</p></li>
-</ul>
+<p>SlackbotはWEBで扱われている技術でサービスとbotのアプリがやり取りを行います。今回のはSlack公式で提供されているEvents APIとWeb APIの二つを利用します。</p>
 <p>Events APIはSlack側がbotアプリに声をかけるイメージで、Slackワークスペース内で起きたイベントを伝えます。</p>
 <p>Web APIはSlackワークスペースに対して何らかのアクションを起こすために使います。botならbot側が何らかのメッセージを送ります。</p>
 <p>PythonではEvents API, Web API どちらとも対応した公式パッケージがあります。今回のチュートリアルではどちらとも利用しています。</p>
 <ul class="simple">
-<li><p>Events API:</p></li>
-<li><p>Web API:</p></li>
+<li><p>Events API: <a class="reference external" href="https://github.com/slackapi/python-slack-events-api">https://github.com/slackapi/python-slack-events-api</a></p></li>
+<li><p>Web API: <a class="reference external" href="https://github.com/slackapi/python-slackclient">https://github.com/slackapi/python-slackclient</a></p></li>
 </ul>
 <p>チュートリアル中ではどちらとも利用しています。またBotはSlack側からのイベント内容を随時受け取るためにAPIサーバーのような挙動を取ります。そのため、slackeventsapiパッケージをインストールするとFlaskもインストールされます。</p>
 <p>Slackbotのコード内ではFlaskのインスタンスを作成して、サーバーとして動作するようになり、Slack側にはエンドポイントURLを教えることで、botがSlackのイベントを知ることができるようになります。</p>
-<p>※:</p>
-<p>SlackのAPIはほかにもあります。incoming webhook（URLにパラメータを付与するとslackワークスペースにメッセージを送れる）, RealTime Messeging API(websocketを利用したリアルタイムにSlackワークスペースとアプリがやり取り可能）が代表例になります。それらについては解説しませんが、参考情報を残します。</p>
-<ul class="simple">
-<li><p>incoming webhook</p></li>
-<li><p>RTM API</p></li>
-</ul>
+<p>※:コラム</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SlackのAPIはほかにもあります。incoming webhook（URLにパラメータを付与するとslackワークスペースにメッセージを送れる）, RealTime Messeging API(websocketを利用したリアルタイムにSlackワークスペースとアプリがやり取り可能）が代表例になります。それらについては解説しませんが、参考情報を残します。
+
+- incoming webhook
+- RTM API
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="id3">
@@ -157,17 +154,49 @@ Slack Event APIを使い、Slackワークスペース上に起きたイベント
 <p>このチュートリアルでは、三つのslackbotを実装します。人口無能的な挨拶を返すbotから、APIを利用してインタラクティブな結果を返すようにします。</p>
 <div class="section" id="bot">
 <h3>世界の挨拶を返すbot<a class="headerlink" href="#bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>世界の挨拶を返すbotを作ります。最初は1言語のみの対応ですが、STEPを進むごとに複数言語対応にしていきます。</p>
+<img alt="_images/slackbot_1-13.jpg" src="_images/slackbot_1-13.jpg" />
+<ul class="simple">
+<li><p><strong>wgreet</strong> 挨拶を返すbot:
+- -&gt; 目的:人口無能をまずは試してもらう
+- 国旗、挨拶の言葉、のテーブルを用意してテーブルからランダムに挨拶をかえす
+- 英語、中国、など5つぐらいの言語の挨拶をコメントアウトで用意。参加者に選んで実装してもらう
+- もちろん自由に言葉を変えてもらっても良し</p></li>
+<li><p>挨拶botの実装ステップ
+1. まずslackevetsapiのexampleをそのまま乗せておいて、そのbotで受け答えできるか調べてみる
+2. 次に、その中でテーブルを作って、ランダムで返す関数を用意
+3. 最後に挨拶をかえす部分をモジュール化する -&gt; 伏線:テストとレファレンスを書きやすくする</p></li>
+</ul>
 </div>
 <div class="section" id="connpass-apibot">
 <h3>connpass APIを利用してオンラインイベントを検索するbot<a class="headerlink" href="#connpass-apibot" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>何らかのイベントを開催しようとしたときにイベント運営サービスを利用します。ここではconnpassを例に、connpassが公開している、イベント検索用のREST APIを使ってイベントの検索を行います。</p>
-<p>今年は状況もありオンラインイベントが多数あります。オンラインイベントがどの程度開催されているか、付近1か月後までのオンラインイベントの検索結果をbotに教えてもらいましょう。</p>
+<img alt="_images/slackbot_1-14.jpg" src="_images/slackbot_1-14.jpg" />
+<ul class="simple">
+<li><p><strong>connpass [yyyymm]</strong> connpass API でオンラインイベント検索を行うbot:
+- -&gt; 目的:ITエンジニアに身近なサービス（少なくとも参加者全員知っているはず）で体験する
+- connpass 202008 と打つと、8月のイベントの20件分を取得可能
+- requests + jsonでAPIから取得したjsonのパースを体験する
+- 検索ワードはハードコートしている。検索結果も20件でハードコード</p></li>
+<li><p>connpassbotの実装ステップ
+1. 共通化した手法を元に、connpassbotを作る。最初は1関数にすべてのせる
+2. APIリクエストとbotの答えを返す関数を別途作り、分離していく</p></li>
+</ul>
 </div>
 <div class="section" id="xmlbot">
 <h3>気象庁のXML電文を使って地域の天気を返すbot<a class="headerlink" href="#xmlbot" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<img alt="_images/slackbot_1-15.jpg" src="_images/slackbot_1-15.jpg" />
 <p>最後に、よくあるbotで、スマートスピーカーでも尋ねる率が高い機能として天気予報を教えてくれるbotを作りましょう。</p>
 <p>今回は誰でも無料で利用可能な、気象庁のXML電文を利用した週間天気予報を返すbotを作ります。XMLを扱うため、XMLのパーサーを使いながら、知りたい地域の週間天気予報を実装しましょう。</p>
+<ul class="simple">
+<li><p><strong>tenki [地域名]</strong> 気象庁電文XMLを使って週間天気予報を答える天気bot
+-  -&gt; 目的:最後に実用的なbotを作成する
+- 説明的にはxmlのパース周りに絞る（気象庁のサービスとしての話はプログラムの流れ説明の時ぐらいに絞る）
+- requests + bs4を使ってxmlのパースをする
+- 対応地域は絞っておいて（減らしておいて）追加してbotの拡張をしてもらう</p></li>
+<li><p>天気botの実装ステップ
+1. （既にxmlのDLはやっておいた状態）
+2. xmlのパースを進める</p></li>
+</ul>
 </div>
 </div>
 </div>
