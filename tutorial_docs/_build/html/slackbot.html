@@ -56,9 +56,9 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span><span class="n">deactivate</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>※:コラム
-Pipenvでの環境作成もできます。このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。
-</pre></div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>Pipenvでの環境作成もできます。このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。</p>
 </div>
 </div>
 <div class="section" id="slack">
@@ -133,37 +133,50 @@ python ./pt_slackbot/botrun.py
 <p>SlackbotはWEBで扱われている技術でサービスとbotのアプリがやり取りを行います。今回のはSlack公式で提供されているEvents APIとWeb APIの二つを利用します。</p>
 <p>Events APIはSlack側がbotアプリに声をかけるイメージで、Slackワークスペース内で起きたイベントを伝えます。</p>
 <p>Web APIはSlackワークスペースに対して何らかのアクションを起こすために使います。botならbot側が何らかのメッセージを送ります。</p>
-<p>PythonではEvents API, Web API どちらとも対応した公式パッケージがあります。今回のチュートリアルではどちらとも利用しています。</p>
+<p>PythonではEvents API, Web API どちらとも対応した公式パッケージがあります。チュートリアルではどちらとも利用しています。</p>
 <ul class="simple">
 <li><p>Events API: <a class="reference external" href="https://github.com/slackapi/python-slack-events-api">https://github.com/slackapi/python-slack-events-api</a></p></li>
 <li><p>Web API: <a class="reference external" href="https://github.com/slackapi/python-slackclient">https://github.com/slackapi/python-slackclient</a></p></li>
 </ul>
-<p>チュートリアル中ではどちらとも利用しています。またBotはSlack側からのイベント内容を随時受け取るためにAPIサーバーのような挙動を取ります。そのため、slackeventsapiパッケージをインストールするとFlaskもインストールされます。</p>
+<p>またBotはSlack側からのイベント内容をEvents API経由で随時受け取るためにAPIサーバーのような挙動を取ります。そのためslackeventsapiパッケージをインストールするとFlaskもインストールされます。</p>
 <p>Slackbotのコード内ではFlaskのインスタンスを作成して、サーバーとして動作するようになり、Slack側にはエンドポイントURLを教えることで、botがSlackのイベントを知ることができるようになります。</p>
-<p>※:コラム</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SlackのAPIはほかにもあります。incoming webhook（URLにパラメータを付与するとslackワークスペースにメッセージを送れる）, RealTime Messeging API(websocketを利用したリアルタイムにSlackワークスペースとアプリがやり取り可能）が代表例になります。それらについては解説しませんが、参考情報を残します。
-
-- incoming webhook
-- RTM API
-</pre></div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>SlackのAPIはほかにもあります。
+代表例はincoming webhook（URLにパラメータを付与するとslackワークスペースにメッセージを送れる）, RealTime Messeging API(websocketを利用したリアルタイムにSlackワークスペースとアプリがやり取り可能）になります。</p>
+<p>今回はそれらについては解説しませんが、参考情報を残します。</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://api.slack.com/messaging/webhooks">Sending messages using Incoming Webhooks | Slack</a></p></li>
+<li><p><a class="reference external" href="https://api.slack.com/rtm">Real Time Messaging API | Slack</a></p></li>
+<li><p><a class="reference external" href="https://api.slack.com/lang/ja-jp/which-api">必要な Slack API はどれ？ - Slack アプリの作成のためのヒント | Slack</a></p></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>先日にSlackの新しいAPIライブラリとして、 Bolt for Pythonがアルファバージョンとしてリリースされています。
+<a class="reference external" href="https://github.com/slackapi/bolt-js">bolt-js</a> というnode.jsで動作するライブラリのPythonバージョンとなります。</p>
+<p>アルファバージョンのライブラリであるためチュートリアルでは扱いませんが、最新のAPI仕様にも対応していくようなのでSlackbotを扱うときやSlackbotを作るサードパーティライブラリで使われるようになるのではと思います。</p>
+<p><a class="reference external" href="https://github.com/slackapi/bolt-python">slackapi/bolt-python: WIP: A framework to build Slack apps using Python (still in alpha)</a></p>
 </div>
 </div>
 </div>
 <div class="section" id="id3">
 <h2>チュートリアルで実装するslackbotについて<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>このチュートリアルでは、三つのslackbotを実装します。人口無能的な挨拶を返すbotから、APIを利用してインタラクティブな結果を返すようにします。</p>
-<div class="section" id="bot">
-<h3>世界の挨拶を返すbot<a class="headerlink" href="#bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>このチュートリアルでは、三つのslackbotを実装します。人工無能な挨拶を返すbotから、APIを利用してインタラクティブな結果を返すようにします。</p>
+<div class="section" id="wgreet-bot">
+<h3>世界の挨拶をランダムで返す  <strong>wgreet</strong> bot<a class="headerlink" href="#wgreet-bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <img alt="_images/slackbot_1-13.jpg" src="_images/slackbot_1-13.jpg" />
-<ul class="simple">
-<li><p><strong>wgreet</strong> 挨拶を返すbot:</p>
-<ul>
-<li><p>-&gt; 目的:人口無能をまずは試してもらう</p></li>
+<p>このbotは定義した挨拶情報をランダムに返すbotです。よく言われる人工無能をまずは試してもらいます。</p>
+<p>ほしい機能は以下の通りです。</p>
+<blockquote>
+<div><ul class="simple">
 <li><p>国旗、挨拶の言葉、のテーブルを用意してテーブルからランダムに挨拶をかえす</p></li>
 <li><p>英語、中国、など5つぐらいの言語の挨拶をコメントアウトで用意。参加者に選んで実装してもらう</p></li>
 <li><p>もちろん自由に言葉を変えてもらっても良し</p></li>
 </ul>
-</li>
+</div></blockquote>
+<p>TODO:2020-08-13 ステップごとのコードのリンクを用意する</p>
+<ul class="simple">
 <li><p>挨拶botの実装ステップ</p>
 <ol class="arabic simple">
 <li><p>まずslackevetsapiのexampleをそのまま乗せておいて、そのbotで受け答えできるか調べてみる</p></li>
@@ -173,19 +186,19 @@ python ./pt_slackbot/botrun.py
 </li>
 </ul>
 </div>
-<div class="section" id="connpass-apibot">
-<h3>connpass APIを利用してオンラインイベントを検索するbot<a class="headerlink" href="#connpass-apibot" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>何らかのイベントを開催しようとしたときにイベント運営サービスを利用します。ここではconnpassを例に、connpassが公開している、イベント検索用のREST APIを使ってイベントの検索を行います。</p>
+<div class="section" id="connpass-api-connpass-bot">
+<h3>connpass APIを利用してオンラインイベントを検索する <strong>connpass</strong> bot<a class="headerlink" href="#connpass-api-connpass-bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ここではconnpassを例にイベント検索用のREST APIを使ってイベントの検索を行います。</p>
+<p>チュートリアルではＰythonとオンラインというキーワードを元に健作をした結果を20件一覧に表示する機能を実装しています。</p>
 <img alt="_images/slackbot_1-14.jpg" src="_images/slackbot_1-14.jpg" />
-<ul class="simple">
-<li><p><strong>connpass [yyyymm]</strong> connpass API でオンラインイベント検索を行うbot:</p>
-<ul>
-<li><p>-&gt; 目的:ITエンジニアに身近なサービス（少なくとも参加者全員知っているはず）で体験する</p></li>
-<li><p>connpass 202008 と打つと、8月のイベントの20件分を取得可能</p></li>
+<p>コマンドの実行方法は <code class="docutils literal notranslate"><span class="pre">connpass</span> <span class="pre">[yyyymm]</span></code> と入力します。yyyymmは年月の意味で、 <code class="docutils literal notranslate"><span class="pre">connpass</span> <span class="pre">202008</span></code> と入力すると、2020年8月に関係する、Python, オンラインをキーワードにした検索結果が表示されます。</p>
+<blockquote>
+<div><ul class="simple">
 <li><p>requests + jsonでAPIから取得したjsonのパースを体験する</p></li>
 <li><p>検索ワードはハードコートしている。検索結果も20件でハードコード</p></li>
 </ul>
-</li>
+</div></blockquote>
+<ul class="simple">
 <li><p>connpassbotの実装ステップ</p>
 <ol class="arabic simple">
 <li><p>共通化した手法を元に、connpassbotを作る。最初は1関数にすべてのせる</p></li>

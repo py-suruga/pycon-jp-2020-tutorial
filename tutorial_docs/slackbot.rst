@@ -33,10 +33,8 @@ Pythonはシステムにインストールされた実行環境以外の仮想�
 
   (.venv)deactivate
 
-::
-
-    ※:コラム
-    Pipenvでの環境作成もできます。このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。
+.. note ::
+  Pipenvでの環境作成もできます。このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。
 
 
 
@@ -166,40 +164,51 @@ Events APIはSlack側がbotアプリに声をかけるイメージで、Slackワ
 
 Web APIはSlackワークスペースに対して何らかのアクションを起こすために使います。botならbot側が何らかのメッセージを送ります。
 
-PythonではEvents API, Web API どちらとも対応した公式パッケージがあります。今回のチュートリアルではどちらとも利用しています。
+PythonではEvents API, Web API どちらとも対応した公式パッケージがあります。チュートリアルではどちらとも利用しています。
 
 - Events API: https://github.com/slackapi/python-slack-events-api
 - Web API: https://github.com/slackapi/python-slackclient
 
-チュートリアル中ではどちらとも利用しています。またBotはSlack側からのイベント内容を随時受け取るためにAPIサーバーのような挙動を取ります。そのため、slackeventsapiパッケージをインストールするとFlaskもインストールされます。
+またBotはSlack側からのイベント内容をEvents API経由で随時受け取るためにAPIサーバーのような挙動を取ります。そのためslackeventsapiパッケージをインストールするとFlaskもインストールされます。
 
 Slackbotのコード内ではFlaskのインスタンスを作成して、サーバーとして動作するようになり、Slack側にはエンドポイントURLを教えることで、botがSlackのイベントを知ることができるようになります。
 
-※:コラム
+.. note:: SlackのAPIはほかにもあります。
+    代表例はincoming webhook（URLにパラメータを付与するとslackワークスペースにメッセージを送れる）, RealTime Messeging API(websocketを利用したリアルタイムにSlackワークスペースとアプリがやり取り可能）になります。
+    
+    今回はそれらについては解説しませんが、参考情報を残します。
 
-:: 
+    - `Sending messages using Incoming Webhooks | Slack <https://api.slack.com/messaging/webhooks>`_
+    - `Real Time Messaging API | Slack <https://api.slack.com/rtm>`_
+    - `必要な Slack API はどれ？ - Slack アプリの作成のためのヒント | Slack <https://api.slack.com/lang/ja-jp/which-api>`_
 
-    SlackのAPIはほかにもあります。incoming webhook（URLにパラメータを付与するとslackワークスペースにメッセージを送れる）, RealTime Messeging API(websocketを利用したリアルタイムにSlackワークスペースとアプリがやり取り可能）が代表例になります。それらについては解説しませんが、参考情報を残します。
+.. note:: 先日にSlackの新しいAPIライブラリとして、 Bolt for Pythonがアルファバージョンとしてリリースされています。
+    `bolt-js <https://github.com/slackapi/bolt-js>`_ というnode.jsで動作するライブラリのPythonバージョンとなります。
 
-    - incoming webhook
-    - RTM API
+    アルファバージョンのライブラリであるためチュートリアルでは扱いませんが、最新のAPI仕様にも対応していくようなのでSlackbotを扱うときやSlackbotを作るサードパーティライブラリで使われるようになるのではと思います。
+
+    `slackapi/bolt-python: WIP: A framework to build Slack apps using Python (still in alpha) <https://github.com/slackapi/bolt-python>`_
+
 
 チュートリアルで実装するslackbotについて
 ================================================================================
 
-このチュートリアルでは、三つのslackbotを実装します。人口無能的な挨拶を返すbotから、APIを利用してインタラクティブな結果を返すようにします。
+このチュートリアルでは、三つのslackbotを実装します。人工無能な挨拶を返すbotから、APIを利用してインタラクティブな結果を返すようにします。
 
-世界の挨拶を返すbot
+世界の挨拶をランダムで返す  **wgreet** bot
 --------------------------------------------------------------------------------
 
 .. image:: ./doc-img/slackbot_1-13.jpg
 
-- **wgreet** 挨拶を返すbot:
+このbotは定義した挨拶情報をランダムに返すbotです。よく言われる人工無能をまずは試してもらいます。
 
-  - -> 目的:人口無能をまずは試してもらう
+ほしい機能は以下の通りです。
+
   - 国旗、挨拶の言葉、のテーブルを用意してテーブルからランダムに挨拶をかえす
   - 英語、中国、など5つぐらいの言語の挨拶をコメントアウトで用意。参加者に選んで実装してもらう
   - もちろん自由に言葉を変えてもらっても良し
+
+TODO:2020-08-13 ステップごとのコードのリンクを用意する
 
 - 挨拶botの実装ステップ
 
@@ -207,20 +216,20 @@ Slackbotのコード内ではFlaskのインスタンスを作成して、サー�
   2. 次に、その中でテーブルを作って、ランダムで返す関数を用意
   3. 最後に挨拶をかえす部分をモジュール化する -> 伏線:テストとレファレンスを書きやすくする
 
-connpass APIを利用してオンラインイベントを検索するbot
+connpass APIを利用してオンラインイベントを検索する **connpass** bot
 --------------------------------------------------------------------------------
 
-何らかのイベントを開催しようとしたときにイベント運営サービスを利用します。ここではconnpassを例に、connpassが公開している、イベント検索用のREST APIを使ってイベントの検索を行います。
+ここではconnpassを例にイベント検索用のREST APIを使ってイベントの検索を行います。
+
+チュートリアルではＰythonとオンラインというキーワードを元に健作をした結果を20件一覧に表示する機能を実装しています。
 
 .. image:: ./doc-img/slackbot_1-14.jpg
 
+コマンドの実行方法は ``connpass [yyyymm]`` と入力します。yyyymmは年月の意味で、 ``connpass 202008`` と入力すると、2020年8月に関係する、Python, オンラインをキーワードにした検索結果が表示されます。
 
-- **connpass [yyyymm]** connpass API でオンラインイベント検索を行うbot:
+このbotの趣旨は以下になります。
 
-  - -> 目的:ITエンジニアに身近なサービス（少なくとも参加者全員知っているはず）で体験する
-  - connpass 202008 と打つと、8月のイベントの20件分を取得可能
   - requests + jsonでAPIから取得したjsonのパースを体験する
-  - 検索ワードはハードコートしている。検索結果も20件でハードコード
 
 - connpassbotの実装ステップ
 

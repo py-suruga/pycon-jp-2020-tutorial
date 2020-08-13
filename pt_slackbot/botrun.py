@@ -62,7 +62,7 @@ def handle_message_and_botrun(event_data: dict):
             print("info: matched_obj -> bot!:{}".format(bot_module))
 
             # TODO:2020-08-10 この部分は引数を複数取得できる方が理にかなってると思う->**argas
-            # 今回のチュートリアルでは文字列だけ受け取る
+            # チュートリアルでは文字列だけ受け取る
 
             if matched_obj.groups():
                 bot_args = matched_obj.groups()[0]
