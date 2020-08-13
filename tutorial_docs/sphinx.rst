@@ -118,8 +118,10 @@ autodocで半自動的にリファレンスを作成する
 
 docstringを用意できたので、autodocを使ってリファレンスを生成してみましょう。
 
-:: 
-    autodocコマンドを実行する
+::
+    - conf.pyを設定
+    - sphinx-apidoc でapidocのひな形を作成
+    - make htmlで生成しよう
 
 実行したautodocの結果は***にあります。それをslackbotのドキュメントの一部として組み込みます。
 
