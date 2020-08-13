@@ -24,6 +24,8 @@ author = "Py-Suruga, Unagi-py, Hiroshi sano"
 # The full version, including alpha/beta/rc tags
 release = "2020.07.24"
 
+# patch read the docs config. ref:https://github.com/readthedocs/readthedocs.org/issues/2569
+master_doc = "index"
 
 # -- General configuration ---------------------------------------------------
 
