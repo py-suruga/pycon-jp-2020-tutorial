@@ -65,37 +65,50 @@
 </ul>
 <p>※: そのほかのOSの場合も公式のインストーラーや、OSが提供するパッケージマネージャーからのインストールが利用できます。</p>
 <p>※: Anacondaは今回のチュートリアルはサポートしていません（動作確認しません）</p>
-</div>
 <div class="section" id="id3">
-<h2>利用するサービスの登録方法<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h3>Pythonの動作確認<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>PATHが通っているかのチェック: Powershell上で python --version でインストール済みのバージョンチェック</p>
+<p>pythonコマンドが実行できるか確認します。Windows10ならPowershellかコマンドプロンプト、macOSならターミナルアプリを起動して以下のコマンドを実行しましょう。ここではPowershellを利用して確認します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span><span class="o">&gt;</span> <span class="n">python</span> <span class="o">--</span><span class="n">version</span>
+<span class="n">Python</span> <span class="mf">3.7</span><span class="o">.</span><span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>チュートリアルの資料を取得する<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ＳlackbotチュートリアルはGitHub上のリポジトリで作成しています。以下のURLからDLしてください。</p>
+<p><a class="reference external" href="https://github.com/py-suruga/pycon-jp-2020-tutorial.git">https://github.com/py-suruga/pycon-jp-2020-tutorial.git</a></p>
+<p><a class="reference external" href="https://github.com/py-suruga/pycon-jp-2020-tutorial/archive/master.zip">https://github.com/py-suruga/pycon-jp-2020-tutorial/archive/master.zip</a></p>
+</div>
+<div class="section" id="id5">
+<h2>利用するサービスの準備<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>チュートリアルで課題となるSlackbotを作成する上で必須となるサービスや、開発時に利用するサービスの登録が必要になります。</p>
 <p>主にSlackのワークスペース, ngrok、GitHubアカウントの3つとなります。</p>
-<p>GitHubアカウントは後に開設するVSCode LiveShareでも必要となります。</p>
+<p>GitHubアカウントはオプションとして利用するVSCode Live shareでも利用します。</p>
 <div class="section" id="slack">
 <h3>Slackワークスペースの新規作成<a class="headerlink" href="#slack" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>Slackbotを作成するときには、開発用のSlackワークスペースを新規作成することをおすすめします。Slack公式でもアナウンスされています。</p>
+<p>Slackbotを作成するときには、開発用のSlackワークスペースを新規作成することをおすすめします。</p>
 <p><a class="reference external" href="https://slack.com/get-started#/create">Slack を始める | Slack</a></p>
 </div>
 <div class="section" id="ngrok">
-<h3>ngrokのアカウント作成と利用準備<a class="headerlink" href="#ngrok" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><a class="reference external" href="https://ngrok.com/">ngrok</a> とは、ローカルサーバーを一時的に外部公開するプロキシサービスです。SlackBotはコールバックURLが必要となるため、ローカル開発環境で作成したサーバーアプリを一時的にSlack側にアクセスできるようにします。</p>
+<h3>ngrokの利用準備<a class="headerlink" href="#ngrok" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference external" href="https://ngrok.com/">ngrok</a> とは、ローカルサーバーを一時的に外部公開するプロキシサービスです。SlackBotはSlackワークスペース上で起きた出来事（メッセージやメンション、リアクションなど、イベントと呼ばれる）をBot側が受け取るURLが必要となるため、ローカル開発環境で作成したサーバーアプリを一時的にSlack側にアクセスできるようにします。</p>
+<p>サーバーを公開する際に利用するCLIツールをインストールします。</p>
+<p>ツールのDL先: <a class="reference external" href="https://ngrok.com/download">ngrok - download</a></p>
+<p>zipファイルをDLして、チュートリアルの作業用のディレクトリに配置します。</p>
+<img alt="_images/ngrok_1.png" src="_images/ngrok_1.png" />
+<p>Windows 10で <code class="docutils literal notranslate"><span class="pre">C:\Users\[Username]\Document\pyconjp-2020-tutorial</span></code> というディレクトリで作業をする場合、DLしたZipファイルをディレクトリ内で展開し、 <code class="docutils literal notranslate"><span class="pre">ngrok.exe</span></code> という実行ファイルを配置します。</p>
+<p>ngrokは登録をしなくても、8時間の限定的なURLが割り振られます。今回のチュートリアルでは8時間を超える利用を想定していないのですが、後ほど試したい場合は、ngrokのサービス登録をすることをおススメします。</p>
 <ul class="simple">
 <li><p>登録: <a class="reference external" href="https://dashboard.ngrok.com/signup">ngrok - secure introspectable tunnels to localhost</a></p></li>
 </ul>
-<p>登録後は、サーバーを公開する際に利用するCLIツールをインストールします。</p>
-<p>ツールのDL先: <a class="reference external" href="https://ngrok.com/download">ngrok - download</a></p>
-<p>zipファイルをDLして、チュートリアルの作業用のディレクトリに配置します。</p>
-<p>Windows 10で <code class="docutils literal notranslate"><span class="pre">C:\Users\[Username]\Document\pyconjp-2020-tutorial</span></code> というディレクトリで作業をする場合、DLしたZipファイルをディレクトリ内で展開し、 <code class="docutils literal notranslate"><span class="pre">ngrok.exe</span></code> という実行ファイルを配置します。</p>
-<p>そのあとに以下のように操作します。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ngrokのアカウント認証を行い、コマンド経由でサービスへ接続できるようにします。</span>
-<span class="o">&gt;</span>　<span class="n">ngrok</span><span class="o">.</span><span class="n">exe</span> <span class="n">authtoken</span> <span class="o">&lt;</span><span class="n">your_auth_token</span><span class="o">&gt;</span>
-</pre></div>
-</div>
-<p>slackbot作成時に作業をするコマンドは、該当のセッションで説明します。</p>
+<p>登録後は、<code class="docutils literal notranslate"><span class="pre">ngrok</span> <span class="pre">authtoken</span></code> コマンドを使いngrokコマンドのアカウント認証を行うことで、アカウントに紐づいたサービスが利用できます。</p>
 </div>
 <div class="section" id="github">
 <h3>GitHubアカウント作成<a class="headerlink" href="#github" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>GitHubアカウントの作成も必須としています。今回操作で利用するエディタであるVSCodeの共有機能LiveShare拡張を利用するときに、アカウントが必要となりますので、こちらも作成します。</p>
+<p>GitHubアカウントの作成も必須としています。</p>
+<p>操作で利用するエディタであるVSCodeの共有機能LiveShare拡張を利用するときに、アカウントが必要となりますので、こちらも作成します。</p>
 <p><a class="reference external" href="https://github.com/join">Join GitHub · GitHub</a></p>
 </div>
 </div>
@@ -110,30 +123,7 @@
 </ul>
 <div class="section" id="visual-studio-live-share">
 <h3>Visual Studio Live Shareの設定<a class="headerlink" href="#visual-studio-live-share" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>Visual Studio Live Shareは、Visual StudioやVSCodeでソースコードをリアルタイムに複数人で共有、編集しデバッグをすることが出来ます。</p>
-<p><a class="reference external" href="https://docs.microsoft.com/ja-jp/visualstudio/liveshare/">概要 - Visual Studio Live Share - Visual Studio Live Share | Microsoft Docs</a></p>
-<p>このチュートリアルでは、各参加者のVSCodeの状況を講師, TAがリアルタイムでコードのデバッグを手助けできます。</p>
-<p>この章ではサポートを受けたい方向けに、Live Shareのセットアップ方法を紹介します。</p>
-</div>
-</div>
-<div class="section" id="id5">
-<h2>ローカル開発環境の用意<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Pythonはシステムにインストールされた実行環境以外の仮想環境を用意できます。仮想環境を作ることでシステム側の環境を汚すこと無く開発環境の構築ができます。</p>
-<p>仮想環境は以下のコマンドで作成します</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="p">[</span><span class="n">Username</span><span class="p">]</span>\<span class="n">Document</span>\<span class="n">pyconjp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>
-<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="o">.</span><span class="n">venv</span>
-</pre></div>
-</div>
-<p>仮想環境を利用するときには、以下のコマンドを実行します</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span>\<span class="o">.</span><span class="n">venv</span>\<span class="n">Scripts</span>\<span class="n">activate</span><span class="o">.</span><span class="n">bat</span>
-<span class="n">rem</span> <span class="n">仮想環境上に必要なパッケージをインストールします</span>
-<span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
-</pre></div>
-</div>
-<p>Pipenvでの環境作成もできます。このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。</p>
-<p>仮想環境を終了する場合は以下のコマンドを実行します。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span><span class="n">deactivate</span>
-</pre></div>
+<p>別ページに記載します。</p>
 </div>
 </div>
 </div>
@@ -160,9 +150,9 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">チュートリアル開始前の準備</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id2">環境の確認</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#python">Pythonのセットアップ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">利用するサービスの登録方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">チュートリアルの資料を取得する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">利用するサービスの準備</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#visual-studio-code">エディタの設定:Visual Studio Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">ローカル開発環境の用意</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="slackbot.html">Slackbotの作成</a></li>

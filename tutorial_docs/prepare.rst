@@ -35,54 +35,79 @@ Pythonは各OSによってインストール方法が違いますが、基本的
 
 ※: Anacondaは今回のチュートリアルはサポートしていません（動作確認しません）
 
-利用するサービスの登録方法
+Pythonの動作確認
+--------------------------------------------------------------------------------
+
+
+
+PATHが通っているかのチェック: Powershell上で python --version でインストール済みのバージョンチェック
+
+pythonコマンドが実行できるか確認します。Windows10ならPowershellかコマンドプロンプト、macOSならターミナルアプリを起動して以下のコマンドを実行しましょう。ここではPowershellを利用して確認します。
+
+
+::
+
+  PS C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial> python --version
+  Python 3.7.3
+
+
+
+チュートリアルの資料を取得する
+================================================================================
+
+ＳlackbotチュートリアルはGitHub上のリポジトリで作成しています。以下のURLからDLしてください。
+
+
+https://github.com/py-suruga/pycon-jp-2020-tutorial.git
+
+
+https://github.com/py-suruga/pycon-jp-2020-tutorial/archive/master.zip
+
+利用するサービスの準備
 ================================================================================
 
 チュートリアルで課題となるSlackbotを作成する上で必須となるサービスや、開発時に利用するサービスの登録が必要になります。
 
 主にSlackのワークスペース, ngrok、GitHubアカウントの3つとなります。
 
-GitHubアカウントは後に開設するVSCode LiveShareでも必要となります。
+GitHubアカウントはオプションとして利用するVSCode Live shareでも利用します。
 
 Slackワークスペースの新規作成
 --------------------------------------------------------------------------------
 
-Slackbotを作成するときには、開発用のSlackワークスペースを新規作成することをおすすめします。Slack公式でもアナウンスされています。
+Slackbotを作成するときには、開発用のSlackワークスペースを新規作成することをおすすめします。
 
 `Slack を始める | Slack <https://slack.com/get-started#/create>`_
 
-.. slackワークスペースを作ったほうがいいというアナウンスが入った引用元を記載
 
-ngrokのアカウント作成と利用準備
+ngrokの利用準備
 --------------------------------------------------------------------------------
 
-`ngrok <https://ngrok.com/>`_ とは、ローカルサーバーを一時的に外部公開するプロキシサービスです。SlackBotはコールバックURLが必要となるため、ローカル開発環境で作成したサーバーアプリを一時的にSlack側にアクセスできるようにします。
+`ngrok <https://ngrok.com/>`_ とは、ローカルサーバーを一時的に外部公開するプロキシサービスです。SlackBotはSlackワークスペース上で起きた出来事（メッセージやメンション、リアクションなど、イベントと呼ばれる）をBot側が受け取るURLが必要となるため、ローカル開発環境で作成したサーバーアプリを一時的にSlack側にアクセスできるようにします。
 
-- 登録: `ngrok - secure introspectable tunnels to localhost <https://dashboard.ngrok.com/signup>`_
-
-登録後は、サーバーを公開する際に利用するCLIツールをインストールします。
+サーバーを公開する際に利用するCLIツールをインストールします。
 
 ツールのDL先: `ngrok - download <https://ngrok.com/download>`_
 
 zipファイルをDLして、チュートリアルの作業用のディレクトリに配置します。
 
-.. 作業ディレクトリに配置する様子を画像で載せる
+.. image:: ./doc-img/ngrok_1.png
+
 
 Windows 10で ``C:\Users\[Username]\Document\pyconjp-2020-tutorial`` というディレクトリで作業をする場合、DLしたZipファイルをディレクトリ内で展開し、 ``ngrok.exe`` という実行ファイルを配置します。
 
-そのあとに以下のように操作します。
+ngrokは登録をしなくても、8時間の限定的なURLが割り振られます。今回のチュートリアルでは8時間を超える利用を想定していないのですが、後ほど試したい場合は、ngrokのサービス登録をすることをおススメします。
 
-::
+- 登録: `ngrok - secure introspectable tunnels to localhost <https://dashboard.ngrok.com/signup>`_
 
-  # ngrokのアカウント認証を行い、コマンド経由でサービスへ接続できるようにします。
-  >　ngrok.exe authtoken <your_auth_token>
-
-slackbot作成時に作業をするコマンドは、該当のセッションで説明します。
+登録後は、``ngrok authtoken`` コマンドを使いngrokコマンドのアカウント認証を行うことで、アカウントに紐づいたサービスが利用できます。
 
 GitHubアカウント作成
 --------------------------------------------------------------------------------
 
-GitHubアカウントの作成も必須としています。今回操作で利用するエディタであるVSCodeの共有機能LiveShare拡張を利用するときに、アカウントが必要となりますので、こちらも作成します。
+GitHubアカウントの作成も必須としています。
+
+操作で利用するエディタであるVSCodeの共有機能LiveShare拡張を利用するときに、アカウントが必要となりますので、こちらも作成します。
 
 `Join GitHub · GitHub <https://github.com/join>`_
 
@@ -98,54 +123,7 @@ Python向けの拡張機能もあり、Microsoftが公開しているものやOS
 - `Python - Visual Studio Marketplace <https://marketplace.visualstudio.com/items?itemName=ms-python.python>`_
 - `reStructuredText - Visual Studio Marketplace <https://marketplace.visualstudio.com/items?itemName=lextudio.restructuredtext>`_
 
-.. 
-  - python for vscodeだけではなく必要な拡張機能も指示する
-
 Visual Studio Live Shareの設定
 ------------------------------
-Visual Studio Live Shareは、Visual StudioやVSCodeでソースコードをリアルタイムに複数人で共有、編集しデバッグをすることが出来ます。
 
-`概要 - Visual Studio Live Share - Visual Studio Live Share | Microsoft Docs <https://docs.microsoft.com/ja-jp/visualstudio/liveshare/>`_
-
-このチュートリアルでは、各参加者のVSCodeの状況を講師, TAがリアルタイムでコードのデバッグを手助けできます。
-
-この章ではサポートを受けたい方向けに、Live Shareのセットアップ方法を紹介します。
-
-..
-  - vscodeとLiveshareについて解説
-  - このチュートリアルでどのように利用するかを説明
-  - Liveshareが利用できるまでをステップで用意（もしくは公式のリンクのどこまでを行うかを指示する）
-  - Live Share拡張インストール
-  - 拡張からアカウント登録
-  - ゲスト（この場合はレビューを行う講師、TAのこと）を呼ぶ方法
-  - 当日の流れ: 当日にセッションを講師TA側に提供する
-
-
-ローカル開発環境の用意
-================================================================================
-
-Pythonはシステムにインストールされた実行環境以外の仮想環境を用意できます。仮想環境を作ることでシステム側の環境を汚すこと無く開発環境の構築ができます。
-
-仮想環境は以下のコマンドで作成します
-
-::
-
-  cd C:\Users\[Username]\Document\pyconjp-2020-tutorial
-  python -m venv .venv
-
-仮想環境を利用するときには、以下のコマンドを実行します
-
-
-::
-
-  .\.venv\Scripts\activate.bat
-  rem 仮想環境上に必要なパッケージをインストールします
-  (.venv) > pip install -r requirements.txt
-
-Pipenvでの環境作成もできます。このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。
-
-仮想環境を終了する場合は以下のコマンドを実行します。
-
-::
-
-  (.venv)deactivate
+別ページに記載します。
