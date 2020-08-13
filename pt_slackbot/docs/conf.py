@@ -10,17 +10,17 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-from pathlib import Path
+import os
 import sys
 
-sys.path.insert(0, str(Path("../").absolute()))
+sys.path.insert(0, os.path.abspath("..\\"))
 
 
 # -- Project information -----------------------------------------------------
 
-project = "pt_slackbot document"
-copyright = "2020, py-suruga, unagi-py, Hiroshi Sano"
-author = "py-suruga, unagi-py, Hiroshi Sano"
+project = "pt_slackbot ドキュメント"
+copyright = "2020, Hiroshi Sano"
+author = "Hiroshi Sano"
 
 # The full version, including alpha/beta/rc tags
 release = "2020.07.24"

@@ -6,4 +6,3 @@ pt_slackbot
 
    botfunc
    botrun
-   tests

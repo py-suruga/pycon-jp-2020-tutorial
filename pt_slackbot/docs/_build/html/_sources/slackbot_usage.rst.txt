@@ -10,3 +10,12 @@ slackbotは3つの機能があります。
 - connpass: connpassで ``Python``, ``オンライン`` の健作結果を返すbot
 - tenki: 気象庁XMLサービスから地域の週間天気予報を返すbot
 
+
+各botのリファレンス
+==============================
+
+こちらから参照できます。
+
+:doc:`./botrun` 
+
+:doc:`./botfunc` 

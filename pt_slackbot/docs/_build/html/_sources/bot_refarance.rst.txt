@@ -7,7 +7,4 @@ bot リファレンス
 
 現在利用可能なbotの作成済みのリファレンスも掲載します。
 
-.. autofunction:: botrun.handle_message_and_botrun
-
-.. automodule:: botfunc
     
