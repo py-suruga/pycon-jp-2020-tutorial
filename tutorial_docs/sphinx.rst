@@ -35,6 +35,43 @@ Sphinxはドキュメントを作成するひな形の環境を用意する ``sp
 
     sphinx-quickstart 
     # この先は実際に動作させた結果を用意する
+    (pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot> sphinx-quickstart.exe .\docs\
+    Welcome to the Sphinx 3.1.2 quickstart utility.
+
+    Please enter values for the following settings (just press Enter to
+    accept a default value, if one is given in brackets).
+
+    Selected root path: .\docs\
+
+    You have two options for placing the build directory for Sphinx output.
+    Either, you use a directory "_build" within the root path, or you separate
+    "source" and "build" directories within the root path.
+    > Separate source and build directories (y/n) [n]: n
+
+    The project name will occur in several places in the built documentation.
+    > Project name: pt_slackbot ドキュメント
+    > Author name(s): Hiroshi Sano
+    > Project release []: 2020.07.24
+
+    If the documents are to be written in a language other than English,
+    you can select a language here by its language code. Sphinx will then
+    translate text that it generates into that language.
+
+    For a list of supported codes, see
+    https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-language.
+    > Project language [en]: ja
+
+    Creating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackboCreating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackboCreating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot\docs\Makefile.
+    Creating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot\docs\make.bat.
+
+    Finished: An initial directory structure has been created.
+
+    You should now populate your master file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot\docs\index.rst and create other documentation
+    source files. Use the Makefile to build the docs, like so:
+    make builder
+    where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
+
+    (pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot> cd .\docs\
 
 - 用意したドキュメントひな形の紹介: 構造の作り方
 
