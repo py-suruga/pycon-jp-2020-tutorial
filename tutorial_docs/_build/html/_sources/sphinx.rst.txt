@@ -11,7 +11,9 @@ SphinxはPythonの公式ドキュメントやサードパーティライブラ�
 
 日本語版の公式サイト: `概要 — Sphinx 4.0.0+/ba0e5d0ec ドキュメント <https://www.sphinx-doc.org/ja/master/>`_
 
-今回は以下のドキュメントの作成を体験しましょう。
+Sphinxはドキュメントの書きやすさや豊富な拡張、テーマが利用できます。オープンソースプロジェクトのドキュメントや、企業内のドキュメントでも利用されています。
+
+今回はSlackbotのドキュメントを作りましょう。以下のドキュメントの作成を体験します。
 
 - Slackbotの使い方ドキュメントを用意する
 - autodoc拡張機能を使って、bot関数のレファレンスを作成する
@@ -88,5 +90,16 @@ docstringを用意できたので、autodocを使ってリファレンスを生�
 
 最後に見栄えを自由に変更できるテーマについて説明します。
 
-- Sphinxは公式同梱のテーマ以外にも、サードパーティのテーマも充実している
-- よく見る 
+Sphinxは公式同梱のテーマ以外にも、サードパーティのテーマも充実しています。
+
+今回はドキュメントホスティングサービスとして有名な、Read The Docsが提供しているSphinxテーマである ``sphinx-rtd-theme`` を適用してみましょう。
+
+`Read the Docs Sphinx Theme — Read the Docs Sphinx Theme 0.5.0 documentation <https://sphinx-rtd-theme.readthedocs.io/en/stable/>`_
+
+SphixnのテーマはPythonパッケージとして提供されています。
+
+テーマの変更方法は公式サイトより参考にします
+
+
+変更すると以下のように、ドキュメントページが大きく変わります。
+
