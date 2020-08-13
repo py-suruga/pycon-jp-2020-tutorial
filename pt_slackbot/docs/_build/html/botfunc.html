@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>botfunc package &#8212; pt_slackbot document 2020.07.24 ドキュメント</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="botfunc-package">
+<h1>botfunc package<a class="headerlink" href="#botfunc-package" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+<div class="section" id="module-botfunc.jma_weekly_weather">
+<span id="botfunc-jma-weekly-weather-module"></span><h2>botfunc.jma_weekly_weather module<a class="headerlink" href="#module-botfunc.jma_weekly_weather" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="py function">
+<dt id="botfunc.jma_weekly_weather.call_function">
+<code class="sig-prename descclassname">botfunc.jma_weekly_weather.</code><code class="sig-name descname">call_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">match_group</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Optional<span class="p">[</span>str<span class="p">]</span><a class="headerlink" href="#botfunc.jma_weekly_weather.call_function" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>botの結果を返すfunction</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="botfunc.jma_weekly_weather.get_jma_xml_files">
+<code class="sig-prename descclassname">botfunc.jma_weekly_weather.</code><code class="sig-name descname">get_jma_xml_files</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#botfunc.jma_weekly_weather.get_jma_xml_files" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>気象庁の府県週間天気予報の電文XMLファイルを取得します。
+すでに取得済みで、取得日が現在の日付より12時間前の場合は取得はされません</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="botfunc.jma_weekly_weather.get_weekly_weather">
+<code class="sig-prename descclassname">botfunc.jma_weekly_weather.</code><code class="sig-name descname">get_weekly_weather</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">station_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; Optional<span class="p">[</span>str<span class="p">]</span><a class="headerlink" href="#botfunc.jma_weekly_weather.get_weekly_weather" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>天気予報の結果を取得する</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-botfunc.search_connpass_online">
+<span id="botfunc-search-connpass-online-module"></span><h2>botfunc.search_connpass_online module<a class="headerlink" href="#module-botfunc.search_connpass_online" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="py function">
+<dt id="botfunc.search_connpass_online.call_function">
+<code class="sig-prename descclassname">botfunc.search_connpass_online.</code><code class="sig-name descname">call_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">match_group</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Optional<span class="p">[</span>str<span class="p">]</span><a class="headerlink" href="#botfunc.search_connpass_online.call_function" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>botの結果を返すfunction</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="botfunc.search_connpass_online.request_connpass_api">
+<code class="sig-prename descclassname">botfunc.search_connpass_online.</code><code class="sig-name descname">request_connpass_api</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ym</span></em><span class="sig-paren">)</span><a class="headerlink" href="#botfunc.search_connpass_online.request_connpass_api" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>connpass APIへのリクエストを行う。
+connpassで、&quot;Python&quot;に関係する&quot;オンライン&quot;イベントを検索する。
+年月を指定して、その年月から関係するイベントから先頭20件を取得する</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="botfunc.search_connpass_online.search_online_event">
+<code class="sig-prename descclassname">botfunc.search_connpass_online.</code><code class="sig-name descname">search_online_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ym</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; Optional<span class="p">[</span>str<span class="p">]</span><a class="headerlink" href="#botfunc.search_connpass_online.search_online_event" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>request_connpass_apiで受け取った結果をbotの戻り文字列として生成する</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-botfunc.world_greeting">
+<span id="botfunc-world-greeting-module"></span><h2>botfunc.world_greeting module<a class="headerlink" href="#module-botfunc.world_greeting" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="py function">
+<dt id="botfunc.world_greeting.call_function">
+<code class="sig-prename descclassname">botfunc.world_greeting.</code><code class="sig-name descname">call_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">match_group</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Optional<span class="p">[</span>str<span class="p">]</span><a class="headerlink" href="#botfunc.world_greeting.call_function" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>botの結果を返すfunction</p>
+<p>挨拶をすると世界の挨拶をランダムに返す</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-botfunc">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-botfunc" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">pt_slackbot document</a></h1>
+
+
+
+
+
+
+
+
+<h3>ナビゲーション</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="slackbot_usage.html">slackbotの使いかた</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bot_refarance.html">bot リファレンス</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, py-suruga, unagi-py, Hiroshi Sano.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/botfunc.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
