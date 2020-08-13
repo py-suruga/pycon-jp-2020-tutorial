@@ -168,7 +168,7 @@ python ./pt_slackbot/botrun.py
 <h3>世界の挨拶をランダムで返す  <strong>wgreet</strong> bot<a class="headerlink" href="#wgreet-bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <img alt="_images/slackbot_1-13.jpg" src="_images/slackbot_1-13.jpg" />
 <p>このbotは定義した挨拶情報をランダムに返すbotです。よく言われる人工無能をまずは試してもらいます。</p>
-<p>ほしい機能は以下の通りです。</p>
+<p>このbotの趣旨は以下になります。</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>国旗、挨拶の言葉、のテーブルを用意してテーブルからランダムに挨拶をかえす</p></li>
@@ -177,15 +177,16 @@ python ./pt_slackbot/botrun.py
 </ul>
 </div></blockquote>
 <p>TODO:2020-08-13 ステップごとのコードのリンクを用意する</p>
-<ul class="simple">
-<li><p>挨拶botの実装ステップ</p>
-<ol class="arabic simple">
+<div class="section" id="bot">
+<h4>挨拶botの実装ステップ<a class="headerlink" href="#bot" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<blockquote>
+<div><ol class="arabic simple">
 <li><p>まずslackevetsapiのexampleをそのまま乗せておいて、そのbotで受け答えできるか調べてみる</p></li>
 <li><p>次に、その中でテーブルを作って、ランダムで返す関数を用意</p></li>
 <li><p>最後に挨拶をかえす部分をモジュール化する -&gt; 伏線:テストとレファレンスを書きやすくする</p></li>
 </ol>
-</li>
-</ul>
+</div></blockquote>
+</div>
 </div>
 <div class="section" id="connpass-api-connpass-bot">
 <h3>connpass APIを利用してオンラインイベントを検索する <strong>connpass</strong> bot<a class="headerlink" href="#connpass-api-connpass-bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -199,37 +200,31 @@ python ./pt_slackbot/botrun.py
 <li><p>requests + jsonでAPIから取得したjsonのパースを体験する</p></li>
 </ul>
 </div></blockquote>
-<ul class="simple">
-<li><p>connpassbotの実装ステップ</p>
+<div class="section" id="connpassbot">
+<h4>connpassbotの実装ステップ<a class="headerlink" href="#connpassbot" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <ol class="arabic simple">
 <li><p>共通化した手法を元に、connpassbotを作る。最初は1関数にすべてのせる</p></li>
 <li><p>APIリクエストとbotの答えを返す関数を別途作り、分離していく</p></li>
 </ol>
-</li>
-</ul>
+</div>
 </div>
 <div class="section" id="xml-tenki-bot">
 <h3>気象庁のXML電文を使って地域の天気を返す <strong>tenki</strong> bot<a class="headerlink" href="#xml-tenki-bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <img alt="_images/slackbot_1-15.jpg" src="_images/slackbot_1-15.jpg" />
 <p>最後にスマートスピーカーでも尋ねる率が高い機能でもある、天気予報を教えてくれるbotを作りましょう。</p>
 <p>今回は誰でも無料で利用可能な、気象庁のXML電文を利用した週間天気予報を返すbotを作ります。XMLを扱うため、XMLのパーサーを使いながら、知りたい地域の週間天気予報を実装しましょう。</p>
-<p><strong>tenki [地域名]</strong></p>
-<blockquote>
-<div><ul class="simple">
-<li><p>-&gt; 目的:最後に実用的なbotを作成する</p></li>
-<li><p>説明的にはxmlのパース周りに絞る（気象庁のサービスとしての話はプログラムの流れ説明の時ぐらいに絞る）</p></li>
-<li><p>requests + bs4を使ってxmlのパースをする</p></li>
-<li><p>対応地域は絞っておいて（減らしておいて）追加してbotの拡張をしてもらう</p></li>
-</ul>
-</div></blockquote>
+<p>このbotは <code class="docutils literal notranslate"><span class="pre">tenki</span> <span class="pre">[地域名]</span></code> と入力します。 <code class="docutils literal notranslate"><span class="pre">tenki</span> <span class="pre">静岡</span></code> と入力すると、静岡県気象台発表の週間天気予報を表示します。</p>
+<p>このbotの趣旨は以下になります。</p>
 <ul class="simple">
-<li><p>天気botの実装ステップ</p>
-<ol class="arabic simple">
-<li><p>（既にxmlのDLはやっておいた状態）</p></li>
-<li><p>xmlのパースを進める</p></li>
-</ol>
-</li>
+<li><p>requests + bs4を使ってxmlを取得しパースを体験する</p></li>
 </ul>
+<div class="section" id="tenkibot">
+<h4>tenkibotの実装ステップ<a class="headerlink" href="#tenkibot" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<ol class="arabic simple">
+<li><p>（既にxmlのDLしたものを扱います）</p></li>
+<li><p>requests + bs4を使ってxmlのパースをする</p></li>
+<li><p>対応地域を追加してbotの拡張をしてもらう</p></li>
+</ol>
 <div class="admonition note">
 <p class="admonition-title">注釈</p>
 <p>今回の天気情報の元は気象庁が無料で公開しているxmlファイルを利用しました。
@@ -237,6 +232,7 @@ python ./pt_slackbot/botrun.py
 <p><a class="reference external" href="https://help.livedoor.com/weather/index.html">天気情報 ヘルプ - livedoor ヘルプ</a></p>
 <p>気象庁XMLサービスは天気予報以外にも、多数の予報や災害情報の提供もされているので、より多彩なbot作成ができると思います。
 ただxmlを扱うのは少し難儀でもありますね。</p>
+</div>
 </div>
 </div>
 </div>
