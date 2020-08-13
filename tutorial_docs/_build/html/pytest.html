@@ -36,6 +36,87 @@
             
   <div class="section" id="pytest">
 <h1>PyTest<a class="headerlink" href="#pytest" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Slackbotが返す結果をテストできるように、テストケースの導入を行います。</p>
+<p>今回はサードパーティのテストツールである PyTest を利用します。PytestはPython標準ライブラリにあるUnittestより簡単にテストの記述が可能です。</p>
+<div class="section" id="id1">
+<h2>pytestコマンドの使い方<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>pytestは既にローカル開発環境を用意した段階でインストールされています。 <code class="docutils literal notranslate"><span class="pre">pytest</span></code> コマンドを実行することで確認できます。もしコマンドが存在しないというエラーがある場合はpipコマンドでインストールしてください</p>
+<dl class="simple">
+<dt>::</dt><dd><p>pip install pytest</p>
+</dd>
+</dl>
+<p>pytestを使ったテストケースはpytestコマンドでテストの実行と結果を確認できます。</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">-v</span></code> オプションを利用することで、各テストケースの</dt><dd><ul class="simple">
+<li><p>テストを実行する場所の位置指定</p></li>
+</ul>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>pytestを扱ったテストの書き方</p></li>
+</ul>
+<p>pytestを使ったテストケースの書き方を紹介します。</p>
+<p>テストファイルは Pythonのパッケージ内にある <code class="docutils literal notranslate"><span class="pre">tests</span></code> モジュールや、test_**.py or <a href="#id2"><span class="problematic" id="id3">**</span></a>_test.py という名前が認識されます。</p>
+<p>簡単なテストを作成してみます。</p>
+<p>TODO:2020-08-13 hello test的なコードをファイルに作って記載</p>
+<p>特徴的な部分としては、 pythonのassert文を使ってテストケースを定義します。</p>
+<p>※:Assert式とは:</p>
+<p>Assert文は <cite>assert [真偽判断ができる式]</cite> と書くことで、式が偽となる場合はＡssertＥrrorという例外を発生させます。簡易的なデバッグ用途に扱うことができます。</p>
+<p><a class="reference external" href="https://docs.python.org/ja/3/reference/simple_stmts.html#assert">https://docs.python.org/ja/3/reference/simple_stmts.html#assert</a></p>
+<div class="section" id="id4">
+<h3>テストの失敗<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>実行して失敗した状態からスタート。faild=&gt;pass</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id5">
+<h3>テストの成功<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>実行して失敗した状態からスタート。faild=&gt;pass</p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>PyTestの機能<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="parametrize">
+<h3>parametrize<a class="headerlink" href="#parametrize" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>parametrizeを扱った、テストパラメータの導入 [Parametrizing fixtures and test functions — pytest documentation](<a class="reference external" href="https://docs.pytest.org/en/stable/parametrize.html">https://docs.pytest.org/en/stable/parametrize.html</a>)</p></li>
+<li><p>parametrizeでサンプルを書いてみる: リスト&gt;タプルで作ったパラメーターをassert</p></li>
+</ul>
+</div>
+<div class="section" id="fixture">
+<h3>fixture<a class="headerlink" href="#fixture" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>fixtureによるテストデータの共通化（予定、使わないかも）[pytest fixtures: explicit, modular, scalable — pytest documentation](<a class="reference external" href="https://docs.pytest.org/en/stable/fixture.html">https://docs.pytest.org/en/stable/fixture.html</a>)</p></li>
+<li><p>fixtureでjson(文字列)をロードして、複数のテストを書いてみる（適合する/適合しないレベル）</p></li>
+</ul>
+</div>
+<div class="section" id="monkeypatch">
+<h3>monkeypatch<a class="headerlink" href="#monkeypatch" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p>monkeypatch: オブジェクトの置き換えを行う: [Monkeypatching/mocking modules and environments — pytest documentation](<a class="reference external" href="https://docs.pytest.org/en/latest/monkeypatch.html">https://docs.pytest.org/en/latest/monkeypatch.html</a>)</p>
+<ul>
+<li><p>monkeypatch: 公式にあるホームを返す機能を元にテストをしてみる -&gt; <a class="reference external" href="https://docs.pytest.org/en/latest/monkeypatch.html#simple-example-monkeypatching-functions">https://docs.pytest.org/en/latest/monkeypatch.html#simple-example-monkeypatching-functions</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="slackbot">
+<h2>slackbotのテストケースを書いてみよう<a class="headerlink" href="#slackbot" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>今回のチュートリアルで作成しているSlackbotのテストを書いてみましょう。</p>
+<p>SlackbotはSlackワークスペースとの連携が必要になりますが、このテストはそういった外部サービスとの連携テストを想定していません。botとして返答する情報が正しいかの単体テストを作成します。</p>
+<ul class="simple">
+<li><p>挨拶bot: 各国の挨拶を正しく返すかのテスト</p></li>
+<li><p>connpass bot: jsonの取得をmonkeypatchで置き換え</p></li>
+<li><p>気象庁xmlの取得をmonkeypatchで置き換え、parametarizeで地域の追加</p></li>
+</ul>
+</div>
 </div>
 
 
@@ -59,7 +140,12 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="prepare.html">チュートリアル開始前の準備</a></li>
 <li class="toctree-l1"><a class="reference internal" href="slackbot.html">Slackbotの作成</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">PyTest</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">PyTest</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">pytestコマンドの使い方</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">PyTestの機能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#slackbot">slackbotのテストケースを書いてみよう</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
 </ul>
 

@@ -35,6 +35,86 @@
             
   <div class="section" id="sphinx">
 <h1>Sphinx<a class="headerlink" href="#sphinx" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>SphinxはPythonの公式ドキュメントやサードパーティライブラリ、またほかの言語や書籍にも利用されるドキュメンテーションツールです。</p>
+<p>公式サイト: <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Overview — Sphinx 4.0.0+ documentation</a></p>
+<p>日本語版の公式サイト: <a class="reference external" href="https://www.sphinx-doc.org/ja/master/">概要 — Sphinx 4.0.0+/ba0e5d0ec ドキュメント</a></p>
+<p>今回は以下のドキュメントの作成を体験しましょう。</p>
+<ul class="simple">
+<li><p>Slackbotの使い方ドキュメントを用意する</p></li>
+<li><p>autodoc拡張機能を使って、bot関数のレファレンスを作成する</p></li>
+</ul>
+<div class="section" id="id1">
+<h2>Sphinxの始め方<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p>sphinx-quickstartでひな形的なドキュメントの構成を用意する</p></li>
+</ul>
+<p>Sphinxもローカル開発環境を作成した段階でインストールされています。もしsphinx-quickstartというコマンドが見つからない場合はpipコマンドでインストールします。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">Sphinx</span>
+</pre></div>
+</div>
+<p>Sphinxはドキュメントを作成するひな形の環境を用意する <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> コマンドがあります。こちらを利用してひな形を作りましょう</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sphinx</span><span class="o">-</span><span class="n">quickstart</span>
+<span class="c1"># この先は実際に動作させた結果を用意する</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>用意したドキュメントひな形の紹介: 構造の作り方</p></li>
+</ul>
+<p>今回のSlackbotのドキュメントは以下のような構造で作成します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ファイルツリーを用意する。ファイルの後に意味をコメントする</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="slackbot">
+<h2>Slackbotのドキュメントを書こう<a class="headerlink" href="#slackbot" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p>ドキュメントの編集: slackbotの使い方についての足らない部分を書いてドキュメントのビルドを行う</p>
+<ul>
+<li><p>挨拶や天気の追加した情報を、各自思いのままに入れてもらう or いくつかパターンを用意する？</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="autodoc">
+<h2>autodoc 拡張機能を使ったリファレンス作成<a class="headerlink" href="#autodoc" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p>docstringからリファレンスの生成: [sphinx.ext.autodoc -- docstringからのドキュメントの取り込み — Sphinx 4.0.0+/70d521ad9 ドキュメント](<a class="reference external" href="https://www.sphinx-doc.org/ja/master/usage/extensions/autodoc.html">https://www.sphinx-doc.org/ja/master/usage/extensions/autodoc.html</a>)</p></li>
+</ul>
+<div class="section" id="docstirng">
+<h3>docstirngを書こう<a class="headerlink" href="#docstirng" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul>
+<li><p>docstringの足らない部分を書いていく</p></li>
+<li><p>挨拶bot: ランダムに天気情報を返す関数</p></li>
+<li><p>connpassbot: jsonの取得関数, botが答える文字列生成の関数</p></li>
+<li><p>天気bot: xml取得関数, botが答える文字列生成の関数</p></li>
+<li><p>botrunのメッセージハンドル（botの登録方法を記載する）</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>type annotationの組み合わせで行う。(python3.7を必須にしたので問題ないはず）</p></li>
+<li><p>docstringはGoogleスタイルで行うのでnapoleonの導入も必要: <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations">https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations</a></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h3>autodocで半自動的にリファレンスを作成する<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>docstringを用意できたので、autodocを使ってリファレンスを生成してみましょう。</p>
+<dl class="simple">
+<dt>::</dt><dd><p>autodocコマンドを実行する</p>
+</dd>
+</dl>
+<p>実行したautodocの結果は***にあります。それをslackbotのドキュメントの一部として組み込みます。</p>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>テーマを変更しよう<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>最後に見栄えを自由に変更できるテーマについて説明します。</p>
+<ul class="simple">
+<li><p>Sphinxは公式同梱のテーマ以外にも、サードパーティのテーマも充実している</p></li>
+<li><p>よく見る</p></li>
+</ul>
+</div>
 </div>
 
 
@@ -59,7 +139,13 @@
 <li class="toctree-l1"><a class="reference internal" href="prepare.html">チュートリアル開始前の準備</a></li>
 <li class="toctree-l1"><a class="reference internal" href="slackbot.html">Slackbotの作成</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pytest.html">PyTest</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Sphinx</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Sphinx</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Sphinxの始め方</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#slackbot">Slackbotのドキュメントを書こう</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#autodoc">autodoc 拡張機能を使ったリファレンス作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">テーマを変更しよう</a></li>
+</ul>
+</li>
 </ul>
 
 <div class="relations">
