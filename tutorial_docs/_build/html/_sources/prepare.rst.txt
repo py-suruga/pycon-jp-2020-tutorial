@@ -10,14 +10,14 @@
 このチュートリアルでは以下のOSをサポートしています。そのほかのOSでは主にPythonのセットアップで違いがあります。
 
 - Windows 10 May 2020 Update :version 2004（チュートリアル作成環境）
-- macOS 10.14 Catalina
+- macOS 10.15 Catalina
 
 Pythonのセットアップ
 ================================================================================
 
-この項目ではPythonのセットアップを扱います。今回のチュートリアルで推奨するPythonのバージョンは3.7以上です。マイナーバージョンもできる限り最新をおすすめします。
+この項目ではPythonのセットアップを扱います。チュートリアルで推奨するPythonのバージョンは3.7以上です。マイナーバージョンもできる限り最新をオススメします。
 
-Pythonは各OSによってインストール方法が違いますが、基本的にはPython.orgからの公式バイナリインストーラーの利用をお勧めしています。python.jpからダウンロードリンクを元にDLしてください。
+Pythonは各OSによってインストール方法が違いますが、基本的にはPython.orgからの公式バイナリインストーラーの利用をオススメしています。python.jpからダウンロードリンクを元にDLしてください。
 
 `非公式Pythonダウンロードリンク - Python downloads <https://pythonlinks.python.jp/ja/index.html>`_
 
@@ -25,71 +25,98 @@ Pythonは各OSによってインストール方法が違いますが、基本的
 
 - Win10: `Windows 環境のPython - python.jp <https://www.python.jp/install/windows/index.html>`_
   
-  - Windows 10では公式インストーラーの利用をおすすめします
+  - Windows 10では公式インストーラーの利用をオススメします
 
 - macOS: `macOS環境のPython - python.jp <https://www.python.jp/install/macos/index.html>`_
   
-  - macOSではCatalinaでは標準のpython, または（そのほかのOSバージョンでは）Homebrewというパッケージマネージャを用いてのインストールをおすすめします。
+  - macOS Catalinaでは標準のpython, またHomebrewというパッケージマネージャーを用いてのインストールをオススメします。
 
-※: そのほかのOSの場合も公式のインストーラーや、OSが提供するパッケージマネージャーからのインストールが利用できます。
+※: その他OSの場合でも、公式のインストーラーやパッケージマネージャーからのインストールできます。
 
-※: Anacondaは今回のチュートリアルはサポートしていません（動作確認しません）
+※: Anacondaについてはサポートしていません（動作確認しません）
 
-利用するサービスの登録方法
+Pythonの動作確認
+--------------------------------------------------------------------------------
+
+pythonコマンドが実行できるか確認します。Windows 10ならPowerShellかコマンドプロンプト、macOSならターミナルアプリを起動して以下のコマンドを実行しましょう。ここではPowerShellを利用して確認します。
+
+.. todo:: 2020-08-13 Python古いので当日までに新しいバージョンにして確認しなおす
+
+::
+
+  PS ...\pycon-jp-2020-tutorial> python --version
+  Python 3.7.3
+
+
+チュートリアル資料を取得する
+================================================================================
+
+SlackbotチュートリアルはGitHub上のリポジトリで作成しています。以下のURLからDLしてください。
+
+gitリポジトリ: https://github.com/py-suruga/pycon-jp-2020-tutorial.git
+
+リポジトリのZip: https://github.com/py-suruga/pycon-jp-2020-tutorial/archive/master.zip
+
+チュートリアル資料の展開先は、普段お使いのユーザーディレクトリのどこかで構いません。例として 
+
+利用するサービスの準備
 ================================================================================
 
 チュートリアルで課題となるSlackbotを作成する上で必須となるサービスや、開発時に利用するサービスの登録が必要になります。
 
-主にSlackのワークスペース, ngrok、GitHubアカウントの3つとなります。
+主にSlackのワークスペース、ngrok、GitHubアカウントの3つとなります。
 
-GitHubアカウントは後に開設するVSCode LiveShareでも必要となります。
+GitHubアカウントはオプションとして利用するVS Code Live shareでも利用します。
 
 Slackワークスペースの新規作成
 --------------------------------------------------------------------------------
 
-Slackbotを作成するときには、開発用のSlackワークスペースを新規作成することをおすすめします。Slack公式でもアナウンスされています。
+Slackbotを作成するときには、開発用のSlackワークスペースを新規作成することをオススメします。
 
 `Slack を始める | Slack <https://slack.com/get-started#/create>`_
 
-.. slackワークスペースを作ったほうがいいというアナウンスが入った引用元を記載
 
-ngrokのアカウント作成と利用準備
+ngrokの利用準備
 --------------------------------------------------------------------------------
 
-`ngrok <https://ngrok.com/>`_ とは、ローカルサーバーを一時的に外部公開するプロキシサービスです。SlackBotはコールバックURLが必要となるため、ローカル開発環境で作成したサーバーアプリを一時的にSlack側にアクセスできるようにします。
+`ngrok <https://ngrok.com/>`_ は、ローカルサーバーを一時的に外部公開するプロキシサービスです。
 
-- 登録: `ngrok - secure introspectable tunnels to localhost <https://dashboard.ngrok.com/signup>`_
+SlackBotはSlackワークスペース上で起きた出来事（メッセージやメンション、リアクションなど、イベントと呼ばれる）を、Bot側で受け取るURLが必要となります。ローカル開発環境で作成したBotアプリを一時的にSlack側からアクセスできるようにします。
 
-登録後は、サーバーを公開する際に利用するCLIツールをインストールします。
+サーバーを公開する際に利用するCLIツールをインストールします。
 
 ツールのDL先: `ngrok - download <https://ngrok.com/download>`_
 
 zipファイルをDLして、チュートリアルの作業用のディレクトリに配置します。
 
-.. 作業ディレクトリに配置する様子を画像で載せる
+.. image:: ./doc-img/ngrok_1.png
+
 
 Windows 10で ``C:\Users\[Username]\Document\pyconjp-2020-tutorial`` というディレクトリで作業をする場合、DLしたZipファイルをディレクトリ内で展開し、 ``ngrok.exe`` という実行ファイルを配置します。
 
-そのあとに以下のように操作します。
+ngrokはアカウント作成をしなくてもURLを発行できます。その時には8時間の限定的なURLが割り振られます。
 
-::
+チュートリアルでは8時間を超える利用を想定していないのですが、後ほど継続して試したい場合は、ngrokのサービス登録をすることをおススメします。
 
-  # ngrokのアカウント認証を行い、コマンド経由でサービスへ接続できるようにします。
-  >　ngrok.exe authtoken <your_auth_token>
+- 登録: `ngrok - secure introspectable tunnels to localhost <https://dashboard.ngrok.com/signup>`_
 
-slackbot作成時に作業をするコマンドは、該当のセッションで説明します。
+登録後は、``ngrok authtoken`` コマンドを使いngrokコマンドのアカウント認証を行うことで、アカウントに紐づいたサービスが利用できます。
+
+詳細: https://ngrok.com/docs#getting-started-authtoken
 
 GitHubアカウント作成
 --------------------------------------------------------------------------------
 
-GitHubアカウントの作成も必須としています。今回操作で利用するエディタであるVSCodeの共有機能LiveShare拡張を利用するときに、アカウントが必要となりますので、こちらも作成します。
+GitHubアカウントの作成も必須としています。
+
+操作で利用するエディターであるVS Codeの共有機能LiveShare拡張を利用するときに、アカウントが必要となりますので、こちらも作成します。
 
 `Join GitHub · GitHub <https://github.com/join>`_
 
-エディタの設定:Visual Studio Code
+エディターの設定:Visual Studio Code
 ================================================================================
 
-今回利用するエディタであるVisual Studio Code（VSCode）は様々な拡張機能をインストールすることで、便利に扱うことができます。
+今回利用するエディターであるVisual Studio Code（VS Code）はさまざまな拡張機能をインストールすることで、便利に扱うことができます。
 
 Python向けの拡張機能もあり、Microsoftが公開しているものやOSSで開発されているものもあります。
 
@@ -98,54 +125,7 @@ Python向けの拡張機能もあり、Microsoftが公開しているものやOS
 - `Python - Visual Studio Marketplace <https://marketplace.visualstudio.com/items?itemName=ms-python.python>`_
 - `reStructuredText - Visual Studio Marketplace <https://marketplace.visualstudio.com/items?itemName=lextudio.restructuredtext>`_
 
-.. 
-  - python for vscodeだけではなく必要な拡張機能も指示する
-
 Visual Studio Live Shareの設定
 ------------------------------
-Visual Studio Live Shareは、Visual StudioやVSCodeでソースコードをリアルタイムに複数人で共有、編集しデバッグをすることが出来ます。
 
-`概要 - Visual Studio Live Share - Visual Studio Live Share | Microsoft Docs <https://docs.microsoft.com/ja-jp/visualstudio/liveshare/>`_
-
-このチュートリアルでは、各参加者のVSCodeの状況を講師, TAがリアルタイムでコードのデバッグを手助けできます。
-
-この章ではサポートを受けたい方向けに、Live Shareのセットアップ方法を紹介します。
-
-..
-  - vscodeとLiveshareについて解説
-  - このチュートリアルでどのように利用するかを説明
-  - Liveshareが利用できるまでをステップで用意（もしくは公式のリンクのどこまでを行うかを指示する）
-  - Live Share拡張インストール
-  - 拡張からアカウント登録
-  - ゲスト（この場合はレビューを行う講師、TAのこと）を呼ぶ方法
-  - 当日の流れ: 当日にセッションを講師TA側に提供する
-
-
-ローカル開発環境の用意
-================================================================================
-
-Pythonはシステムにインストールされた実行環境以外の仮想環境を用意できます。仮想環境を作ることでシステム側の環境を汚すこと無く開発環境の構築ができます。
-
-仮想環境は以下のコマンドで作成します
-
-::
-
-  cd C:\Users\[Username]\Document\pyconjp-2020-tutorial
-  python -m venv .venv
-
-仮想環境を利用するときには、以下のコマンドを実行します
-
-
-::
-
-  .\.venv\Scripts\activate.bat
-  rem 仮想環境上に必要なパッケージをインストールします
-  (.venv) > pip install -r requirements.txt
-
-Pipenvでの環境作成もできます。このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。
-
-仮想環境を終了する場合は以下のコマンドを実行します。
-
-::
-
-  (.venv)deactivate
+こちらのページで追記します: :doc:`/vscode_liveshare` 

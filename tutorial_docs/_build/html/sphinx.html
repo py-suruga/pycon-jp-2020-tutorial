@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sphinx &#8212; pycon-jp-2020-tutorial-development-slackbot 2020.07.24 ドキュメント</title>
+    <title>Sphinx &#8212; PyCon JP 2020 チュートリアル Slack Bot編 ドキュメント 2020.07.24 ドキュメント</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -16,6 +16,7 @@
     <script src="_static/translations.js"></script>
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="検索" href="search.html" />
+    <link rel="prev" title="PyTest" href="pytest.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -34,6 +35,132 @@
             
   <div class="section" id="sphinx">
 <h1>Sphinx<a class="headerlink" href="#sphinx" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>SphinxはPythonの公式ドキュメントやサードパーティライブラリ、またほかの言語や書籍にも利用されるドキュメンテーションツールです。</p>
+<p>公式サイト: <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Overview — Sphinx 4.0.0+ documentation</a></p>
+<p>日本語版の公式サイト: <a class="reference external" href="https://www.sphinx-doc.org/ja/master/">概要 — Sphinx 4.0.0+/ba0e5d0ec ドキュメント</a></p>
+<p>Sphinxはドキュメントの書きやすさや豊富な拡張、テーマが利用できます。オープンソースプロジェクトのドキュメントや、企業内のドキュメントでも利用されています。</p>
+<p>今回はSlackbotのドキュメントを作りましょう。以下のドキュメントの作成を体験します。</p>
+<ul class="simple">
+<li><p>Slackbotの使い方ドキュメントを用意する</p></li>
+<li><p>autodoc拡張機能を使って、bot関数のレファレンスを作成する</p></li>
+</ul>
+<div class="section" id="id1">
+<h2>Sphinxの始め方<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p>sphinx-quickstartでひな形的なドキュメントの構成を用意する</p></li>
+</ul>
+<p>Sphinxもローカル開発環境を作成した段階でインストールされています。もしsphinx-quickstartというコマンドが見つからない場合はpipコマンドでインストールします。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">Sphinx</span>
+</pre></div>
+</div>
+<p>Sphinxはドキュメントを作成するひな形の環境を用意する <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> コマンドがあります。こちらを利用してひな形を作りましょう</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sphinx</span><span class="o">-</span><span class="n">quickstart</span>
+<span class="c1"># この先は実際に動作させた結果を用意する</span>
+<span class="p">(</span><span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span><span class="p">)</span> <span class="n">PS</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">pt_slackbot</span><span class="o">&gt;</span> <span class="n">sphinx</span><span class="o">-</span><span class="n">quickstart</span><span class="o">.</span><span class="n">exe</span> <span class="o">.</span>\<span class="n">docs</span>\
+<span class="n">Welcome</span> <span class="n">to</span> <span class="n">the</span> <span class="n">Sphinx</span> <span class="mf">3.1</span><span class="o">.</span><span class="mi">2</span> <span class="n">quickstart</span> <span class="n">utility</span><span class="o">.</span>
+
+<span class="n">Please</span> <span class="n">enter</span> <span class="n">values</span> <span class="k">for</span> <span class="n">the</span> <span class="n">following</span> <span class="n">settings</span> <span class="p">(</span><span class="n">just</span> <span class="n">press</span> <span class="n">Enter</span> <span class="n">to</span>
+<span class="n">accept</span> <span class="n">a</span> <span class="n">default</span> <span class="n">value</span><span class="p">,</span> <span class="k">if</span> <span class="n">one</span> <span class="ow">is</span> <span class="n">given</span> <span class="ow">in</span> <span class="n">brackets</span><span class="p">)</span><span class="o">.</span>
+
+<span class="n">Selected</span> <span class="n">root</span> <span class="n">path</span><span class="p">:</span> <span class="o">.</span>\<span class="n">docs</span>\
+
+<span class="n">You</span> <span class="n">have</span> <span class="n">two</span> <span class="n">options</span> <span class="k">for</span> <span class="n">placing</span> <span class="n">the</span> <span class="n">build</span> <span class="n">directory</span> <span class="k">for</span> <span class="n">Sphinx</span> <span class="n">output</span><span class="o">.</span>
+<span class="n">Either</span><span class="p">,</span> <span class="n">you</span> <span class="n">use</span> <span class="n">a</span> <span class="n">directory</span> <span class="s2">&quot;_build&quot;</span> <span class="n">within</span> <span class="n">the</span> <span class="n">root</span> <span class="n">path</span><span class="p">,</span> <span class="ow">or</span> <span class="n">you</span> <span class="n">separate</span>
+<span class="s2">&quot;source&quot;</span> <span class="ow">and</span> <span class="s2">&quot;build&quot;</span> <span class="n">directories</span> <span class="n">within</span> <span class="n">the</span> <span class="n">root</span> <span class="n">path</span><span class="o">.</span>
+<span class="o">&gt;</span> <span class="n">Separate</span> <span class="n">source</span> <span class="ow">and</span> <span class="n">build</span> <span class="n">directories</span> <span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="p">[</span><span class="n">n</span><span class="p">]:</span> <span class="n">n</span>
+
+<span class="n">The</span> <span class="n">project</span> <span class="n">name</span> <span class="n">will</span> <span class="n">occur</span> <span class="ow">in</span> <span class="n">several</span> <span class="n">places</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">built</span> <span class="n">documentation</span><span class="o">.</span>
+<span class="o">&gt;</span> <span class="n">Project</span> <span class="n">name</span><span class="p">:</span> <span class="n">pt_slackbot</span> <span class="n">ドキュメント</span>
+<span class="o">&gt;</span> <span class="n">Author</span> <span class="n">name</span><span class="p">(</span><span class="n">s</span><span class="p">):</span> <span class="n">Hiroshi</span> <span class="n">Sano</span>
+<span class="o">&gt;</span> <span class="n">Project</span> <span class="n">release</span> <span class="p">[]:</span> <span class="mf">2020.07</span><span class="o">.</span><span class="mi">24</span>
+
+<span class="n">If</span> <span class="n">the</span> <span class="n">documents</span> <span class="n">are</span> <span class="n">to</span> <span class="n">be</span> <span class="n">written</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">language</span> <span class="n">other</span> <span class="n">than</span> <span class="n">English</span><span class="p">,</span>
+<span class="n">you</span> <span class="n">can</span> <span class="n">select</span> <span class="n">a</span> <span class="n">language</span> <span class="n">here</span> <span class="n">by</span> <span class="n">its</span> <span class="n">language</span> <span class="n">code</span><span class="o">.</span> <span class="n">Sphinx</span> <span class="n">will</span> <span class="n">then</span>
+<span class="n">translate</span> <span class="n">text</span> <span class="n">that</span> <span class="n">it</span> <span class="n">generates</span> <span class="n">into</span> <span class="n">that</span> <span class="n">language</span><span class="o">.</span>
+
+<span class="n">For</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">supported</span> <span class="n">codes</span><span class="p">,</span> <span class="n">see</span>
+<span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">sphinx</span><span class="o">-</span><span class="n">doc</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">en</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">usage</span><span class="o">/</span><span class="n">configuration</span><span class="o">.</span><span class="n">html</span><span class="c1">#confval-language.</span>
+<span class="o">&gt;</span> <span class="n">Project</span> <span class="n">language</span> <span class="p">[</span><span class="n">en</span><span class="p">]:</span> <span class="n">ja</span>
+
+<span class="n">Creating</span> <span class="n">file</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">pt_slackboCreating</span> <span class="n">file</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">pt_slackboCreating</span> <span class="n">file</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">pt_slackbot</span>\<span class="n">docs</span>\<span class="n">Makefile</span><span class="o">.</span>
+<span class="n">Creating</span> <span class="n">file</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">pt_slackbot</span>\<span class="n">docs</span>\<span class="n">make</span><span class="o">.</span><span class="n">bat</span><span class="o">.</span>
+
+<span class="n">Finished</span><span class="p">:</span> <span class="n">An</span> <span class="n">initial</span> <span class="n">directory</span> <span class="n">structure</span> <span class="n">has</span> <span class="n">been</span> <span class="n">created</span><span class="o">.</span>
+
+<span class="n">You</span> <span class="n">should</span> <span class="n">now</span> <span class="n">populate</span> <span class="n">your</span> <span class="n">master</span> <span class="n">file</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">pt_slackbot</span>\<span class="n">docs</span>\<span class="n">index</span><span class="o">.</span><span class="n">rst</span> <span class="ow">and</span> <span class="n">create</span> <span class="n">other</span> <span class="n">documentation</span>
+<span class="n">source</span> <span class="n">files</span><span class="o">.</span> <span class="n">Use</span> <span class="n">the</span> <span class="n">Makefile</span> <span class="n">to</span> <span class="n">build</span> <span class="n">the</span> <span class="n">docs</span><span class="p">,</span> <span class="n">like</span> <span class="n">so</span><span class="p">:</span>
+<span class="n">make</span> <span class="n">builder</span>
+<span class="n">where</span> <span class="s2">&quot;builder&quot;</span> <span class="ow">is</span> <span class="n">one</span> <span class="n">of</span> <span class="n">the</span> <span class="n">supported</span> <span class="n">builders</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="n">html</span><span class="p">,</span> <span class="n">latex</span> <span class="ow">or</span> <span class="n">linkcheck</span><span class="o">.</span>
+
+<span class="p">(</span><span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span><span class="p">)</span> <span class="n">PS</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">pt_slackbot</span><span class="o">&gt;</span> <span class="n">cd</span> <span class="o">.</span>\<span class="n">docs</span>\
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>用意したドキュメントひな形の紹介: 構造の作り方</p></li>
+</ul>
+<p>今回のSlackbotのドキュメントは以下のような構造で作成します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ファイルツリーを用意する。ファイルの後に意味をコメントする</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="slackbot">
+<h2>Slackbotのドキュメントを書こう<a class="headerlink" href="#slackbot" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">課題</p>
+<p>ドキュメントの編集: SlackBotの使い方についての足らない部分を書いてドキュメントのビルドを行う</p>
+</div>
+<div class="admonition-todo admonition" id="id3">
+<p class="admonition-title">課題</p>
+<p>挨拶や天気の追加した情報を、各自思いのままに入れてもらう。orいくつかパターンを用意する？</p>
+</div>
+</div>
+<div class="section" id="autodoc">
+<h2>autodoc拡張機能を使ったリファレンス作成<a class="headerlink" href="#autodoc" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p>docstringからリファレンスの生成: [sphinx.ext.autodoc -- docstringからのドキュメントの取り込み — Sphinx 4.0.0+/70d521ad9 ドキュメント](<a class="reference external" href="https://www.sphinx-doc.org/ja/master/usage/extensions/autodoc.html">https://www.sphinx-doc.org/ja/master/usage/extensions/autodoc.html</a>)</p></li>
+</ul>
+<div class="section" id="docstirng">
+<h3>docstirngを書こう<a class="headerlink" href="#docstirng" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="admonition-todo admonition" id="id4">
+<p class="admonition-title">課題</p>
+<p>骨子のみ記載中
+- apidocの設定(conf.pyでextentionsやsys.pathにpythonのモジュールパスを入れる）
+- sphinx-apidocコマンド
+- docstringの足らない部分を書いていく
+- 挨拶bot: ランダムに天気情報を返す関数
+- connpassbot: jsonの取得関数、botが答える文字列生成の関数
+- 天気bot: xml取得関数、botが答える文字列生成の関数
+- botrunのメッセージハンドル（botの登録方法を記載する）</p>
+</div>
+<ul class="simple">
+<li><p>type annotationの組み合わせで行う。(python3.7を必須にしたので問題ないはず）</p></li>
+<li><p>docstringはGoogleスタイルで行うのでnapoleonの導入も必要: <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations">https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations</a></p></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h3>autodocで半自動的にリファレンスを作成する<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>docstringを用意できたので、autodocを使ってリファレンスを生成してみましょう。</p>
+<div class="admonition-todo admonition" id="id6">
+<p class="admonition-title">課題</p>
+<ul class="simple">
+<li><p>conf.pyを設定</p></li>
+<li><p>sphinx-apidocでapidocのひな形を作成</p></li>
+<li><p>make htmlで生成しよう</p></li>
+</ul>
+</div>
+<p>実行したautodocの結果は***にあります。それをSlackBotのドキュメントの一部として組み込みます。</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>テーマを変更しよう<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>最後に見栄えを自由に変更できるテーマについて説明します。</p>
+<p>Sphinxは公式同梱のテーマ以外にも、サードパーティのテーマも充実しています。</p>
+<p>今回はドキュメントホスティングサービスとして有名な、Read The Docsが提供しているSphinxテーマである <code class="docutils literal notranslate"><span class="pre">sphinx-rtd-theme</span></code> を適用してみましょう。</p>
+<p><a class="reference external" href="https://sphinx-rtd-theme.readthedocs.io/en/stable/">Read the Docs Sphinx Theme — Read the Docs Sphinx Theme 0.5.0 documentation</a></p>
+<p>SphixnのテーマはPythonパッケージとして提供されています。</p>
+<p>テーマの変更方法は公式サイトより参考にします</p>
+<p>変更すると以下のように、ドキュメントページが大きく変わります。</p>
+</div>
 </div>
 
 
@@ -43,7 +170,7 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">pycon-jp-2020-tutorial-development-slackbot</a></h1>
+<h1 class="logo"><a href="index.html">PyCon JP 2020 チュートリアル Slack Bot編 ドキュメント</a></h1>
 
 
 
@@ -54,14 +181,25 @@
 
 <h3>ナビゲーション</h3>
 <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="prepare.html">チュートリアル開始前の準備</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode_liveshare.html">Visual Studio Live Share</a></li>
+<li class="toctree-l1"><a class="reference internal" href="slackbot.html">Slackbotの作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytest.html">PyTest</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Sphinx</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Sphinxの始め方</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#slackbot">Slackbotのドキュメントを書こう</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#autodoc">autodoc拡張機能を使ったリファレンス作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">テーマを変更しよう</a></li>
+</ul>
+</li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="pytest.html" title="前の章へ">PyTest</a></li>
   </ul></li>
 </ul>
 </div>

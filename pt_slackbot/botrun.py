@@ -30,8 +30,18 @@ slack_client = WebClient(slack_bot_token)
 
 
 @slack_events_adapter.on("message")
-def handle_message_and_botrun(event_data):
+def handle_message_and_botrun(event_data: dict):
+    """
+    args:
+        event_data: SlackEventAdapterから取得するSlackのイベント情報
+    
 
+    Slack Events APIのイベントをハンドリングし、botを実行します。
+    
+    各botは botfuncモジュールに同梱し、 ``call_function`` 関数を実装する必要があります。
+   
+
+    """
     print("debug: eventdata:{}".format(event_data))
     message = event_data["event"]
 
@@ -52,7 +62,7 @@ def handle_message_and_botrun(event_data):
             print("info: matched_obj -> bot!:{}".format(bot_module))
 
             # TODO:2020-08-10 この部分は引数を複数取得できる方が理にかなってると思う->**argas
-            # 今回のチュートリアルでは文字列だけ受け取る
+            # チュートリアルでは文字列だけ受け取る
 
             if matched_obj.groups():
                 bot_args = matched_obj.groups()[0]

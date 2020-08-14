@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slackbotの作成 &#8212; pycon-jp-2020-tutorial-development-slackbot 2020.07.24 ドキュメント</title>
+    <title>Slackbotの作成 &#8212; PyCon JP 2020 チュートリアル Slack Bot編 ドキュメント 2020.07.24 ドキュメント</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -17,7 +17,7 @@
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="検索" href="search.html" />
     <link rel="next" title="PyTest" href="pytest.html" />
-    <link rel="prev" title="チュートリアル開始前の準備" href="prepare.html" />
+    <link rel="prev" title="Visual Studio Live Share" href="vscode_liveshare.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -36,40 +36,215 @@
             
   <div class="section" id="slackbot">
 <h1>Slackbotの作成<a class="headerlink" href="#slackbot" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>チュートリアルで扱うSlackbotを実装します。</p>
+<p>チュートリアルで扱うSlackbotを実装するために、開発環境やSlackのAPI利用方法を説明し、ステップを踏みながらbotを作成していきましょう。</p>
+<div class="section" id="id1">
+<h2>ローカル開発環境の用意<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Slackbotを作成するために、Pythonの開発環境を用意します。</p>
+<p>Pythonはシステムにインストールされた実行環境以外の仮想環境を用意できます。仮想環境を作ることでシステム側の環境を汚すこと無く開発環境の構築ができます。</p>
+<p>仮想環境は以下のコマンドで作成します</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="p">[</span><span class="n">Username</span><span class="p">]</span>\<span class="n">Document</span>\<span class="n">pyconjp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="o">.</span><span class="n">venv</span>
+</pre></div>
+</div>
+<p>仮想環境を利用するときには、以下のコマンドを実行します</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span>\<span class="o">.</span><span class="n">venv</span>\<span class="n">Scripts</span>\<span class="n">activate</span><span class="o">.</span><span class="n">bat</span>
+<span class="n">rem</span> <span class="n">仮想環境上に必要なパッケージをインストールします</span>
+<span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>仮想環境を終了する場合は以下のコマンドを実行します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span><span class="n">deactivate</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>このチュートリアルを用意するためにPipenvを利用したので、Pipenvでの環境作成も行えます。
+このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。</p>
+</div>
+</div>
 <div class="section" id="slack">
 <h2>Slackアプリの作成と設定<a class="headerlink" href="#slack" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>まず初めにBotとなるSlackアプリをSlack上で作成します。</p>
-<p>「Create a Slack App」からApp Nameにアプリ名を入力します。（このアプリ名はHerokuのアプリ名でも利用します。</p>
-<img alt="_images/slackapp1.jpg" src="_images/slackapp1.jpg" />
+<p>「Create a Slack App」からApp Nameにアプリ名を入力します。</p>
+<img alt="_images/slackbot_1-1.png" src="_images/slackbot_1-1.png" />
 <p>Slack WorkSpaceはハンズオン用に新たに取得したワークスペースを利用してください。</p>
 <p>アプリが作成できたら、「OAuth &amp; Permissions」の「Scopes」&gt;「Bot Token Scopes」にスコープの設定を行います。</p>
-<img alt="_images/slackapp2.jpg" src="_images/slackapp2.jpg" />
+<img alt="_images/slackbot_1-2.png" src="_images/slackbot_1-2.png" />
 <p>「Bot Token Scope」はBotとなるSlackアプリがSlackワークスペースに利用できる権限の範囲（スコープ）です。</p>
-<p>この時点では`chat:write`のみで、botがSlackへメッセージを送るためのスコープのみを設定していますが、後ほどの設定で、いくつか追加されます。</p>
-<img alt="_images/slackapp3.jpg" src="_images/slackapp3.jpg" />
+<p>この時点では <code class="docutils literal notranslate"><span class="pre">chat:write</span></code> のみで、botがSlackへメッセージを送るためのスコープのみを設定していますが、後ほどの設定で、いくつか追加されます。</p>
+<img alt="_images/slackbot_1-3.png" src="_images/slackbot_1-3.png" />
 <p>追加したら、ページの上にある「Install App to Workspace」をクリックし、SlackアプリをSlackワークスペースへ追加します。</p>
-<img alt="_images/slackapp4.jpg" src="_images/slackapp4.jpg" />
-<img alt="_images/slackapp5.jpg" src="_images/slackapp5.jpg" />
+<img alt="_images/slackbot_1-4.png" src="_images/slackbot_1-4.png" />
+<img alt="_images/slackbot_1-5.png" src="_images/slackbot_1-5.png" />
 <p>追加が終わると、「Bot User OAuth Access Token」が表示されます。このトークンをまず控えてください。</p>
-<img alt="_images/slackapp6.jpg" src="_images/slackapp6.jpg" />
+<img alt="_images/slackbot_1-6.png" src="_images/slackbot_1-6.png" />
 <p>次に、右上の「Basic Information」へ戻り、「App Credentials」の中にある「Signing Secret」を控えます。</p>
-<img alt="_images/slackapp7.jpg" src="_images/slackapp7.jpg" />
-<div class="section" id="id1">
-<h3>slackbotのフロー<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<img alt="_images/slackbot_1-7.png" src="_images/slackbot_1-7.png" />
+<p>次にngrokコマンドを使い、SlackBotを外部公開します。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ngrok http <span class="m">3000</span>
+python ./pt_slackbot/botrun.py
+</pre></div>
+</div>
+<p>ngrokコマンドを起動すると以下のような情報が表示されます。ngrokのサービスへサインアップしていない場合は外部公開のセッションは8時間の限定公開になります。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ngrok</span> <span class="n">by</span> <span class="nd">@inconshreveable</span>                                                                                                                       <span class="p">(</span><span class="n">Ctrl</span><span class="o">+</span><span class="n">C</span> <span class="n">to</span> <span class="n">quit</span><span class="p">)</span>
+
+<span class="n">Session</span> <span class="n">Status</span>                <span class="n">online</span>
+<span class="n">Session</span> <span class="n">Expires</span>               <span class="mi">7</span> <span class="n">hours</span><span class="p">,</span> <span class="mi">58</span> <span class="n">minutes</span>
+<span class="n">Version</span>                       <span class="mf">2.3</span><span class="o">.</span><span class="mi">35</span>
+<span class="n">Region</span>                        <span class="n">United</span> <span class="n">States</span> <span class="p">(</span><span class="n">us</span><span class="p">)</span>
+<span class="n">Web</span> <span class="n">Interface</span>                 <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">4040</span>
+<span class="n">Forwarding</span>                    <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">df702078ccde</span><span class="o">.</span><span class="n">ngrok</span><span class="o">.</span><span class="n">io</span> <span class="o">-&gt;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">3000</span>
+<span class="n">Forwarding</span>                    <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">df702078ccde</span><span class="o">.</span><span class="n">ngrok</span><span class="o">.</span><span class="n">io</span> <span class="o">-&gt;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">3000</span>
+
+<span class="n">Connections</span>                   <span class="n">ttl</span>     <span class="n">opn</span>     <span class="n">rt1</span>     <span class="n">rt5</span>     <span class="n">p50</span>     <span class="n">p90</span>
+                              <span class="mi">0</span>       <span class="mi">0</span>       <span class="mf">0.00</span>    <span class="mf">0.00</span>    <span class="mf">0.00</span>    <span class="mf">0.00</span>
+</pre></div>
+</div>
+<p>Web InterfaceのURLへアクセスすると、公開したURLのアクセス履歴が見れるようになります。</p>
+<img alt="_images/slackbot_1-8.png" src="_images/slackbot_1-8.png" />
+<p>SlackBotがSlackワークスペースへのやりとりをおこなうURLを生成したので、Slackアプリの設定を続けます。</p>
+<p>Slack Event APIを使い、Slackワークスペース上に起きたイベントを、Slackbotが動作するサーバー（ここではngrokで公開しているローカル環境）へ伝えることができます。
+ここで2つの設定を行います。</p>
+<ol class="arabic simple">
+<li><p>Slack Event APIが起きたイベントをサーバーに伝えるためのエンドポイントURL</p></li>
+<li><p>イベントの種類</p></li>
+</ol>
+<p>Slack Event APIが起きたイベントをサーバーに伝えるためのエンドポイントURLを設定します。</p>
+<p>「Event Subscriptions」ページの「Enable Events」にある、右上のボタンをOnにします。</p>
+<p>「Request URL」にエンドポイントURLを設定します。ngrokのアプリ上でbotアプリが待機しているアドレスを入力します。</p>
+<img alt="_images/slackbot_1-9.png" src="_images/slackbot_1-9.png" />
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="p">[</span><span class="n">ngrokが自動的に割り振るランダムな文字列</span><span class="p">]</span><span class="o">.</span><span class="n">ngrok</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">slack</span><span class="o">/</span><span class="n">events</span>
+</pre></div>
+</div>
+<p>次に、イベントの種類を登録します。イベントには種類があり、あらかじめアプリで取得したいイベントの種類を登録する必要があります。</p>
+<p>Slackアプリのスコープを扱ったときに、イベントによるスコープの決定もあると書きましたが、このイベントを登録することでスコープの変化があります。</p>
+<p>「Event Subscriptions」の「Subscribe to bot events」内に <code class="docutils literal notranslate"><span class="pre">message.channels</span></code> イベントを登録します。</p>
+<img alt="_images/slackbot_1-10.png" src="_images/slackbot_1-10.png" />
+<p>登録後はSlackワークスペースへアプリの再インストールを指示されるので行います。</p>
+<img alt="_images/slackbot_1-11.png" src="_images/slackbot_1-11.png" />
+<p>再インストール時の認証画面を見ると、権限が追加されていることがわかります。先ほどはチャンネルにメッセージを送信するだけでしたが、それに加えてチャンネル内のメッセージを見ることができます。</p>
+<div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">課題</p>
+<p>2020/08/07 権限追加の画像を取り直す</p>
+</div>
+<p>デプロイとSlackアプリの権限の設定が終わると、Slackbotが利用できます。最後にSlackワークスペース上でbotを呼び出してみます。</p>
+<p>最初に、チャンネルにbotユーザーを追加します。</p>
+<img alt="_images/slackbot_1-12-0.png" src="_images/slackbot_1-12-0.png" />
+<img alt="_images/slackbot_1-12-1.png" src="_images/slackbot_1-12-1.png" />
+<p>ここまででSlackBotを動作させる準備が整いました。</p>
+<div class="section" id="id3">
+<h3>SlackBotのフロー<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ここでは、SlackBotがどのようにslackワークスペースとやり取りを行うか解説します。</p>
+<div class="admonition-todo admonition" id="id4">
+<p class="admonition-title">課題</p>
+<p>SlackBotのシステム概要を説明: どんな技術が利用されているか。ざっくりで。(pysuruga-13-handsonの資料流用）</p>
+</div>
+<p>SlackbotはWEBで扱われている技術でサービスとbotのアプリがやり取りを行います。今回のはSlack公式で提供されているEvents APIとWeb APIの2つを利用します。</p>
+<p>Events APIはSlack側がbotアプリに声をかけるイメージで、Slackワークスペース内で起きたイベントを伝えます。</p>
+<p>Web APIはSlackワークスペースに対して何らかのアクションを起こすために使います。botならbot側が何らかのメッセージを送ります。</p>
+<p>PythonではEvents API, Web APIどちらとも対応した公式パッケージがあります。チュートリアルではどちらとも利用しています。</p>
+<ul class="simple">
+<li><p>Events API: <a class="reference external" href="https://github.com/slackapi/python-slack-events-api">https://github.com/slackapi/python-slack-events-api</a></p></li>
+<li><p>Web API: <a class="reference external" href="https://github.com/slackapi/python-slackclient">https://github.com/slackapi/python-slackclient</a></p></li>
+</ul>
+<p>またBotはSlack側からのイベント内容をEvents API経由で随時受け取るためにAPIサーバーのような挙動を取ります。そのためslackeventsapiパッケージをインストールするとFlaskもインストールされます。</p>
+<p>Slackbotのコード内ではFlaskのインスタンスを作成して、サーバーとして動作するようになり、Slack側にはエンドポイントURLを教えることで、botがSlackのイベントを知ることができるようになります。</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>SlackのAPIはほかにもあります。
+代表例はincoming webhook（URLにパラメーターを付与するとslackワークスペースにメッセージを送れる）, RealTime Messeging API(websocketを利用したリアルタイムにSlackワークスペースとアプリがやり取り可能）になります。</p>
+<p>今回はそれらについては解説しませんが、参考情報を残します。</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://api.slack.com/messaging/webhooks">Sending messages using Incoming Webhooks | Slack</a></p></li>
+<li><p><a class="reference external" href="https://api.slack.com/rtm">Real Time Messaging API | Slack</a></p></li>
+<li><p><a class="reference external" href="https://api.slack.com/lang/ja-jp/which-api">必要な Slack API はどれ？ - Slack アプリの作成のためのヒント | Slack</a></p></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>先日にSlackの新しいAPIライブラリとして、 Bolt for Pythonがアルファバージョンとしてリリースされています。
+<a class="reference external" href="https://github.com/slackapi/bolt-js">bolt-js</a> というnode.jsで動作するライブラリのPythonバージョンとなります。</p>
+<p>アルファバージョンのライブラリであるためチュートリアルでは扱いませんが、最新のAPI仕様にも対応していくようなのでSlackbotを扱うときやSlackbotを作るサードパーティライブラリで使われるようになるのではと思います。</p>
+<p><a class="reference external" href="https://github.com/slackapi/bolt-python">slackapi/bolt-python: WIP: A framework to build Slack apps using Python (still in alpha)</a></p>
 </div>
 </div>
-<div class="section" id="id2">
-<h2>チュートリアルで実装するslackbotについて<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>このチュートリアルでは、三つのslackbotを実装します。人口無能的な挨拶を返すbotから、APIを利用してインタラクティブな結果を返すようにします。</p>
+</div>
+<div class="section" id="id5">
+<h2>チュートリアルで実装するSlackBotについて<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>このチュートリアルでは、3つのSlackBotを実装します。人工無能な挨拶を返すbotから、APIを利用してインタラクティブな結果を返すようにします。</p>
+<div class="section" id="wgreet-bot">
+<h3>世界の挨拶をランダムで返す  <strong>wgreet</strong> bot<a class="headerlink" href="#wgreet-bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<img alt="_images/slackbot_1-13.jpg" src="_images/slackbot_1-13.jpg" />
+<p>このbotは定義した挨拶情報をランダムに返すbotです。よく言われる人工無能をまずは試してもらいます。</p>
+<p>このbotの趣旨は以下になります。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>国旗、挨拶の言葉、のテーブルを用意してテーブルからランダムに挨拶をかえす</p></li>
+<li><p>英語、中国、など5つぐらいの言語の挨拶をコメントアウトで用意。参加者に選んで実装してもらう</p></li>
+<li><p>もちろん自由に言葉を変えてもらっても良し</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition-todo admonition" id="id6">
+<p class="admonition-title">課題</p>
+<p>2020-08-13 ステップごとのコードのリンクを用意する</p>
+</div>
 <div class="section" id="bot">
-<h3>世界の挨拶を返すbot<a class="headerlink" href="#bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h4>挨拶botの実装ステップ<a class="headerlink" href="#bot" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>まずslackevetsapiのexampleをそのまま乗せておいて、そのbotで受け答えできるか調べてみる</p></li>
+<li><p>次に、その中でテーブルを作って、ランダムで返す関数を用意</p></li>
+<li><p>最後に挨拶をかえす部分をモジュール化する -&gt; 伏線:テストとレファレンスを書きやすくする</p></li>
+</ol>
+</div></blockquote>
 </div>
-<div class="section" id="livedoorapibot">
-<h3>Livedoor天気APIを使って地域の天気を返すbot<a class="headerlink" href="#livedoorapibot" title="このヘッドラインへのパーマリンク">¶</a></h3>
 </div>
-<div class="section" id="connpass-apibot">
-<h3>connpass APIを利用してオンラインイベントを検索するbot<a class="headerlink" href="#connpass-apibot" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="connpass-api-connpass-bot">
+<h3>connpass APIを利用してオンラインイベントを検索する <strong>connpass</strong> bot<a class="headerlink" href="#connpass-api-connpass-bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ここではconnpassを例にイベント検索用のREST APIを使ってイベントの検索を行います。</p>
+<p>チュートリアルでは「Python」と「オンライン」というキーワードを元に健作をした結果を20件一覧に表示する機能を実装しています。</p>
+<img alt="_images/slackbot_1-14.jpg" src="_images/slackbot_1-14.jpg" />
+<p>コマンドの実行方法は <code class="docutils literal notranslate"><span class="pre">connpass</span> <span class="pre">[yyyymm]</span></code> と入力します。yyyymmは年月の意味で、 <code class="docutils literal notranslate"><span class="pre">connpass</span> <span class="pre">202008</span></code> と入力すると、2020年8月に関係する、Python, オンラインをキーワードにした検索結果が表示されます。</p>
+<p>このbotの趣旨は以下になります。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>requests + jsonでAPIから取得したjsonのパースを体験する</p></li>
+</ul>
+</div></blockquote>
+<div class="section" id="connpassbot">
+<h4>connpassbotの実装ステップ<a class="headerlink" href="#connpassbot" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<ol class="arabic simple">
+<li><p>共通化した手法を元に、connpassbotを作る。最初は1関数にすべてのせる</p></li>
+<li><p>APIリクエストとbotの答えを返す関数を別途作り、分離していく</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="xml-tenki-bot">
+<h3>気象庁のXML電文を使って地域の天気を返す <strong>tenki</strong> bot<a class="headerlink" href="#xml-tenki-bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<img alt="_images/slackbot_1-15.jpg" src="_images/slackbot_1-15.jpg" />
+<p>最後にスマートスピーカーでも尋ねる率が高い機能でもある、天気予報を教えてくれるbotを作りましょう。</p>
+<p>今回は誰でも無料で利用可能な、気象庁のXML電文を利用した週間天気予報を返すbotを作ります。XMLを扱うため、XMLのパーサーを使いながら、知りたい地域の週間天気予報を実装しましょう。</p>
+<p>このbotは <code class="docutils literal notranslate"><span class="pre">tenki</span> <span class="pre">[地域名]</span></code> と入力します。 <code class="docutils literal notranslate"><span class="pre">tenki</span> <span class="pre">静岡</span></code> と入力すると、静岡県気象台発表の週間天気予報を表示します。</p>
+<p>このbotの趣旨は以下になります。</p>
+<ul class="simple">
+<li><p>requests + bs4を使ってxmlを取得しパースを体験する</p></li>
+</ul>
+<div class="section" id="tenkibot">
+<h4>tenkibotの実装ステップ<a class="headerlink" href="#tenkibot" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<ol class="arabic simple">
+<li><p>（すでにxmlのDLしたものを扱います）</p></li>
+<li><p>requests + bs4を使ってxmlのパースをする</p></li>
+<li><p>対応地域を追加してbotの拡張をしてもらう</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>今回の天気情報の元は気象庁が無料で公開しているxmlファイルを利用しました。
+当初はLivedoor 天気から提供されている REST APIを用いる予定でしたが、 2020/7/31にサービスが終了となったため、急遽気象庁XMLサービスを利用しています。</p>
+<p><a class="reference external" href="https://help.livedoor.com/weather/index.html">天気情報 ヘルプ - livedoor ヘルプ</a></p>
+<p>気象庁XMLサービスは天気予報以外にも、多数の予報や災害情報の提供もされているので、より多彩なbot作成ができると思います。
+ただxmlを扱うのは少し難儀でもありますね。</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -81,7 +256,7 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">pycon-jp-2020-tutorial-development-slackbot</a></h1>
+<h1 class="logo"><a href="index.html">PyCon JP 2020 チュートリアル Slack Bot編 ドキュメント</a></h1>
 
 
 
@@ -94,9 +269,11 @@
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="prepare.html">チュートリアル開始前の準備</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode_liveshare.html">Visual Studio Live Share</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Slackbotの作成</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">ローカル開発環境の用意</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#slack">Slackアプリの作成と設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">チュートリアルで実装するslackbotについて</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">チュートリアルで実装するSlackBotについて</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pytest.html">PyTest</a></li>
@@ -107,7 +284,7 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="prepare.html" title="前の章へ">チュートリアル開始前の準備</a></li>
+      <li>Previous: <a href="vscode_liveshare.html" title="前の章へ">Visual Studio Live Share</a></li>
       <li>Next: <a href="pytest.html" title="次の章へ">PyTest</a></li>
   </ul></li>
 </ul>
