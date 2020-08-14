@@ -13,7 +13,7 @@ Sphinxはドキュメントの書きやすさや豊富な拡張、テーマが�
 今回はSlackbotのドキュメントを作りましょう。以下のドキュメントの作成を体験します。
 
 - Slackbotの使い方ドキュメントを用意する
-- autodoc拡張機能を使って、bot関数のレファレンスを作成する
+- autodoc拡張機能を使って、bot関数のリファレンスを作成する
 
 Sphinxの始め方
 ============================
@@ -28,10 +28,8 @@ Sphinxもローカル開発環境を作成した段階でインストールさ�
 
 Sphinxはドキュメントを作成するひな形の環境を用意する ``sphinx-quickstart`` コマンドがあります。こちらを利用してひな形を作りましょう
 
-::
+.. code-block:: 
 
-    sphinx-quickstart 
-    # この先は実際に動作させた結果を用意する
     (pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot> sphinx-quickstart.exe .\docs\
     Welcome to the Sphinx 3.1.2 quickstart utility.
 
@@ -74,54 +72,83 @@ Sphinxはドキュメントを作成するひな形の環境を用意する ``sp
 
 今回のSlackbotのドキュメントは以下のような構造で作成します。
 
-::
-
-    # ファイルツリーを用意する。ファイルの後に意味をコメントする
+.. todo:: ファイルツリーを用意する。ファイルの後に意味をコメントする
 
 Slackbotのドキュメントを書こう
 ==============================================================================================
 
+それでは、Slackbotのドキュメントを書きましょう。あらかじめ用意してあるファイルをコピーして説明文を載せていきましょう。
 
 .. todo:: ドキュメントの編集: SlackBotの使い方についての足らない部分を書いてドキュメントのビルドを行う
 
 .. todo:: 挨拶や天気の追加した情報を、各自思いのままに入れてもらう。orいくつかパターンを用意する？
 
+ドキュメントをhtmlで生成する場合は ``sphinx-quickstart``　コマンドが生成したmakeファイルを使うと簡単に生成できます。
+
+::
+
+    #win10ならmake.bat
+    > make.bat html
+
+    #macOSなら makefileがそのまま扱えます
+    > make html
+
+生成されたhtmlは pythonの簡易httpサーバーを利用してブラウザで確認できます。
+
+::
+
+    # ポート指定することでhttpサーバーのポートを変更できます。今回は8080を利用しています。
+    > python -m http.server 8080
+
+Windows 10の場合は、ファイヤーウォールの許可が表示されるので、適切な設定をしたうえで許可をしてください。（プライベートネットワークのみにすることをオススメします）
+
+.. todo:: ブラウザの表示した結果をだす
 
 autodoc拡張機能を使ったリファレンス作成
 ==============================================================================================
 
-- docstringからリファレンスの生成: [sphinx.ext.autodoc -- docstringからのドキュメントの取り込み — Sphinx 4.0.0+/70d521ad9 ドキュメント](https://www.sphinx-doc.org/ja/master/usage/extensions/autodoc.html)
+Sphinxには、Pythonのライブラリ
+
+`sphinx.ext.autodoc -- docstringからのドキュメントの取り込み — Sphinx 4.0.0+/ba0e5d0ec ドキュメント <https://www.sphinx-doc.org/ja/master/usage/extensions/autodoc.html>`_
 
 
 docstirngを書こう
 ---------------------------
 
-.. todo:: 骨子のみ記載中
-    - apidocの設定(conf.pyでextentionsやsys.pathにpythonのモジュールパスを入れる）
-    - sphinx-apidocコマンド
-    - docstringの足らない部分を書いていく
-    - 挨拶bot: ランダムに天気情報を返す関数
+autodocを使うためには、pythonのクラスや関数にdocstringを追加する必要があります。docstringは
+
+.. todo:: docstringの説明リンク:python公式
+
+docstringの足らない部分を書いていく
+
+- 挨拶bot: ランダムに天気情報を返す関数
+
+    - type annotationの組み合わせで行う。(python3.7を必須にしたので問題ないはず）
+    - docstringはGoogleスタイルで行うのでnapoleonの導入も必要: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations
+
+.. todo:: そのほかの関数は、終わりに模範解答からコピーして実行して生成された結果を見ていく
     - connpassbot: jsonの取得関数、botが答える文字列生成の関数
     - 天気bot: xml取得関数、botが答える文字列生成の関数
     - botrunのメッセージハンドル（botの登録方法を記載する）
 
 
+Sphinxの設定
+---------------------------
 
-- type annotationの組み合わせで行う。(python3.7を必須にしたので問題ないはず）
-- docstringはGoogleスタイルで行うのでnapoleonの導入も必要: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations
+- apidocの設定(conf.pyでextentionsやsys.pathにpythonのモジュールパスを入れる）
 
 
-autodocで半自動的にリファレンスを作成する
----------------------------------------------------------------
+autodocで半自動的にリファレンスを作成する: sphinx-apidocコマンド
+------------------------------------------------------------------------------------------------------------------------------
 
-docstringを用意できたので、autodocを使ってリファレンスを生成してみましょう。
+docstringの用意と設定を変更したので、autodocを使ってリファレンスを生成してみましょう。
 
 .. todo::
-    - conf.pyを設定
     - sphinx-apidocでapidocのひな形を作成
     - make htmlで生成しよう
 
 実行したautodocの結果は***にあります。それをSlackBotのドキュメントの一部として組み込みます。
+
 
 テーマを変更しよう
 =================================
@@ -136,8 +163,7 @@ Sphinxは公式同梱のテーマ以外にも、サードパーティのテー�
 
 SphixnのテーマはPythonパッケージとして提供されています。
 
-テーマの変更方法は公式サイトより参考にします
+それではテーマを変更してみましょう。方法は公式サイトに掲載されているので、そちらを確認しつつ導入します。
 
-
-変更すると以下のように、ドキュメントページが大きく変わります。
+変更すると以下のように、ドキュメントページのデザインが変わります。
 

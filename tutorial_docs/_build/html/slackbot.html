@@ -16,7 +16,7 @@
     <script src="_static/translations.js"></script>
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="検索" href="search.html" />
-    <link rel="next" title="PyTest" href="pytest.html" />
+    <link rel="next" title="PyTestでテストケースを導入する" href="pytest.html" />
     <link rel="prev" title="Visual Studio Live Share" href="vscode_liveshare.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -60,6 +60,7 @@
 <p class="admonition-title">注釈</p>
 <p>このチュートリアルを用意するためにPipenvを利用したので、Pipenvでの環境作成も行えます。
 このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。</p>
+<p><a class="reference external" href="https://pipenv.pypa.io/en/latest/#install-pipenv-today">Pipenv: Python Dev Workflow for Humans — pipenv 2020.8.13.dev0 documentation</a></p>
 </div>
 </div>
 <div class="section" id="slack">
@@ -86,18 +87,18 @@ python ./pt_slackbot/botrun.py
 </pre></div>
 </div>
 <p>ngrokコマンドを起動すると以下のような情報が表示されます。ngrokのサービスへサインアップしていない場合は外部公開のセッションは8時間の限定公開になります。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ngrok</span> <span class="n">by</span> <span class="nd">@inconshreveable</span>                                                                                                                       <span class="p">(</span><span class="n">Ctrl</span><span class="o">+</span><span class="n">C</span> <span class="n">to</span> <span class="n">quit</span><span class="p">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ngrok by @inconshreveable                                                                                                                       <span class="o">(</span>Ctrl+C to quit<span class="o">)</span>
 
-<span class="n">Session</span> <span class="n">Status</span>                <span class="n">online</span>
-<span class="n">Session</span> <span class="n">Expires</span>               <span class="mi">7</span> <span class="n">hours</span><span class="p">,</span> <span class="mi">58</span> <span class="n">minutes</span>
-<span class="n">Version</span>                       <span class="mf">2.3</span><span class="o">.</span><span class="mi">35</span>
-<span class="n">Region</span>                        <span class="n">United</span> <span class="n">States</span> <span class="p">(</span><span class="n">us</span><span class="p">)</span>
-<span class="n">Web</span> <span class="n">Interface</span>                 <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">4040</span>
-<span class="n">Forwarding</span>                    <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">df702078ccde</span><span class="o">.</span><span class="n">ngrok</span><span class="o">.</span><span class="n">io</span> <span class="o">-&gt;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">3000</span>
-<span class="n">Forwarding</span>                    <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">df702078ccde</span><span class="o">.</span><span class="n">ngrok</span><span class="o">.</span><span class="n">io</span> <span class="o">-&gt;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">3000</span>
+Session Status                online
+Session Expires               <span class="m">7</span> hours, <span class="m">58</span> minutes
+Version                       <span class="m">2</span>.3.35
+Region                        United States <span class="o">(</span>us<span class="o">)</span>
+Web Interface                 http://127.0.0.1:4040
+Forwarding                    http://df702078ccde.ngrok.io -&gt; http://localhost:3000
+Forwarding                    https://df702078ccde.ngrok.io -&gt; http://localhost:3000
 
-<span class="n">Connections</span>                   <span class="n">ttl</span>     <span class="n">opn</span>     <span class="n">rt1</span>     <span class="n">rt5</span>     <span class="n">p50</span>     <span class="n">p90</span>
-                              <span class="mi">0</span>       <span class="mi">0</span>       <span class="mf">0.00</span>    <span class="mf">0.00</span>    <span class="mf">0.00</span>    <span class="mf">0.00</span>
+Connections                   ttl     opn     rt1     rt5     p50     p90
+                              <span class="m">0</span>       <span class="m">0</span>       <span class="m">0</span>.00    <span class="m">0</span>.00    <span class="m">0</span>.00    <span class="m">0</span>.00
 </pre></div>
 </div>
 <p>Web InterfaceのURLへアクセスすると、公開したURLのアクセス履歴が見れるようになります。</p>
@@ -106,7 +107,7 @@ python ./pt_slackbot/botrun.py
 <p>Slack Event APIを使い、Slackワークスペース上に起きたイベントを、Slackbotが動作するサーバー（ここではngrokで公開しているローカル環境）へ伝えることができます。
 ここで2つの設定を行います。</p>
 <ol class="arabic simple">
-<li><p>Slack Event APIが起きたイベントをサーバーに伝えるためのエンドポイントURL</p></li>
+<li><p>Slack Event APIがイベント情報を送る先となるエンドポイントURL</p></li>
 <li><p>イベントの種類</p></li>
 </ol>
 <p>Slack Event APIが起きたイベントをサーバーに伝えるためのエンドポイントURLを設定します。</p>
@@ -123,19 +124,16 @@ python ./pt_slackbot/botrun.py
 <p>登録後はSlackワークスペースへアプリの再インストールを指示されるので行います。</p>
 <img alt="_images/slackbot_1-11.png" src="_images/slackbot_1-11.png" />
 <p>再インストール時の認証画面を見ると、権限が追加されていることがわかります。先ほどはチャンネルにメッセージを送信するだけでしたが、それに加えてチャンネル内のメッセージを見ることができます。</p>
-<div class="admonition-todo admonition" id="id2">
-<p class="admonition-title">課題</p>
-<p>2020/08/07 権限追加の画像を取り直す</p>
-</div>
+<img alt="_images/slackbot_1-11-1.png" src="_images/slackbot_1-11-1.png" />
 <p>デプロイとSlackアプリの権限の設定が終わると、Slackbotが利用できます。最後にSlackワークスペース上でbotを呼び出してみます。</p>
 <p>最初に、チャンネルにbotユーザーを追加します。</p>
 <img alt="_images/slackbot_1-12-0.png" src="_images/slackbot_1-12-0.png" />
 <img alt="_images/slackbot_1-12-1.png" src="_images/slackbot_1-12-1.png" />
 <p>ここまででSlackBotを動作させる準備が整いました。</p>
-<div class="section" id="id3">
-<h3>SlackBotのフロー<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id2">
+<h3>SlackBotのフロー<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ここでは、SlackBotがどのようにslackワークスペースとやり取りを行うか解説します。</p>
-<div class="admonition-todo admonition" id="id4">
+<div class="admonition-todo admonition" id="id3">
 <p class="admonition-title">課題</p>
 <p>SlackBotのシステム概要を説明: どんな技術が利用されているか。ざっくりで。(pysuruga-13-handsonの資料流用）</p>
 </div>
@@ -147,7 +145,7 @@ python ./pt_slackbot/botrun.py
 <li><p>Events API: <a class="reference external" href="https://github.com/slackapi/python-slack-events-api">https://github.com/slackapi/python-slack-events-api</a></p></li>
 <li><p>Web API: <a class="reference external" href="https://github.com/slackapi/python-slackclient">https://github.com/slackapi/python-slackclient</a></p></li>
 </ul>
-<p>またBotはSlack側からのイベント内容をEvents API経由で随時受け取るためにAPIサーバーのような挙動を取ります。そのためslackeventsapiパッケージをインストールするとFlaskもインストールされます。</p>
+<p>またBotはSlack側からのイベント内容をEvents API経由で随時受け取るためにAPIサーバーのような挙動を取ります。そのためWEBフレームワークのFlaskもインストールされます。</p>
 <p>Slackbotのコード内ではFlaskのインスタンスを作成して、サーバーとして動作するようになり、Slack側にはエンドポイントURLを教えることで、botがSlackのイベントを知ることができるようになります。</p>
 <div class="admonition note">
 <p class="admonition-title">注釈</p>
@@ -162,15 +160,15 @@ python ./pt_slackbot/botrun.py
 </div>
 <div class="admonition note">
 <p class="admonition-title">注釈</p>
-<p>先日にSlackの新しいAPIライブラリとして、 Bolt for Pythonがアルファバージョンとしてリリースされています。
+<p>8/7にSlackの新しいAPIライブラリとして、 Bolt for Pythonがアルファバージョンとしてリリースされています。
 <a class="reference external" href="https://github.com/slackapi/bolt-js">bolt-js</a> というnode.jsで動作するライブラリのPythonバージョンとなります。</p>
 <p>アルファバージョンのライブラリであるためチュートリアルでは扱いませんが、最新のAPI仕様にも対応していくようなのでSlackbotを扱うときやSlackbotを作るサードパーティライブラリで使われるようになるのではと思います。</p>
 <p><a class="reference external" href="https://github.com/slackapi/bolt-python">slackapi/bolt-python: WIP: A framework to build Slack apps using Python (still in alpha)</a></p>
 </div>
 </div>
 </div>
-<div class="section" id="id5">
-<h2>チュートリアルで実装するSlackBotについて<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id4">
+<h2>チュートリアルで実装するSlackBotについて<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>このチュートリアルでは、3つのSlackBotを実装します。人工無能な挨拶を返すbotから、APIを利用してインタラクティブな結果を返すようにします。</p>
 <div class="section" id="wgreet-bot">
 <h3>世界の挨拶をランダムで返す  <strong>wgreet</strong> bot<a class="headerlink" href="#wgreet-bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -184,7 +182,7 @@ python ./pt_slackbot/botrun.py
 <li><p>もちろん自由に言葉を変えてもらっても良し</p></li>
 </ul>
 </div></blockquote>
-<div class="admonition-todo admonition" id="id6">
+<div class="admonition-todo admonition" id="id5">
 <p class="admonition-title">課題</p>
 <p>2020-08-13 ステップごとのコードのリンクを用意する</p>
 </div>
@@ -194,7 +192,7 @@ python ./pt_slackbot/botrun.py
 <div><ol class="arabic simple">
 <li><p>まずslackevetsapiのexampleをそのまま乗せておいて、そのbotで受け答えできるか調べてみる</p></li>
 <li><p>次に、その中でテーブルを作って、ランダムで返す関数を用意</p></li>
-<li><p>最後に挨拶をかえす部分をモジュール化する -&gt; 伏線:テストとレファレンスを書きやすくする</p></li>
+<li><p>最後に挨拶をかえす部分をモジュール化する -&gt; 伏線:テストとリファレンスを書きやすくする</p></li>
 </ol>
 </div></blockquote>
 </div>
@@ -273,10 +271,10 @@ python ./pt_slackbot/botrun.py
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Slackbotの作成</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id1">ローカル開発環境の用意</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#slack">Slackアプリの作成と設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">チュートリアルで実装するSlackBotについて</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">チュートリアルで実装するSlackBotについて</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="pytest.html">PyTest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytest.html">PyTestでテストケースを導入する</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
 </ul>
 
@@ -285,7 +283,7 @@ python ./pt_slackbot/botrun.py
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="vscode_liveshare.html" title="前の章へ">Visual Studio Live Share</a></li>
-      <li>Next: <a href="pytest.html" title="次の章へ">PyTest</a></li>
+      <li>Next: <a href="pytest.html" title="次の章へ">PyTestでテストケースを導入する</a></li>
   </ul></li>
 </ul>
 </div>

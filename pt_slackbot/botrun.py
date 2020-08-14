@@ -34,13 +34,8 @@ def handle_message_and_botrun(event_data: dict):
     """
     args:
         event_data: SlackEventAdapterから取得するSlackのイベント情報
-    
-
     Slack Events APIのイベントをハンドリングし、botを実行します。
-    
     各botは botfuncモジュールに同梱し、 ``call_function`` 関数を実装する必要があります。
-   
-
     """
     print("debug: eventdata:{}".format(event_data))
     message = event_data["event"]
@@ -51,7 +46,7 @@ def handle_message_and_botrun(event_data: dict):
         # botが返す結果の入れ物
         bot_result = ""
 
-        # ハンドルするワードパターンとcallするfucntionのリストをみて、
+        # botとして動作させるワードパターンを元にモジュールの決めてある関数を実行する
         for bot_pattern, bot_module in BOT_FUNCTIONS:
             print("debug: try matching bot:{}".format(bot_module))
 

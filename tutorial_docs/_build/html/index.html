@@ -36,15 +36,38 @@
   <div class="section" id="pycon-jp-2020-python-slack-bot">
 <h1>PyCon JP 2020 チュートリアル Pythonの開発エコシステムを学ぼう Slack Bot編 ドキュメント<a class="headerlink" href="#pycon-jp-2020-python-slack-bot" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>このドキュメントは PyCon JP 2020 チュートリアル で行われます、「Pythonの開発エコシステムを学ぼう Slack Bot編 」のサポートドキュメントです。</p>
-<p>コンテンツは以下のTOCにあります。チュートリアル開始前に <a class="reference internal" href="prepare.html"><span class="doc">チュートリアル開始前の準備</span></a> の通読と環境用意をしていただけるとスムーズに進めることができます。</p>
+<p>コンテンツは目次にあります。チュートリアル開始前に <a class="reference internal" href="prepare.html"><span class="doc">チュートリアル開始前の準備</span></a> の通読と環境用意をしていただけるとスムーズに進めることができます。</p>
+</div>
+<div class="section" id="id1">
+<h1>開催情報<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<ul>
+<li><p>日時: 8/30（日）</p></li>
+<li><p>開催時間: 10:00〜17:00（7時間）</p></li>
+<li><p>connpassイベントページ</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://pyconjp.connpass.com/event/181065/">PyCon JP 2020 Tutorial（Zoom参加） - connpass</a></p></li>
+<li><p><a class="reference external" href="https://pyconjp.connpass.com/event/182390/">PyCon JP 2020 Tutorial （YouTube Live視聴のみ） - connpass</a></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h1>担当コミュニティ<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><a class="reference external" href="https://py-suruga.connpass.com/">Python駿河</a></p>
+<p><a class="reference external" href="https://unagi-py.connpass.com/">Unagi.py</a></p>
+</div>
+<div class="section" id="id3">
+<h1>目次<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="prepare.html">チュートリアル開始前の準備</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="prepare.html#id2">環境の確認</a></li>
 <li class="toctree-l2"><a class="reference internal" href="prepare.html#python">Pythonのセットアップ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="prepare.html#id5">チュートリアル資料を取得する</a></li>
-<li class="toctree-l2"><a class="reference internal" href="prepare.html#id6">利用するサービスの準備</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prepare.html#id4">チュートリアル資料を取得する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prepare.html#id5">利用するサービスの準備</a></li>
 <li class="toctree-l2"><a class="reference internal" href="prepare.html#visual-studio-code">エディターの設定:Visual Studio Code</a></li>
 </ul>
 </li>
@@ -52,12 +75,12 @@
 <li class="toctree-l1"><a class="reference internal" href="slackbot.html">Slackbotの作成</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="slackbot.html#id1">ローカル開発環境の用意</a></li>
 <li class="toctree-l2"><a class="reference internal" href="slackbot.html#slack">Slackアプリの作成と設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="slackbot.html#id5">チュートリアルで実装するSlackBotについて</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slackbot.html#id4">チュートリアルで実装するSlackBotについて</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="pytest.html">PyTest</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="pytest.html">PyTestでテストケースを導入する</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pytest.html#id1">pytestコマンドの使い方</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pytest.html#id5">PyTestの機能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pytest.html#id4">PyTestの機能</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pytest.html#slackbot">SlackBotのテストケースを書いてみよう</a></li>
 </ul>
 </li>
@@ -65,7 +88,7 @@
 <li class="toctree-l2"><a class="reference internal" href="sphinx.html#id1">Sphinxの始め方</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphinx.html#slackbot">Slackbotのドキュメントを書こう</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphinx.html#autodoc">autodoc拡張機能を使ったリファレンス作成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sphinx.html#id7">テーマを変更しよう</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#id10">テーマを変更しよう</a></li>
 </ul>
 </li>
 </ul>
@@ -84,60 +107,55 @@
 <p class="todo-source">(<a class="reference internal" href="vscode_liveshare.html#id1"><em>元のエントリ</em></a> は、 C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs\vscode_liveshare.rst の 13 行目です)</p>
 <div class="admonition-todo admonition">
 <p class="admonition-title">課題</p>
-<p>2020-08-13 Python古いので当日までに新しいバージョンにして確認しなおす</p>
-</div>
-<p class="todo-source">(<a class="reference internal" href="prepare.html#id4"><em>元のエントリ</em></a> は、 C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs\prepare.rst の 43 行目です)</p>
-<div class="admonition-todo admonition">
-<p class="admonition-title">課題</p>
-<p>2020-08-13 hello test的なコードをファイルに作って記載</p>
-</div>
-<p class="todo-source">(<a class="reference internal" href="pytest.html#id2"><em>元のエントリ</em></a> は、 C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs\pytest.rst の 34 行目です)</p>
-<div class="admonition-todo admonition">
-<p class="admonition-title">課題</p>
-<p>2020/08/07 権限追加の画像を取り直す</p>
-</div>
-<p class="todo-source">(<a class="reference internal" href="slackbot.html#id2"><em>元のエントリ</em></a> は、 C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs\slackbot.rst の 139 行目です)</p>
-<div class="admonition-todo admonition">
-<p class="admonition-title">課題</p>
 <p>SlackBotのシステム概要を説明: どんな技術が利用されているか。ざっくりで。(pysuruga-13-handsonの資料流用）</p>
 </div>
-<p class="todo-source">(<a class="reference internal" href="slackbot.html#id4"><em>元のエントリ</em></a> は、 C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs\slackbot.rst の 156 行目です)</p>
+<p class="todo-source">(<a class="reference internal" href="slackbot.html#id3"><em>元のエントリ</em></a> は、 C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs\slackbot.rst の 159 行目です)</p>
 <div class="admonition-todo admonition">
 <p class="admonition-title">課題</p>
 <p>2020-08-13 ステップごとのコードのリンクを用意する</p>
 </div>
-<p class="todo-source">(<a class="reference internal" href="slackbot.html#id6"><em>元のエントリ</em></a> は、 C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs\slackbot.rst の 208 行目です)</p>
+<p class="todo-source">(<a class="reference internal" href="slackbot.html#id5"><em>元のエントリ</em></a> は、 C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs\slackbot.rst の 211 行目です)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">課題</p>
+<p>ファイルツリーを用意する。ファイルの後に意味をコメントする</p>
+</div>
+<p class="todo-source">(<a class="reference internal" href="sphinx.html#id2"><em>元のエントリ</em></a> は、 C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs\sphinx.rst の 75 行目です)</p>
 <div class="admonition-todo admonition">
 <p class="admonition-title">課題</p>
 <p>ドキュメントの編集: SlackBotの使い方についての足らない部分を書いてドキュメントのビルドを行う</p>
 </div>
-<p class="todo-source">(<a class="reference internal" href="sphinx.html#id2"><em>元のエントリ</em></a> は、 C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs\sphinx.rst の 85 行目です)</p>
+<p class="todo-source">(<a class="reference internal" href="sphinx.html#id3"><em>元のエントリ</em></a> は、 C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs\sphinx.rst の 82 行目です)</p>
 <div class="admonition-todo admonition">
 <p class="admonition-title">課題</p>
 <p>挨拶や天気の追加した情報を、各自思いのままに入れてもらう。orいくつかパターンを用意する？</p>
 </div>
-<p class="todo-source">(<a class="reference internal" href="sphinx.html#id3"><em>元のエントリ</em></a> は、 C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs\sphinx.rst の 87 行目です)</p>
+<p class="todo-source">(<a class="reference internal" href="sphinx.html#id4"><em>元のエントリ</em></a> は、 C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs\sphinx.rst の 84 行目です)</p>
 <div class="admonition-todo admonition">
 <p class="admonition-title">課題</p>
-<p>骨子のみ記載中
-- apidocの設定(conf.pyでextentionsやsys.pathにpythonのモジュールパスを入れる）
-- sphinx-apidocコマンド
-- docstringの足らない部分を書いていく
-- 挨拶bot: ランダムに天気情報を返す関数
+<p>ブラウザの表示した結果をだす</p>
+</div>
+<p class="todo-source">(<a class="reference internal" href="sphinx.html#id5"><em>元のエントリ</em></a> は、 C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs\sphinx.rst の 105 行目です)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">課題</p>
+<p>docstringの説明リンク:python公式</p>
+</div>
+<p class="todo-source">(<a class="reference internal" href="sphinx.html#id6"><em>元のエントリ</em></a> は、 C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs\sphinx.rst の 120 行目です)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">課題</p>
+<p>そのほかの関数は、終わりに模範解答からコピーして実行して生成された結果を見ていく
 - connpassbot: jsonの取得関数、botが答える文字列生成の関数
 - 天気bot: xml取得関数、botが答える文字列生成の関数
 - botrunのメッセージハンドル（botの登録方法を記載する）</p>
 </div>
-<p class="todo-source">(<a class="reference internal" href="sphinx.html#id4"><em>元のエントリ</em></a> は、 C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs\sphinx.rst の 99 行目です)</p>
+<p class="todo-source">(<a class="reference internal" href="sphinx.html#id7"><em>元のエントリ</em></a> は、 C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs\sphinx.rst の 129 行目です)</p>
 <div class="admonition-todo admonition">
 <p class="admonition-title">課題</p>
 <ul class="simple">
-<li><p>conf.pyを設定</p></li>
 <li><p>sphinx-apidocでapidocのひな形を作成</p></li>
 <li><p>make htmlで生成しよう</p></li>
 </ul>
 </div>
-<p class="todo-source">(<a class="reference internal" href="sphinx.html#id6"><em>元のエントリ</em></a> は、 C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs\sphinx.rst の 119 行目です)</p>
+<p class="todo-source">(<a class="reference internal" href="sphinx.html#id9"><em>元のエントリ</em></a> は、 C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs\sphinx.rst の 146 行目です)</p>
 </div>
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="このヘッドラインへのパーマリンク">¶</a></h1>
@@ -170,7 +188,7 @@
 <li class="toctree-l1"><a class="reference internal" href="prepare.html">チュートリアル開始前の準備</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vscode_liveshare.html">Visual Studio Live Share</a></li>
 <li class="toctree-l1"><a class="reference internal" href="slackbot.html">Slackbotの作成</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytest.html">PyTest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytest.html">PyTestでテストケースを導入する</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
 </ul>
 

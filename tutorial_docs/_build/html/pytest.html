@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PyTest &#8212; PyCon JP 2020 チュートリアル Slack Bot編 ドキュメント 2020.07.24 ドキュメント</title>
+    <title>PyTestでテストケースを導入する &#8212; PyCon JP 2020 チュートリアル Slack Bot編 ドキュメント 2020.07.24 ドキュメント</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -35,78 +35,206 @@
           <div class="body" role="main">
             
   <div class="section" id="pytest">
-<h1>PyTest<a class="headerlink" href="#pytest" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1>PyTestでテストケースを導入する<a class="headerlink" href="#pytest" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>Slackbotが返す結果をテストできるように、テストケースの導入を行います。</p>
 <p>今回はサードパーティのテストツールである PyTest を利用します。PytestはPython標準ライブラリにあるUnittestより簡単にテストの記述が可能です。</p>
+<p><a class="reference external" href="https://docs.pytest.org/en/stable/">pytest: helps you write better programs — pytest documentation</a></p>
 <div class="section" id="id1">
 <h2>pytestコマンドの使い方<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>pytestはすでにローカル開発環境を用意した段階でインストールされています。 <code class="docutils literal notranslate"><span class="pre">pytest</span></code> コマンドを実行することで確認できます。もしコマンドが存在しないというエラーがある場合はpipコマンドでインストールしてください</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pytest</span>
 </pre></div>
 </div>
-<p>pytestを使ったテストケースはpytestコマンドでテストの実行と結果を確認できます。</p>
-<dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">-v</span></code> オプションを利用することで、各テストケースの</dt><dd><ul class="simple">
-<li><p>テストを実行する場所の位置指定</p></li>
-</ul>
-</dd>
-</dl>
-<ul class="simple">
-<li><p>pytestを扱ったテストの書き方</p></li>
-</ul>
-<p>pytestを使ったテストケースの書き方を紹介します。</p>
-<p>テストファイルは Pythonのパッケージ内にある <code class="docutils literal notranslate"><span class="pre">tests</span></code> モジュールや、<code class="docutils literal notranslate"><span class="pre">test_**.py</span></code>、<code class="docutils literal notranslate"><span class="pre">**_test.py</span></code> という名前が認識されます。</p>
-<p>簡単なテストを作成してみます。</p>
-<div class="admonition-todo admonition" id="id2">
-<p class="admonition-title">課題</p>
-<p>2020-08-13 hello test的なコードをファイルに作って記載</p>
+<p>pytestを使ったテストケースは <code class="docutils literal notranslate"><span class="pre">pytest</span></code> コマンドでテストの実行と結果を確認できます。</p>
+<p>まず初めに簡単なテストを作成して、テストの失敗と成功の様子を確認します。</p>
+<div class="section" id="id2">
+<h3>テストの失敗<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_pytest</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">2</span>
+</pre></div>
 </div>
 <p>特徴的な部分としては、 pythonのassert文を使ってテストケースを定義します。</p>
-<p>※:Assert式とは:</p>
-<p>Assert文は <cite>assert [真偽判断ができる式]</cite> と書くことで、式が偽となる場合はAssertErrorという例外を発生させます。簡易的なデバッグ用途に扱うことができます。</p>
-<p><a class="reference external" href="https://docs.python.org/ja/3/reference/simple_stmts.html#assert">https://docs.python.org/ja/3/reference/simple_stmts.html#assert</a></p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>Assert式とは
+Assert文は <cite>assert [真偽判断ができる式]</cite> と書くことで、式が偽となる場合はAssertErrorという例外を発生させます。簡易的なデバッグ用途に扱うことができます。
+<a class="reference external" href="https://docs.python.org/ja/3/reference/simple_stmts.html#assert">https://docs.python.org/ja/3/reference/simple_stmts.html#assert</a></p>
+</div>
+<p>このテストは失敗します。pytestコマンドで実行してみましょう。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">tutorial_docs</span><span class="o">&gt;</span> <span class="n">pytest</span> <span class="o">.</span>\<span class="n">step</span>\<span class="n">pytest</span><span class="o">-</span><span class="mi">0</span>\<span class="n">test_hello_pytest</span><span class="o">.</span><span class="n">py</span>
+<span class="o">=============================================================</span> <span class="n">test</span> <span class="n">session</span> <span class="n">starts</span> <span class="o">=============================================================</span>
+<span class="n">platform</span> <span class="n">win32</span> <span class="o">--</span> <span class="n">Python</span> <span class="mf">3.7</span><span class="o">.</span><span class="mi">3</span><span class="p">,</span> <span class="n">pytest</span><span class="o">-</span><span class="mf">6.0</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="n">py</span><span class="o">-</span><span class="mf">1.9</span><span class="o">.</span><span class="mi">0</span><span class="p">,</span> <span class="n">pluggy</span><span class="o">-</span><span class="mf">0.13</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">rootdir</span><span class="p">:</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">tutorial_docs</span>
+<span class="n">collected</span> <span class="mi">1</span> <span class="n">item</span>
+
+<span class="n">step</span>\<span class="n">pytest</span><span class="o">-</span><span class="mi">0</span>\<span class="n">test_hello_pytest</span><span class="o">.</span><span class="n">py</span> <span class="n">F</span>                                                                                                     <span class="p">[</span><span class="mi">100</span><span class="o">%</span><span class="p">]</span>
+
+<span class="o">==================================================================</span> <span class="n">FAILURES</span> <span class="o">===================================================================</span>
+<span class="n">_________________________________________________________________</span> <span class="n">test_pytest</span> <span class="n">_________________________________________________________________</span>
+
+    <span class="k">def</span> <span class="nf">test_pytest</span><span class="p">():</span>
+<span class="o">&gt;</span>       <span class="k">assert</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="n">E</span>       <span class="k">assert</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span>
+
+<span class="n">step</span>\<span class="n">pytest</span><span class="o">-</span><span class="mi">0</span>\<span class="n">test_hello_pytest</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span> <span class="ne">AssertionError</span>
+<span class="o">===========================================================</span> <span class="n">short</span> <span class="n">test</span> <span class="n">summary</span> <span class="n">info</span> <span class="o">===========================================================</span>
+<span class="n">FAILED</span> <span class="n">step</span><span class="o">/</span><span class="n">pytest</span><span class="o">-</span><span class="mi">0</span><span class="o">/</span><span class="n">test_hello_pytest</span><span class="o">.</span><span class="n">py</span><span class="p">::</span><span class="n">test_pytest</span> <span class="o">-</span> <span class="k">assert</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="o">==============================================================</span> <span class="mi">1</span> <span class="n">failed</span> <span class="ow">in</span> <span class="mf">0.11</span><span class="n">s</span> <span class="o">==============================================================</span>
+</pre></div>
+</div>
+<p>失敗すると、どの部分で失敗したかが確認できます。</p>
+<p>コード自体のエラーも同時に表示されます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_pytest</span><span class="p">():</span>
+
+    <span class="n">test_val</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
+    <span class="k">assert</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">test_val</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">tutorial_docs</span><span class="o">&gt;</span> <span class="n">pytest</span> <span class="o">.</span>\<span class="n">step</span>\<span class="n">pytest</span><span class="o">-</span><span class="mi">0</span>\<span class="n">test_hello_pytest_2</span><span class="o">.</span><span class="n">py</span>
+<span class="o">=============================================================</span> <span class="n">test</span> <span class="n">session</span> <span class="n">starts</span> <span class="o">=============================================================</span>
+<span class="n">platform</span> <span class="n">win32</span> <span class="o">--</span> <span class="n">Python</span> <span class="mf">3.7</span><span class="o">.</span><span class="mi">3</span><span class="p">,</span> <span class="n">pytest</span><span class="o">-</span><span class="mf">6.0</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="n">py</span><span class="o">-</span><span class="mf">1.9</span><span class="o">.</span><span class="mi">0</span><span class="p">,</span> <span class="n">pluggy</span><span class="o">-</span><span class="mf">0.13</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">rootdir</span><span class="p">:</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">tutorial_docs</span>
+<span class="n">collected</span> <span class="mi">1</span> <span class="n">item</span>
+
+<span class="n">step</span>\<span class="n">pytest</span><span class="o">-</span><span class="mi">0</span>\<span class="n">test_hello_pytest_2</span><span class="o">.</span><span class="n">py</span> <span class="n">F</span>                                                                                                   <span class="p">[</span><span class="mi">100</span><span class="o">%</span><span class="p">]</span>
+
+<span class="o">==================================================================</span> <span class="n">FAILURES</span> <span class="o">===================================================================</span>
+<span class="n">_________________________________________________________________</span> <span class="n">test_pytest</span> <span class="n">_________________________________________________________________</span>
+
+    <span class="k">def</span> <span class="nf">test_pytest</span><span class="p">():</span>
+
+<span class="o">&gt;</span>       <span class="n">test_val</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
+<span class="n">E</span>       <span class="ne">ZeroDivisionError</span><span class="p">:</span> <span class="n">division</span> <span class="n">by</span> <span class="n">zero</span>
+
+<span class="n">step</span>\<span class="n">pytest</span><span class="o">-</span><span class="mi">0</span>\<span class="n">test_hello_pytest_2</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">3</span><span class="p">:</span> <span class="ne">ZeroDivisionError</span>
+<span class="o">===========================================================</span> <span class="n">short</span> <span class="n">test</span> <span class="n">summary</span> <span class="n">info</span> <span class="o">===========================================================</span>
+<span class="n">FAILED</span> <span class="n">step</span><span class="o">/</span><span class="n">pytest</span><span class="o">-</span><span class="mi">0</span><span class="o">/</span><span class="n">test_hello_pytest_2</span><span class="o">.</span><span class="n">py</span><span class="p">::</span><span class="n">test_pytest</span> <span class="o">-</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span> <span class="n">division</span> <span class="n">by</span> <span class="n">zero</span>
+<span class="o">==============================================================</span> <span class="mi">1</span> <span class="n">failed</span> <span class="ow">in</span> <span class="mf">0.14</span><span class="n">s</span> <span class="o">==============================================================</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="id3">
-<h3>テストの失敗<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><p>実行して失敗した状態からスタート。faild=&gt;pass</p></li>
-</ul>
-</div></blockquote>
+<h3>テストの成功<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>先ほどのサンプルをテストが通るように変更してみましょう</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_pytest</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>実行すると 成功した様子が確認できます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">tutorial_docs</span><span class="o">&gt;</span> <span class="n">pytest</span> <span class="o">.</span>\<span class="n">step</span>\<span class="n">pytest</span><span class="o">-</span><span class="mi">0</span>\<span class="n">test_hello_pytest_3</span><span class="o">.</span><span class="n">py</span>
+<span class="o">=============================================================</span> <span class="n">test</span> <span class="n">session</span> <span class="n">starts</span> <span class="o">=============================================================</span>
+<span class="n">platform</span> <span class="n">win32</span> <span class="o">--</span> <span class="n">Python</span> <span class="mf">3.7</span><span class="o">.</span><span class="mi">3</span><span class="p">,</span> <span class="n">pytest</span><span class="o">-</span><span class="mf">6.0</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="n">py</span><span class="o">-</span><span class="mf">1.9</span><span class="o">.</span><span class="mi">0</span><span class="p">,</span> <span class="n">pluggy</span><span class="o">-</span><span class="mf">0.13</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">rootdir</span><span class="p">:</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">tutorial_docs</span>
+<span class="n">collected</span> <span class="mi">1</span> <span class="n">item</span>
+
+<span class="n">step</span>\<span class="n">pytest</span><span class="o">-</span><span class="mi">0</span>\<span class="n">test_hello_pytest_3</span><span class="o">.</span><span class="n">py</span> <span class="o">.</span>                                                                                                   <span class="p">[</span><span class="mi">100</span><span class="o">%</span><span class="p">]</span>
+
+<span class="o">==============================================================</span> <span class="mi">1</span> <span class="n">passed</span> <span class="ow">in</span> <span class="mf">0.03</span><span class="n">s</span> <span class="o">==============================================================</span>
+</pre></div>
+</div>
+<p>pytestは <code class="docutils literal notranslate"><span class="pre">-v</span></code> オプションでテスト関数やクラスの一覧も表示できます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">tutorial_docs</span><span class="o">&gt;</span> <span class="n">pytest</span> <span class="o">.</span>\<span class="n">step</span>\<span class="n">pytest</span><span class="o">-</span><span class="mi">0</span>\<span class="n">test_hello_pytest_3</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">v</span>
+<span class="o">=============================================================</span> <span class="n">test</span> <span class="n">session</span> <span class="n">starts</span> <span class="o">=============================================================</span>
+<span class="n">platform</span> <span class="n">win32</span> <span class="o">--</span> <span class="n">Python</span> <span class="mf">3.7</span><span class="o">.</span><span class="mi">3</span><span class="p">,</span> <span class="n">pytest</span><span class="o">-</span><span class="mf">6.0</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="n">py</span><span class="o">-</span><span class="mf">1.9</span><span class="o">.</span><span class="mi">0</span><span class="p">,</span> <span class="n">pluggy</span><span class="o">-</span><span class="mf">0.13</span><span class="o">.</span><span class="mi">1</span> <span class="o">--</span> <span class="n">c</span><span class="p">:</span>\<span class="n">users</span>\<span class="n">hiroshi</span>\<span class="n">documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="o">.</span><span class="n">venv</span>\<span class="n">scripts</span>\<span class="n">python</span><span class="o">.</span><span class="n">exe</span>
+<span class="n">cachedir</span><span class="p">:</span> <span class="o">.</span><span class="n">pytest_cache</span>
+<span class="n">rootdir</span><span class="p">:</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">tutorial_docs</span>
+<span class="n">collected</span> <span class="mi">1</span> <span class="n">item</span>
+
+<span class="n">step</span><span class="o">/</span><span class="n">pytest</span><span class="o">-</span><span class="mi">0</span><span class="o">/</span><span class="n">test_hello_pytest_3</span><span class="o">.</span><span class="n">py</span><span class="p">::</span><span class="n">test_pytest</span> <span class="n">PASSED</span>                                                                                 <span class="p">[</span><span class="mi">100</span><span class="o">%</span><span class="p">]</span>
+
+<span class="o">==============================================================</span> <span class="mi">1</span> <span class="n">passed</span> <span class="ow">in</span> <span class="mf">0.09</span><span class="n">s</span> <span class="o">==============================================================</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="id4">
-<h3>テストの成功<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><p>実行して失敗した状態からスタート。faild=&gt;pass</p></li>
-</ul>
-</div></blockquote>
+<h2>PyTestの機能<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Pytestはテストで良く扱う機能があらかじめ用意されています。チュートリアル内では3つの機能に絞って説明します。</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>pytestで利用する機能はデコレーターでテスト関数やメソッドに適応します。
+デコレーターは糖衣関数と呼ばれる構文の一つです。既存の関数をオーバーラップして機能を追加するなど変化を与えることができます。</p>
+<p>ref: <a class="reference external" href="https://docs.python.org/ja/3/glossary.html#term-decorator">https://docs.python.org/ja/3/glossary.html#term-decorator</a></p>
 </div>
-</div>
-<div class="section" id="id5">
-<h2>PyTestの機能<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="parametrize">
 <h3>parametrize<a class="headerlink" href="#parametrize" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<ul class="simple">
-<li><p>parametrizeを扱った、テストパラメーターの導入 [Parametrizing fixtures and test functions — pytest documentation](<a class="reference external" href="https://docs.pytest.org/en/stable/parametrize.html">https://docs.pytest.org/en/stable/parametrize.html</a>)</p></li>
-<li><p>parametrizeでサンプルを書いてみる: リスト&gt;タプルで作ったパラメーターをassert</p></li>
-</ul>
+<p>parametrizeは パラメータを一括で扱える機能です。</p>
+<p>テストに入力する値と結果を用意して、複数回同じテストを実行するときに役に立ちます。</p>
+<p><a class="reference external" href="https://docs.pytest.org/en/stable/parametrize.html">Parametrizing fixtures and test functions — pytest documentation</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ref:https://docs.pytest.org/en/stable/parametrize.html</span>
+<span class="c1"># content of test_expectation.py</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;test_input,expected&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="s2">&quot;3+5&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;2+4&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;6*9&quot;</span><span class="p">,</span> <span class="mi">42</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">test_eval</span><span class="p">(</span><span class="n">test_input</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">eval</span><span class="p">(</span><span class="n">test_input</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="fixture">
 <h3>fixture<a class="headerlink" href="#fixture" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<ul class="simple">
-<li><p>fixtureによるテストデータの共通化（予定、使わないかも）[pytest fixtures: explicit, modular, scalable — pytest documentation](<a class="reference external" href="https://docs.pytest.org/en/stable/fixture.html">https://docs.pytest.org/en/stable/fixture.html</a>)</p></li>
-<li><p>fixtureでjson(文字列)をロードして、複数のテストを書いてみる（適合する/適合しないレベル）</p></li>
-</ul>
+<p>fixtureは テストする機能を実行する前の準備, 終了処理を共通化したいときに利用します。必要なデータの用意や認証情報の設定、終了時に一時的に生成したデータの除去等がよくあるパターンです。</p>
+<p><a class="reference external" href="https://docs.pytest.org/en/stable/fixture.html">pytest fixtures: explicit, modular, scalable — pytest documentation</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+
+
+<span class="c1"># jsonをloadする共通の関数</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">get_json_dict</span><span class="p">():</span>
+
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        {&quot;k1&quot;: &quot;testval1&quot;, &quot;k2&quot;: &quot;testval2&quot;}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+    <span class="p">)</span>
+
+
+<span class="c1"># fixtureを使いたいテスト関数にfixture化した関数を引数へ指定する</span>
+<span class="k">def</span> <span class="nf">test_check_val1</span><span class="p">(</span><span class="n">get_json_dict</span><span class="p">):</span>
+    <span class="n">json_dict</span> <span class="o">=</span> <span class="n">get_json_dict</span>
+    <span class="k">assert</span> <span class="s2">&quot;testval1&quot;</span> <span class="o">==</span> <span class="n">json_dict</span><span class="p">[</span><span class="s2">&quot;k1&quot;</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">test_check_val2</span><span class="p">(</span><span class="n">get_json_dict</span><span class="p">):</span>
+    <span class="n">json_dict</span> <span class="o">=</span> <span class="n">get_json_dict</span>
+    <span class="k">assert</span> <span class="s2">&quot;testval1&quot;</span> <span class="o">!=</span> <span class="n">json_dict</span><span class="p">[</span><span class="s2">&quot;k2&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="monkeypatch">
 <h3>monkeypatch<a class="headerlink" href="#monkeypatch" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<ul class="simple">
-<li><p>monkeypatch: オブジェクトの置き換えを行う: [Monkeypatching/mocking modules and environments — pytest documentation](<a class="reference external" href="https://docs.pytest.org/en/latest/monkeypatch.html">https://docs.pytest.org/en/latest/monkeypatch.html</a>)</p>
-<ul>
-<li><p>monkeypatch: 公式にあるホームを返す機能を元にテストをしてみる -&gt; <a class="reference external" href="https://docs.pytest.org/en/latest/monkeypatch.html#simple-example-monkeypatching-functions">https://docs.pytest.org/en/latest/monkeypatch.html#simple-example-monkeypatching-functions</a></p></li>
-</ul>
-</li>
-</ul>
+<p>monkeypatchは pythonのUnittest.mockのような機能です。モックとなるオブジェクトを置き換える際に利用します。</p>
+<p>置き換えるオブジェクト自体はテスト専用の機能を使ったオブジェクトではなく、戻り値や挙動が同等なオブジェクトを生成することで機能します。</p>
+<p>公式の冒頭にあるサンプルコードを動かしてみましょう</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ref:https://docs.pytest.org/en/6.0.1/monkeypatch.html#simple-example-monkeypatching-functions</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+
+<span class="c1"># テスト対象の関数</span>
+<span class="k">def</span> <span class="nf">getssh</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;.ssh&quot;</span>
+
+
+<span class="c1"># テスト本体</span>
+<span class="k">def</span> <span class="nf">test_getssh</span><span class="p">(</span><span class="n">monkeypatch</span><span class="p">):</span>
+    <span class="c1"># 置き換える関数を用意する</span>
+    <span class="k">def</span> <span class="nf">mockreturn</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/abc&quot;</span><span class="p">)</span>
+
+    <span class="c1"># pathlib.Pathのhomeメソッドを置き換えます</span>
+    <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setattr</span><span class="p">(</span><span class="n">Path</span><span class="p">,</span> <span class="s2">&quot;home&quot;</span><span class="p">,</span> <span class="n">mockreturn</span><span class="p">)</span>
+
+    <span class="c1"># getssh関数内のpathlib.Path.home -&gt; mockreturnに置き換えて実行されます</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">getssh</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">x</span> <span class="o">==</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/abc/.ssh&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># ※monkeypathc.setattrで置き換える物は関数でなければいけない（内部でsetattr関数を使っているため）</span>
+<span class="c1"># ref:https://github.com/pytest-dev/pytest/blob/303030c14130a5777bdaace678b9f4adb07416ab/src/_pytest/monkeypatch.py#L209</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="slackbot">
@@ -114,9 +242,9 @@
 <p>チュートリアルで作成しているSlackbotのテストを書いてみましょう。</p>
 <p>SlackbotはSlackワークスペースとの連携が必要になりますが、このテストはそういった外部サービスとの連携テストを想定していません。botとして返答する情報が正しいかの単体テストを作成します。</p>
 <ul class="simple">
-<li><p>挨拶bot: 各国の挨拶を正しく返すかのテスト</p></li>
+<li><p>挨拶bot: ランダムな返答をする関数をmonkeypatchで置き換える</p></li>
 <li><p>connpass bot: jsonの取得をmonkeypatchで置き換え</p></li>
-<li><p>気象庁xmlの取得をmonkeypatchで置き換え、parametarizeで地域の追加</p></li>
+<li><p>天気bot: 気象庁xmlの取得をmonkeypatchで置き換え、parametarizeで地域の追加</p></li>
 </ul>
 </div>
 </div>
@@ -143,9 +271,9 @@
 <li class="toctree-l1"><a class="reference internal" href="prepare.html">チュートリアル開始前の準備</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vscode_liveshare.html">Visual Studio Live Share</a></li>
 <li class="toctree-l1"><a class="reference internal" href="slackbot.html">Slackbotの作成</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">PyTest</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">PyTestでテストケースを導入する</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id1">pytestコマンドの使い方</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">PyTestの機能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">PyTestの機能</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#slackbot">SlackBotのテストケースを書いてみよう</a></li>
 </ul>
 </li>

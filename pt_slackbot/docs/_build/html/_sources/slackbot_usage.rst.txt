@@ -1,10 +1,10 @@
 ==============================
-slackbotの使いかた
+SlackBotの使いかた
 ==============================
 
-このドキュメントではpt_slackbotの使い方を解説します。
+このドキュメントではpt_SlackBotの使い方を解説します。
 
-slackbotは3つの機能があります。
+SlackBotは3つの機能があります。
 
 - wgreet: 世界の挨拶をランダムで返すbot
 - connpass: connpassで ``Python``, ``オンライン`` の健作結果を返すbot
