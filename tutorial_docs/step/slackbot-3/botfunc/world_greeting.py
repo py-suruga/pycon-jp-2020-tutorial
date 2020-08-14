@@ -1,7 +1,4 @@
 # coding:utf-8
-# こんにちは！と返すと世界のあいさつをランダムに返してくれるbot
-
-# TODO:2020-08-08 余裕があったら、時刻で
 
 import random
 from typing import Union
