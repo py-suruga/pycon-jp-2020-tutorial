@@ -105,54 +105,54 @@
 </div>
 <div class="section" id="slackbot">
 <h2>Slackbotのドキュメントを書こう<a class="headerlink" href="#slackbot" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<ul class="simple">
-<li><p>ドキュメントの編集: slackbotの使い方についての足らない部分を書いてドキュメントのビルドを行う</p>
-<ul>
-<li><p>挨拶や天気の追加した情報を、各自思いのままに入れてもらう or いくつかパターンを用意する？</p></li>
-</ul>
-</li>
-</ul>
+<div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">課題</p>
+<p>ドキュメントの編集: SlackBotの使い方についての足らない部分を書いてドキュメントのビルドを行う</p>
+</div>
+<div class="admonition-todo admonition" id="id3">
+<p class="admonition-title">課題</p>
+<p>挨拶や天気の追加した情報を、各自思いのままに入れてもらう。orいくつかパターンを用意する？</p>
+</div>
 </div>
 <div class="section" id="autodoc">
-<h2>autodoc 拡張機能を使ったリファレンス作成<a class="headerlink" href="#autodoc" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>autodoc拡張機能を使ったリファレンス作成<a class="headerlink" href="#autodoc" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><p>docstringからリファレンスの生成: [sphinx.ext.autodoc -- docstringからのドキュメントの取り込み — Sphinx 4.0.0+/70d521ad9 ドキュメント](<a class="reference external" href="https://www.sphinx-doc.org/ja/master/usage/extensions/autodoc.html">https://www.sphinx-doc.org/ja/master/usage/extensions/autodoc.html</a>)</p></li>
 </ul>
 <div class="section" id="docstirng">
 <h3>docstirngを書こう<a class="headerlink" href="#docstirng" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<ul>
-<li><p>apidocの設定(conf.pyでextentionsやsys.pathにpythonのモジュールパスを入れる）</p></li>
-<li><p>sphinx-apidoc コマンド</p></li>
-<li><p>docstringの足らない部分を書いていく</p></li>
-<li><p>挨拶bot: ランダムに天気情報を返す関数</p></li>
-<li><p>connpassbot: jsonの取得関数, botが答える文字列生成の関数</p></li>
-<li><p>天気bot: xml取得関数, botが答える文字列生成の関数</p></li>
-<li><p>botrunのメッセージハンドル（botの登録方法を記載する）</p>
-<blockquote>
-<div><ul class="simple">
+<div class="admonition-todo admonition" id="id4">
+<p class="admonition-title">課題</p>
+<p>骨子のみ記載中
+- apidocの設定(conf.pyでextentionsやsys.pathにpythonのモジュールパスを入れる）
+- sphinx-apidocコマンド
+- docstringの足らない部分を書いていく
+- 挨拶bot: ランダムに天気情報を返す関数
+- connpassbot: jsonの取得関数、botが答える文字列生成の関数
+- 天気bot: xml取得関数、botが答える文字列生成の関数
+- botrunのメッセージハンドル（botの登録方法を記載する）</p>
+</div>
+<ul class="simple">
 <li><p>type annotationの組み合わせで行う。(python3.7を必須にしたので問題ないはず）</p></li>
 <li><p>docstringはGoogleスタイルで行うのでnapoleonの導入も必要: <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations">https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations</a></p></li>
 </ul>
-</div></blockquote>
-</li>
-</ul>
 </div>
-<div class="section" id="id2">
-<h3>autodocで半自動的にリファレンスを作成する<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id5">
+<h3>autodocで半自動的にリファレンスを作成する<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>docstringを用意できたので、autodocを使ってリファレンスを生成してみましょう。</p>
-<dl class="simple">
-<dt>::</dt><dd><ul class="simple">
+<div class="admonition-todo admonition" id="id6">
+<p class="admonition-title">課題</p>
+<ul class="simple">
 <li><p>conf.pyを設定</p></li>
-<li><p>sphinx-apidoc でapidocのひな形を作成</p></li>
+<li><p>sphinx-apidocでapidocのひな形を作成</p></li>
 <li><p>make htmlで生成しよう</p></li>
 </ul>
-</dd>
-</dl>
-<p>実行したautodocの結果は***にあります。それをslackbotのドキュメントの一部として組み込みます。</p>
+</div>
+<p>実行したautodocの結果は***にあります。それをSlackBotのドキュメントの一部として組み込みます。</p>
 </div>
 </div>
-<div class="section" id="id3">
-<h2>テーマを変更しよう<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id7">
+<h2>テーマを変更しよう<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>最後に見栄えを自由に変更できるテーマについて説明します。</p>
 <p>Sphinxは公式同梱のテーマ以外にも、サードパーティのテーマも充実しています。</p>
 <p>今回はドキュメントホスティングサービスとして有名な、Read The Docsが提供しているSphinxテーマである <code class="docutils literal notranslate"><span class="pre">sphinx-rtd-theme</span></code> を適用してみましょう。</p>
@@ -183,13 +183,14 @@
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="prepare.html">チュートリアル開始前の準備</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode_liveshare.html">Visual Studio Live Share</a></li>
 <li class="toctree-l1"><a class="reference internal" href="slackbot.html">Slackbotの作成</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pytest.html">PyTest</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Sphinx</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id1">Sphinxの始め方</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#slackbot">Slackbotのドキュメントを書こう</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#autodoc">autodoc 拡張機能を使ったリファレンス作成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">テーマを変更しよう</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#autodoc">autodoc拡張機能を使ったリファレンス作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">テーマを変更しよう</a></li>
 </ul>
 </li>
 </ul>

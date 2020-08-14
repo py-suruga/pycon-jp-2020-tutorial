@@ -40,7 +40,7 @@
 <p>今回はサードパーティのテストツールである PyTest を利用します。PytestはPython標準ライブラリにあるUnittestより簡単にテストの記述が可能です。</p>
 <div class="section" id="id1">
 <h2>pytestコマンドの使い方<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>pytestは既にローカル開発環境を用意した段階でインストールされています。 <code class="docutils literal notranslate"><span class="pre">pytest</span></code> コマンドを実行することで確認できます。もしコマンドが存在しないというエラーがある場合はpipコマンドでインストールしてください</p>
+<p>pytestはすでにローカル開発環境を用意した段階でインストールされています。 <code class="docutils literal notranslate"><span class="pre">pytest</span></code> コマンドを実行することで確認できます。もしコマンドが存在しないというエラーがある場合はpipコマンドでインストールしてください</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pytest</span>
 </pre></div>
 </div>
@@ -57,34 +57,37 @@
 <p>pytestを使ったテストケースの書き方を紹介します。</p>
 <p>テストファイルは Pythonのパッケージ内にある <code class="docutils literal notranslate"><span class="pre">tests</span></code> モジュールや、<code class="docutils literal notranslate"><span class="pre">test_**.py</span></code>、<code class="docutils literal notranslate"><span class="pre">**_test.py</span></code> という名前が認識されます。</p>
 <p>簡単なテストを作成してみます。</p>
-<p>TODO:2020-08-13 hello test的なコードをファイルに作って記載</p>
+<div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">課題</p>
+<p>2020-08-13 hello test的なコードをファイルに作って記載</p>
+</div>
 <p>特徴的な部分としては、 pythonのassert文を使ってテストケースを定義します。</p>
 <p>※:Assert式とは:</p>
-<p>Assert文は <cite>assert [真偽判断ができる式]</cite> と書くことで、式が偽となる場合はＡssertＥrrorという例外を発生させます。簡易的なデバッグ用途に扱うことができます。</p>
+<p>Assert文は <cite>assert [真偽判断ができる式]</cite> と書くことで、式が偽となる場合はAssertErrorという例外を発生させます。簡易的なデバッグ用途に扱うことができます。</p>
 <p><a class="reference external" href="https://docs.python.org/ja/3/reference/simple_stmts.html#assert">https://docs.python.org/ja/3/reference/simple_stmts.html#assert</a></p>
-<div class="section" id="id2">
-<h3>テストの失敗<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><p>実行して失敗した状態からスタート。faild=&gt;pass</p></li>
-</ul>
-</div></blockquote>
-</div>
 <div class="section" id="id3">
-<h3>テストの成功<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>テストの失敗<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>実行して失敗した状態からスタート。faild=&gt;pass</p></li>
 </ul>
 </div></blockquote>
-</div>
 </div>
 <div class="section" id="id4">
-<h2>PyTestの機能<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h3>テストの成功<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>実行して失敗した状態からスタート。faild=&gt;pass</p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>PyTestの機能<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="parametrize">
 <h3>parametrize<a class="headerlink" href="#parametrize" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
-<li><p>parametrizeを扱った、テストパラメータの導入 [Parametrizing fixtures and test functions — pytest documentation](<a class="reference external" href="https://docs.pytest.org/en/stable/parametrize.html">https://docs.pytest.org/en/stable/parametrize.html</a>)</p></li>
+<li><p>parametrizeを扱った、テストパラメーターの導入 [Parametrizing fixtures and test functions — pytest documentation](<a class="reference external" href="https://docs.pytest.org/en/stable/parametrize.html">https://docs.pytest.org/en/stable/parametrize.html</a>)</p></li>
 <li><p>parametrizeでサンプルを書いてみる: リスト&gt;タプルで作ったパラメーターをassert</p></li>
 </ul>
 </div>
@@ -107,7 +110,7 @@
 </div>
 </div>
 <div class="section" id="slackbot">
-<h2>slackbotのテストケースを書いてみよう<a class="headerlink" href="#slackbot" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>SlackBotのテストケースを書いてみよう<a class="headerlink" href="#slackbot" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>チュートリアルで作成しているSlackbotのテストを書いてみましょう。</p>
 <p>SlackbotはSlackワークスペースとの連携が必要になりますが、このテストはそういった外部サービスとの連携テストを想定していません。botとして返答する情報が正しいかの単体テストを作成します。</p>
 <ul class="simple">
@@ -138,11 +141,12 @@
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="prepare.html">チュートリアル開始前の準備</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode_liveshare.html">Visual Studio Live Share</a></li>
 <li class="toctree-l1"><a class="reference internal" href="slackbot.html">Slackbotの作成</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">PyTest</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id1">pytestコマンドの使い方</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">PyTestの機能</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#slackbot">slackbotのテストケースを書いてみよう</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">PyTestの機能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#slackbot">SlackBotのテストケースを書いてみよう</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sphinx.html">Sphinx</a></li>

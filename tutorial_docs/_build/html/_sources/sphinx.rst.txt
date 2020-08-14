@@ -1,9 +1,6 @@
 ================================================================================
 Sphinx
 ================================================================================
-.. 
-    sphinxによるドキュメンテーション: slackbotの使い方と、テストで利用した関数のリファレンスを乗せる予定）
-    - sphinxのシステムの紹介: ドキュメントの構造を作る, pythonのdocstringからAPIリファレンス生成できる, プラグイン（扱う予定があれば）
 
 SphinxはPythonの公式ドキュメントやサードパーティライブラリ、またほかの言語や書籍にも利用されるドキュメンテーションツールです。
 
@@ -85,13 +82,12 @@ Slackbotのドキュメントを書こう
 ==============================================================================================
 
 
+.. todo:: ドキュメントの編集: SlackBotの使い方についての足らない部分を書いてドキュメントのビルドを行う
 
-- ドキュメントの編集: slackbotの使い方についての足らない部分を書いてドキュメントのビルドを行う
-
-  - 挨拶や天気の追加した情報を、各自思いのままに入れてもらう or いくつかパターンを用意する？
+.. todo:: 挨拶や天気の追加した情報を、各自思いのままに入れてもらう。orいくつかパターンを用意する？
 
 
-autodoc 拡張機能を使ったリファレンス作成
+autodoc拡張機能を使ったリファレンス作成
 ==============================================================================================
 
 - docstringからリファレンスの生成: [sphinx.ext.autodoc -- docstringからのドキュメントの取り込み — Sphinx 4.0.0+/70d521ad9 ドキュメント](https://www.sphinx-doc.org/ja/master/usage/extensions/autodoc.html)
@@ -99,31 +95,33 @@ autodoc 拡張機能を使ったリファレンス作成
 
 docstirngを書こう
 ---------------------------
-- apidocの設定(conf.pyでextentionsやsys.pathにpythonのモジュールパスを入れる）
-- sphinx-apidoc コマンド
-- docstringの足らない部分を書いていく
-- 挨拶bot: ランダムに天気情報を返す関数
-- connpassbot: jsonの取得関数, botが答える文字列生成の関数
-- 天気bot: xml取得関数, botが答える文字列生成の関数
-- botrunのメッセージハンドル（botの登録方法を記載する）
+
+.. todo:: 骨子のみ記載中
+    - apidocの設定(conf.pyでextentionsやsys.pathにpythonのモジュールパスを入れる）
+    - sphinx-apidocコマンド
+    - docstringの足らない部分を書いていく
+    - 挨拶bot: ランダムに天気情報を返す関数
+    - connpassbot: jsonの取得関数、botが答える文字列生成の関数
+    - 天気bot: xml取得関数、botが答える文字列生成の関数
+    - botrunのメッセージハンドル（botの登録方法を記載する）
 
 
 
-    - type annotationの組み合わせで行う。(python3.7を必須にしたので問題ないはず）
+- type annotationの組み合わせで行う。(python3.7を必須にしたので問題ないはず）
+- docstringはGoogleスタイルで行うのでnapoleonの導入も必要: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations
 
-    - docstringはGoogleスタイルで行うのでnapoleonの導入も必要: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations
 
 autodocで半自動的にリファレンスを作成する
 ---------------------------------------------------------------
 
 docstringを用意できたので、autodocを使ってリファレンスを生成してみましょう。
 
-::
+.. todo::
     - conf.pyを設定
-    - sphinx-apidoc でapidocのひな形を作成
+    - sphinx-apidocでapidocのひな形を作成
     - make htmlで生成しよう
 
-実行したautodocの結果は***にあります。それをslackbotのドキュメントの一部として組み込みます。
+実行したautodocの結果は***にあります。それをSlackBotのドキュメントの一部として組み込みます。
 
 テーマを変更しよう
 =================================

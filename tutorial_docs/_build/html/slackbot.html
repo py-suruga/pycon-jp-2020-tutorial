@@ -17,7 +17,7 @@
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="検索" href="search.html" />
     <link rel="next" title="PyTest" href="pytest.html" />
-    <link rel="prev" title="チュートリアル開始前の準備" href="prepare.html" />
+    <link rel="prev" title="Visual Studio Live Share" href="vscode_liveshare.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -36,7 +36,7 @@
             
   <div class="section" id="slackbot">
 <h1>Slackbotの作成<a class="headerlink" href="#slackbot" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>チュートリアルで扱うSlackbotを実装するために、開発環境やSlackのＡPI利用方法を説明し、ステップを踏みながらbotを作成していきましょう。</p>
+<p>チュートリアルで扱うSlackbotを実装するために、開発環境やSlackのAPI利用方法を説明し、ステップを踏みながらbotを作成していきましょう。</p>
 <div class="section" id="id1">
 <h2>ローカル開発環境の用意<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Slackbotを作成するために、Pythonの開発環境を用意します。</p>
@@ -80,7 +80,7 @@
 <img alt="_images/slackbot_1-6.png" src="_images/slackbot_1-6.png" />
 <p>次に、右上の「Basic Information」へ戻り、「App Credentials」の中にある「Signing Secret」を控えます。</p>
 <img alt="_images/slackbot_1-7.png" src="_images/slackbot_1-7.png" />
-<p>次にngrokコマンドを使い、slackbotを外部公開します。</p>
+<p>次にngrokコマンドを使い、SlackBotを外部公開します。</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ngrok http <span class="m">3000</span>
 python ./pt_slackbot/botrun.py
 </pre></div>
@@ -102,9 +102,9 @@ python ./pt_slackbot/botrun.py
 </div>
 <p>Web InterfaceのURLへアクセスすると、公開したURLのアクセス履歴が見れるようになります。</p>
 <img alt="_images/slackbot_1-8.png" src="_images/slackbot_1-8.png" />
-<p>slackbotがSlackワークスペースへのやりとりをおこなうURLを生成したので、Slackアプリの設定を続けます。</p>
-<p>Slack Event APIを使い、Slackワークスペース上に起きたイベントを、Slackbotが動作するサーバー(ここではngrokで公開しているローカル環境)へ伝えることができます。</p>
-<p>ここで2つの設定を行います。</p>
+<p>SlackBotがSlackワークスペースへのやりとりをおこなうURLを生成したので、Slackアプリの設定を続けます。</p>
+<p>Slack Event APIを使い、Slackワークスペース上に起きたイベントを、Slackbotが動作するサーバー（ここではngrokで公開しているローカル環境）へ伝えることができます。
+ここで2つの設定を行います。</p>
 <ol class="arabic simple">
 <li><p>Slack Event APIが起きたイベントをサーバーに伝えるためのエンドポイントURL</p></li>
 <li><p>イベントの種類</p></li>
@@ -123,18 +123,26 @@ python ./pt_slackbot/botrun.py
 <p>登録後はSlackワークスペースへアプリの再インストールを指示されるので行います。</p>
 <img alt="_images/slackbot_1-11.png" src="_images/slackbot_1-11.png" />
 <p>再インストール時の認証画面を見ると、権限が追加されていることがわかります。先ほどはチャンネルにメッセージを送信するだけでしたが、それに加えてチャンネル内のメッセージを見ることができます。</p>
+<div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">課題</p>
+<p>2020/08/07 権限追加の画像を取り直す</p>
+</div>
 <p>デプロイとSlackアプリの権限の設定が終わると、Slackbotが利用できます。最後にSlackワークスペース上でbotを呼び出してみます。</p>
 <p>最初に、チャンネルにbotユーザーを追加します。</p>
 <img alt="_images/slackbot_1-12-0.png" src="_images/slackbot_1-12-0.png" />
 <img alt="_images/slackbot_1-12-1.png" src="_images/slackbot_1-12-1.png" />
-<p>ここまででslackbotを動作させる準備が整いました。</p>
-<div class="section" id="id2">
-<h3>slackbotのフロー<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>ここでは、slackbotがどのようにslackワークスペースとやり取りを行うか解説します。</p>
-<p>SlackbotはWEBで扱われている技術でサービスとbotのアプリがやり取りを行います。今回のはSlack公式で提供されているEvents APIとWeb APIの二つを利用します。</p>
+<p>ここまででSlackBotを動作させる準備が整いました。</p>
+<div class="section" id="id3">
+<h3>SlackBotのフロー<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ここでは、SlackBotがどのようにslackワークスペースとやり取りを行うか解説します。</p>
+<div class="admonition-todo admonition" id="id4">
+<p class="admonition-title">課題</p>
+<p>SlackBotのシステム概要を説明: どんな技術が利用されているか。ざっくりで。(pysuruga-13-handsonの資料流用）</p>
+</div>
+<p>SlackbotはWEBで扱われている技術でサービスとbotのアプリがやり取りを行います。今回のはSlack公式で提供されているEvents APIとWeb APIの2つを利用します。</p>
 <p>Events APIはSlack側がbotアプリに声をかけるイメージで、Slackワークスペース内で起きたイベントを伝えます。</p>
 <p>Web APIはSlackワークスペースに対して何らかのアクションを起こすために使います。botならbot側が何らかのメッセージを送ります。</p>
-<p>PythonではEvents API, Web API どちらとも対応した公式パッケージがあります。チュートリアルではどちらとも利用しています。</p>
+<p>PythonではEvents API, Web APIどちらとも対応した公式パッケージがあります。チュートリアルではどちらとも利用しています。</p>
 <ul class="simple">
 <li><p>Events API: <a class="reference external" href="https://github.com/slackapi/python-slack-events-api">https://github.com/slackapi/python-slack-events-api</a></p></li>
 <li><p>Web API: <a class="reference external" href="https://github.com/slackapi/python-slackclient">https://github.com/slackapi/python-slackclient</a></p></li>
@@ -144,7 +152,7 @@ python ./pt_slackbot/botrun.py
 <div class="admonition note">
 <p class="admonition-title">注釈</p>
 <p>SlackのAPIはほかにもあります。
-代表例はincoming webhook（URLにパラメータを付与するとslackワークスペースにメッセージを送れる）, RealTime Messeging API(websocketを利用したリアルタイムにSlackワークスペースとアプリがやり取り可能）になります。</p>
+代表例はincoming webhook（URLにパラメーターを付与するとslackワークスペースにメッセージを送れる）, RealTime Messeging API(websocketを利用したリアルタイムにSlackワークスペースとアプリがやり取り可能）になります。</p>
 <p>今回はそれらについては解説しませんが、参考情報を残します。</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://api.slack.com/messaging/webhooks">Sending messages using Incoming Webhooks | Slack</a></p></li>
@@ -161,9 +169,9 @@ python ./pt_slackbot/botrun.py
 </div>
 </div>
 </div>
-<div class="section" id="id3">
-<h2>チュートリアルで実装するslackbotについて<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>このチュートリアルでは、三つのslackbotを実装します。人工無能な挨拶を返すbotから、APIを利用してインタラクティブな結果を返すようにします。</p>
+<div class="section" id="id5">
+<h2>チュートリアルで実装するSlackBotについて<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>このチュートリアルでは、3つのSlackBotを実装します。人工無能な挨拶を返すbotから、APIを利用してインタラクティブな結果を返すようにします。</p>
 <div class="section" id="wgreet-bot">
 <h3>世界の挨拶をランダムで返す  <strong>wgreet</strong> bot<a class="headerlink" href="#wgreet-bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <img alt="_images/slackbot_1-13.jpg" src="_images/slackbot_1-13.jpg" />
@@ -176,7 +184,10 @@ python ./pt_slackbot/botrun.py
 <li><p>もちろん自由に言葉を変えてもらっても良し</p></li>
 </ul>
 </div></blockquote>
-<p>TODO:2020-08-13 ステップごとのコードのリンクを用意する</p>
+<div class="admonition-todo admonition" id="id6">
+<p class="admonition-title">課題</p>
+<p>2020-08-13 ステップごとのコードのリンクを用意する</p>
+</div>
 <div class="section" id="bot">
 <h4>挨拶botの実装ステップ<a class="headerlink" href="#bot" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <blockquote>
@@ -191,7 +202,7 @@ python ./pt_slackbot/botrun.py
 <div class="section" id="connpass-api-connpass-bot">
 <h3>connpass APIを利用してオンラインイベントを検索する <strong>connpass</strong> bot<a class="headerlink" href="#connpass-api-connpass-bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ここではconnpassを例にイベント検索用のREST APIを使ってイベントの検索を行います。</p>
-<p>チュートリアルではＰythonとオンラインというキーワードを元に健作をした結果を20件一覧に表示する機能を実装しています。</p>
+<p>チュートリアルでは「Python」と「オンライン」というキーワードを元に健作をした結果を20件一覧に表示する機能を実装しています。</p>
 <img alt="_images/slackbot_1-14.jpg" src="_images/slackbot_1-14.jpg" />
 <p>コマンドの実行方法は <code class="docutils literal notranslate"><span class="pre">connpass</span> <span class="pre">[yyyymm]</span></code> と入力します。yyyymmは年月の意味で、 <code class="docutils literal notranslate"><span class="pre">connpass</span> <span class="pre">202008</span></code> と入力すると、2020年8月に関係する、Python, オンラインをキーワードにした検索結果が表示されます。</p>
 <p>このbotの趣旨は以下になります。</p>
@@ -221,7 +232,7 @@ python ./pt_slackbot/botrun.py
 <div class="section" id="tenkibot">
 <h4>tenkibotの実装ステップ<a class="headerlink" href="#tenkibot" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <ol class="arabic simple">
-<li><p>（既にxmlのDLしたものを扱います）</p></li>
+<li><p>（すでにxmlのDLしたものを扱います）</p></li>
 <li><p>requests + bs4を使ってxmlのパースをする</p></li>
 <li><p>対応地域を追加してbotの拡張をしてもらう</p></li>
 </ol>
@@ -258,10 +269,11 @@ python ./pt_slackbot/botrun.py
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="prepare.html">チュートリアル開始前の準備</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode_liveshare.html">Visual Studio Live Share</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Slackbotの作成</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id1">ローカル開発環境の用意</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#slack">Slackアプリの作成と設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">チュートリアルで実装するslackbotについて</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">チュートリアルで実装するSlackBotについて</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pytest.html">PyTest</a></li>
@@ -272,7 +284,7 @@ python ./pt_slackbot/botrun.py
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="prepare.html" title="前の章へ">チュートリアル開始前の準備</a></li>
+      <li>Previous: <a href="vscode_liveshare.html" title="前の章へ">Visual Studio Live Share</a></li>
       <li>Next: <a href="pytest.html" title="次の章へ">PyTest</a></li>
   </ul></li>
 </ul>

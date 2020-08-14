@@ -12,7 +12,7 @@ Slackbotが返す結果をテストできるように、テストケースの導
 pytestコマンドの使い方
 ================================================================================
 
-pytestは既にローカル開発環境を用意した段階でインストールされています。 ``pytest`` コマンドを実行することで確認できます。もしコマンドが存在しないというエラーがある場合はpipコマンドでインストールしてください
+pytestはすでにローカル開発環境を用意した段階でインストールされています。 ``pytest`` コマンドを実行することで確認できます。もしコマンドが存在しないというエラーがある場合はpipコマンドでインストールしてください
 
 ::
 
@@ -31,14 +31,14 @@ pytestを使ったテストケースの書き方を紹介します。
 
 簡単なテストを作成してみます。
 
-TODO:2020-08-13 hello test的なコードをファイルに作って記載
+.. todo:: 2020-08-13 hello test的なコードをファイルに作って記載
 
 
 特徴的な部分としては、 pythonのassert文を使ってテストケースを定義します。
 
 ※:Assert式とは: 
 
-Assert文は `assert [真偽判断ができる式]` と書くことで、式が偽となる場合はＡssertＥrrorという例外を発生させます。簡易的なデバッグ用途に扱うことができます。
+Assert文は `assert [真偽判断ができる式]` と書くことで、式が偽となる場合はAssertErrorという例外を発生させます。簡易的なデバッグ用途に扱うことができます。
 
 https://docs.python.org/ja/3/reference/simple_stmts.html#assert
 
@@ -60,7 +60,7 @@ PyTestの機能
 parametrize
 ----------------
 
-- parametrizeを扱った、テストパラメータの導入 [Parametrizing fixtures and test functions — pytest documentation](https://docs.pytest.org/en/stable/parametrize.html)
+- parametrizeを扱った、テストパラメーターの導入 [Parametrizing fixtures and test functions — pytest documentation](https://docs.pytest.org/en/stable/parametrize.html)
 
 
 - parametrizeでサンプルを書いてみる: リスト>タプルで作ったパラメーターをassert
@@ -80,7 +80,7 @@ monkeypatch
   - monkeypatch: 公式にあるホームを返す機能を元にテストをしてみる -> https://docs.pytest.org/en/latest/monkeypatch.html#simple-example-monkeypatching-functions
 
 
-slackbotのテストケースを書いてみよう
+SlackBotのテストケースを書いてみよう
 ======================================================================
 
 チュートリアルで作成しているSlackbotのテストを書いてみましょう。
