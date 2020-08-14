@@ -1,10 +1,8 @@
 # coding:utf-8
-
 import itertools
 import pickle
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 from pathlib import Path
-from typing import Union
 
 import requests
 from bs4 import BeautifulSoup
@@ -138,7 +136,7 @@ def get_jma_xml_files():
     pickle.dump(updated_dt, open(latest_dt_filename, "wb"))
 
 
-def get_weekly_weather(station_name: str) -> Union[str, None]:
+def get_weekly_weather(station_name: str) -> str:
     """
     天気予報の結果を取得する
     """
@@ -152,9 +150,9 @@ def get_weekly_weather(station_name: str) -> Union[str, None]:
                 weekly_weather_xml_soup = BeautifulSoup(weekly_weather_xml, "xml")
             break
 
-    # 該当しない場合は何も返せなかったとしてNoneを返す
+    # 該当しない場合は何も返せなかったとして空文字を返す
     if not weekly_weather_xml_soup:
-        return None
+        return ""
 
     # 該当した場合は、気象台の情報をもとに、気象台のxmlを開いて予報を取得
     kuiki_yohou = weekly_weather_xml_soup.find("MeteorologicalInfos", type="区域予報")
@@ -188,14 +186,14 @@ def get_weekly_weather(station_name: str) -> Union[str, None]:
     return "\n".join(result_lines)
 
 
-def call_function(match_group: Union[str, None]) -> Union[str, None]:
+def call_function(arg: str) -> str:
     """
     botの結果を返すfunction
     """
     # 気象庁の週間天気予報電文XMLをDL
     get_jma_xml_files()
 
-    result = get_weekly_weather(match_group)
+    result = get_weekly_weather(arg)
 
     if result is None:
         return None
