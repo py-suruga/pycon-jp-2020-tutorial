@@ -17,7 +17,7 @@ PyCon JP 2020 チュートリアル「Pythonの開発エコシステムを学ぼ
     - `PyCon JP 2020 Tutorial（Zoom参加） - connpass <https://pyconjp.connpass.com/event/181065/>`_
     - `PyCon JP 2020 Tutorial （YouTube Live視聴のみ） - connpass <https://pyconjp.connpass.com/event/182390/>`_
 
-開催コミュニティ
+担当コミュニティ
 ========================================
 
 `Python駿河 <https://py-suruga.connpass.com/>`_
