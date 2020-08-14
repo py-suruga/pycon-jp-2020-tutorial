@@ -56,36 +56,80 @@
 </ul>
 <p>pytestを使ったテストケースの書き方を紹介します。</p>
 <p>テストファイルは Pythonのパッケージ内にある <code class="docutils literal notranslate"><span class="pre">tests</span></code> モジュールや、<code class="docutils literal notranslate"><span class="pre">test_**.py</span></code>、<code class="docutils literal notranslate"><span class="pre">**_test.py</span></code> という名前が認識されます。</p>
-<p>簡単なテストを作成してみます。</p>
 <div class="admonition-todo admonition" id="id2">
 <p class="admonition-title">課題</p>
-<p>2020-08-13 hello test的なコードをファイルに作って記載</p>
+<p>実行して失敗した状態からスタート。faild=&gt;pass</p>
 </div>
-<p>特徴的な部分としては、 pythonのassert文を使ってテストケースを定義します。</p>
-<p>※:Assert式とは:</p>
-<p>Assert文は <cite>assert [真偽判断ができる式]</cite> と書くことで、式が偽となる場合はAssertErrorという例外を発生させます。簡易的なデバッグ用途に扱うことができます。</p>
-<p><a class="reference external" href="https://docs.python.org/ja/3/reference/simple_stmts.html#assert">https://docs.python.org/ja/3/reference/simple_stmts.html#assert</a></p>
 <div class="section" id="id3">
 <h3>テストの失敗<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><p>実行して失敗した状態からスタート。faild=&gt;pass</p></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="id4">
-<h3>テストの成功<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><p>実行して失敗した状態からスタート。faild=&gt;pass</p></li>
-</ul>
-</div></blockquote>
+<p>まず初めに簡単なテストを作成してみます。</p>
+<div class="admonition-todo admonition" id="id4">
+<p class="admonition-title">課題</p>
+<p>2020-08-13 hello test的なコードをファイルに作って記載</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello py&quot;</span><span class="p">)</span>
+</pre></div>
 </div>
 </div>
-<div class="section" id="id5">
-<h2>PyTestの機能<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>特徴的な部分としては、 pythonのassert文を使ってテストケースを定義します。</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>Assert式とは
+Assert文は <cite>assert [真偽判断ができる式]</cite> と書くことで、式が偽となる場合はAssertErrorという例外を発生させます。簡易的なデバッグ用途に扱うことができます。
+<a class="reference external" href="https://docs.python.org/ja/3/reference/simple_stmts.html#assert">https://docs.python.org/ja/3/reference/simple_stmts.html#assert</a></p>
+</div>
+<p>このテストは失敗します。pytestコマンドで実行してみましょう。</p>
+<div class="admonition-todo admonition" id="id5">
+<p class="admonition-title">課題</p>
+<p>テスト結果を乗せる</p>
+</div>
+<p>失敗すると、どの部分で失敗したかが確認できます。</p>
+<p>コード自体のエラーも同時に表示されます。</p>
+<div class="admonition-todo admonition" id="id6">
+<p class="admonition-title">課題</p>
+<p>コード的に例外が発生する内容</p>
+</div>
+<div class="admonition-todo admonition" id="id7">
+<p class="admonition-title">課題</p>
+<p>例外を使ったテストもpytest except機能でできるとnoteに記載する -&gt;  with pytest.raises(ValueError):</p>
+</div>
+<div class="admonition-todo admonition" id="id8">
+<p class="admonition-title">課題</p>
+<p>with構文の説明を乗せる。コンテキストマネージャという、Pyhton側で決められたあるコンテキストをこのブロック内で制御したいときに使う
+- <a class="reference external" href="https://docs.python.org/ja/3/reference/datamodel.html#context-managers">https://docs.python.org/ja/3/reference/datamodel.html#context-managers</a>
+- <a class="reference external" href="https://docs.python.org/ja/3/reference/compound_stmts.html#the-with-statement">https://docs.python.org/ja/3/reference/compound_stmts.html#the-with-statement</a></p>
+</div>
+<p>テスト関数やクラスの一覧を出したい場合は、 -vオプションを使います。</p>
+<div class="admonition-todo admonition" id="id9">
+<p class="admonition-title">課題</p>
+<p>vオプションの結果を乗せる</p>
+</div>
+</div>
+<div class="section" id="id10">
+<h3>テストの成功<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>先ほどのサンプルをテストが通るように変更してみましょう</p>
+<div class="admonition-todo admonition" id="id11">
+<p class="admonition-title">課題</p>
+<p>テストが成功する物にする</p>
+</div>
+<p>実行すると 成功した様子が確認できます。</p>
+<p>先ほど扱った-vオプションでテスト関数やクラスの一覧も表示できます。</p>
+<div class="admonition-todo admonition" id="id12">
+<p class="admonition-title">課題</p>
+<p>vオプションの結果を乗せる</p>
+</div>
+</div>
+</div>
+<div class="section" id="id13">
+<h2>PyTestの機能<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Pytestはテストで良く扱う＊＊があらかじめ用意されています。これらはpytest</p>
+<div class="admonition-todo admonition" id="id14">
+<p class="admonition-title">課題</p>
+<p>デコレーターを扱うときの簡単な説明を記載する</p>
+</div>
 <div class="section" id="parametrize">
 <h3>parametrize<a class="headerlink" href="#parametrize" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>parametrizeは パラメータを一括で扱える機能です。</p>
+<p>テストに入力する値と結果を用意して、複数回同じテストを実行するときに役に立ちます。</p>
 <ul class="simple">
 <li><p>parametrizeを扱った、テストパラメーターの導入 [Parametrizing fixtures and test functions — pytest documentation](<a class="reference external" href="https://docs.pytest.org/en/stable/parametrize.html">https://docs.pytest.org/en/stable/parametrize.html</a>)</p></li>
 <li><p>parametrizeでサンプルを書いてみる: リスト&gt;タプルで作ったパラメーターをassert</p></li>
@@ -93,6 +137,7 @@
 </div>
 <div class="section" id="fixture">
 <h3>fixture<a class="headerlink" href="#fixture" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>fixtureは テストする機能を実行する前の準備, 終了処理を共通化したいときに利用します。必要なデータの用意や認証情報の設定、終了時に一時的に生成したデータの除去等がよくあるパターンです。</p>
 <ul class="simple">
 <li><p>fixtureによるテストデータの共通化（予定、使わないかも）[pytest fixtures: explicit, modular, scalable — pytest documentation](<a class="reference external" href="https://docs.pytest.org/en/stable/fixture.html">https://docs.pytest.org/en/stable/fixture.html</a>)</p></li>
 <li><p>fixtureでjson(文字列)をロードして、複数のテストを書いてみる（適合する/適合しないレベル）</p></li>
@@ -100,6 +145,8 @@
 </div>
 <div class="section" id="monkeypatch">
 <h3>monkeypatch<a class="headerlink" href="#monkeypatch" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>monkeypatchは pythonのUnittest.mockのような機能です。モックとなるオブジェクトを置き換える際に利用します。</p>
+<p>置き換えるオブジェクト自体はテスト専用の機能を使ったオブジェクトではなく、戻り値や挙動が同等なオブジェクトを生成することで機能します。</p>
 <ul class="simple">
 <li><p>monkeypatch: オブジェクトの置き換えを行う: [Monkeypatching/mocking modules and environments — pytest documentation](<a class="reference external" href="https://docs.pytest.org/en/latest/monkeypatch.html">https://docs.pytest.org/en/latest/monkeypatch.html</a>)</p>
 <ul>
@@ -145,7 +192,7 @@
 <li class="toctree-l1"><a class="reference internal" href="slackbot.html">Slackbotの作成</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">PyTest</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id1">pytestコマンドの使い方</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">PyTestの機能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">PyTestの機能</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#slackbot">SlackBotのテストケースを書いてみよう</a></li>
 </ul>
 </li>

@@ -10,6 +10,8 @@ PyCon JP 2020 チュートリアル Pythonの開発エコシステムを学ぼ�
 
 コンテンツは以下のTOCにあります。チュートリアル開始前に :doc:`/prepare` の通読と環境用意をしていただけるとスムーズに進めることができます。 
 
+.. todo:: 開催情報をこちらにも記載する
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
