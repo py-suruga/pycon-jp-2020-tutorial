@@ -128,9 +128,13 @@ pytestは ``-v`` オプションでテスト関数やクラスの一覧も表示
 PyTestの機能
 ===================================
 
-Pytestはテストで良く扱う＊＊があらかじめ用意されています。これらはpytest
+Pytestはテストで良く扱う機能があらかじめ用意されています。チュートリアル内では3つの機能に絞って説明します。
 
-.. todo:: デコレーターを扱うときの簡単な説明を記載する
+.. note:: pytestで利用する機能はデコレーターでテスト関数やメソッドに適応します。
+  デコレーターは糖衣関数と呼ばれる構文の一つです。既存の関数をオーバーラップして機能を追加するなど変化を与えることができます。
+  
+  ref: https://docs.python.org/ja/3/glossary.html#term-decorator
+
 
 parametrize
 --------------------------------
@@ -141,7 +145,7 @@ parametrizeは パラメータを一括で扱える機能です。
 
 `Parametrizing fixtures and test functions — pytest documentation <https://docs.pytest.org/en/stable/parametrize.html>`_
 
-.. todo:: parametrizeでサンプルを書いてみる: リスト>タプルで作ったパラメーターをassert
+.. literalinclude:: ./step/pytest-0/test_parametrize.py
 
 fixture
 ------------------
@@ -150,7 +154,7 @@ fixtureは テストする機能を実行する前の準備, 終了処理を共�
 
 `pytest fixtures: explicit, modular, scalable — pytest documentation <https://docs.pytest.org/en/stable/fixture.html>`_
 
-.. todo:: fixtureでjson(文字列)をロードして、複数のテストを書いてみる（適合する/適合しないレベル）
+.. literalinclude:: ./step/pytest-0/test_fixture_load_json.py
 
 monkeypatch
 ----------------------
@@ -159,10 +163,9 @@ monkeypatchは pythonのUnittest.mockのような機能です。モックとな�
 
 置き換えるオブジェクト自体はテスト専用の機能を使ったオブジェクトではなく、戻り値や挙動が同等なオブジェクトを生成することで機能します。
 
-`Monkeypatching/mocking modules and environments — pytest documentation <https://docs.pytest.org/en/latest/monkeypatch.html>`_
+公式の冒頭にあるサンプルコードを動かしてみましょう
 
-.. todo:: monkeypatch: 公式にあるホームを返す機能を元にテストをしてみる
-  -> https://docs.pytest.org/en/latest/monkeypatch.html#simple-example-monkeypatching-functions
+.. literalinclude:: ./step/pytest-0/test_monkeypatch_function.py
 
 
 SlackBotのテストケースを書いてみよう
@@ -172,6 +175,6 @@ SlackBotのテストケースを書いてみよう
 
 SlackbotはSlackワークスペースとの連携が必要になりますが、このテストはそういった外部サービスとの連携テストを想定していません。botとして返答する情報が正しいかの単体テストを作成します。
 
-- 挨拶bot: 各国の挨拶を正しく返すかのテスト
+- 挨拶bot: ランダムな返答をする関数をmonkeypatchで置き換える
 - connpass bot: jsonの取得をmonkeypatchで置き換え
-- 気象庁xmlの取得をmonkeypatchで置き換え、parametarizeで地域の追加
+- 天気bot: 気象庁xmlの取得をmonkeypatchで置き換え、parametarizeで地域の追加

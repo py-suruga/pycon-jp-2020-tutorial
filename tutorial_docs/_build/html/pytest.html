@@ -149,38 +149,92 @@ Assert文は <cite>assert [真偽判断ができる式]</cite> と書くこと�
 </div>
 <div class="section" id="id4">
 <h2>PyTestの機能<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Pytestはテストで良く扱う＊＊があらかじめ用意されています。これらはpytest</p>
-<div class="admonition-todo admonition" id="id5">
-<p class="admonition-title">課題</p>
-<p>デコレーターを扱うときの簡単な説明を記載する</p>
+<p>Pytestはテストで良く扱う機能があらかじめ用意されています。チュートリアル内では3つの機能に絞って説明します。</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>pytestで利用する機能はデコレーターでテスト関数やメソッドに適応します。
+デコレーターは糖衣関数と呼ばれる構文の一つです。既存の関数をオーバーラップして機能を追加するなど変化を与えることができます。</p>
+<p>ref: <a class="reference external" href="https://docs.python.org/ja/3/glossary.html#term-decorator">https://docs.python.org/ja/3/glossary.html#term-decorator</a></p>
 </div>
 <div class="section" id="parametrize">
 <h3>parametrize<a class="headerlink" href="#parametrize" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>parametrizeは パラメータを一括で扱える機能です。</p>
 <p>テストに入力する値と結果を用意して、複数回同じテストを実行するときに役に立ちます。</p>
 <p><a class="reference external" href="https://docs.pytest.org/en/stable/parametrize.html">Parametrizing fixtures and test functions — pytest documentation</a></p>
-<ul class="simple">
-<li><p>parametrizeでサンプルを書いてみる: リスト&gt;タプルで作ったパラメーターをassert</p></li>
-</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ref:https://docs.pytest.org/en/stable/parametrize.html</span>
+<span class="c1"># content of test_expectation.py</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;test_input,expected&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="s2">&quot;3+5&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;2+4&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;6*9&quot;</span><span class="p">,</span> <span class="mi">42</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">test_eval</span><span class="p">(</span><span class="n">test_input</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">eval</span><span class="p">(</span><span class="n">test_input</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="fixture">
 <h3>fixture<a class="headerlink" href="#fixture" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>fixtureは テストする機能を実行する前の準備, 終了処理を共通化したいときに利用します。必要なデータの用意や認証情報の設定、終了時に一時的に生成したデータの除去等がよくあるパターンです。</p>
 <p><a class="reference external" href="https://docs.pytest.org/en/stable/fixture.html">pytest fixtures: explicit, modular, scalable — pytest documentation</a></p>
-<ul class="simple">
-<li><p>fixtureでjson(文字列)をロードして、複数のテストを書いてみる（適合する/適合しないレベル）</p></li>
-</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+
+
+<span class="c1"># jsonをloadする共通の関数</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">get_json_dict</span><span class="p">():</span>
+
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        {&quot;k1&quot;: &quot;testval1&quot;, &quot;k2&quot;: &quot;testval2&quot;}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+    <span class="p">)</span>
+
+
+<span class="c1"># fixtureを使いたいテスト関数にfixture化した関数を引数へ指定する</span>
+<span class="k">def</span> <span class="nf">test_check_val1</span><span class="p">(</span><span class="n">get_json_dict</span><span class="p">):</span>
+    <span class="n">json_dict</span> <span class="o">=</span> <span class="n">get_json_dict</span>
+    <span class="k">assert</span> <span class="s2">&quot;testval1&quot;</span> <span class="o">==</span> <span class="n">json_dict</span><span class="p">[</span><span class="s2">&quot;k1&quot;</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">test_check_val2</span><span class="p">(</span><span class="n">get_json_dict</span><span class="p">):</span>
+    <span class="n">json_dict</span> <span class="o">=</span> <span class="n">get_json_dict</span>
+    <span class="k">assert</span> <span class="s2">&quot;testval1&quot;</span> <span class="o">!=</span> <span class="n">json_dict</span><span class="p">[</span><span class="s2">&quot;k2&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="monkeypatch">
 <h3>monkeypatch<a class="headerlink" href="#monkeypatch" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>monkeypatchは pythonのUnittest.mockのような機能です。モックとなるオブジェクトを置き換える際に利用します。</p>
 <p>置き換えるオブジェクト自体はテスト専用の機能を使ったオブジェクトではなく、戻り値や挙動が同等なオブジェクトを生成することで機能します。</p>
-<p><a class="reference external" href="https://docs.pytest.org/en/latest/monkeypatch.html">Monkeypatching/mocking modules and environments — pytest documentation</a></p>
-<blockquote>
-<div><ul class="simple">
-<li><p>monkeypatch: 公式にあるホームを返す機能を元にテストをしてみる -&gt; <a class="reference external" href="https://docs.pytest.org/en/latest/monkeypatch.html#simple-example-monkeypatching-functions">https://docs.pytest.org/en/latest/monkeypatch.html#simple-example-monkeypatching-functions</a></p></li>
-</ul>
-</div></blockquote>
+<p>公式の冒頭にあるサンプルコードを動かしてみましょう</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ref:https://docs.pytest.org/en/6.0.1/monkeypatch.html#simple-example-monkeypatching-functions</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+
+<span class="c1"># テスト対象の関数</span>
+<span class="k">def</span> <span class="nf">getssh</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;.ssh&quot;</span>
+
+
+<span class="c1"># テスト本体</span>
+<span class="k">def</span> <span class="nf">test_getssh</span><span class="p">(</span><span class="n">monkeypatch</span><span class="p">):</span>
+    <span class="c1"># 置き換える関数を用意する</span>
+    <span class="k">def</span> <span class="nf">mockreturn</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/abc&quot;</span><span class="p">)</span>
+
+    <span class="c1"># pathlib.Pathのhomeメソッドを置き換えます</span>
+    <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setattr</span><span class="p">(</span><span class="n">Path</span><span class="p">,</span> <span class="s2">&quot;home&quot;</span><span class="p">,</span> <span class="n">mockreturn</span><span class="p">)</span>
+
+    <span class="c1"># getssh関数内のpathlib.Path.home -&gt; mockreturnに置き換えて実行されます</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">getssh</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">x</span> <span class="o">==</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/abc/.ssh&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># ※monkeypathc.setattrで置き換える物は関数でなければいけない（内部でsetattr関数を使っているため）</span>
+<span class="c1"># ref:https://github.com/pytest-dev/pytest/blob/303030c14130a5777bdaace678b9f4adb07416ab/src/_pytest/monkeypatch.py#L209</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="slackbot">
@@ -188,9 +242,9 @@ Assert文は <cite>assert [真偽判断ができる式]</cite> と書くこと�
 <p>チュートリアルで作成しているSlackbotのテストを書いてみましょう。</p>
 <p>SlackbotはSlackワークスペースとの連携が必要になりますが、このテストはそういった外部サービスとの連携テストを想定していません。botとして返答する情報が正しいかの単体テストを作成します。</p>
 <ul class="simple">
-<li><p>挨拶bot: 各国の挨拶を正しく返すかのテスト</p></li>
+<li><p>挨拶bot: ランダムな返答をする関数をmonkeypatchで置き換える</p></li>
 <li><p>connpass bot: jsonの取得をmonkeypatchで置き換え</p></li>
-<li><p>気象庁xmlの取得をmonkeypatchで置き換え、parametarizeで地域の追加</p></li>
+<li><p>天気bot: 気象庁xmlの取得をmonkeypatchで置き換え、parametarizeで地域の追加</p></li>
 </ul>
 </div>
 </div>
