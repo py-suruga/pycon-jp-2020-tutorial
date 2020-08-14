@@ -40,11 +40,9 @@ Pythonの動作確認
 
 pythonコマンドが実行できるか確認します。Windows 10ならPowerShellかコマンドプロンプト、macOSならターミナルアプリを起動して以下のコマンドを実行しましょう。ここではPowerShellを利用して確認します。
 
-.. todo:: 2020-08-13 Python古いので当日までに新しいバージョンにして確認しなおす
-
 ::
 
-  PS ...\pycon-jp-2020-tutorial> python --version
+  PS pycon-jp-2020-tutorial> python --version
   Python 3.7.8
 
 
@@ -57,24 +55,27 @@ gitリポジトリ: https://github.com/py-suruga/pycon-jp-2020-tutorial.git
 
 リポジトリのZip: https://github.com/py-suruga/pycon-jp-2020-tutorial/archive/master.zip
 
-チュートリアル資料の展開先は、普段お使いのユーザーディレクトリのどこかで構いません。例として 
+チュートリアル資料の展開先は、普段お使いのユーザーディレクトリのどこかで構いません。
+
+今回のチュートリアルでは ``C:\Users\[Username]\Document\pyconjp-2020-tutorial`` を作業するディレクトリ位置として説明します。
 
 利用するサービスの準備
 ================================================================================
 
 チュートリアルで課題となるSlackbotを作成する上で必須となるサービスや、開発時に利用するサービスの登録が必要になります。
 
-主にSlackのワークスペース、ngrok、GitHubアカウントの3つとなります。
+- Slackワークスペース
+- ngrok
+- GitHubアカウント
 
-GitHubアカウントはオプションとして利用するVS Code Live shareでも利用します。
+GitHubアカウントはGitHubを扱うときに使うほか、オプションとして利用するVS Code Live shareでも利用します。
 
 Slackワークスペースの新規作成
 --------------------------------------------------------------------------------
 
-Slackbotを作成するときには、開発用のSlackワークスペースを新規作成することをオススメします。
+SlackBotを作成するときには、開発用のSlackワークスペースを新規作成することをオススメします。
 
 `Slack を始める | Slack <https://slack.com/get-started#/create>`_
-
 
 ngrokの利用準備
 --------------------------------------------------------------------------------
@@ -87,22 +88,20 @@ SlackBotはSlackワークスペース上で起きた出来事（メッセージ�
 
 ツールのDL先: `ngrok - download <https://ngrok.com/download>`_
 
-zipファイルをDLして、チュートリアルの作業用のディレクトリに配置します。
+各OS向けのダウンロードリンクからzipファイルをDLして、zipファイル内にある``ngrok.exe`` という実行ファイルをチュートリアルの作業用のディレクトリへ配置します。
 
 .. image:: ./doc-img/ngrok_1.png
 
 
-Windows 10で ``C:\Users\[Username]\Document\pyconjp-2020-tutorial`` というディレクトリで作業をする場合、DLしたZipファイルをディレクトリ内で展開し、 ``ngrok.exe`` という実行ファイルを配置します。
+.. note:: ngrokはアカウント作成をしなくてもURLを発行できます。その時には8時間の限定的なURLが割り振られます。
 
-ngrokはアカウント作成をしなくてもURLを発行できます。その時には8時間の限定的なURLが割り振られます。
+  チュートリアルでは8時間を超える利用を想定していないのですが、後ほど継続して試したい場合は、ngrokのサービス登録をすることをおススメします。
 
-チュートリアルでは8時間を超える利用を想定していないのですが、後ほど継続して試したい場合は、ngrokのサービス登録をすることをおススメします。
+  - 登録: `ngrok - secure introspectable tunnels to localhost <https://dashboard.ngrok.com/signup>`_
 
-- 登録: `ngrok - secure introspectable tunnels to localhost <https://dashboard.ngrok.com/signup>`_
+  登録後は、``ngrok authtoken`` コマンドを使いngrokコマンドのアカウント認証を行うことで、アカウントに紐づいたサービスが利用できます。
 
-登録後は、``ngrok authtoken`` コマンドを使いngrokコマンドのアカウント認証を行うことで、アカウントに紐づいたサービスが利用できます。
-
-詳細: https://ngrok.com/docs#getting-started-authtoken
+  詳細: https://ngrok.com/docs#getting-started-authtoken
 
 GitHubアカウント作成
 --------------------------------------------------------------------------------

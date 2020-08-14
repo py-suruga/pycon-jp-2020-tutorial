@@ -36,6 +36,8 @@ Pythonはシステムにインストールされた実行環境以外の仮想�
   このチュートリアルを用意するためにPipenvを利用したので、Pipenvでの環境作成も行えます。
   このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。
 
+  `Pipenv: Python Dev Workflow for Humans — pipenv 2020.8.13.dev0 documentation <https://pipenv.pypa.io/en/latest/#install-pipenv-today>`_
+
 
 Slackアプリの作成と設定
 ================================================================================
@@ -82,7 +84,7 @@ Slack WorkSpaceはハンズオン用に新たに取得したワークスペー�
 
 ngrokコマンドを起動すると以下のような情報が表示されます。ngrokのサービスへサインアップしていない場合は外部公開のセッションは8時間の限定公開になります。
 
-.. code-block:: 
+.. code-block:: bash
 
   ngrok by @inconshreveable                                                                                                                       (Ctrl+C to quit)
                                                                                                                                                                 
@@ -107,7 +109,7 @@ SlackBotがSlackワークスペースへのやりとりをおこなうURLを生�
 Slack Event APIを使い、Slackワークスペース上に起きたイベントを、Slackbotが動作するサーバー（ここではngrokで公開しているローカル環境）へ伝えることができます。
 ここで2つの設定を行います。
 
-1. Slack Event APIが起きたイベントをサーバーに伝えるためのエンドポイントURL
+1. Slack Event APIがイベント情報を送る先となるエンドポイントURL
 2. イベントの種類
 
 Slack Event APIが起きたイベントをサーバーに伝えるためのエンドポイントURLを設定します。
@@ -136,7 +138,8 @@ Slackアプリのスコープを扱ったときに、イベントによるスコ
 
 再インストール時の認証画面を見ると、権限が追加されていることがわかります。先ほどはチャンネルにメッセージを送信するだけでしたが、それに加えてチャンネル内のメッセージを見ることができます。
 
-.. TODO:: 2020/08/07 権限追加の画像を取り直す
+
+.. image:: ./doc-img/slackbot_1-11-1.png
 
 デプロイとSlackアプリの権限の設定が終わると、Slackbotが利用できます。最後にSlackワークスペース上でbotを呼び出してみます。
 
@@ -166,7 +169,7 @@ PythonではEvents API, Web APIどちらとも対応した公式パッケージ�
 - Events API: https://github.com/slackapi/python-slack-events-api
 - Web API: https://github.com/slackapi/python-slackclient
 
-またBotはSlack側からのイベント内容をEvents API経由で随時受け取るためにAPIサーバーのような挙動を取ります。そのためslackeventsapiパッケージをインストールするとFlaskもインストールされます。
+またBotはSlack側からのイベント内容をEvents API経由で随時受け取るためにAPIサーバーのような挙動を取ります。そのためWEBフレームワークのFlaskもインストールされます。
 
 Slackbotのコード内ではFlaskのインスタンスを作成して、サーバーとして動作するようになり、Slack側にはエンドポイントURLを教えることで、botがSlackのイベントを知ることができるようになります。
 
@@ -179,7 +182,7 @@ Slackbotのコード内ではFlaskのインスタンスを作成して、サー�
     - `Real Time Messaging API | Slack <https://api.slack.com/rtm>`_
     - `必要な Slack API はどれ？ - Slack アプリの作成のためのヒント | Slack <https://api.slack.com/lang/ja-jp/which-api>`_
 
-.. note:: 先日にSlackの新しいAPIライブラリとして、 Bolt for Pythonがアルファバージョンとしてリリースされています。
+.. note:: 8/7にSlackの新しいAPIライブラリとして、 Bolt for Pythonがアルファバージョンとしてリリースされています。
     `bolt-js <https://github.com/slackapi/bolt-js>`_ というnode.jsで動作するライブラリのPythonバージョンとなります。
 
     アルファバージョンのライブラリであるためチュートリアルでは扱いませんが、最新のAPI仕様にも対応していくようなのでSlackbotを扱うときやSlackbotを作るサードパーティライブラリで使われるようになるのではと思います。
