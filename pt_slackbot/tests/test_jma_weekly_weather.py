@@ -37,4 +37,4 @@ def test_station_notfound(setup_xml_dir):
     """
     # 例えば北海道は非対応
     result = jma_weekly_weather.get_weekly_weather("北海道")
-    assert result == None
+    assert result == ""

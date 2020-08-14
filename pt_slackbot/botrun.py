@@ -62,7 +62,7 @@ def handle_message_and_botrun(event_data: dict):
             if matched_obj.groups():
                 bot_args = matched_obj.groups()[0]
             else:
-                bot_args = None
+                bot_args = ""
             bot_result = bot_module.call_function(bot_args)
 
             # botが何かしら返答をしてくれた場合はその時点で終了
