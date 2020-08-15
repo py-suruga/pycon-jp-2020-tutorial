@@ -119,12 +119,7 @@ GitHubアカウントの作成も必須としています。
 
 Python向けの拡張機能もあり、Microsoftが公開しているものやOSSで開発されているものもあります。
 
-このチュートリアル作成中に利用した拡張機能を紹介します。
-
-- `Python - Visual Studio Marketplace <https://marketplace.visualstudio.com/items?itemName=ms-python.python>`_
-- `reStructuredText - Visual Studio Marketplace <https://marketplace.visualstudio.com/items?itemName=lextudio.restructuredtext>`_
-
-Visual Studio Live Shareの設定
+VS CodeとLive Shareの設定
 ------------------------------
 
-こちらのページで追記します: :doc:`/vscode_liveshare` 
+こちらのページで追記します: :doc:`/vscode` 
