@@ -9,12 +9,14 @@ GREETING_LIST = [
 ]
 
 
-# TODO:2020-08-09 個々の引数は**argsにして自由に引数を受け取り、引数の位置で判断しよう
-def call_function(arg: str) -> str:
+def get_greeting() -> str:
     """
-    botの結果を返すfunction
-
-    挨拶をすると世界の挨拶をランダムに返す
+    挨拶をすると世界の挨拶をランダムに返します。
+    対応する挨拶一覧は GREETING_LISTから選びます。
     """
     greetword, kokki = random.choice(GREETING_LIST)
     return "{}ノアイサツデス :robot_face: 「{}」".format(kokki, greetword)
+
+
+def call_function(arg: str) -> str:
+    return get_greeting()
