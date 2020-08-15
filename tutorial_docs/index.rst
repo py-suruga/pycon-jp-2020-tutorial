@@ -35,7 +35,7 @@ PyCon JP 2020 チュートリアル Pythonの開発エコシステムを学ぼ�
    :caption: Contents:
 
    prepare
-   vscode_liveshare
+   vscode
    slackbot
    pytest
    sphinx
