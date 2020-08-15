@@ -18,6 +18,7 @@ sphinx = "*"
 bs4 = "*"
 lxml = "*"
 pytz = "*"
+sphinx-rtd-theme = "*"
 
 [requires]
 python_version = "3.7"
