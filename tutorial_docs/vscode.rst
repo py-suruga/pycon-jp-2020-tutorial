@@ -41,7 +41,7 @@ Python拡張機能にも専用の設定があり、ワークスペース内で�
 
 この設定は、いくつかのPythonパッケージの依存があります。これらはpip経由でインストール可能です。
 
-.. todo:: 
+.. todo::
 
 - `psf/black: The uncompromising Python code formatter <https://github.com/psf/black>`_
 - `PyCQA / flake8 · GitLab <https://gitlab.com/pycqa/flake8>`_
@@ -58,11 +58,35 @@ Visual Studio Live Shareは、Visual StudioやVS Codeでソースコードをリ
 
 この章ではサポートを受けたい方向けに、Live Shareのセットアップ方法を紹介します。
 
-.. todo:: 2020-08-10 ここセットアップ記述必要
-  - VS CodeとLiveshareについて解説
+
+.. todo:: 2020-08-10
   - このチュートリアルでどのように利用するかを説明
   - Liveshareが利用できるまでをステップで用意（もしくは公式のリンクのどこまでを行うかを指示する）
+
+
+LiveShare拡張のインストール
+--------------------------------------------------------------
+
+＊＊＊
+
+セッションの作成
+------------------------------------------------------------
+
+各参加者皆さんのVSCodeでLiveshareのセッションを講師とTAが参加する必要があり、その時に必要なセッションキーを教えてもらう必要があります。
+
+`セキュリティ-Visual Studio Live Share - Visual Studio Live Share | Microsoft Docs <https://docs.microsoft.com/ja-jp/visualstudio/liveshare/reference/security>`_
+
+
+.. todo:: 2020-08-10
+
   - Live Share拡張インストール
   - 拡張からアカウント登録
+
+
+チュートリアル当日の流れ
+================================
+
+.. todo:: 2020-08-10
+
   - ゲスト（この場合はレビューを行う講師、TAのこと）を呼ぶ方法
   - 当日の流れ: 当日にセッションを講師TA側に提供する
