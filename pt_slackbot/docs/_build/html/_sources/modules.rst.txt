@@ -1,5 +1,5 @@
-pt_slackbot
-===========
+pt_slackbot リファレンス
+=================================
 
 .. toctree::
    :maxdepth: 4

@@ -7,7 +7,7 @@ SlackBotの使いかた
 SlackBotは3つの機能があります。
 
 - wgreet: 世界の挨拶をランダムで返すbot
-- connpass: connpassで ``Python``, ``オンライン`` の健作結果を返すbot
+- connpass: connpassで ``Python``, ``オンライン`` の検索結果を返すbot
 - tenki: 気象庁XMLサービスから地域の週間天気予報を返すbot
 
 
