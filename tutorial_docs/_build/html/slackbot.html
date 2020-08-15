@@ -4,7 +4,7 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Slackbotの作成 &#8212; PyCon JP 2020 チュートリアル Slack Bot編 ドキュメント 2020.07.24 ドキュメント</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="検索" href="search.html" />
     <link rel="next" title="PyTestでテストケースを導入する" href="pytest.html" />
-    <link rel="prev" title="Visual Studio Live Share" href="vscode_liveshare.html" />
+    <link rel="prev" title="チュートリアル開始前の準備" href="prepare.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -37,8 +37,12 @@
   <div class="section" id="slackbot">
 <h1>Slackbotの作成<a class="headerlink" href="#slackbot" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>チュートリアルで扱うSlackbotを実装するために、開発環境やSlackのAPI利用方法を説明し、ステップを踏みながらbotを作成していきましょう。</p>
-<div class="section" id="id1">
-<h2>ローカル開発環境の用意<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">課題</p>
+<p>ローカル開発環境はprepare側に乗せたほうが説明しやすいと思う</p>
+</div>
+<div class="section" id="id2">
+<h2>ローカル開発環境の用意<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Slackbotを作成するために、Pythonの開発環境を用意します。</p>
 <p>Pythonはシステムにインストールされた実行環境以外の仮想環境を用意できます。仮想環境を作ることでシステム側の環境を汚すこと無く開発環境の構築ができます。</p>
 <p>仮想環境は以下のコマンドで作成します</p>
@@ -130,10 +134,10 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 <img alt="_images/slackbot_1-12-0.png" src="_images/slackbot_1-12-0.png" />
 <img alt="_images/slackbot_1-12-1.png" src="_images/slackbot_1-12-1.png" />
 <p>ここまででSlackBotを動作させる準備が整いました。</p>
-<div class="section" id="id2">
-<h3>SlackBotのフロー<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id3">
+<h3>SlackBotのフロー<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ここでは、SlackBotがどのようにslackワークスペースとやり取りを行うか解説します。</p>
-<div class="admonition-todo admonition" id="id3">
+<div class="admonition-todo admonition" id="id4">
 <p class="admonition-title">課題</p>
 <p>SlackBotのシステム概要を説明: どんな技術が利用されているか。ざっくりで。(pysuruga-13-handsonの資料流用）</p>
 </div>
@@ -167,8 +171,8 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 </div>
 </div>
 </div>
-<div class="section" id="id4">
-<h2>チュートリアルで実装するSlackBotについて<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id5">
+<h2>チュートリアルで実装するSlackBotについて<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>このチュートリアルでは、3つのSlackBotを実装します。人工無能な挨拶を返すbotから、APIを利用してインタラクティブな結果を返すようにします。</p>
 <div class="section" id="wgreet-bot">
 <h3>世界の挨拶をランダムで返す  <strong>wgreet</strong> bot<a class="headerlink" href="#wgreet-bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -182,7 +186,7 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 <li><p>もちろん自由に言葉を変えてもらっても良し</p></li>
 </ul>
 </div></blockquote>
-<div class="admonition-todo admonition" id="id5">
+<div class="admonition-todo admonition" id="id6">
 <p class="admonition-title">課題</p>
 <p>2020-08-13 ステップごとのコードのリンクを用意する</p>
 </div>
@@ -200,7 +204,7 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 <div class="section" id="connpass-api-connpass-bot">
 <h3>connpass APIを利用してオンラインイベントを検索する <strong>connpass</strong> bot<a class="headerlink" href="#connpass-api-connpass-bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ここではconnpassを例にイベント検索用のREST APIを使ってイベントの検索を行います。</p>
-<p>チュートリアルでは「Python」と「オンライン」というキーワードを元に健作をした結果を20件一覧に表示する機能を実装しています。</p>
+<p>チュートリアルでは「Python」と「オンライン」というキーワードを元に検索をした結果を20件一覧に表示する機能を実装しています。</p>
 <img alt="_images/slackbot_1-14.jpg" src="_images/slackbot_1-14.jpg" />
 <p>コマンドの実行方法は <code class="docutils literal notranslate"><span class="pre">connpass</span> <span class="pre">[yyyymm]</span></code> と入力します。yyyymmは年月の意味で、 <code class="docutils literal notranslate"><span class="pre">connpass</span> <span class="pre">202008</span></code> と入力すると、2020年8月に関係する、Python, オンラインをキーワードにした検索結果が表示されます。</p>
 <p>このbotの趣旨は以下になります。</p>
@@ -267,11 +271,10 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="prepare.html">チュートリアル開始前の準備</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vscode_liveshare.html">Visual Studio Live Share</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Slackbotの作成</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">ローカル開発環境の用意</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">ローカル開発環境の用意</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#slack">Slackアプリの作成と設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">チュートリアルで実装するSlackBotについて</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">チュートリアルで実装するSlackBotについて</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pytest.html">PyTestでテストケースを導入する</a></li>
@@ -282,7 +285,7 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="vscode_liveshare.html" title="前の章へ">Visual Studio Live Share</a></li>
+      <li>Previous: <a href="prepare.html" title="前の章へ">チュートリアル開始前の準備</a></li>
       <li>Next: <a href="pytest.html" title="次の章へ">PyTestでテストケースを導入する</a></li>
   </ul></li>
 </ul>
@@ -313,7 +316,7 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
       &copy;2020, Py-Suruga, Unagi-py, Hiroshi sano.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
