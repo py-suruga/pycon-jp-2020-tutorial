@@ -122,7 +122,8 @@
 </pre></div>
 </div>
 <p>生成されたhtmlは pythonの簡易httpサーバーを利用してブラウザで確認できます。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ポート指定することでhttpサーバーのポートを変更できます。今回は8080を利用しています。</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ポート指定することでhttpサーバーのポートを変更できます。今回は8080版を利用しています。</span>
+<span class="o">&gt;</span> <span class="n">cd</span> <span class="n">_build</span><span class="o">/</span><span class="n">html</span>
 <span class="o">&gt;</span> <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">http</span><span class="o">.</span><span class="n">server</span> <span class="mi">8080</span>
 </pre></div>
 </div>
@@ -132,34 +133,51 @@
 <p>ブラウザの表示した結果をだす</p>
 </div>
 </div>
-<div class="section" id="autodoc">
-<h2>autodoc拡張機能を使ったリファレンス作成<a class="headerlink" href="#autodoc" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Sphinxには、Pythonのライブラリ</p>
+<div class="section" id="autodocapi">
+<h2>autodoc拡張機能を使ったAPIリファレンス作成<a class="headerlink" href="#autodocapi" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Sphinxには、Pythonのライブラリ＊＊＊</p>
 <p><a class="reference external" href="https://www.sphinx-doc.org/ja/master/usage/extensions/autodoc.html">sphinx.ext.autodoc -- docstringからのドキュメントの取り込み — Sphinx 4.0.0+/ba0e5d0ec ドキュメント</a></p>
 <div class="section" id="docstirng">
 <h3>docstirngを書こう<a class="headerlink" href="#docstirng" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>autodocを使うためには、pythonのクラスや関数にdocstringを追加する必要があります。docstringは</p>
+<p>autodocを使うためには、pythonのクラスや関数にdocstringを追加する必要があります。</p>
+<p>docstringはPythonのクラスや関数に書き込めるドキュメントです。文字列リテラルという <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;クオーテーション三つでくくった文字列&quot;&quot;&quot;</span></code> で表現します。</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<dl class="simple">
+<dt><strong>docstring</strong></dt><dd><p>クラス、関数、モジュールの最初の式である文字列リテラルです。
+そのスイートの実行時には無視されますが、コンパイラによって識別され、そのクラス、関数、モジュールの __doc__ 属性として保存されます。
+イントロスペクションできる（訳注: 属性として参照できる）ので、オブジェクトのドキュメントを書く標準的な場所です。</p>
+</dd>
+</dl>
+<p><a class="reference external" href="https://docs.python.org/ja/3/glossary.html?highlight=docstring">https://docs.python.org/ja/3/glossary.html?highlight=docstring</a></p>
+</div>
+<p>docstringの例は以下の通りです。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hello_docstring</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    この部分に文字列を入れるとdocstringとして扱われます。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
 <div class="admonition-todo admonition" id="id6">
 <p class="admonition-title">課題</p>
-<p>docstringの説明リンク:python公式</p>
-</div>
-<p>docstringの足らない部分を書いていく</p>
-<ul>
-<li><p>挨拶bot: ランダムに天気情報を返す関数</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>type annotationの組み合わせで行う。(python3.7を必須にしたので問題ないはず）</p></li>
+<ul class="simple">
+<li><p>noteにtype annotationの組み合わせ例を書く</p></li>
 <li><p>docstringはGoogleスタイルで行うのでnapoleonの導入も必要: <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations">https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations</a></p></li>
 </ul>
-</div></blockquote>
-</li>
+</div>
+<p>botの各関数にdocstringを追加しましょう。</p>
+<ul class="simple">
+<li><p>挨拶bot: ランダムに天気情報を返す関数</p></li>
 </ul>
 <div class="admonition-todo admonition" id="id7">
 <p class="admonition-title">課題</p>
-<p>そのほかの関数は、終わりに模範解答からコピーして実行して生成された結果を見ていく
-- connpassbot: jsonの取得関数、botが答える文字列生成の関数
-- 天気bot: xml取得関数、botが答える文字列生成の関数
-- botrunのメッセージハンドル（botの登録方法を記載する）</p>
+<p>そのほかの関数は、終わりに模範解答からコピーして実行して生成された結果を見ていく</p>
+<ul class="simple">
+<li><p>connpassbot: jsonの取得関数、botが答える文字列生成の関数</p></li>
+<li><p>天気bot: xml取得関数、botが答える文字列生成の関数</p></li>
+<li><p>botrunのメッセージハンドル（botの登録方法を記載する）</p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="id8">
@@ -178,8 +196,11 @@
 <li><p>make htmlで生成しよう</p></li>
 </ul>
 </div>
-<p>実行したautodocの結果は***にあります。それをSlackBotのドキュメントの一部として組み込みます。</p>
 </div>
+</div>
+<div class="section" id="api">
+<h2>APIリファレンスが入ったドキュメントを生成する<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>実行したautodocの結果は***にあります。それをSlackBotのドキュメントの一部として組み込みます。</p>
 </div>
 <div class="section" id="id10">
 <h2>テーマを変更しよう<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -213,12 +234,14 @@
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="prepare.html">チュートリアル開始前の準備</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode.html">VSCodeとLive Shareの設定</a></li>
 <li class="toctree-l1"><a class="reference internal" href="slackbot.html">Slackbotの作成</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pytest.html">PyTestでテストケースを導入する</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Sphinx</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id1">Sphinxの始め方</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#slackbot">Slackbotのドキュメントを書こう</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#autodoc">autodoc拡張機能を使ったリファレンス作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#autodocapi">autodoc拡張機能を使ったAPIリファレンス作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api">APIリファレンスが入ったドキュメントを生成する</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id10">テーマを変更しよう</a></li>
 </ul>
 </li>

@@ -97,17 +97,18 @@ Slackbotのドキュメントを書こう
 
 ::
 
-    # ポート指定することでhttpサーバーのポートを変更できます。今回は8080を利用しています。
+    # ポート指定することでhttpサーバーのポートを変更できます。今回は8080版を利用しています。
+    > cd _build/html
     > python -m http.server 8080
 
 Windows 10の場合は、ファイヤーウォールの許可が表示されるので、適切な設定をしたうえで許可をしてください。（プライベートネットワークのみにすることをオススメします）
 
 .. todo:: ブラウザの表示した結果をだす
 
-autodoc拡張機能を使ったリファレンス作成
+autodoc拡張機能を使ったAPIリファレンス作成
 ==============================================================================================
 
-Sphinxには、Pythonのライブラリ
+Sphinxには、Pythonのライブラリ＊＊＊
 
 `sphinx.ext.autodoc -- docstringからのドキュメントの取り込み — Sphinx 4.0.0+/ba0e5d0ec ドキュメント <https://www.sphinx-doc.org/ja/master/usage/extensions/autodoc.html>`_
 
@@ -115,18 +116,41 @@ Sphinxには、Pythonのライブラリ
 docstirngを書こう
 ---------------------------
 
-autodocを使うためには、pythonのクラスや関数にdocstringを追加する必要があります。docstringは
+autodocを使うためには、pythonのクラスや関数にdocstringを追加する必要があります。
 
-.. todo:: docstringの説明リンク:python公式
+docstringはPythonのクラスや関数に書き込めるドキュメントです。文字列リテラルという ``"""クオーテーション三つでくくった文字列"""`` で表現します。
 
-docstringの足らない部分を書いていく
+.. note:: 
+    **docstring**
+        クラス、関数、モジュールの最初の式である文字列リテラルです。
+        そのスイートの実行時には無視されますが、コンパイラによって識別され、そのクラス、関数、モジュールの __doc__ 属性として保存されます。
+        イントロスペクションできる（訳注: 属性として参照できる）ので、オブジェクトのドキュメントを書く標準的な場所です。
+
+    https://docs.python.org/ja/3/glossary.html?highlight=docstring
+
+
+docstringの例は以下の通りです。
+
+.. code-block:: python
+
+    def hello_docstring():
+        """
+        この部分に文字列を入れるとdocstringとして扱われます。
+        """
+        pass
+
+.. todo:: 
+
+    - noteにtype annotationの組み合わせ例を書く
+    - docstringはGoogleスタイルで行うのでnapoleonの導入も必要: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations
+
+botの各関数にdocstringを追加しましょう。
 
 - 挨拶bot: ランダムに天気情報を返す関数
 
-    - type annotationの組み合わせで行う。(python3.7を必須にしたので問題ないはず）
-    - docstringはGoogleスタイルで行うのでnapoleonの導入も必要: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations
 
 .. todo:: そのほかの関数は、終わりに模範解答からコピーして実行して生成された結果を見ていく
+    
     - connpassbot: jsonの取得関数、botが答える文字列生成の関数
     - 天気bot: xml取得関数、botが答える文字列生成の関数
     - botrunのメッセージハンドル（botの登録方法を記載する）
@@ -146,6 +170,9 @@ docstringの用意と設定を変更したので、autodocを使ってリファ�
 .. todo::
     - sphinx-apidocでapidocのひな形を作成
     - make htmlで生成しよう
+
+APIリファレンスが入ったドキュメントを生成する
+======================================================================
 
 実行したautodocの結果は***にあります。それをSlackBotのドキュメントの一部として組み込みます。
 
