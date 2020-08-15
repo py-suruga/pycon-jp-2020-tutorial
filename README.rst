@@ -35,7 +35,7 @@ PyCon JP 2020 チュートリアル「Pythonの開発エコシステムを学ぼ
 
 .. image:: https://readthedocs.org/projects/pycon-jp-2020-tutorial-slackbot/badge/?version=latest
 
-:target: https://pycon-jp-2020-tutorial-slackbot.readthedocs.io/en/latest/?badge=latest
+:target: https://pycon-jp-2020-tutorial-slackbot.readthedocs.io/ja/latest/?badge=latest
 :alt: Documentation Status
 
 資料の内容
