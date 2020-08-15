@@ -17,7 +17,7 @@
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="検索" href="search.html" />
     <link rel="next" title="botrun module" href="botrun.html" />
-    <link rel="prev" title="pt_slackbot" href="modules.html" />
+    <link rel="prev" title="pt_slackbot リファレンス" href="modules.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -44,20 +44,27 @@
 <dl class="py function">
 <dt id="botfunc.jma_weekly_weather.call_function">
 <code class="sig-prename descclassname">botfunc.jma_weekly_weather.</code><code class="sig-name descname">call_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arg</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#botfunc.jma_weekly_weather.call_function" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>botの結果を返すfunction</p>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="py function">
 <dt id="botfunc.jma_weekly_weather.get_jma_xml_files">
 <code class="sig-prename descclassname">botfunc.jma_weekly_weather.</code><code class="sig-name descname">get_jma_xml_files</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#botfunc.jma_weekly_weather.get_jma_xml_files" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>気象庁の府県週間天気予報の電文XMLファイルを取得します。
-すでに取得済みで、取得日が現在の日付より12時間前の場合は取得はされません</p>
+すでに取得済みで、取得日が現在の日付より12時間前の場合は取得はされません。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="botfunc.jma_weekly_weather.get_weekly_weather">
 <code class="sig-prename descclassname">botfunc.jma_weekly_weather.</code><code class="sig-name descname">get_weekly_weather</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">station_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#botfunc.jma_weekly_weather.get_weekly_weather" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>天気予報の結果を取得する</p>
+<dd><dl class="field-list simple">
+<dt class="field-odd">パラメータ</dt>
+<dd class="field-odd"><p><strong>station_name</strong> -- KISYODAI_STATION_MAPSにある地域名</p>
+</dd>
+<dt class="field-even">戻り値</dt>
+<dd class="field-even"><p>botに渡す文字列を返します</p>
+</dd>
+</dl>
+<p>station_nameで指定した地域名を元に、ダウンロード済みの気象庁週間予報XMLファイルをパースして、週間予報の結果を返します。</p>
 </dd></dl>
 
 </div>
@@ -66,21 +73,35 @@
 <dl class="py function">
 <dt id="botfunc.search_connpass_online.call_function">
 <code class="sig-prename descclassname">botfunc.search_connpass_online.</code><code class="sig-name descname">call_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arg</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#botfunc.search_connpass_online.call_function" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>botの結果を返すfunction</p>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="py function">
 <dt id="botfunc.search_connpass_online.request_connpass_api">
-<code class="sig-prename descclassname">botfunc.search_connpass_online.</code><code class="sig-name descname">request_connpass_api</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ym</span></em><span class="sig-paren">)</span><a class="headerlink" href="#botfunc.search_connpass_online.request_connpass_api" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>connpass APIへのリクエストを行う。
-connpassで、&quot;Python&quot;に関係する&quot;オンライン&quot;イベントを検索する。
-年月を指定して、その年月から関係するイベントから先頭20件を取得する</p>
+<code class="sig-prename descclassname">botfunc.search_connpass_online.</code><code class="sig-name descname">request_connpass_api</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ym</span></em><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#botfunc.search_connpass_online.request_connpass_api" title="この定義へのパーマリンク">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">パラメータ</dt>
+<dd class="field-odd"><p><strong>ym</strong> -- connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す</p>
+</dd>
+<dt class="field-even">戻り値</dt>
+<dd class="field-even"><p>connpass APIのレスポンスであるjsonをパースした辞書オブジェクト</p>
+</dd>
+</dl>
+<p>connpass APIへのリクエストを扱います。
+connpassで、&quot;Python&quot;、&quot;オンライン&quot; をキーワードとして扱い、年月から関係するイベントから先頭20件を取得しています。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="botfunc.search_connpass_online.search_online_event">
 <code class="sig-prename descclassname">botfunc.search_connpass_online.</code><code class="sig-name descname">search_online_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ym</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#botfunc.search_connpass_online.search_online_event" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>request_connpass_apiで受け取った結果をbotの戻り文字列として生成する</p>
+<dd><dl class="field-list simple">
+<dt class="field-odd">パラメータ</dt>
+<dd class="field-odd"><p><strong>ym</strong> -- connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す</p>
+</dd>
+<dt class="field-even">戻り値</dt>
+<dd class="field-even"><p>botに渡す文字列を返します</p>
+</dd>
+</dl>
+<p>request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します</p>
 </dd></dl>
 
 </div>
@@ -89,8 +110,18 @@ connpassで、&quot;Python&quot;に関係する&quot;オンライン&quot;イベ
 <dl class="py function">
 <dt id="botfunc.world_greeting.call_function">
 <code class="sig-prename descclassname">botfunc.world_greeting.</code><code class="sig-name descname">call_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arg</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#botfunc.world_greeting.call_function" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>botの結果を返すfunction</p>
-<p>挨拶をすると世界の挨拶をランダムに返す</p>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="botfunc.world_greeting.get_greeting">
+<code class="sig-prename descclassname">botfunc.world_greeting.</code><code class="sig-name descname">get_greeting</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#botfunc.world_greeting.get_greeting" title="この定義へのパーマリンク">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">戻り値</dt>
+<dd class="field-odd"><p>botに渡す文字列を返します</p>
+</dd>
+</dl>
+<p>挨拶をすると世界の挨拶をランダムに返します。</p>
+<p>対応する挨拶一覧は GREETING_LISTから選びます。</p>
 </dd></dl>
 
 </div>
@@ -119,7 +150,7 @@ connpassで、&quot;Python&quot;に関係する&quot;オンライン&quot;イベ
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="slackbot_usage.html">SlackBotの使いかた</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pt_slackbot</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pt_slackbot リファレンス</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">botfunc package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="botrun.html">botrun module</a></li>
 </ul>
@@ -130,8 +161,8 @@ connpassで、&quot;Python&quot;に関係する&quot;オンライン&quot;イベ
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-  <li><a href="modules.html">pt_slackbot</a><ul>
-      <li>Previous: <a href="modules.html" title="前の章へ">pt_slackbot</a></li>
+  <li><a href="modules.html">pt_slackbot リファレンス</a><ul>
+      <li>Previous: <a href="modules.html" title="前の章へ">pt_slackbot リファレンス</a></li>
       <li>Next: <a href="botrun.html" title="次の章へ">botrun module</a></li>
   </ul></li>
   </ul></li>
