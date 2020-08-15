@@ -10,7 +10,6 @@ from slackeventsapi import SlackEventAdapter
 from botfunc import world_greeting, search_connpass_online, jma_weekly_weather
 
 
-# TODO:2020-08-08 これをnamedtuple or dataclassesにするほうがいいかな？
 BOT_FUNCTIONS = [
     (r"^wgreet", world_greeting),
     (r"^connpassonline\s(\d{6})", search_connpass_online),
@@ -37,7 +36,8 @@ def handle_message_and_botrun(event_data: dict):
     Slack Events APIのイベントをハンドリングし、botを実行します。
     各botは botfuncモジュールに同梱し、 ``call_function`` 関数を実装する必要があります。
     """
-    print("debug: eventdata:{}".format(event_data))
+    # print("debug: eventdata:{}".format(event_data))
+
     message = event_data["event"]
 
     # subtypeがない場合=普通のメッセージ かつ botの返答メッセージはスルーする
@@ -48,13 +48,13 @@ def handle_message_and_botrun(event_data: dict):
 
         # botとして動作させるワードパターンを元にモジュールの決めてある関数を実行する
         for bot_pattern, bot_module in BOT_FUNCTIONS:
-            print("debug: try matching bot:{}".format(bot_module))
+            # print("debug: try matching bot:{}".format(bot_module))
 
             matched_obj = re.match(bot_pattern, message.get("text"))
             if not matched_obj:
                 continue
 
-            print("info: matched_obj -> bot!:{}".format(bot_module))
+            print("info: found bot!:{}".format(bot_module))
 
             # TODO:2020-08-10 この部分は引数を複数取得できる方が理にかなってると思う->**argas
             # チュートリアルでは文字列だけ受け取る
