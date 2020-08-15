@@ -75,7 +75,7 @@ KISYODAI_STATION_MAPS = {
 def get_jma_xml_files():
     """
     気象庁の府県週間天気予報の電文XMLファイルを取得します。
-    すでに取得済みで、取得日が現在の日付より12時間前の場合は取得はされません
+    すでに取得済みで、取得日が現在の日付より12時間前の場合は取得はされません。
     """
     # xml保存のパスとディレクトリ生成を強制: ディレクトリ存在が面倒なのでこうしてるけど、Winで問題あったら変える
     JMA_WEEKLY_XMLFILESS_DIR.mkdir(exist_ok=True)
@@ -138,7 +138,15 @@ def get_jma_xml_files():
 
 def get_weekly_weather(station_name: str) -> str:
     """
-    天気予報の結果を取得する
+    
+    Args:
+        station_name: KISYODAI_STATION_MAPSにある地域名
+
+    Returns:
+        botに渡す文字列を返します
+
+    station_nameで指定した地域名を元に、ダウンロード済みの気象庁週間予報XMLファイルをパースして、週間予報の結果を返します。
+
     """
     # KISYODAI_STATION_MAPSをループして、該当の地域かをチェック
     weekly_weather_xml_soup = None
@@ -157,9 +165,7 @@ def get_weekly_weather(station_name: str) -> str:
     # 該当した場合は、気象台の情報をもとに、気象台のxmlを開いて予報を取得
     kuiki_yohou = weekly_weather_xml_soup.find("MeteorologicalInfos", type="区域予報")
 
-    # 天気を表示
-
-    # 時間とセット
+    # 日付と予報をそれぞれ検索
     daylist = kuiki_yohou.TimeSeriesInfo.find_all("TimeDefine")
     weatherlist = kuiki_yohou.find_all("jmx_eb:Weather")
 
@@ -187,14 +193,8 @@ def get_weekly_weather(station_name: str) -> str:
 
 
 def call_function(arg: str) -> str:
-    """
-    botの結果を返すfunction
-    """
+
     # 気象庁の週間天気予報電文XMLをDL
     get_jma_xml_files()
 
-    result = get_weekly_weather(arg)
-
-    if result is None:
-        return None
-    return result
+    return get_weekly_weather(arg)

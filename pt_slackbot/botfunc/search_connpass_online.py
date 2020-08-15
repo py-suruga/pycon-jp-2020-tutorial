@@ -4,11 +4,17 @@ import copy
 import requests
 
 
-def request_connpass_api(ym):
+def request_connpass_api(ym) -> dict:
     """
-    connpass APIへのリクエストを行う。
-    connpassで、"Python"に関係する"オンライン"イベントを検索する。
-    年月を指定して、その年月から関係するイベントから先頭20件を取得する
+
+    Args:
+        ym: connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す
+
+    Returns:
+        connpass APIのレスポンスであるjsonをパースした辞書オブジェクト
+
+    connpass APIへのリクエストを扱います。
+    connpassで、"Python"、"オンライン" をキーワードとして扱い、年月から関係するイベントから先頭20件を取得しています。
     """
     api_url = "https://connpass.com/api/v1/event/"
     keywords = ["オンライン", "Python"]
@@ -24,12 +30,19 @@ def request_connpass_api(ym):
 
 def search_online_event(ym: str) -> str:
     """
-    request_connpass_apiで受け取った結果をbotの戻り文字列として生成する
+
+    Args:
+        ym: connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す
+
+    Returns:
+        botに渡す文字列を返します
+
+    request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します
     """
 
     # jsonをパースする
     result = request_connpass_api(ym)
-    events: list = copy.copy(result["events"])
+    events = copy.copy(result["events"])
 
     # 結果が無い場合は空文字を返す
     if not events:
@@ -54,7 +67,4 @@ def search_online_event(ym: str) -> str:
 
 
 def call_function(arg: str) -> str:
-    """
-    botの結果を返すfunction
-    """
     return search_online_event(arg)

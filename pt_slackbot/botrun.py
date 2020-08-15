@@ -33,6 +33,7 @@ def handle_message_and_botrun(event_data: dict):
     """
     args:
         event_data: SlackEventAdapterから取得するSlackのイベント情報
+
     Slack Events APIのイベントをハンドリングし、botを実行します。
     各botは botfuncモジュールに同梱し、 ``call_function`` 関数を実装する必要があります。
     """
