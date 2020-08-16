@@ -70,7 +70,7 @@ LiveShare拡張のインストール
 セッションの作成
 ------------------------------------------------------------
 
-各参加者皆さんのVSCodeでLiveshareのセッションを講師とTAが参加する必要があり、その時に必要なセッションキーを教えてもらう必要があります。
+各参加者皆さんのVSCodeでLiveshareのセッションを講師とTAが参加する必要があり、その時に必要な招待URLを教えてもらう必要があります。
 
 `セキュリティ-Visual Studio Live Share - Visual Studio Live Share | Microsoft Docs <https://docs.microsoft.com/ja-jp/visualstudio/liveshare/reference/security>`_
 
