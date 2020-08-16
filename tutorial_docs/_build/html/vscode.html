@@ -67,29 +67,55 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>この設定は、いくつかのPythonパッケージの依存があります。これらはpip経由でインストール可能です。</p>
+<p>この設定は、いくつかのPythonパッケージの依存があります。これらはpip経由でインストール可能で、「prepare」の仮想環境作成時にインストールされます。</p>
+<div class="admonition-todo admonition" id="id4">
+<p class="admonition-title">課題</p>
+<p>環境構築のpipインストール部分のリンクを作成する</p>
+</div>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/psf/black">psf/black: The uncompromising Python code formatter</a></p></li>
 <li><p><a class="reference external" href="https://gitlab.com/pycqa/flake8">PyCQA / flake8 · GitLab</a></p></li>
 </ul>
 </div>
 <div class="section" id="live-share">
-<h2>Live Share<a class="headerlink" href="#live-share" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>Live Shareによるチュートリアルサポート<a class="headerlink" href="#live-share" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Visual Studio Live Shareは、Visual StudioやVS Codeでソースコードをリアルタイムに複数人で共有、編集しデバッグをすることが出来ます</p>
 <p><a class="reference external" href="https://docs.microsoft.com/ja-jp/visualstudio/liveshare/">概要 - Visual Studio Live Share - Visual Studio Live Share | Microsoft Docs</a></p>
-<p>このチュートリアルでは、各参加者のVS Codeの状況を講師, TAがリアルタイムでコードのデバッグを手助けできます。</p>
+<p>チュートリアルでは、各参加者のVS Codeの状況を講師, TAがリアルタイムでコードのデバッグを手助けできます。</p>
 <p>この章ではサポートを受けたい方向けに、Live Shareのセットアップ方法を紹介します。</p>
-<div class="admonition-todo admonition" id="id4">
-<p class="admonition-title">課題</p>
-<p>2020-08-10 ここセットアップ記述必要
-- VS CodeとLiveshareについて解説
-- このチュートリアルでどのように利用するかを説明
-- Liveshareが利用できるまでをステップで用意（もしくは公式のリンクのどこまでを行うかを指示する）
-- Live Share拡張インストール
-- 拡張からアカウント登録
-- ゲスト（この場合はレビューを行う講師、TAのこと）を呼ぶ方法
-- 当日の流れ: 当日にセッションを講師TA側に提供する</p>
+<p>Live Shareは参加者のVS Codeの状況を講師、TAがリアルタイムで見ることができ、操作して共同で作業が可能です。</p>
+<div class="section" id="liveshare">
+<h3>LiveShare拡張のインストール<a class="headerlink" href="#liveshare" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ストアからインストール出来ます。</p>
+<p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare">Live Share - Visual Studio Marketplace</a></p>
 </div>
+<div class="section" id="id5">
+<h3>セッションの作成<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>各参加者皆さんのVSCodeでLiveshareのセッションを講師とTAが参加する必要があり、その時に必要な招待URLを教えてもらう必要があります。</p>
+<p><a class="reference external" href="https://docs.microsoft.com/ja-jp/visualstudio/liveshare/reference/security">セキュリティ-Visual Studio Live Share - Visual Studio Live Share | Microsoft Docs</a></p>
+<p>インストールすると、自動的にWelcomeタブが表示されますが閉じてもらって構いません</p>
+<p>ウィンドウ↓の Live Shareマークをクリックして、GitHubアカウントでログインします。</p>
+<img alt="_images/vscode_1.png" src="_images/vscode_1.png" />
+<img alt="_images/vscode_2.png" src="_images/vscode_2.png" />
+<p>その後自動的にコラボレーションセッションがスタートします。自動的にクリップボードに招待リンク（URL）がコピーされるので控えてください。</p>
+<img alt="_images/vscode_3.png" src="_images/vscode_3.png" />
+<p>最後に講師にURLを伝えてください。伝え方はチュートリアル当日に方法をお伝えします。</p>
+<p>URLをブラウザで開くとこのようにブラウザでの参加方法が表示されます。</p>
+<img alt="_images/vscode_4.png" src="_images/vscode_4.png" />
+<div class="admonition-todo admonition" id="id7">
+<p class="admonition-title">課題</p>
+<p>2020-08-16</p>
+<ul class="simple">
+<li><p>コラボレーションセッションスタート時にRead-Onlyにして、そのあとに書き込み許可できるか調べてみる</p></li>
+<li><p>招待リンクの有効期限、コラボレーションセッションがどのぐらいの時間まで有効かを調べる</p></li>
+<li><p>（招待リンクは何度も参加可能かを調べる）</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>チュートリアル当日の流れ<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>当日は 8/30 9:30 から環境構築の相談時間を設けます。その時に「セッションの作成」の作業をしてもらい、コラボレーションの招待リンクを伝えてください。</p>
 </div>
 </div>
 
@@ -117,12 +143,13 @@
 <li class="toctree-l2"><a class="reference internal" href="#vs-code">VS Codeの設定</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id1">利用する拡張機能</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id2">ワークスペースの設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#live-share">Live Share</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#live-share">Live Shareによるチュートリアルサポート</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">チュートリアル当日の流れ</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="slackbot.html">Slackbotの作成</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pytest.html">PyTestでテストケースを導入する</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx.html">Sphinxでドキュメントを書こう</a></li>
 </ul>
 
 <div class="relations">
