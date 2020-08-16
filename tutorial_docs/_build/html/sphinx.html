@@ -4,8 +4,8 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sphinx &#8212; PyCon JP 2020 チュートリアル Slack Bot編 ドキュメント 2020.07.24 ドキュメント</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sphinxでドキュメントを書こう &#8212; PyCon JP 2020 チュートリアル Slack Bot編 ドキュメント 2020.07.24 ドキュメント</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -34,7 +34,7 @@
           <div class="body" role="main">
             
   <div class="section" id="sphinx">
-<h1>Sphinx<a class="headerlink" href="#sphinx" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1>Sphinxでドキュメントを書こう<a class="headerlink" href="#sphinx" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>SphinxはPythonの公式ドキュメントやサードパーティライブラリ、またほかの言語や書籍にも利用されるドキュメンテーションツールです。</p>
 <p>公式サイト: <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Overview — Sphinx 4.0.0+ documentation</a></p>
 <p>日本語版の公式サイト: <a class="reference external" href="https://www.sphinx-doc.org/ja/master/">概要 — Sphinx 4.0.0+/ba0e5d0ec ドキュメント</a></p>
@@ -54,43 +54,43 @@
 </pre></div>
 </div>
 <p>Sphinxはドキュメントを作成するひな形の環境を用意する <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> コマンドがあります。こちらを利用してひな形を作りましょう</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span><span class="p">)</span> <span class="n">PS</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">pt_slackbot</span><span class="o">&gt;</span> <span class="n">sphinx</span><span class="o">-</span><span class="n">quickstart</span><span class="o">.</span><span class="n">exe</span> <span class="o">.</span>\<span class="n">docs</span>\
-<span class="n">Welcome</span> <span class="n">to</span> <span class="n">the</span> <span class="n">Sphinx</span> <span class="mf">3.1</span><span class="o">.</span><span class="mi">2</span> <span class="n">quickstart</span> <span class="n">utility</span><span class="o">.</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot&gt; sphinx-quickstart.exe .\docs\
+Welcome to the Sphinx 3.1.2 quickstart utility.
 
-<span class="n">Please</span> <span class="n">enter</span> <span class="n">values</span> <span class="k">for</span> <span class="n">the</span> <span class="n">following</span> <span class="n">settings</span> <span class="p">(</span><span class="n">just</span> <span class="n">press</span> <span class="n">Enter</span> <span class="n">to</span>
-<span class="n">accept</span> <span class="n">a</span> <span class="n">default</span> <span class="n">value</span><span class="p">,</span> <span class="k">if</span> <span class="n">one</span> <span class="ow">is</span> <span class="n">given</span> <span class="ow">in</span> <span class="n">brackets</span><span class="p">)</span><span class="o">.</span>
+Please enter values for the following settings (just press Enter to
+accept a default value, if one is given in brackets).
 
-<span class="n">Selected</span> <span class="n">root</span> <span class="n">path</span><span class="p">:</span> <span class="o">.</span>\<span class="n">docs</span>\
+Selected root path: .\docs\
 
-<span class="n">You</span> <span class="n">have</span> <span class="n">two</span> <span class="n">options</span> <span class="k">for</span> <span class="n">placing</span> <span class="n">the</span> <span class="n">build</span> <span class="n">directory</span> <span class="k">for</span> <span class="n">Sphinx</span> <span class="n">output</span><span class="o">.</span>
-<span class="n">Either</span><span class="p">,</span> <span class="n">you</span> <span class="n">use</span> <span class="n">a</span> <span class="n">directory</span> <span class="s2">&quot;_build&quot;</span> <span class="n">within</span> <span class="n">the</span> <span class="n">root</span> <span class="n">path</span><span class="p">,</span> <span class="ow">or</span> <span class="n">you</span> <span class="n">separate</span>
-<span class="s2">&quot;source&quot;</span> <span class="ow">and</span> <span class="s2">&quot;build&quot;</span> <span class="n">directories</span> <span class="n">within</span> <span class="n">the</span> <span class="n">root</span> <span class="n">path</span><span class="o">.</span>
-<span class="o">&gt;</span> <span class="n">Separate</span> <span class="n">source</span> <span class="ow">and</span> <span class="n">build</span> <span class="n">directories</span> <span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="p">[</span><span class="n">n</span><span class="p">]:</span> <span class="n">n</span>
+You have two options for placing the build directory for Sphinx output.
+Either, you use a directory &quot;_build&quot; within the root path, or you separate
+&quot;source&quot; and &quot;build&quot; directories within the root path.
+&gt; Separate source and build directories (y/n) [n]: n
 
-<span class="n">The</span> <span class="n">project</span> <span class="n">name</span> <span class="n">will</span> <span class="n">occur</span> <span class="ow">in</span> <span class="n">several</span> <span class="n">places</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">built</span> <span class="n">documentation</span><span class="o">.</span>
-<span class="o">&gt;</span> <span class="n">Project</span> <span class="n">name</span><span class="p">:</span> <span class="n">pt_slackbot</span> <span class="n">ドキュメント</span>
-<span class="o">&gt;</span> <span class="n">Author</span> <span class="n">name</span><span class="p">(</span><span class="n">s</span><span class="p">):</span> <span class="n">Hiroshi</span> <span class="n">Sano</span>
-<span class="o">&gt;</span> <span class="n">Project</span> <span class="n">release</span> <span class="p">[]:</span> <span class="mf">2020.07</span><span class="o">.</span><span class="mi">24</span>
+The project name will occur in several places in the built documentation.
+&gt; Project name: pt_slackbot ドキュメント
+&gt; Author name(s): Hiroshi Sano
+&gt; Project release []: 2020.07.24
 
-<span class="n">If</span> <span class="n">the</span> <span class="n">documents</span> <span class="n">are</span> <span class="n">to</span> <span class="n">be</span> <span class="n">written</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">language</span> <span class="n">other</span> <span class="n">than</span> <span class="n">English</span><span class="p">,</span>
-<span class="n">you</span> <span class="n">can</span> <span class="n">select</span> <span class="n">a</span> <span class="n">language</span> <span class="n">here</span> <span class="n">by</span> <span class="n">its</span> <span class="n">language</span> <span class="n">code</span><span class="o">.</span> <span class="n">Sphinx</span> <span class="n">will</span> <span class="n">then</span>
-<span class="n">translate</span> <span class="n">text</span> <span class="n">that</span> <span class="n">it</span> <span class="n">generates</span> <span class="n">into</span> <span class="n">that</span> <span class="n">language</span><span class="o">.</span>
+If the documents are to be written in a language other than English,
+you can select a language here by its language code. Sphinx will then
+translate text that it generates into that language.
 
-<span class="n">For</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">supported</span> <span class="n">codes</span><span class="p">,</span> <span class="n">see</span>
-<span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">sphinx</span><span class="o">-</span><span class="n">doc</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">en</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">usage</span><span class="o">/</span><span class="n">configuration</span><span class="o">.</span><span class="n">html</span><span class="c1">#confval-language.</span>
-<span class="o">&gt;</span> <span class="n">Project</span> <span class="n">language</span> <span class="p">[</span><span class="n">en</span><span class="p">]:</span> <span class="n">ja</span>
+For a list of supported codes, see
+https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-language.
+&gt; Project language [en]: ja
 
-<span class="n">Creating</span> <span class="n">file</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">pt_slackboCreating</span> <span class="n">file</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">pt_slackboCreating</span> <span class="n">file</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">pt_slackbot</span>\<span class="n">docs</span>\<span class="n">Makefile</span><span class="o">.</span>
-<span class="n">Creating</span> <span class="n">file</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">pt_slackbot</span>\<span class="n">docs</span>\<span class="n">make</span><span class="o">.</span><span class="n">bat</span><span class="o">.</span>
+Creating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackboCreating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackboCreating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot\docs\Makefile.
+Creating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot\docs\make.bat.
 
-<span class="n">Finished</span><span class="p">:</span> <span class="n">An</span> <span class="n">initial</span> <span class="n">directory</span> <span class="n">structure</span> <span class="n">has</span> <span class="n">been</span> <span class="n">created</span><span class="o">.</span>
+Finished: An initial directory structure has been created.
 
-<span class="n">You</span> <span class="n">should</span> <span class="n">now</span> <span class="n">populate</span> <span class="n">your</span> <span class="n">master</span> <span class="n">file</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">pt_slackbot</span>\<span class="n">docs</span>\<span class="n">index</span><span class="o">.</span><span class="n">rst</span> <span class="ow">and</span> <span class="n">create</span> <span class="n">other</span> <span class="n">documentation</span>
-<span class="n">source</span> <span class="n">files</span><span class="o">.</span> <span class="n">Use</span> <span class="n">the</span> <span class="n">Makefile</span> <span class="n">to</span> <span class="n">build</span> <span class="n">the</span> <span class="n">docs</span><span class="p">,</span> <span class="n">like</span> <span class="n">so</span><span class="p">:</span>
-<span class="n">make</span> <span class="n">builder</span>
-<span class="n">where</span> <span class="s2">&quot;builder&quot;</span> <span class="ow">is</span> <span class="n">one</span> <span class="n">of</span> <span class="n">the</span> <span class="n">supported</span> <span class="n">builders</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="n">html</span><span class="p">,</span> <span class="n">latex</span> <span class="ow">or</span> <span class="n">linkcheck</span><span class="o">.</span>
+You should now populate your master file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot\docs\index.rst and create other documentation
+source files. Use the Makefile to build the docs, like so:
+make builder
+where &quot;builder&quot; is one of the supported builders, e.g. html, latex or linkcheck.
 
-<span class="p">(</span><span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span><span class="p">)</span> <span class="n">PS</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">pt_slackbot</span><span class="o">&gt;</span> <span class="n">cd</span> <span class="o">.</span>\<span class="n">docs</span>\
+(pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot&gt; cd .\docs\
 </pre></div>
 </div>
 <ul class="simple">
@@ -111,18 +111,46 @@
 <div class="section" id="id3">
 <h3>Sphinxはじめの一歩<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>いくつかの記法を利用して index.rstファイルに試しに書いてみましょう。</p>
-<div class="admonition-todo admonition" id="id4">
-<p class="admonition-title">課題</p>
-<p>rstの小さいチートシートをここに記載する</p>
-<ul class="simple">
-<li><p>見出し</p></li>
-<li><p>リンク</p></li>
-<li><p>リスト</p></li>
-<li><p>コードブロック</p></li>
-<li><p>画像挿入</p></li>
-</ul>
+<div class="section" id="id4">
+<h4>見出し<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>見出し1
+==========
+
+見出し2
+----------
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h4>リンク<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>`Title &lt;http://link&gt;`_
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h4>リスト<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- 箇条書きは 「-」
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h4>画像<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. image:: path
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h4>コードブロック<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. code-block:: python
+
+    &gt;&gt;&gt;print(&quot;hello Sphinx!!&quot;)
+</pre></div>
 </div>
 <p>そのほかの記法 : <a class="reference external" href="https://quick-restructuredtext.readthedocs.io/en/latest/">早わかり reStructuredText — Quick reStructuredText 0.1 documentation</a></p>
+</div>
+</div>
+<div class="section" id="id9">
+<h3>ドキュメントの生成<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ドキュメントをhtmlで生成する場合は <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> コマンドが生成したmakeファイルを使うと簡単に生成できます。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#win10ならmake.bat</span>
 <span class="o">&gt;</span> <span class="n">make</span><span class="o">.</span><span class="n">bat</span> <span class="n">html</span>
@@ -138,15 +166,15 @@
 </pre></div>
 </div>
 <p>Windows 10の場合は、ファイヤーウォールの許可が表示されるので、適切な設定をしたうえで許可をしてください。（プライベートネットワークのみにすることをオススメします）</p>
-<div class="admonition-todo admonition" id="id5">
+<div class="admonition-todo admonition" id="id10">
 <p class="admonition-title">課題</p>
 <p>ブラウザの表示した結果をだす</p>
 </div>
 </div>
-<div class="section" id="id6">
-<h3>Slackbotの説明文を書いてみよう<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id11">
+<h3>Slackbotの説明文を書いてみよう<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>このチュートリアルで作成しているSlackbotの使い方をドキュメントとして書いてみましょう。</p>
-<div class="admonition-todo admonition" id="id7">
+<div class="admonition-todo admonition" id="id12">
 <p class="admonition-title">課題</p>
 <p>この章では、tutorial_docsにある文章や画像をコピペして作成してみる。
 入力の手間を減らしたり、ビルド時の失敗をある程度減らす狙いがある</p>
@@ -206,7 +234,7 @@
 <li><p>connpassbot: jsonの取得関数、botが答える文字列生成の関数</p></li>
 </ul>
 <p>docstringは基本的</p>
-<div class="admonition-todo admonition" id="id8">
+<div class="admonition-todo admonition" id="id13">
 <p class="admonition-title">課題</p>
 <p>そのほかの関数は、終わりに模範解答からコピーして実行して生成された結果を見ていく</p>
 <ul class="simple">
@@ -214,7 +242,7 @@
 <li><p>botrunのメッセージハンドル（botの登録方法を記載する）</p></li>
 </ul>
 </div>
-<div class="admonition-todo admonition" id="id9">
+<div class="admonition-todo admonition" id="id14">
 <p class="admonition-title">課題</p>
 <ul class="simple">
 <li><p>noteにtype annotationの組み合わせ例を書く</p></li>
@@ -222,8 +250,8 @@
 </ul>
 </div>
 </div>
-<div class="section" id="id10">
-<h3>Sphinxの設定<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id15">
+<h3>Sphinxの設定<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>autodoc拡張機能はSphinxの設定で有効にする必要があります。Sphinxの設定は sphinx-quickstart コマンドで作成したひな形にあるconf.pyを変更します。</p>
 <ul class="simple">
 <li><p>apidocの設定(conf.pyでextentionsやsys.pathにpythonのモジュールパスを入れる）</p></li>
@@ -232,7 +260,7 @@
 <div class="section" id="autodoc-sphinx-apidoc">
 <h3>autodocで半自動的にリファレンスを作成する: sphinx-apidocコマンド<a class="headerlink" href="#autodoc-sphinx-apidoc" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>docstringの用意と設定を変更したので、autodocを使ってリファレンスを生成してみましょう。</p>
-<div class="admonition-todo admonition" id="id11">
+<div class="admonition-todo admonition" id="id16">
 <p class="admonition-title">課題</p>
 <ul class="simple">
 <li><p>sphinx-apidocでapidocのひな形を作成</p></li>
@@ -243,14 +271,14 @@
 <div class="section" id="api">
 <h3>APIリファレンスが入ったドキュメントを生成する<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>sphinx-autodocコマンドでbotの関数にあるdocstringを含むリファレンスを作成しました。最後にsphinxのビルドを行いリファレンスを含むドキュメントを生成しましょう。</p>
-<div class="admonition-todo admonition" id="id12">
+<div class="admonition-todo admonition" id="id17">
 <p class="admonition-title">課題</p>
 <p>make htmlした結果を画像で乗せる</p>
 </div>
 </div>
 </div>
-<div class="section" id="id13">
-<h2>テーマを変更しよう<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id18">
+<h2>テーマを変更しよう<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>最後に見栄えを自由に変更できるテーマについて説明します。</p>
 <p>Sphinxは公式同梱のテーマ以外にも、サードパーティのテーマも充実しています。</p>
 <p>今回はドキュメントホスティングサービスとして有名な、Read The Docsが提供しているSphinxテーマである <code class="docutils literal notranslate"><span class="pre">sphinx-rtd-theme</span></code> を適用してみましょう。</p>
@@ -258,7 +286,7 @@
 <p>SphixnのテーマはPythonパッケージとして提供されています。</p>
 <p>それではテーマを変更してみましょう。方法は公式サイトに掲載されているので、そちらを確認しつつ導入します。</p>
 <p>変更すると以下のように、ドキュメントページのデザインが変わります。</p>
-<div class="admonition-todo admonition" id="id14">
+<div class="admonition-todo admonition" id="id19">
 <p class="admonition-title">課題</p>
 <p>変更したページをスクリーンショットで撮影</p>
 </div>
@@ -288,11 +316,11 @@
 <li class="toctree-l1"><a class="reference internal" href="vscode.html">VSCodeとLive Shareの設定</a></li>
 <li class="toctree-l1"><a class="reference internal" href="slackbot.html">Slackbotの作成</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pytest.html">PyTestでテストケースを導入する</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Sphinx</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Sphinxでドキュメントを書こう</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id1">Sphinxの始め方</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#slackbot">Slackbotのドキュメントを書こう</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#autodocapi">autodoc拡張機能を使ったAPIリファレンス作成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id13">テーマを変更しよう</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id18">テーマを変更しよう</a></li>
 </ul>
 </li>
 </ul>
@@ -331,7 +359,7 @@
       &copy;2020, Py-Suruga, Unagi-py, Hiroshi sano.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

@@ -1,5 +1,5 @@
 ================================================================================
-Sphinx
+Sphinxでドキュメントを書こう
 ================================================================================
 
 SphinxはPythonの公式ドキュメントやサードパーティライブラリ、またほかの言語や書籍にも利用されるドキュメンテーションツールです。
@@ -28,7 +28,7 @@ Sphinxもローカル開発環境を作成した段階でインストールさ�
 
 Sphinxはドキュメントを作成するひな形の環境を用意する ``sphinx-quickstart`` コマンドがあります。こちらを利用してひな形を作りましょう
 
-.. code-block::
+.. code-block:: none
 
     (pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot> sphinx-quickstart.exe .\docs\
     Welcome to the Sphinx 3.1.2 quickstart utility.
@@ -90,15 +90,53 @@ Sphinxはじめの一歩
 
 いくつかの記法を利用して index.rstファイルに試しに書いてみましょう。
 
-.. todo:: rstの小さいチートシートをここに記載する
+見出し
+~~~~~~~~~~
 
-    - 見出し
-    - リンク
-    - リスト
-    - コードブロック
-    - 画像挿入
+.. code-block:: none
+
+    見出し1
+    ==========
+
+    見出し2
+    ----------
+
+リンク
+~~~~~~~~~~
+
+.. code-block:: none
+
+    `Title <http://link>`_ 
+
+リスト
+~~~~~~~~~~
+
+.. code-block:: none
+
+  - 箇条書きは 「-」
+
+画像
+~~~~~~~~~~
+
+.. code-block:: none
+
+    .. image:: path
+
+
+コードブロック
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: none
+
+    .. code-block:: python
+
+        >>>print("hello Sphinx!!")
+
 
 そのほかの記法 : `早わかり reStructuredText — Quick reStructuredText 0.1 documentation <https://quick-restructuredtext.readthedocs.io/en/latest/>`_
+
+ドキュメントの生成
+----------------------------------
 
 ドキュメントをhtmlで生成する場合は ``sphinx-quickstart`` コマンドが生成したmakeファイルを使うと簡単に生成できます。
 

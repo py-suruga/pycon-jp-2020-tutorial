@@ -41,8 +41,6 @@ Python拡張機能にも専用の設定があり、ワークスペース内で�
 
 この設定は、いくつかのPythonパッケージの依存があります。これらはpip経由でインストール可能です。
 
-.. todo::
-
 - `psf/black: The uncompromising Python code formatter <https://github.com/psf/black>`_
 - `PyCQA / flake8 · GitLab <https://gitlab.com/pycqa/flake8>`_
 
