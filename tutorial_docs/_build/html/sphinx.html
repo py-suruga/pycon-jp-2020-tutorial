@@ -230,16 +230,15 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <li><p>挨拶bot: ランダムに天気情報を返す関数</p></li>
 <li><p>connpassbot: jsonの取得関数、botが答える文字列生成の関数</p></li>
 </ul>
-<p>docstringは基本的</p>
-<div class="admonition-todo admonition" id="id12">
-<p class="admonition-title">課題</p>
-<p>そのほかの関数は、終わりに模範解答からコピーして実行して生成された結果を見ていく</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>そのほかの関数は、終わりに模範解答からコピーして実行して生成された結果を確認しましょう。</p>
 <ul class="simple">
 <li><p>天気bot: xml取得関数、botが答える文字列生成の関数</p></li>
 <li><p>botrunのメッセージハンドル（botの登録方法を記載する）</p></li>
 </ul>
 </div>
-<div class="admonition-todo admonition" id="id13">
+<div class="admonition-todo admonition" id="id12">
 <p class="admonition-title">課題</p>
 <ul class="simple">
 <li><p>noteにtype annotationの組み合わせ例を書く</p></li>
@@ -247,35 +246,77 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 </ul>
 </div>
 </div>
-<div class="section" id="id14">
-<h3>Sphinxの設定<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id13">
+<h3>Sphinxの設定<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>autodoc拡張機能はSphinxの設定で有効にする必要があります。Sphinxの設定は sphinx-quickstart コマンドで作成したひな形にあるconf.pyを変更します。</p>
-<ul class="simple">
-<li><p>apidocの設定(conf.pyでextentionsやsys.pathにpythonのモジュールパスを入れる）</p></li>
-</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -- Path setup --------------------------------------------------------------</span>
+
+<span class="c1"># If extensions (or modules to document with autodoc) are in another directory,</span>
+<span class="c1"># add these directories to sys.path here. If the directory is relative to the</span>
+<span class="c1"># documentation root, use os.path.abspath to make it absolute, like shown here.</span>
+<span class="c1">#</span>
+
+<span class="c1"># import os</span>
+<span class="c1"># import sys</span>
+
+<span class="c1"># sys.path.insert(0, os.path.abspath(&#39;.&#39;))</span>
+
+<span class="c1"># TODO:2020-08-15 この部分はsphinx-quickstartで生成されたコードから変更しています。</span>
+<span class="c1"># チュートリアル全体でpathlibを扱っているのでpathlibでパスを生成しています。</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>次に、conf.pyのextensions（空のリスト）に、 <code class="docutils literal notranslate"><span class="pre">&quot;sphinx.ext.autodoc&quot;,</span> <span class="pre">&quot;sphinx.ext.napoleon&quot;</span></code> の２つの文字列を追加します。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -- General configuration ---------------------------------------------------</span>
+
+<span class="c1"># Add any Sphinx extension module names here, as strings. They can be</span>
+<span class="c1"># extensions coming with Sphinx (named &#39;sphinx.ext.*&#39;) or your custom</span>
+<span class="c1"># ones.</span>
+<span class="c1"># extensions = []</span>
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sphinx.ext.autodoc&quot;</span><span class="p">,</span> <span class="s2">&quot;sphinx.ext.napoleon&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="autodoc-sphinx-apidoc">
 <h3>autodocで半自動的にリファレンスを作成する: sphinx-apidocコマンド<a class="headerlink" href="#autodoc-sphinx-apidoc" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>docstringの用意と設定を変更したので、autodocを使ってリファレンスを生成してみましょう。</p>
-<div class="admonition-todo admonition" id="id15">
-<p class="admonition-title">課題</p>
-<ul class="simple">
-<li><p>sphinx-apidocでapidocのひな形を作成</p></li>
-<li><p>生成したドキュメントの中身をVSCodeのツリーで見せる</p></li>
-</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># /testsディレクトリは除外する指定をしています。
+# sphinx-apidoc -f（上書き） -o（出力先ディレクトリの指定） [出力先ディレクトリのパス] [autodocで生成したいPythonモジュールのパス] [除外するパス]
+
+pt_slackbot&gt; sphinx-apidoc.exe -f -o ./docs ./ /tests
+
+# 以下に生成の結果が表示される
+</pre></div>
+</div>
+<p>このコマンドで生成したリファレンスは <code class="docutils literal notranslate"><span class="pre">botrun.rst</span></code>、<code class="docutils literal notranslate"><span class="pre">botfunc.rst</span></code>、<code class="docutils literal notranslate"><span class="pre">modules.rst</span></code> の３つのファイルになります。このファイルは <code class="docutils literal notranslate"><span class="pre">docs</span></code> フォルダ内に生成されます。</p>
+<img alt="_images/sphinx_2.png" src="_images/sphinx_2.png" />
+<p>最後に、既存のSphinxドキュメントにapidocで生成したリファレンスの目次を追加しましょう。</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>目次
+=======
+
+.. toctree::
+    :maxdepth: 2
+    :caption: Contents:
+
+    slackbot_usage
+    modules .. これが追加したリファレンスの目次
+</pre></div>
 </div>
 </div>
 <div class="section" id="api">
-<h3>APIリファレンスが入ったドキュメントを生成する<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>sphinx-autodocコマンドでbotの関数にあるdocstringを含むリファレンスを作成しました。最後にsphinxのビルドを行いリファレンスを含むドキュメントを生成しましょう。</p>
-<div class="admonition-todo admonition" id="id16">
+<h3>APIリファレンス入のドキュメントを生成する<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>sphinx-autodocコマンドでbotの関数にあるdocstringを含むリファレンスを作成しました。sphinxのビルドを行いリファレンスを含むドキュメントを生成しましょう。</p>
+<div class="admonition-todo admonition" id="id14">
 <p class="admonition-title">課題</p>
 <p>make htmlした結果を画像で乗せる</p>
 </div>
 </div>
 </div>
-<div class="section" id="id17">
-<h2>テーマを変更しよう<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id15">
+<h2>テーマを変更しよう<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>最後に見栄えを自由に変更できるテーマについて説明します。</p>
 <p>Sphinxは公式同梱のテーマ以外にも、サードパーティのテーマも充実しています。</p>
 <p>今回はドキュメントホスティングサービスとして有名な、Read The Docsが提供しているSphinxテーマである <code class="docutils literal notranslate"><span class="pre">sphinx-rtd-theme</span></code> を適用してみましょう。</p>
@@ -314,7 +355,7 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <li class="toctree-l2"><a class="reference internal" href="#id1">Sphinxの始め方</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#slackbot">Slackbotのドキュメントを書こう</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#autodocapi">autodoc拡張機能を使ったAPIリファレンス作成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id17">テーマを変更しよう</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id15">テーマを変更しよう</a></li>
 </ul>
 </li>
 </ul>

@@ -18,7 +18,7 @@ import sphinx_rtd_theme
 
 # sys.path.insert(0, os.path.abspath('.'))
 
-# TODO:2020-08-15 この部分はsphinx-quickstartで生成されたコードを変えています。
+# TODO:2020-08-15 この部分はsphinx-quickstartで生成されたコードから変更しています。
 # チュートリアル全体でpathlibを扱っているのでpathlibでパスを生成しています。
 from pathlib import Path
 import sys

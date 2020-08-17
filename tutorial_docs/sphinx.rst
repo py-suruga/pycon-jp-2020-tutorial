@@ -231,9 +231,7 @@ botの各関数にdocstringを追加しましょう。例として挨拶botとco
 - 挨拶bot: ランダムに天気情報を返す関数
 - connpassbot: jsonの取得関数、botが答える文字列生成の関数
 
-docstringは基本的
-
-.. todo:: そのほかの関数は、終わりに模範解答からコピーして実行して生成された結果を見ていく
+.. note:: そのほかの関数は、終わりに模範解答からコピーして実行して生成された結果を確認しましょう。
 
     - 天気bot: xml取得関数、botが答える文字列生成の関数
     - botrunのメッセージハンドル（botの登録方法を記載する）
@@ -248,22 +246,76 @@ Sphinxの設定
 
 autodoc拡張機能はSphinxの設定で有効にする必要があります。Sphinxの設定は sphinx-quickstart コマンドで作成したひな形にあるconf.pyを変更します。
 
-- apidocの設定(conf.pyでextentionsやsys.pathにpythonのモジュールパスを入れる）
+.. code-block:: python
+
+    # -- Path setup --------------------------------------------------------------
+
+    # If extensions (or modules to document with autodoc) are in another directory,
+    # add these directories to sys.path here. If the directory is relative to the
+    # documentation root, use os.path.abspath to make it absolute, like shown here.
+    #
+
+    # import os
+    # import sys
+
+    # sys.path.insert(0, os.path.abspath('.'))
+
+    # TODO:2020-08-15 この部分はsphinx-quickstartで生成されたコードから変更しています。
+    # チュートリアル全体でpathlibを扱っているのでpathlibでパスを生成しています。
+    from pathlib import Path
+    import sys
+
+    sys.path.insert(0, str(Path("../")))
+
+次に、conf.pyのextensions（空のリスト）に、 ``"sphinx.ext.autodoc", "sphinx.ext.napoleon"`` の２つの文字列を追加します。
+
+.. code-block:: python
+
+    # -- General configuration ---------------------------------------------------
+
+    # Add any Sphinx extension module names here, as strings. They can be
+    # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
+    # ones.
+    # extensions = []
+    extensions = ["sphinx.ext.autodoc", "sphinx.ext.napoleon"]
+
 
 autodocで半自動的にリファレンスを作成する: sphinx-apidocコマンド
 ------------------------------------------------------------------------------------------------------------------------------
 
 docstringの用意と設定を変更したので、autodocを使ってリファレンスを生成してみましょう。
 
-.. todo::
-    - sphinx-apidocでapidocのひな形を作成
-    - 生成したドキュメントの中身をVSCodeのツリーで見せる
+.. code-block:: none
 
+    # /testsディレクトリは除外する指定をしています。
+    # sphinx-apidoc -f（上書き） -o（出力先ディレクトリの指定） [出力先ディレクトリのパス] [autodocで生成したいPythonモジュールのパス] [除外するパス]
 
-APIリファレンスが入ったドキュメントを生成する
+    pt_slackbot> sphinx-apidoc.exe -f -o ./docs ./ /tests
+
+    # 以下に生成の結果が表示される
+
+このコマンドで生成したリファレンスは ``botrun.rst``、``botfunc.rst``、``modules.rst`` の３つのファイルになります。このファイルは ``docs`` フォルダ内に生成されます。
+
+.. image:: ./doc-img/sphinx_2.png
+
+最後に、既存のSphinxドキュメントにapidocで生成したリファレンスの目次を追加しましょう。
+
+.. code-block:: none
+
+    目次
+    =======
+
+    .. toctree::
+        :maxdepth: 2
+        :caption: Contents:
+
+        slackbot_usage
+        modules .. これが追加したリファレンスの目次
+
+APIリファレンス入のドキュメントを生成する
 ------------------------------------------------------------------------------------------------------------------------------
 
-sphinx-autodocコマンドでbotの関数にあるdocstringを含むリファレンスを作成しました。最後にsphinxのビルドを行いリファレンスを含むドキュメントを生成しましょう。
+sphinx-autodocコマンドでbotの関数にあるdocstringを含むリファレンスを作成しました。sphinxのビルドを行いリファレンスを含むドキュメントを生成しましょう。
 
 .. todo::
     make htmlした結果を画像で乗せる
