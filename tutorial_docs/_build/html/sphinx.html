@@ -165,16 +165,13 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <span class="o">&gt;</span> <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">http</span><span class="o">.</span><span class="n">server</span> <span class="mi">8080</span>
 </pre></div>
 </div>
+<img alt="_images/sphinx_1.png" src="_images/sphinx_1.png" />
 <p>Windows 10の場合は、ファイヤーウォールの許可が表示されるので、適切な設定をしたうえで許可をしてください。（プライベートネットワークのみにすることをオススメします）</p>
-<div class="admonition-todo admonition" id="id10">
-<p class="admonition-title">課題</p>
-<p>ブラウザの表示した結果をだす</p>
 </div>
-</div>
-<div class="section" id="id11">
-<h3>Slackbotの説明文を書いてみよう<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id10">
+<h3>Slackbotの説明文を書いてみよう<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>このチュートリアルで作成しているSlackbotの使い方をドキュメントとして書いてみましょう。</p>
-<div class="admonition-todo admonition" id="id12">
+<div class="admonition-todo admonition" id="id11">
 <p class="admonition-title">課題</p>
 <p>この章では、tutorial_docsにある文章や画像をコピペして作成してみる。
 入力の手間を減らしたり、ビルド時の失敗をある程度減らす狙いがある</p>
@@ -234,7 +231,7 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <li><p>connpassbot: jsonの取得関数、botが答える文字列生成の関数</p></li>
 </ul>
 <p>docstringは基本的</p>
-<div class="admonition-todo admonition" id="id13">
+<div class="admonition-todo admonition" id="id12">
 <p class="admonition-title">課題</p>
 <p>そのほかの関数は、終わりに模範解答からコピーして実行して生成された結果を見ていく</p>
 <ul class="simple">
@@ -242,7 +239,7 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <li><p>botrunのメッセージハンドル（botの登録方法を記載する）</p></li>
 </ul>
 </div>
-<div class="admonition-todo admonition" id="id14">
+<div class="admonition-todo admonition" id="id13">
 <p class="admonition-title">課題</p>
 <ul class="simple">
 <li><p>noteにtype annotationの組み合わせ例を書く</p></li>
@@ -250,8 +247,8 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 </ul>
 </div>
 </div>
-<div class="section" id="id15">
-<h3>Sphinxの設定<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id14">
+<h3>Sphinxの設定<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>autodoc拡張機能はSphinxの設定で有効にする必要があります。Sphinxの設定は sphinx-quickstart コマンドで作成したひな形にあるconf.pyを変更します。</p>
 <ul class="simple">
 <li><p>apidocの設定(conf.pyでextentionsやsys.pathにpythonのモジュールパスを入れる）</p></li>
@@ -260,7 +257,7 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <div class="section" id="autodoc-sphinx-apidoc">
 <h3>autodocで半自動的にリファレンスを作成する: sphinx-apidocコマンド<a class="headerlink" href="#autodoc-sphinx-apidoc" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>docstringの用意と設定を変更したので、autodocを使ってリファレンスを生成してみましょう。</p>
-<div class="admonition-todo admonition" id="id16">
+<div class="admonition-todo admonition" id="id15">
 <p class="admonition-title">課題</p>
 <ul class="simple">
 <li><p>sphinx-apidocでapidocのひな形を作成</p></li>
@@ -271,14 +268,14 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <div class="section" id="api">
 <h3>APIリファレンスが入ったドキュメントを生成する<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>sphinx-autodocコマンドでbotの関数にあるdocstringを含むリファレンスを作成しました。最後にsphinxのビルドを行いリファレンスを含むドキュメントを生成しましょう。</p>
-<div class="admonition-todo admonition" id="id17">
+<div class="admonition-todo admonition" id="id16">
 <p class="admonition-title">課題</p>
 <p>make htmlした結果を画像で乗せる</p>
 </div>
 </div>
 </div>
-<div class="section" id="id18">
-<h2>テーマを変更しよう<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id17">
+<h2>テーマを変更しよう<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>最後に見栄えを自由に変更できるテーマについて説明します。</p>
 <p>Sphinxは公式同梱のテーマ以外にも、サードパーティのテーマも充実しています。</p>
 <p>今回はドキュメントホスティングサービスとして有名な、Read The Docsが提供しているSphinxテーマである <code class="docutils literal notranslate"><span class="pre">sphinx-rtd-theme</span></code> を適用してみましょう。</p>
@@ -286,10 +283,7 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <p>SphixnのテーマはPythonパッケージとして提供されています。</p>
 <p>それではテーマを変更してみましょう。方法は公式サイトに掲載されているので、そちらを確認しつつ導入します。</p>
 <p>変更すると以下のように、ドキュメントページのデザインが変わります。</p>
-<div class="admonition-todo admonition" id="id19">
-<p class="admonition-title">課題</p>
-<p>変更したページをスクリーンショットで撮影</p>
-</div>
+<img alt="_images/sphinx_3.png" src="_images/sphinx_3.png" />
 </div>
 </div>
 
@@ -320,7 +314,7 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <li class="toctree-l2"><a class="reference internal" href="#id1">Sphinxの始め方</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#slackbot">Slackbotのドキュメントを書こう</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#autodocapi">autodoc拡張機能を使ったAPIリファレンス作成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id18">テーマを変更しよう</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id17">テーマを変更しよう</a></li>
 </ul>
 </li>
 </ul>
