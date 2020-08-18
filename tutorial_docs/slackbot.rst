@@ -163,6 +163,8 @@ SlackBotのフロー
 
 .. todo:: SlackBotのシステム概要を説明: どんな技術が利用されているか。ざっくりで。(pysuruga-13-handsonの資料流用）
 
+.. image:: ./doc-img/slackbot_1-12-2.png
+
 SlackbotはWEBで扱われている技術でサービスとbotのアプリがやり取りを行います。今回のはSlack公式で提供されているEvents APIとWeb APIの2つを利用します。
 
 Events APIはSlack側がbotアプリに声をかけるイメージで、Slackワークスペース内で起きたイベントを伝えます。
