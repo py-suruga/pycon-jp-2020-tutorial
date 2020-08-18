@@ -169,9 +169,22 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <img alt="_images/sphinx_1.png" src="_images/sphinx_1.png" />
 <p>Windows 10の場合は、ファイヤーウォールの許可が表示されるので、適切な設定をしたうえで許可をしてください。（プライベートネットワークのみにすることをオススメします）</p>
 </div>
+<div class="section" id="toctree">
+<h3>toctreeディレクティブ<a class="headerlink" href="#toctree" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>sphinxはドキュメントの構造を自動的に生成可能なツールです。ドキュメントの目次を作成したいときには toctreeディレクティブを利用します。</p>
+<p><code class="docutils literal notranslate"><span class="pre">index.rst</span></code> には最初からtoctreeディレクティブが自動的に生成されます。</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. toctree::
+    :maxdepth: 2
+    :caption: Contents:
+
+    # この行から目次に追加したいrstファイルの名称を追加する
+</pre></div>
+</div>
+</div>
 <div class="section" id="id9">
 <h3>Slackbotの説明文を書いてみよう<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>このチュートリアルで作成しているSlackbotの使い方をドキュメントとして書いてみましょう。</p>
+<p><code class="docutils literal notranslate"><span class="pre">slackbot_usage.rst</span></code> ファイルを作成して、botの使い方を書いていきます。</p>
 <div class="admonition-todo admonition" id="id10">
 <p class="admonition-title">課題</p>
 <p>この章では、tutorial_docsにある文章や画像をコピペして作成してみる。
@@ -184,6 +197,14 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 - 天気bot :追加した地域の一覧</p></li>
 <li><p>画像の挿入: tutorial_docs/slackbotの終盤にある画像ファイルをコピーしてpt_slackbot/docs内にコピー</p></li>
 </ul>
+</div>
+<p>最後に <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> のtoctreeディレクティブに <code class="docutils literal notranslate"><span class="pre">slackbot_usage</span></code> を追加します。 rstファイルの拡張子を外したファイル名のみにしてください。</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. toctree::
+    :maxdepth: 2
+    :caption: Contents:
+
+    slackbot_usage # .rst の拡張子はつけない
+</pre></div>
 </div>
 </div>
 </div>
@@ -312,7 +333,7 @@ pt_slackbot&gt; sphinx-apidoc.exe -f -o ./docs ./ /tests
 <h3>APIリファレンス入のドキュメントを生成する<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>sphinx-autodocコマンドでbotの関数にあるdocstringを含むリファレンスを作成しました。sphinxのビルドを行いリファレンスを含むドキュメントを生成しましょう。</p>
 <img alt="_images/sphinx_3.png" src="_images/sphinx_3.png" />
-<p>toctreeに <code class="docutils literal notranslate"><span class="pre">modules</span></code> を追加した結果、モジュールの一覧の目次が作成されています。</p>
+<p>toctreeディレクティブに <code class="docutils literal notranslate"><span class="pre">modules</span></code> を追加した結果、モジュールの一覧の目次が作成されています。</p>
 </div>
 </div>
 <div class="section" id="id13">
