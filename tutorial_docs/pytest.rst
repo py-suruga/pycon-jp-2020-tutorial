@@ -15,7 +15,7 @@ pytestはすでにローカル開発環境を用意した段階でインスト�
 
 ::
 
-    pip install pytest
+    pip install -U pytest
 
 pytestを使ったテストケースは ``pytest`` コマンドでテストの実行と結果を確認できます。
 

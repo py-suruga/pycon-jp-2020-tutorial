@@ -46,10 +46,7 @@
 </ul>
 <div class="section" id="id1">
 <h2>Sphinxの始め方<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<ul class="simple">
-<li><p>sphinx-quickstartでひな形的なドキュメントの構成を用意する</p></li>
-</ul>
-<p>Sphinxもローカル開発環境を作成した段階でインストールされています。もしsphinx-quickstartというコマンドが見つからない場合はpipコマンドでインストールします。</p>
+<p>Sphinxもローカル開発環境を作成した段階でインストールされています。もし <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> というコマンドが見つからない場合はpipコマンドでインストールします。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">Sphinx</span>
 </pre></div>
 </div>
@@ -219,12 +216,7 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <p>docstringはPythonのクラスや関数に書き込めるドキュメントです。文字列リテラルという <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;クオーテーション3つでくくった文字列&quot;&quot;&quot;</span></code> で表現します。</p>
 <div class="admonition note">
 <p class="admonition-title">注釈</p>
-<dl class="simple">
-<dt><strong>docstring</strong></dt><dd><p>クラス、関数、モジュールの最初の式である文字列リテラルです。
-そのスイートの実行時には無視されますが、コンパイラによって識別され、そのクラス、関数、モジュールの __doc__ 属性として保存されます。
-イントロスペクションできる（訳注: 属性として参照できる）ので、オブジェクトのドキュメントを書く標準的な場所です。</p>
-</dd>
-</dl>
+<p>docstringはPython公式ドキュメントで厳密な定義があります。</p>
 <p><a class="reference external" href="https://docs.python.org/ja/3/glossary.html?highlight=docstring">https://docs.python.org/ja/3/glossary.html?highlight=docstring</a></p>
 </div>
 <p>docstringの例は以下の通りです。</p>
@@ -233,7 +225,6 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <span class="gp">... </span><span class="sd">    この部分に文字列を入れるとdocstringとして扱われます。</span>
 <span class="gp">... </span><span class="sd">    &quot;&quot;&quot;</span>
 <span class="gp">... </span>    <span class="k">pass</span>
-<span class="gp">...</span>
 </pre></div>
 </div>
 <p>docstringはPythonのドキュメンテーションに深くかかわる機能です。Python内でも呼び出すことが可能で、help関数を使うことで、関数やクラスのdocstringを参照できます。</p>
