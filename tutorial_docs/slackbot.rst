@@ -92,17 +92,17 @@ ngrokコマンドを起動すると以下のような情報が表示されます
 .. code-block:: bash
 
   ngrok by @inconshreveable                                                                                                                       (Ctrl+C to quit)
-                                                                                                                                                                
-  Session Status                online                                                                                                                            
-  Session Expires               7 hours, 58 minutes                                                                                                               
-  Version                       2.3.35                                                                                                                            
-  Region                        United States (us)                                                                                                                
-  Web Interface                 http://127.0.0.1:4040                                                                                                             
-  Forwarding                    http://df702078ccde.ngrok.io -> http://localhost:3000                                                                             
-  Forwarding                    https://df702078ccde.ngrok.io -> http://localhost:3000                                                                            
-                                                                                                                                                                  
-  Connections                   ttl     opn     rt1     rt5     p50     p90                                                                                       
-                                0       0       0.00    0.00    0.00    0.00        
+
+  Session Status                online
+  Session Expires               7 hours, 58 minutes
+  Version                       2.3.35
+  Region                        United States (us)
+  Web Interface                 http://127.0.0.1:4040
+  Forwarding                    http://df702078ccde.ngrok.io -> http://localhost:3000
+  Forwarding                    https://df702078ccde.ngrok.io -> http://localhost:3000
+
+  Connections                   ttl     opn     rt1     rt5     p50     p90
+                                0       0       0.00    0.00    0.00    0.00
 
 Web InterfaceのURLへアクセスすると、公開したURLのアクセス履歴が見れるようになります。
 
@@ -125,8 +125,8 @@ Slack Event APIが起きたイベントをサーバーに伝えるためのエ�
 
 .. image:: ./doc-img/slackbot_1-9.png
 
-:: 
-    
+::
+
     https://[ngrokが自動的に割り振るランダムな文字列].ngrok.io/slack/events
 
 次に、イベントの種類を登録します。イベントには種類があり、あらかじめアプリで取得したいイベントの種類を登録する必要があります。
@@ -180,7 +180,7 @@ Slackbotのコード内ではFlaskのインスタンスを作成して、サー�
 
 .. note:: SlackのAPIはほかにもあります。
     代表例はincoming webhook（URLにパラメーターを付与するとslackワークスペースにメッセージを送れる）, RealTime Messeging API(websocketを利用したリアルタイムにSlackワークスペースとアプリがやり取り可能）になります。
-    
+
     今回はそれらについては解説しませんが、参考情報を残します。
 
     - `Sending messages using Incoming Webhooks | Slack <https://api.slack.com/messaging/webhooks>`_
@@ -257,14 +257,13 @@ connpassbotの実装ステップ
 
 このbotの趣旨は以下になります。
 
-- requests + bs4を使ってxmlを取得しパースを体験する
+- BeautifulSoup4を使ってxmlを取得しパースを体験する
 
 tenkibotの実装ステップ
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. （すでにxmlのDLしたものを扱います）
-2. requests + bs4を使ってxmlのパースをする
-3. 対応地域を追加してbotの拡張をしてもらう
+1. BeautifulSoup4を使ってxmlのパースをする
+2. 対応地域を追加してbotの拡張をしてもらう
 
 .. note:: 今回の天気情報の元は気象庁が無料で公開しているxmlファイルを利用しました。
     当初はLivedoor 天気から提供されている REST APIを用いる予定でしたが、 2020/7/31にサービスが終了となったため、急遽気象庁XMLサービスを利用しています。

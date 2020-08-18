@@ -94,7 +94,7 @@ Sphinxは標準でも多数の記法、ディレクティブに対応してい�
 Sphinxはじめの一歩
 -------------------------------------
 
-いくつかの記法を利用して index.rstファイルに試しに書いてみましょう。
+いくつかの記法を利用してindex.rstファイルへ試しに書いてみましょう。
 
 見出し
 ~~~~~~~~~~
@@ -112,7 +112,7 @@ Sphinxはじめの一歩
 
 .. code-block:: none
 
-    `Title <http://link>`_ 
+    `Title <http://link>`_
 
 リスト
 ~~~~~~~~~~
@@ -151,10 +151,10 @@ Sphinxはじめの一歩
     #win10ならmake.bat
     > make.bat html
 
-    #macOSなら makefileがそのまま扱えます
+    #macOSならmakefileがそのまま扱えます
     > make html
 
-生成されたhtmlは pythonの簡易httpサーバーを利用してブラウザで確認できます。
+生成されたhtmlはPythonの簡易httpサーバーを利用してブラウザで確認できます。
 
 ::
 
@@ -169,7 +169,7 @@ Windows 10の場合は、ファイヤーウォールの許可が表示される�
 toctreeディレクティブ
 --------------------------------------------------------
 
-sphinxはドキュメントの構造を自動的に生成可能なツールです。ドキュメントの目次を作成したいときには toctreeディレクティブを利用します。
+sphinxはドキュメントの構造を自動的に生成可能なツールです。ドキュメントの目次を作成したいときにはtoctreeディレクティブを利用します。
 
 ``index.rst`` には最初からtoctreeディレクティブが自動的に生成されます。
 
@@ -224,7 +224,7 @@ docstirngを書こう
 
 autodocを使うためには、pythonのクラスや関数にdocstringを追加する必要があります。
 
-docstringはPythonのクラスや関数に書き込めるドキュメントです。文字列リテラルという ``"""クオーテーション三つでくくった文字列"""`` で表現します。
+docstringはPythonのクラスや関数に書き込めるドキュメントです。文字列リテラルという ``"""クオーテーション3つでくくった文字列"""`` で表現します。
 
 .. note::
     **docstring**
@@ -245,7 +245,7 @@ docstringの例は以下の通りです。
     ...     pass
     ...
 
-docstringはPythonのドキュメンテーションに深くかかわる機能です。Python内でも呼び出すことが可能で、help関数を使うことで、関数やクラスのdocstringを参照することができます。
+docstringはPythonのドキュメンテーションに深くかかわる機能です。Python内でも呼び出すことが可能で、help関数を使うことで、関数やクラスのdocstringを参照できます。
 
 .. code-block:: python
 
@@ -278,7 +278,7 @@ botの各関数にdocstringを追加しましょう。例として挨拶botとco
 Sphinxの設定
 ---------------------------
 
-autodoc拡張機能はSphinxの設定で有効にする必要があります。Sphinxの設定は sphinx-quickstart コマンドで作成したひな形にあるconf.pyを変更します。
+autodoc拡張機能はSphinxの設定で有効にする必要があります。Sphinxの設定は ``sphinx-quickstart`` コマンドで作成したひな形にあるconf.pyを変更します。
 
 .. code-block:: python
 
@@ -301,7 +301,7 @@ autodoc拡張機能はSphinxの設定で有効にする必要があります。S
 
     sys.path.insert(0, str(Path("../")))
 
-次に、conf.pyのextensions（空のリスト）に、 ``"sphinx.ext.autodoc", "sphinx.ext.napoleon"`` の２つの文字列を追加します。
+次に、conf.pyのextensions（空のリスト）に、 ``"sphinx.ext.autodoc", "sphinx.ext.napoleon"`` の2つの文字列を追加します。
 
 .. code-block:: python
 
@@ -328,7 +328,7 @@ docstringの用意と設定を変更したので、autodocを使ってリファ�
 
     # 以下に生成の結果が表示される
 
-このコマンドで生成したリファレンスは ``botrun.rst``、``botfunc.rst``、``modules.rst`` の３つのファイルになります。このファイルは ``docs`` フォルダ内に生成されます。
+このコマンドで生成したリファレンスは ``botrun.rst``、``botfunc.rst``、``modules.rst`` の3つのファイルになります。このファイルは ``docs`` ディレクトリ内に生成されます。
 
 .. image:: ./doc-img/sphinx_2.png
 

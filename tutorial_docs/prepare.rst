@@ -24,11 +24,11 @@ Pythonは各OSによってインストール方法が違いますが、基本的
 インストール方法は `環境構築ガイド（python.jp） <https://www.python.jp/install/install.html>`_ を参照ください。
 
 - Win10: `Windows 環境のPython - python.jp <https://www.python.jp/install/windows/index.html>`_
-  
+
   - Windows 10では公式インストーラーの利用をオススメします
 
 - macOS: `macOS環境のPython - python.jp <https://www.python.jp/install/macos/index.html>`_
-  
+
   - macOS Catalinaでは標準のpython, またHomebrewというパッケージマネージャーを用いてのインストールをオススメします。
 
 ※: その他OSの場合でも、公式のインストーラーやパッケージマネージャーからのインストールできます。
@@ -59,7 +59,7 @@ gitリポジトリ: https://github.com/py-suruga/pycon-jp-2020-tutorial.git
 
 今回のチュートリアルでは ``C:\Users\[Username]\Document\pyconjp-2020-tutorial`` を作業するディレクトリ位置として説明します。
 
-各ディレクトリ, ファイルの意味
+各ディレクトリ、ファイルの意味
 -----------------------------------------------------------
 
 GitHubから取得したチュートリアルの資料には多数のディレクトリがあります。チュートリアルで利用するディレクトリやファイルの意味を解説します。
@@ -136,4 +136,4 @@ Python向けの拡張機能もあり、Microsoftが公開しているものやOS
 VS CodeとLive Shareの設定
 ------------------------------
 
-こちらのページで追記します: :doc:`/vscode` 
+こちらのページで追記します: :doc:`/vscode`

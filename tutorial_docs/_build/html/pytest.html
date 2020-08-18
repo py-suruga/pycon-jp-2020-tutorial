@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PyTestでテストケースを導入する &#8212; PyCon JP 2020 チュートリアル Slack Bot編 ドキュメント 2020.07.24 ドキュメント</title>
+    <title>pytestでテストケースを導入する &#8212; PyCon JP 2020 チュートリアル Slack Bot編 ドキュメント 2020.07.24 ドキュメント</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -35,9 +35,9 @@
           <div class="body" role="main">
             
   <div class="section" id="pytest">
-<h1>PyTestでテストケースを導入する<a class="headerlink" href="#pytest" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1>pytestでテストケースを導入する<a class="headerlink" href="#pytest" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>Slackbotが返す結果をテストできるように、テストケースの導入を行います。</p>
-<p>今回はサードパーティのテストツールである PyTest を利用します。PytestはPython標準ライブラリにあるUnittestより簡単にテストの記述が可能です。</p>
+<p>今回はサードパーティのテストツールであるpytestを利用します。PytestはPython標準ライブラリにあるUnittestより簡単にテストの記述が可能です。</p>
 <p><a class="reference external" href="https://docs.pytest.org/en/stable/">pytest: helps you write better programs — pytest documentation</a></p>
 <div class="section" id="id1">
 <h2>pytestコマンドの使い方<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -119,7 +119,7 @@
     <span class="k">assert</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">1</span>
 </pre></div>
 </div>
-<p>実行すると 成功した様子が確認できます。</p>
+<p>実行すると成功した様子が確認できます。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">workspace</span>\<span class="n">personal</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">tutorial_docs</span><span class="o">&gt;</span> <span class="n">pytest</span> <span class="o">.</span>\<span class="n">step</span>\<span class="n">pytest</span><span class="o">-</span><span class="mi">0</span>\<span class="n">test_hello_pytest_3</span><span class="o">.</span><span class="n">py</span>
 <span class="o">=============================================================</span> <span class="n">test</span> <span class="n">session</span> <span class="n">starts</span> <span class="o">=============================================================</span>
 <span class="n">platform</span> <span class="n">win32</span> <span class="o">--</span> <span class="n">Python</span> <span class="mf">3.7</span><span class="o">.</span><span class="mi">3</span><span class="p">,</span> <span class="n">pytest</span><span class="o">-</span><span class="mf">6.0</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="n">py</span><span class="o">-</span><span class="mf">1.9</span><span class="o">.</span><span class="mi">0</span><span class="p">,</span> <span class="n">pluggy</span><span class="o">-</span><span class="mf">0.13</span><span class="o">.</span><span class="mi">1</span>
@@ -147,17 +147,17 @@
 </div>
 </div>
 <div class="section" id="id4">
-<h2>PyTestの機能<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>pytestの機能<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Pytestはテストで良く扱う機能があらかじめ用意されています。チュートリアル内では3つの機能に絞って説明します。</p>
 <div class="admonition note">
 <p class="admonition-title">注釈</p>
 <p>pytestで利用する機能はデコレーターでテスト関数やメソッドに適応します。
-デコレーターは糖衣関数と呼ばれる構文の一つです。既存の関数をオーバーラップして機能を追加するなど変化を与えることができます。</p>
+デコレーターは糖衣関数と呼ばれる構文の1つです。既存の関数をオーバーラップして機能を追加するなど変化を与えることができます。</p>
 <p>ref: <a class="reference external" href="https://docs.python.org/ja/3/glossary.html#term-decorator">https://docs.python.org/ja/3/glossary.html#term-decorator</a></p>
 </div>
 <div class="section" id="parametrize">
 <h3>parametrize<a class="headerlink" href="#parametrize" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>parametrizeは パラメータを一括で扱える機能です。</p>
+<p>parametrizeはパラメーターを一括で扱える機能です。</p>
 <p>テストに入力する値と結果を用意して、複数回同じテストを実行するときに役に立ちます。</p>
 <p><a class="reference external" href="https://docs.pytest.org/en/stable/parametrize.html">Parametrizing fixtures and test functions — pytest documentation</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ref:https://docs.pytest.org/en/stable/parametrize.html</span>
@@ -173,7 +173,7 @@
 </div>
 <div class="section" id="fixture">
 <h3>fixture<a class="headerlink" href="#fixture" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>fixtureは テストする機能を実行する前の準備, 終了処理を共通化したいときに利用します。必要なデータの用意や認証情報の設定、終了時に一時的に生成したデータの除去等がよくあるパターンです。</p>
+<p>fixtureはテストする機能を実行する前の準備や終了処理を共通化したいときに利用します。必要なデータの用意や認証情報の設定、終了時に一時的に生成したデータの除去がよくあるパターンです。</p>
 <p><a class="reference external" href="https://docs.pytest.org/en/stable/fixture.html">pytest fixtures: explicit, modular, scalable — pytest documentation</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">pytest</span>
@@ -204,7 +204,7 @@
 </div>
 <div class="section" id="monkeypatch">
 <h3>monkeypatch<a class="headerlink" href="#monkeypatch" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>monkeypatchは pythonのUnittest.mockのような機能です。モックとなるオブジェクトを置き換える際に利用します。</p>
+<p>monkeypatchはpythonのUnittest.mockのような機能です。モックとなるオブジェクトを置き換える際に利用します。</p>
 <p>置き換えるオブジェクト自体はテスト専用の機能を使ったオブジェクトではなく、戻り値や挙動が同等なオブジェクトを生成することで機能します。</p>
 <p>公式の冒頭にあるサンプルコードを動かしてみましょう</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ref:https://docs.pytest.org/en/6.0.1/monkeypatch.html#simple-example-monkeypatching-functions</span>
@@ -268,11 +268,11 @@
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="prepare.html">チュートリアル開始前の準備</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vscode.html">VSCodeとLive Shareの設定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode.html">VS CodeとLive Shareの設定</a></li>
 <li class="toctree-l1"><a class="reference internal" href="slackbot.html">Slackbotの作成</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">PyTestでテストケースを導入する</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">pytestでテストケースを導入する</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id1">pytestコマンドの使い方</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">PyTestの機能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">pytestの機能</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#slackbot">SlackBotのテストケースを書いてみよう</a></li>
 </ul>
 </li>
