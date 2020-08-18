@@ -22,11 +22,14 @@ Pythonはシステムにインストールされた実行環境以外の仮想�
 
 仮想環境を利用するときには、以下のコマンドを実行します
 
-::
+.. code-block:: none
+
 
   .\.venv\Scripts\activate.bat
-  rem 仮想環境上に必要なパッケージをインストールします
+  # 仮想環境上に必要なパッケージをインストールします
   (.venv) > pip install -r requirements.txt
+  # 開発環境で利用するパッケージのインストールも行います。
+  (.venv) > pip install -r dev_requirements.txt
 
 仮想環境を終了する場合は以下のコマンドを実行します。
 
@@ -46,11 +49,11 @@ Slackアプリの作成と設定
 
 まず初めにBotとなるSlackアプリをSlack上で作成します。
 
-「Create a Slack App」からApp Nameにアプリ名を入力します。
+`こちらのリンク <https://api.slack.com/apps?new_app=1>`_ からアプリ作成画面に進みます。
 
 .. image:: ./doc-img/slackbot_1-1.png
 
-Slack WorkSpaceはハンズオン用に新たに取得したワークスペースを利用してください。
+アプリ名はこの例では ``pt_slackbot-20200807`` としていますが、アプリ名については自由に変更可能です。
 
 アプリが作成できたら、「OAuth & Permissions」の「Scopes」>「Bot Token Scopes」にスコープの設定を行います。
 

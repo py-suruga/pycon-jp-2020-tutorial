@@ -21,13 +21,13 @@ VS CodeでPythonを扱ったことがない方、初めてVS Codeを利用する
 ワークスペースの設定
 ================================
 
-VS Codeにはワークスペースという概念があります。
+VS Codeにはワークスペースという概念があります。ディレクトリを開くとそのディレクトリをワークスペースとして認識し、VS Codeのアプリとしての設定（ユーザー設定）とは別に、ワークスペースごとに設定を変更することができます。 
 
-.. todo:: ワークスペースの公式ヘルプ
+ワークスペースの設定は ``.vscode/settings.json`` を作成することで有効にできます。
 
-Python拡張機能にも専用の設定があり、ワークスペース内で設定を行うことで＊＊＊
+- `Visual Studio Code User and Workspace Settings <https://code.visualstudio.com/docs/getstarted/settings>`_ 
 
-``.vscode/settings.json`` に以下の設定を追加します。
+Python拡張機能で利用できる設定を追加します。リンターやフォーマッターの有効化をしています。``.vscode/settings.json`` に以下の設定を追加します。
 
 .. code-block:: json
 
@@ -39,9 +39,7 @@ Python拡張機能にも専用の設定があり、ワークスペース内で�
     "python.linting.enabled": true,
   }
 
-この設定は、いくつかのPythonパッケージの依存があります。これらはpip経由でインストール可能で、「prepare」の仮想環境作成時にインストールされます。
-
-.. todo:: 環境構築のpipインストール部分のリンクを作成する
+この設定は、いくつかのPythonパッケージの依存があります。これらはpip経由でインストール可能で、 :doc:`/slackbot`  の「ローカル開発環境の用意」にある仮想環境作成時にインストールしています。
 
 - `psf/black: The uncompromising Python code formatter <https://github.com/psf/black>`_
 - `PyCQA / flake8 · GitLab <https://gitlab.com/pycqa/flake8>`_

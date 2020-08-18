@@ -51,13 +51,12 @@
 </div>
 <div class="section" id="id2">
 <h2>ワークスペースの設定<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>VS Codeにはワークスペースという概念があります。</p>
-<div class="admonition-todo admonition" id="id3">
-<p class="admonition-title">課題</p>
-<p>ワークスペースの公式ヘルプ</p>
-</div>
-<p>Python拡張機能にも専用の設定があり、ワークスペース内で設定を行うことで＊＊＊</p>
-<p><code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code> に以下の設定を追加します。</p>
+<p>VS Codeにはワークスペースという概念があります。ディレクトリを開くとそのディレクトリをワークスペースとして認識し、VS Codeのアプリとしての設定（ユーザー設定）とは別に、ワークスペースごとに設定を変更することができます。</p>
+<p>ワークスペースの設定は <code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code> を作成することで有効にできます。</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://code.visualstudio.com/docs/getstarted/settings">Visual Studio Code User and Workspace Settings</a></p></li>
+</ul>
+<p>Python拡張機能で利用できる設定を追加します。リンターやフォーマッターの有効化をしています。<code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code> に以下の設定を追加します。</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;python.formatting.provider&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>
   <span class="nt">&quot;editor.formatOnSave&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
@@ -67,11 +66,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>この設定は、いくつかのPythonパッケージの依存があります。これらはpip経由でインストール可能で、「prepare」の仮想環境作成時にインストールされます。</p>
-<div class="admonition-todo admonition" id="id4">
-<p class="admonition-title">課題</p>
-<p>環境構築のpipインストール部分のリンクを作成する</p>
-</div>
+<p>この設定は、いくつかのPythonパッケージの依存があります。これらはpip経由でインストール可能で、 <a class="reference internal" href="slackbot.html"><span class="doc">Slackbotの作成</span></a>  の「ローカル開発環境の用意」にある仮想環境作成時にインストールしています。</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/psf/black">psf/black: The uncompromising Python code formatter</a></p></li>
 <li><p><a class="reference external" href="https://gitlab.com/pycqa/flake8">PyCQA / flake8 · GitLab</a></p></li>
@@ -89,8 +84,8 @@
 <p>ストアからインストール出来ます。</p>
 <p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare">Live Share - Visual Studio Marketplace</a></p>
 </div>
-<div class="section" id="id5">
-<h3>セッションの作成<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id3">
+<h3>セッションの作成<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>各参加者皆さんのVSCodeでLiveshareのセッションを講師とTAが参加する必要があり、その時に必要な招待URLを教えてもらう必要があります。</p>
 <p><a class="reference external" href="https://docs.microsoft.com/ja-jp/visualstudio/liveshare/reference/security">セキュリティ-Visual Studio Live Share - Visual Studio Live Share | Microsoft Docs</a></p>
 <p>インストールすると、自動的にWelcomeタブが表示されますが閉じてもらって構いません</p>
@@ -102,7 +97,7 @@
 <p>最後に講師にURLを伝えてください。伝え方はチュートリアル当日に方法をお伝えします。</p>
 <p>URLをブラウザで開くとこのようにブラウザでの参加方法が表示されます。</p>
 <img alt="_images/vscode_4.png" src="_images/vscode_4.png" />
-<div class="admonition-todo admonition" id="id7">
+<div class="admonition-todo admonition" id="id5">
 <p class="admonition-title">課題</p>
 <p>2020-08-16</p>
 <ul class="simple">
@@ -113,8 +108,8 @@
 </div>
 </div>
 </div>
-<div class="section" id="id8">
-<h2>チュートリアル当日の流れ<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id6">
+<h2>チュートリアル当日の流れ<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>当日は 8/30 9:30 から環境構築の相談時間を設けます。その時に「セッションの作成」の作業をしてもらい、コラボレーションの招待リンクを伝えてください。</p>
 </div>
 </div>
@@ -144,7 +139,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#id1">利用する拡張機能</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id2">ワークスペースの設定</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#live-share">Live Shareによるチュートリアルサポート</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id8">チュートリアル当日の流れ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">チュートリアル当日の流れ</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="slackbot.html">Slackbotの作成</a></li>

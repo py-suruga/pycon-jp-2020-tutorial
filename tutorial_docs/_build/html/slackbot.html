@@ -51,9 +51,11 @@
 </pre></div>
 </div>
 <p>仮想環境を利用するときには、以下のコマンドを実行します</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span>\<span class="o">.</span><span class="n">venv</span>\<span class="n">Scripts</span>\<span class="n">activate</span><span class="o">.</span><span class="n">bat</span>
-<span class="n">rem</span> <span class="n">仮想環境上に必要なパッケージをインストールします</span>
-<span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.\.venv\Scripts\activate.bat
+# 仮想環境上に必要なパッケージをインストールします
+(.venv) &gt; pip install -r requirements.txt
+# 開発環境で利用するパッケージのインストールも行います。
+(.venv) &gt; pip install -r dev_requirements.txt
 </pre></div>
 </div>
 <p>仮想環境を終了する場合は以下のコマンドを実行します。</p>
@@ -70,9 +72,9 @@
 <div class="section" id="slack">
 <h2>Slackアプリの作成と設定<a class="headerlink" href="#slack" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>まず初めにBotとなるSlackアプリをSlack上で作成します。</p>
-<p>「Create a Slack App」からApp Nameにアプリ名を入力します。</p>
+<p><a class="reference external" href="https://api.slack.com/apps?new_app=1">こちらのリンク</a> からアプリ作成画面に進みます。</p>
 <img alt="_images/slackbot_1-1.png" src="_images/slackbot_1-1.png" />
-<p>Slack WorkSpaceはハンズオン用に新たに取得したワークスペースを利用してください。</p>
+<p>アプリ名はこの例では <code class="docutils literal notranslate"><span class="pre">pt_slackbot-20200807</span></code> としていますが、アプリ名については自由に変更可能です。</p>
 <p>アプリが作成できたら、「OAuth &amp; Permissions」の「Scopes」&gt;「Bot Token Scopes」にスコープの設定を行います。</p>
 <img alt="_images/slackbot_1-2.png" src="_images/slackbot_1-2.png" />
 <p>「Bot Token Scope」はBotとなるSlackアプリがSlackワークスペースに利用できる権限の範囲（スコープ）です。</p>
@@ -134,10 +136,10 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 <img alt="_images/slackbot_1-12-0.png" src="_images/slackbot_1-12-0.png" />
 <img alt="_images/slackbot_1-12-1.png" src="_images/slackbot_1-12-1.png" />
 <p>ここまででSlackBotを動作させる準備が整いました。</p>
-<div class="section" id="id3">
-<h3>SlackBotのフロー<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id4">
+<h3>SlackBotのフロー<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ここでは、SlackBotがどのようにslackワークスペースとやり取りを行うか解説します。</p>
-<div class="admonition-todo admonition" id="id4">
+<div class="admonition-todo admonition" id="id5">
 <p class="admonition-title">課題</p>
 <p>SlackBotのシステム概要を説明: どんな技術が利用されているか。ざっくりで。(pysuruga-13-handsonの資料流用）</p>
 </div>
@@ -171,8 +173,8 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 </div>
 </div>
 </div>
-<div class="section" id="id5">
-<h2>チュートリアルで実装するSlackBotについて<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id6">
+<h2>チュートリアルで実装するSlackBotについて<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>このチュートリアルでは、3つのSlackBotを実装します。人工無能な挨拶を返すbotから、APIを利用してインタラクティブな結果を返すようにします。</p>
 <div class="section" id="wgreet-bot">
 <h3>世界の挨拶をランダムで返す  <strong>wgreet</strong> bot<a class="headerlink" href="#wgreet-bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -186,7 +188,7 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 <li><p>もちろん自由に言葉を変えてもらっても良し</p></li>
 </ul>
 </div></blockquote>
-<div class="admonition-todo admonition" id="id6">
+<div class="admonition-todo admonition" id="id7">
 <p class="admonition-title">課題</p>
 <p>2020-08-13 ステップごとのコードのリンクを用意する</p>
 </div>
@@ -275,7 +277,7 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Slackbotの作成</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id2">ローカル開発環境の用意</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#slack">Slackアプリの作成と設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">チュートリアルで実装するSlackBotについて</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">チュートリアルで実装するSlackBotについて</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pytest.html">PyTestでテストケースを導入する</a></li>
