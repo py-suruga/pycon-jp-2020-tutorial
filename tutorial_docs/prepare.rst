@@ -101,7 +101,7 @@ SlackBotはSlackワークスペース上で起きた出来事（メッセージ�
 
 ツールのDL先: `ngrok - download <https://ngrok.com/download>`_
 
-各OS向けのダウンロードリンクからzipファイルをDLして、zipファイル内にある``ngrok.exe`` という実行ファイルをチュートリアルの作業用のディレクトリへ配置します。
+各OS向けのダウンロードリンクからzipファイルをDLして、zipファイル内にある ``ngrok.exe`` という実行ファイルをチュートリアルの作業用のディレクトリへ配置します。
 
 .. image:: ./doc-img/ngrok_1.png
 
