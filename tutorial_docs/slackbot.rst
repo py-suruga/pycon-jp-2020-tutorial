@@ -49,11 +49,11 @@ Slackアプリの作成と設定
 
 まず初めにBotとなるSlackアプリをSlack上で作成します。
 
-「Create a Slack App」からApp Nameにアプリ名を入力します。
+`こちらのリンク <https://api.slack.com/apps?new_app=1>`_ からアプリ作成画面に進みます。
 
 .. image:: ./doc-img/slackbot_1-1.png
 
-Slack WorkSpaceはハンズオン用に新たに取得したワークスペースを利用してください。
+アプリ名はこの例では ``pt_slackbot-20200807`` としていますが、アプリ名については自由に変更可能です。
 
 アプリが作成できたら、「OAuth & Permissions」の「Scopes」>「Bot Token Scopes」にスコープの設定を行います。
 
