@@ -242,6 +242,7 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <div class="admonition-todo admonition" id="id11">
 <p class="admonition-title">課題</p>
 <ul class="simple">
+<li><p>挨拶botとconnpassbotの模範解答=step/sphinxディレクトリに作成する</p></li>
 <li><p>noteにtype annotationの組み合わせ例を書く</p></li>
 <li><p>docstringはGoogleスタイルで行うのでnapoleonの導入も必要: <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations">https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations</a></p></li>
 </ul>
@@ -310,14 +311,12 @@ pt_slackbot&gt; sphinx-apidoc.exe -f -o ./docs ./ /tests
 <div class="section" id="api">
 <h3>APIリファレンス入のドキュメントを生成する<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>sphinx-autodocコマンドでbotの関数にあるdocstringを含むリファレンスを作成しました。sphinxのビルドを行いリファレンスを含むドキュメントを生成しましょう。</p>
-<div class="admonition-todo admonition" id="id13">
-<p class="admonition-title">課題</p>
-<p>make htmlした結果を画像で乗せる</p>
+<img alt="_images/sphinx_3.png" src="_images/sphinx_3.png" />
+<p>toctreeに <code class="docutils literal notranslate"><span class="pre">modules</span></code> を追加した結果、モジュールの一覧の目次が作成されています。</p>
 </div>
 </div>
-</div>
-<div class="section" id="id14">
-<h2>テーマを変更しよう<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id13">
+<h2>テーマを変更しよう<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>最後に見栄えを自由に変更できるテーマについて説明します。</p>
 <p>Sphinxは公式同梱のテーマ以外にも、サードパーティのテーマも充実しています。</p>
 <p>今回はドキュメントホスティングサービスとして有名な、Read The Docsが提供しているSphinxテーマである <code class="docutils literal notranslate"><span class="pre">sphinx-rtd-theme</span></code> を適用してみましょう。</p>
@@ -325,7 +324,7 @@ pt_slackbot&gt; sphinx-apidoc.exe -f -o ./docs ./ /tests
 <p>SphixnのテーマはPythonパッケージとして提供されています。</p>
 <p>それではテーマを変更してみましょう。方法は公式サイトに掲載されているので、そちらを確認しつつ導入します。</p>
 <p>変更すると以下のように、ドキュメントページのデザインが変わります。</p>
-<img alt="_images/sphinx_3.png" src="_images/sphinx_3.png" />
+<img alt="_images/sphinx_4.png" src="_images/sphinx_4.png" />
 </div>
 </div>
 
@@ -356,7 +355,7 @@ pt_slackbot&gt; sphinx-apidoc.exe -f -o ./docs ./ /tests
 <li class="toctree-l2"><a class="reference internal" href="#id1">Sphinxの始め方</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#slackbot">Slackbotのドキュメントを書こう</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#autodocapi">autodoc拡張機能を使ったAPIリファレンス作成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id14">テーマを変更しよう</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">テーマを変更しよう</a></li>
 </ul>
 </li>
 </ul>

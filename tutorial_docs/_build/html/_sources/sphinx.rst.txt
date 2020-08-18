@@ -244,6 +244,7 @@ botの各関数にdocstringを追加しましょう。例として挨拶botとco
 
 .. todo::
 
+    - 挨拶botとconnpassbotの模範解答=step/sphinxディレクトリに作成する
     - noteにtype annotationの組み合わせ例を書く
     - docstringはGoogleスタイルで行うのでnapoleonの導入も必要: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations
 
@@ -323,9 +324,9 @@ APIリファレンス入のドキュメントを生成する
 
 sphinx-autodocコマンドでbotの関数にあるdocstringを含むリファレンスを作成しました。sphinxのビルドを行いリファレンスを含むドキュメントを生成しましょう。
 
-.. todo::
-    make htmlした結果を画像で乗せる
+.. image:: ./doc-img/sphinx_3.png
 
+toctreeに ``modules`` を追加した結果、モジュールの一覧の目次が作成されています。
 
 テーマを変更しよう
 =================================
@@ -344,4 +345,4 @@ SphixnのテーマはPythonパッケージとして提供されています。
 
 変更すると以下のように、ドキュメントページのデザインが変わります。
 
-.. image:: ./doc-img/sphinx_3.png
+.. image:: ./doc-img/sphinx_4.png
