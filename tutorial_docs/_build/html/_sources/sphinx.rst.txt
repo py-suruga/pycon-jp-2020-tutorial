@@ -2,7 +2,7 @@
 Sphinxでドキュメントを書こう
 ================================================================================
 
-SphinxはPythonの公式ドキュメントやサードパーティライブラリ、またほかの言語や書籍にも利用されるドキュメンテーションツールです。
+SphinxはPythonの公式ドキュメントやサードパーティライブラリ、またほかの言語や書籍にも利用されるドキュメンテーションツールです。HTMLやPDFでドキュメントを生成できます。
 
 公式サイト: `Overview — Sphinx 4.0.0+ documentation <https://www.sphinx-doc.org/en/master/>`_
 
@@ -18,9 +18,7 @@ Sphinxはドキュメントの書きやすさや豊富な拡張、テーマが�
 Sphinxの始め方
 ============================
 
-- sphinx-quickstartでひな形的なドキュメントの構成を用意する
-
-Sphinxもローカル開発環境を作成した段階でインストールされています。もしsphinx-quickstartというコマンドが見つからない場合はpipコマンドでインストールします。
+Sphinxもローカル開発環境を作成した段階でインストールされています。もし ``sphinx-quickstart`` というコマンドが見つからない場合はpipコマンドでインストールします。
 
 ::
 
@@ -68,11 +66,17 @@ Sphinxはドキュメントを作成するひな形の環境を用意する ``sp
 
     (pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot> cd .\docs\
 
-- 用意したドキュメントひな形の紹介: 構造の作り方
+今回のSlackbotのドキュメントは以下のような構造で作成します。チュートリアルで利用するディレクトリやファイルに付いて解説します。
 
-今回のSlackbotのドキュメントは以下のような構造で作成します。
+::
 
-.. todo:: ファイルツリーを用意する。ファイルの後に意味をコメントする
+    ./pt_slackbot/docs
+    ├── Makefile # sphinxのドキュメント生成をmakeコマンドで行うときのmakefile
+    ├── make.bat # makefileのWindowsバージョン
+    ├── _build # ビルドされた結果が入るディレクトリ
+    ├── conf.py # Sphinxの設定ファイル
+    ├── index.rst # 最初に生成されるrstファイル。HTMLでビルドした場合のindex.html相当
+
 
 Slackbotのドキュメントを書こう
 ==============================================================================================
@@ -88,7 +92,7 @@ Sphinxは標準でも多数の記法、ディレクティブに対応してい�
 Sphinxはじめの一歩
 -------------------------------------
 
-いくつかの記法を利用して index.rstファイルに試しに書いてみましょう。
+いくつかの記法を利用してindex.rstファイルへ試しに書いてみましょう。
 
 見出し
 ~~~~~~~~~~
@@ -106,7 +110,7 @@ Sphinxはじめの一歩
 
 .. code-block:: none
 
-    `Title <http://link>`_ 
+    `Title <http://link>`_
 
 リスト
 ~~~~~~~~~~
@@ -145,10 +149,10 @@ Sphinxはじめの一歩
     #win10ならmake.bat
     > make.bat html
 
-    #macOSなら makefileがそのまま扱えます
+    #macOSならmakefileがそのまま扱えます
     > make html
 
-生成されたhtmlは pythonの簡易httpサーバーを利用してブラウザで確認できます。
+生成されたhtmlはPythonの簡易httpサーバーを利用してブラウザで確認できます。
 
 ::
 
@@ -156,15 +160,32 @@ Sphinxはじめの一歩
     > cd _build/html
     > python -m http.server 8080
 
+.. image:: ./doc-img/sphinx_1.png
+
 Windows 10の場合は、ファイヤーウォールの許可が表示されるので、適切な設定をしたうえで許可をしてください。（プライベートネットワークのみにすることをオススメします）
 
-.. todo:: ブラウザの表示した結果をだす
+toctreeディレクティブ
+--------------------------------------------------------
+
+sphinxはドキュメントの構造を自動的に生成可能なツールです。ドキュメントの目次を作成したいときにはtoctreeディレクティブを利用します。
+
+``index.rst`` には最初からtoctreeディレクティブが自動的に生成されます。
+
+.. code-block:: none
+
+    .. toctree::
+        :maxdepth: 2
+        :caption: Contents:
+
+        # この行から目次に追加したいrstファイルの名称を追加する
 
 
 Slackbotの説明文を書いてみよう
 --------------------------------------------------------
 
 このチュートリアルで作成しているSlackbotの使い方をドキュメントとして書いてみましょう。
+
+``slackbot_usage.rst`` ファイルを作成して、botの使い方を書いていきます。
 
 .. todo::
     この章では、tutorial_docsにある文章や画像をコピペして作成してみる。
@@ -177,6 +198,15 @@ Slackbotの説明文を書いてみよう
       - 天気bot :追加した地域の一覧
     - 画像の挿入: tutorial_docs/slackbotの終盤にある画像ファイルをコピーしてpt_slackbot/docs内にコピー
 
+最後に ``index.rst`` のtoctreeディレクティブに ``slackbot_usage`` を追加します。 rstファイルの拡張子を外したファイル名のみにしてください。
+
+.. code-block:: none
+
+    .. toctree::
+        :maxdepth: 2
+        :caption: Contents:
+
+        slackbot_usage # .rst の拡張子はつけない
 
 autodoc拡張機能を使ったAPIリファレンス作成
 ==============================================================================================
@@ -192,13 +222,10 @@ docstirngを書こう
 
 autodocを使うためには、pythonのクラスや関数にdocstringを追加する必要があります。
 
-docstringはPythonのクラスや関数に書き込めるドキュメントです。文字列リテラルという ``"""クオーテーション三つでくくった文字列"""`` で表現します。
+docstringはPythonのクラスや関数に書き込めるドキュメントです。文字列リテラルという ``"""クオーテーション3つでくくった文字列"""`` で表現します。
 
 .. note::
-    **docstring**
-        クラス、関数、モジュールの最初の式である文字列リテラルです。
-        そのスイートの実行時には無視されますが、コンパイラによって識別され、そのクラス、関数、モジュールの __doc__ 属性として保存されます。
-        イントロスペクションできる（訳注: 属性として参照できる）ので、オブジェクトのドキュメントを書く標準的な場所です。
+    docstringはPython公式ドキュメントで厳密な定義があります。
 
     https://docs.python.org/ja/3/glossary.html?highlight=docstring
 
@@ -211,9 +238,8 @@ docstringの例は以下の通りです。
     ...     この部分に文字列を入れるとdocstringとして扱われます。
     ...     """
     ...     pass
-    ...
 
-docstringはPythonのドキュメンテーションに深くかかわる機能です。Python内でも呼び出すことが可能で、help関数を使うことで、関数やクラスのdocstringを参照することができます。
+docstringはPythonのドキュメンテーションに深くかかわる機能です。Python内でも呼び出すことが可能で、help関数を使うことで、関数やクラスのdocstringを参照できます。
 
 .. code-block:: python
 
@@ -232,43 +258,96 @@ botの各関数にdocstringを追加しましょう。例として挨拶botとco
 - 挨拶bot: ランダムに天気情報を返す関数
 - connpassbot: jsonの取得関数、botが答える文字列生成の関数
 
-docstringは基本的
-
-.. todo:: そのほかの関数は、終わりに模範解答からコピーして実行して生成された結果を見ていく
+.. note:: そのほかの関数は、終わりに模範解答からコピーして実行して生成された結果を確認しましょう。
 
     - 天気bot: xml取得関数、botが答える文字列生成の関数
     - botrunのメッセージハンドル（botの登録方法を記載する）
 
 .. todo::
 
+    - 挨拶botとconnpassbotの模範解答=step/sphinxディレクトリに作成する
     - noteにtype annotationの組み合わせ例を書く
     - docstringはGoogleスタイルで行うのでnapoleonの導入も必要: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations
 
 Sphinxの設定
 ---------------------------
 
-autodoc拡張機能はSphinxの設定で有効にする必要があります。Sphinxの設定は sphinx-quickstart コマンドで作成したひな形にあるconf.pyを変更します。
+autodoc拡張機能はSphinxの設定で有効にする必要があります。Sphinxの設定は ``sphinx-quickstart`` コマンドで作成したひな形にあるconf.pyを変更します。
 
-- apidocの設定(conf.pyでextentionsやsys.pathにpythonのモジュールパスを入れる）
+.. code-block:: python
+
+    # -- Path setup --------------------------------------------------------------
+
+    # If extensions (or modules to document with autodoc) are in another directory,
+    # add these directories to sys.path here. If the directory is relative to the
+    # documentation root, use os.path.abspath to make it absolute, like shown here.
+    #
+
+    # import os
+    # import sys
+
+    # sys.path.insert(0, os.path.abspath('.'))
+
+    # TODO:2020-08-15 この部分はsphinx-quickstartで生成されたコードから変更しています。
+    # チュートリアル全体でpathlibを扱っているのでpathlibでパスを生成しています。
+    from pathlib import Path
+    import sys
+
+    sys.path.insert(0, str(Path("../")))
+
+次に、conf.pyのextensions（空のリスト）に、 ``"sphinx.ext.autodoc", "sphinx.ext.napoleon"`` の2つの文字列を追加します。
+
+.. code-block:: python
+
+    # -- General configuration ---------------------------------------------------
+
+    # Add any Sphinx extension module names here, as strings. They can be
+    # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
+    # ones.
+    # extensions = []
+    extensions = ["sphinx.ext.autodoc", "sphinx.ext.napoleon"]
+
 
 autodocで半自動的にリファレンスを作成する: sphinx-apidocコマンド
 ------------------------------------------------------------------------------------------------------------------------------
 
 docstringの用意と設定を変更したので、autodocを使ってリファレンスを生成してみましょう。
 
-.. todo::
-    - sphinx-apidocでapidocのひな形を作成
-    - 生成したドキュメントの中身をVSCodeのツリーで見せる
+.. code-block:: none
 
+    # /testsディレクトリは除外する指定をしています。
+    # sphinx-apidoc -f（上書き） -o（出力先ディレクトリの指定） [出力先ディレクトリのパス] [autodocで生成したいPythonモジュールのパス] [除外するパス]
 
-APIリファレンスが入ったドキュメントを生成する
+    pt_slackbot> sphinx-apidoc.exe -f -o ./docs ./ /tests
+
+    # 以下に生成の結果が表示される
+
+このコマンドで生成したリファレンスは ``botrun.rst``、``botfunc.rst``、``modules.rst`` の3つのファイルになります。このファイルは ``docs`` ディレクトリ内に生成されます。
+
+.. image:: ./doc-img/sphinx_2.png
+
+最後に、既存のSphinxドキュメントにapidocで生成したリファレンスの目次を追加しましょう。 toctreeディレクティブに ``modules`` を追加します。
+
+.. code-block:: none
+
+    目次
+    =======
+
+    .. toctree::
+        :maxdepth: 2
+        :caption: Contents:
+
+        slackbot_usage
+        modules  # 追加したリファレンスの目次
+
+APIリファレンス入のドキュメントを生成する
 ------------------------------------------------------------------------------------------------------------------------------
 
-sphinx-autodocコマンドでbotの関数にあるdocstringを含むリファレンスを作成しました。最後にsphinxのビルドを行いリファレンスを含むドキュメントを生成しましょう。
+sphinx-autodocコマンドでbotの関数にあるdocstringを含むリファレンスを作成しました。sphinxのビルドを行いリファレンスを含むドキュメントを生成しましょう。
 
-.. todo::
-    make htmlした結果を画像で乗せる
+.. image:: ./doc-img/sphinx_3.png
 
+toctreeディレクティブに ``modules`` を追加した結果、モジュールの一覧の目次が作成されています。
 
 テーマを変更しよう
 =================================
@@ -287,4 +366,4 @@ SphixnのテーマはPythonパッケージとして提供されています。
 
 変更すると以下のように、ドキュメントページのデザインが変わります。
 
-.. todo:: 変更したページをスクリーンショットで撮影
+.. image:: ./doc-img/sphinx_4.png

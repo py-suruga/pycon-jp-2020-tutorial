@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VSCodeとLive Shareの設定 &#8212; PyCon JP 2020 チュートリアル Slack Bot編 ドキュメント 2020.07.24 ドキュメント</title>
+    <title>VS CodeとLive Shareの設定 &#8212; PyCon JP 2020 チュートリアル Slack Bot編 ドキュメント 2020.07.24 ドキュメント</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -34,11 +34,11 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="vscodelive-share">
-<h1>VSCodeとLive Shareの設定<a class="headerlink" href="#vscodelive-share" title="このヘッドラインへのパーマリンク">¶</a></h1>
+  <div class="section" id="vs-codelive-share">
+<h1>VS CodeとLive Shareの設定<a class="headerlink" href="#vs-codelive-share" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="vs-code">
 <h2>VS Codeの設定<a class="headerlink" href="#vs-code" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>VS CodeでPythonを扱ったことがない方、初めてVS Codeを利用する方の設定を説明します。</p>
+<p>VS CodeでPythonを扱ったことがない方、はじめてVS Codeを利用する方の設定を説明します。</p>
 <p>またLive Shareの設定方法も説明します。</p>
 </div>
 <div class="section" id="id1">
@@ -51,13 +51,12 @@
 </div>
 <div class="section" id="id2">
 <h2>ワークスペースの設定<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>VS Codeにはワークスペースという概念があります。</p>
-<div class="admonition-todo admonition" id="id3">
-<p class="admonition-title">課題</p>
-<p>ワークスペースの公式ヘルプ</p>
-</div>
-<p>Python拡張機能にも専用の設定があり、ワークスペース内で設定を行うことで＊＊＊</p>
-<p><code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code> に以下の設定を追加します。</p>
+<p>VS Codeにはワークスペースという概念があります。ディレクトリを開くとそのディレクトリをワークスペースとして認識し、VS Codeのアプリとしての設定（ユーザー設定）とは別に、ワークスペースごとに設定を変更できます。</p>
+<p>ワークスペースの設定は <code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code> を作成することで有効にできます。</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://code.visualstudio.com/docs/getstarted/settings">Visual Studio Code User and Workspace Settings</a></p></li>
+</ul>
+<p>Python拡張機能で利用できる設定を追加します。リンターやフォーマッターの有効化をしています。<code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code> に以下の設定を追加します。</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;python.formatting.provider&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>
   <span class="nt">&quot;editor.formatOnSave&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
@@ -67,11 +66,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>この設定は、いくつかのPythonパッケージの依存があります。これらはpip経由でインストール可能で、「prepare」の仮想環境作成時にインストールされます。</p>
-<div class="admonition-todo admonition" id="id4">
-<p class="admonition-title">課題</p>
-<p>環境構築のpipインストール部分のリンクを作成する</p>
-</div>
+<p>この設定は、いくつかのPythonパッケージの依存があります。これらはpip経由でインストール可能で、 <a class="reference internal" href="slackbot.html"><span class="doc">Slackbotの作成</span></a>  の「ローカル開発環境の用意」の仮想環境作成時にインストールしています。</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/psf/black">psf/black: The uncompromising Python code formatter</a></p></li>
 <li><p><a class="reference external" href="https://gitlab.com/pycqa/flake8">PyCQA / flake8 · GitLab</a></p></li>
@@ -79,30 +74,29 @@
 </div>
 <div class="section" id="live-share">
 <h2>Live Shareによるチュートリアルサポート<a class="headerlink" href="#live-share" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Visual Studio Live Shareは、Visual StudioやVS Codeでソースコードをリアルタイムに複数人で共有、編集しデバッグをすることが出来ます</p>
+<p>Visual Studio Live Shareは、Visual StudioやVS Codeでソースコードをリアルタイムに複数人で共有、編集しデバッグができます。</p>
 <p><a class="reference external" href="https://docs.microsoft.com/ja-jp/visualstudio/liveshare/">概要 - Visual Studio Live Share - Visual Studio Live Share | Microsoft Docs</a></p>
-<p>チュートリアルでは、各参加者のVS Codeの状況を講師, TAがリアルタイムでコードのデバッグを手助けできます。</p>
+<p>チュートリアルでは、各参加者のVS Codeの状況を講師とTAがリアルタイムでコードのデバッグを手助けできます。</p>
 <p>この章ではサポートを受けたい方向けに、Live Shareのセットアップ方法を紹介します。</p>
 <p>Live Shareは参加者のVS Codeの状況を講師、TAがリアルタイムで見ることができ、操作して共同で作業が可能です。</p>
 <div class="section" id="liveshare">
 <h3>LiveShare拡張のインストール<a class="headerlink" href="#liveshare" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>ストアからインストール出来ます。</p>
+<p>ストアからインストールします。</p>
 <p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare">Live Share - Visual Studio Marketplace</a></p>
 </div>
-<div class="section" id="id5">
-<h3>セッションの作成<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>各参加者皆さんのVSCodeでLiveshareのセッションを講師とTAが参加する必要があり、その時に必要な招待URLを教えてもらう必要があります。</p>
-<p><a class="reference external" href="https://docs.microsoft.com/ja-jp/visualstudio/liveshare/reference/security">セキュリティ-Visual Studio Live Share - Visual Studio Live Share | Microsoft Docs</a></p>
-<p>インストールすると、自動的にWelcomeタブが表示されますが閉じてもらって構いません</p>
-<p>ウィンドウ↓の Live Shareマークをクリックして、GitHubアカウントでログインします。</p>
+<div class="section" id="id3">
+<h3>コラボレーションセッションの作成<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>各参加者皆さんのVS Codeで、Live Shareのコラボレーションセッションに講師とTAは参加する必要があります。その時に必要な招待URLを作成していただく必要があります。</p>
+<p>Live Share拡張をインストールすると、自動的にWelcomeタブが表示されますが閉じてもらって構いません</p>
+<p>VS Codeウィンドウの下部にあるLive Shareマークをクリックして、GitHubアカウントでログインします。</p>
 <img alt="_images/vscode_1.png" src="_images/vscode_1.png" />
 <img alt="_images/vscode_2.png" src="_images/vscode_2.png" />
-<p>その後自動的にコラボレーションセッションがスタートします。自動的にクリップボードに招待リンク（URL）がコピーされるので控えてください。</p>
+<p>その後自動的にコラボレーションセッションがスタート、クリップボードへ招待リンク（URL）がコピーされるので、控えてください。</p>
 <img alt="_images/vscode_3.png" src="_images/vscode_3.png" />
-<p>最後に講師にURLを伝えてください。伝え方はチュートリアル当日に方法をお伝えします。</p>
+<p>最後に講師へURLを伝えてください。伝え方はチュートリアル当日に方法をお伝えします。</p>
 <p>URLをブラウザで開くとこのようにブラウザでの参加方法が表示されます。</p>
 <img alt="_images/vscode_4.png" src="_images/vscode_4.png" />
-<div class="admonition-todo admonition" id="id7">
+<div class="admonition-todo admonition" id="id4">
 <p class="admonition-title">課題</p>
 <p>2020-08-16</p>
 <ul class="simple">
@@ -113,8 +107,8 @@
 </div>
 </div>
 </div>
-<div class="section" id="id8">
-<h2>チュートリアル当日の流れ<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id5">
+<h2>チュートリアル当日の流れ<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>当日は 8/30 9:30 から環境構築の相談時間を設けます。その時に「セッションの作成」の作業をしてもらい、コラボレーションの招待リンクを伝えてください。</p>
 </div>
 </div>
@@ -139,16 +133,16 @@
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="prepare.html">チュートリアル開始前の準備</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">VSCodeとLive Shareの設定</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">VS CodeとLive Shareの設定</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#vs-code">VS Codeの設定</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id1">利用する拡張機能</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id2">ワークスペースの設定</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#live-share">Live Shareによるチュートリアルサポート</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id8">チュートリアル当日の流れ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">チュートリアル当日の流れ</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="slackbot.html">Slackbotの作成</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytest.html">PyTestでテストケースを導入する</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytest.html">pytestでテストケースを導入する</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sphinx.html">Sphinxでドキュメントを書こう</a></li>
 </ul>
 

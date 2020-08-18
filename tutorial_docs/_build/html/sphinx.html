@@ -16,7 +16,7 @@
     <script src="_static/translations.js"></script>
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="検索" href="search.html" />
-    <link rel="prev" title="PyTestでテストケースを導入する" href="pytest.html" />
+    <link rel="prev" title="pytestでテストケースを導入する" href="pytest.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -35,7 +35,7 @@
             
   <div class="section" id="sphinx">
 <h1>Sphinxでドキュメントを書こう<a class="headerlink" href="#sphinx" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>SphinxはPythonの公式ドキュメントやサードパーティライブラリ、またほかの言語や書籍にも利用されるドキュメンテーションツールです。</p>
+<p>SphinxはPythonの公式ドキュメントやサードパーティライブラリ、またほかの言語や書籍にも利用されるドキュメンテーションツールです。HTMLやPDFでドキュメントを生成できます。</p>
 <p>公式サイト: <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Overview — Sphinx 4.0.0+ documentation</a></p>
 <p>日本語版の公式サイト: <a class="reference external" href="https://www.sphinx-doc.org/ja/master/">概要 — Sphinx 4.0.0+/ba0e5d0ec ドキュメント</a></p>
 <p>Sphinxはドキュメントの書きやすさや豊富な拡張、テーマが利用できます。オープンソースプロジェクトのドキュメントや、企業内のドキュメントでも利用されています。</p>
@@ -46,10 +46,7 @@
 </ul>
 <div class="section" id="id1">
 <h2>Sphinxの始め方<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<ul class="simple">
-<li><p>sphinx-quickstartでひな形的なドキュメントの構成を用意する</p></li>
-</ul>
-<p>Sphinxもローカル開発環境を作成した段階でインストールされています。もしsphinx-quickstartというコマンドが見つからない場合はpipコマンドでインストールします。</p>
+<p>Sphinxもローカル開発環境を作成した段階でインストールされています。もし <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> というコマンドが見つからない場合はpipコマンドでインストールします。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">Sphinx</span>
 </pre></div>
 </div>
@@ -93,13 +90,14 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 (pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot&gt; cd .\docs\
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>用意したドキュメントひな形の紹介: 構造の作り方</p></li>
-</ul>
-<p>今回のSlackbotのドキュメントは以下のような構造で作成します。</p>
-<div class="admonition-todo admonition" id="id2">
-<p class="admonition-title">課題</p>
-<p>ファイルツリーを用意する。ファイルの後に意味をコメントする</p>
+<p>今回のSlackbotのドキュメントは以下のような構造で作成します。チュートリアルで利用するディレクトリやファイルに付いて解説します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>./pt_slackbot/docs
+├── Makefile # sphinxのドキュメント生成をmakeコマンドで行うときのmakefile
+├── make.bat # makefileのWindowsバージョン
+├── _build # ビルドされた結果が入るディレクトリ
+├── conf.py # Sphinxの設定ファイル
+├── index.rst # 最初に生成されるrstファイル。HTMLでビルドした場合のindex.html相当
+</pre></div>
 </div>
 </div>
 <div class="section" id="slackbot">
@@ -108,11 +106,11 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <p>Sphinxではドキュメントの作成に、RestructuredTextというプレーンテキスト形式の軽量マークアップ言語を利用します。短縮名として「reST」とも言われます。</p>
 <p>RestructuredTextには、記法やディレクティブという概念があります。記法は見出しやリストやURLリンクなどの文章の装飾や意味合いの定義を付け加えます。ディレクティブも文章の意味合いを定義するものに使いますが、文章を書く上で便利な機能を提供しています。</p>
 <p>Sphinxは標準でも多数の記法、ディレクティブに対応しています。またサードパーティが提供する拡張機能も利用できます。</p>
+<div class="section" id="id2">
+<h3>Sphinxはじめの一歩<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>いくつかの記法を利用してindex.rstファイルへ試しに書いてみましょう。</p>
 <div class="section" id="id3">
-<h3>Sphinxはじめの一歩<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>いくつかの記法を利用して index.rstファイルに試しに書いてみましょう。</p>
-<div class="section" id="id4">
-<h4>見出し<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<h4>見出し<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>見出し1
 ==========
 
@@ -121,26 +119,26 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 </pre></div>
 </div>
 </div>
-<div class="section" id="id5">
-<h4>リンク<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id4">
+<h4>リンク<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>`Title &lt;http://link&gt;`_
 </pre></div>
 </div>
 </div>
-<div class="section" id="id6">
-<h4>リスト<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id5">
+<h4>リスト<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- 箇条書きは 「-」
 </pre></div>
 </div>
 </div>
-<div class="section" id="id7">
-<h4>画像<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id6">
+<h4>画像<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. image:: path
 </pre></div>
 </div>
 </div>
-<div class="section" id="id8">
-<h4>コードブロック<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id7">
+<h4>コードブロック<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. code-block:: python
 
     &gt;&gt;&gt;print(&quot;hello Sphinx!!&quot;)
@@ -149,32 +147,42 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <p>そのほかの記法 : <a class="reference external" href="https://quick-restructuredtext.readthedocs.io/en/latest/">早わかり reStructuredText — Quick reStructuredText 0.1 documentation</a></p>
 </div>
 </div>
-<div class="section" id="id9">
-<h3>ドキュメントの生成<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id8">
+<h3>ドキュメントの生成<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ドキュメントをhtmlで生成する場合は <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> コマンドが生成したmakeファイルを使うと簡単に生成できます。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#win10ならmake.bat</span>
 <span class="o">&gt;</span> <span class="n">make</span><span class="o">.</span><span class="n">bat</span> <span class="n">html</span>
 
-<span class="c1">#macOSなら makefileがそのまま扱えます</span>
+<span class="c1">#macOSならmakefileがそのまま扱えます</span>
 <span class="o">&gt;</span> <span class="n">make</span> <span class="n">html</span>
 </pre></div>
 </div>
-<p>生成されたhtmlは pythonの簡易httpサーバーを利用してブラウザで確認できます。</p>
+<p>生成されたhtmlはPythonの簡易httpサーバーを利用してブラウザで確認できます。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ポート指定することでhttpサーバーのポートを変更できます。今回は8080版を利用しています。</span>
 <span class="o">&gt;</span> <span class="n">cd</span> <span class="n">_build</span><span class="o">/</span><span class="n">html</span>
 <span class="o">&gt;</span> <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">http</span><span class="o">.</span><span class="n">server</span> <span class="mi">8080</span>
 </pre></div>
 </div>
+<img alt="_images/sphinx_1.png" src="_images/sphinx_1.png" />
 <p>Windows 10の場合は、ファイヤーウォールの許可が表示されるので、適切な設定をしたうえで許可をしてください。（プライベートネットワークのみにすることをオススメします）</p>
-<div class="admonition-todo admonition" id="id10">
-<p class="admonition-title">課題</p>
-<p>ブラウザの表示した結果をだす</p>
+</div>
+<div class="section" id="toctree">
+<h3>toctreeディレクティブ<a class="headerlink" href="#toctree" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>sphinxはドキュメントの構造を自動的に生成可能なツールです。ドキュメントの目次を作成したいときにはtoctreeディレクティブを利用します。</p>
+<p><code class="docutils literal notranslate"><span class="pre">index.rst</span></code> には最初からtoctreeディレクティブが自動的に生成されます。</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. toctree::
+    :maxdepth: 2
+    :caption: Contents:
+
+    # この行から目次に追加したいrstファイルの名称を追加する
+</pre></div>
 </div>
 </div>
-<div class="section" id="id11">
-<h3>Slackbotの説明文を書いてみよう<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id9">
+<h3>Slackbotの説明文を書いてみよう<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>このチュートリアルで作成しているSlackbotの使い方をドキュメントとして書いてみましょう。</p>
-<div class="admonition-todo admonition" id="id12">
+<p><code class="docutils literal notranslate"><span class="pre">slackbot_usage.rst</span></code> ファイルを作成して、botの使い方を書いていきます。</p>
+<div class="admonition-todo admonition" id="id10">
 <p class="admonition-title">課題</p>
 <p>この章では、tutorial_docsにある文章や画像をコピペして作成してみる。
 入力の手間を減らしたり、ビルド時の失敗をある程度減らす狙いがある</p>
@@ -187,6 +195,14 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <li><p>画像の挿入: tutorial_docs/slackbotの終盤にある画像ファイルをコピーしてpt_slackbot/docs内にコピー</p></li>
 </ul>
 </div>
+<p>最後に <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> のtoctreeディレクティブに <code class="docutils literal notranslate"><span class="pre">slackbot_usage</span></code> を追加します。 rstファイルの拡張子を外したファイル名のみにしてください。</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. toctree::
+    :maxdepth: 2
+    :caption: Contents:
+
+    slackbot_usage # .rst の拡張子はつけない
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="autodocapi">
@@ -197,15 +213,10 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <div class="section" id="docstirng">
 <h3>docstirngを書こう<a class="headerlink" href="#docstirng" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>autodocを使うためには、pythonのクラスや関数にdocstringを追加する必要があります。</p>
-<p>docstringはPythonのクラスや関数に書き込めるドキュメントです。文字列リテラルという <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;クオーテーション三つでくくった文字列&quot;&quot;&quot;</span></code> で表現します。</p>
+<p>docstringはPythonのクラスや関数に書き込めるドキュメントです。文字列リテラルという <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;クオーテーション3つでくくった文字列&quot;&quot;&quot;</span></code> で表現します。</p>
 <div class="admonition note">
 <p class="admonition-title">注釈</p>
-<dl class="simple">
-<dt><strong>docstring</strong></dt><dd><p>クラス、関数、モジュールの最初の式である文字列リテラルです。
-そのスイートの実行時には無視されますが、コンパイラによって識別され、そのクラス、関数、モジュールの __doc__ 属性として保存されます。
-イントロスペクションできる（訳注: 属性として参照できる）ので、オブジェクトのドキュメントを書く標準的な場所です。</p>
-</dd>
-</dl>
+<p>docstringはPython公式ドキュメントで厳密な定義があります。</p>
 <p><a class="reference external" href="https://docs.python.org/ja/3/glossary.html?highlight=docstring">https://docs.python.org/ja/3/glossary.html?highlight=docstring</a></p>
 </div>
 <p>docstringの例は以下の通りです。</p>
@@ -214,10 +225,9 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <span class="gp">... </span><span class="sd">    この部分に文字列を入れるとdocstringとして扱われます。</span>
 <span class="gp">... </span><span class="sd">    &quot;&quot;&quot;</span>
 <span class="gp">... </span>    <span class="k">pass</span>
-<span class="gp">...</span>
 </pre></div>
 </div>
-<p>docstringはPythonのドキュメンテーションに深くかかわる機能です。Python内でも呼び出すことが可能で、help関数を使うことで、関数やクラスのdocstringを参照することができます。</p>
+<p>docstringはPythonのドキュメンテーションに深くかかわる機能です。Python内でも呼び出すことが可能で、help関数を使うことで、関数やクラスのdocstringを参照できます。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">help</span><span class="p">(</span><span class="n">hello_docstring</span><span class="p">)</span>
 <span class="go">Help on function hello_docstring in module __main__:</span>
 
@@ -233,52 +243,92 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <li><p>挨拶bot: ランダムに天気情報を返す関数</p></li>
 <li><p>connpassbot: jsonの取得関数、botが答える文字列生成の関数</p></li>
 </ul>
-<p>docstringは基本的</p>
-<div class="admonition-todo admonition" id="id13">
-<p class="admonition-title">課題</p>
-<p>そのほかの関数は、終わりに模範解答からコピーして実行して生成された結果を見ていく</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>そのほかの関数は、終わりに模範解答からコピーして実行して生成された結果を確認しましょう。</p>
 <ul class="simple">
 <li><p>天気bot: xml取得関数、botが答える文字列生成の関数</p></li>
 <li><p>botrunのメッセージハンドル（botの登録方法を記載する）</p></li>
 </ul>
 </div>
-<div class="admonition-todo admonition" id="id14">
+<div class="admonition-todo admonition" id="id11">
 <p class="admonition-title">課題</p>
 <ul class="simple">
+<li><p>挨拶botとconnpassbotの模範解答=step/sphinxディレクトリに作成する</p></li>
 <li><p>noteにtype annotationの組み合わせ例を書く</p></li>
 <li><p>docstringはGoogleスタイルで行うのでnapoleonの導入も必要: <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations">https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations</a></p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="id15">
-<h3>Sphinxの設定<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>autodoc拡張機能はSphinxの設定で有効にする必要があります。Sphinxの設定は sphinx-quickstart コマンドで作成したひな形にあるconf.pyを変更します。</p>
-<ul class="simple">
-<li><p>apidocの設定(conf.pyでextentionsやsys.pathにpythonのモジュールパスを入れる）</p></li>
-</ul>
+<div class="section" id="id12">
+<h3>Sphinxの設定<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>autodoc拡張機能はSphinxの設定で有効にする必要があります。Sphinxの設定は <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> コマンドで作成したひな形にあるconf.pyを変更します。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -- Path setup --------------------------------------------------------------</span>
+
+<span class="c1"># If extensions (or modules to document with autodoc) are in another directory,</span>
+<span class="c1"># add these directories to sys.path here. If the directory is relative to the</span>
+<span class="c1"># documentation root, use os.path.abspath to make it absolute, like shown here.</span>
+<span class="c1">#</span>
+
+<span class="c1"># import os</span>
+<span class="c1"># import sys</span>
+
+<span class="c1"># sys.path.insert(0, os.path.abspath(&#39;.&#39;))</span>
+
+<span class="c1"># TODO:2020-08-15 この部分はsphinx-quickstartで生成されたコードから変更しています。</span>
+<span class="c1"># チュートリアル全体でpathlibを扱っているのでpathlibでパスを生成しています。</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>次に、conf.pyのextensions（空のリスト）に、 <code class="docutils literal notranslate"><span class="pre">&quot;sphinx.ext.autodoc&quot;,</span> <span class="pre">&quot;sphinx.ext.napoleon&quot;</span></code> の2つの文字列を追加します。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -- General configuration ---------------------------------------------------</span>
+
+<span class="c1"># Add any Sphinx extension module names here, as strings. They can be</span>
+<span class="c1"># extensions coming with Sphinx (named &#39;sphinx.ext.*&#39;) or your custom</span>
+<span class="c1"># ones.</span>
+<span class="c1"># extensions = []</span>
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sphinx.ext.autodoc&quot;</span><span class="p">,</span> <span class="s2">&quot;sphinx.ext.napoleon&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="autodoc-sphinx-apidoc">
 <h3>autodocで半自動的にリファレンスを作成する: sphinx-apidocコマンド<a class="headerlink" href="#autodoc-sphinx-apidoc" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>docstringの用意と設定を変更したので、autodocを使ってリファレンスを生成してみましょう。</p>
-<div class="admonition-todo admonition" id="id16">
-<p class="admonition-title">課題</p>
-<ul class="simple">
-<li><p>sphinx-apidocでapidocのひな形を作成</p></li>
-<li><p>生成したドキュメントの中身をVSCodeのツリーで見せる</p></li>
-</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># /testsディレクトリは除外する指定をしています。
+# sphinx-apidoc -f（上書き） -o（出力先ディレクトリの指定） [出力先ディレクトリのパス] [autodocで生成したいPythonモジュールのパス] [除外するパス]
+
+pt_slackbot&gt; sphinx-apidoc.exe -f -o ./docs ./ /tests
+
+# 以下に生成の結果が表示される
+</pre></div>
+</div>
+<p>このコマンドで生成したリファレンスは <code class="docutils literal notranslate"><span class="pre">botrun.rst</span></code>、<code class="docutils literal notranslate"><span class="pre">botfunc.rst</span></code>、<code class="docutils literal notranslate"><span class="pre">modules.rst</span></code> の3つのファイルになります。このファイルは <code class="docutils literal notranslate"><span class="pre">docs</span></code> ディレクトリ内に生成されます。</p>
+<img alt="_images/sphinx_2.png" src="_images/sphinx_2.png" />
+<p>最後に、既存のSphinxドキュメントにapidocで生成したリファレンスの目次を追加しましょう。 toctreeディレクティブに <code class="docutils literal notranslate"><span class="pre">modules</span></code> を追加します。</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>目次
+=======
+
+.. toctree::
+    :maxdepth: 2
+    :caption: Contents:
+
+    slackbot_usage
+    modules  # 追加したリファレンスの目次
+</pre></div>
 </div>
 </div>
 <div class="section" id="api">
-<h3>APIリファレンスが入ったドキュメントを生成する<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>sphinx-autodocコマンドでbotの関数にあるdocstringを含むリファレンスを作成しました。最後にsphinxのビルドを行いリファレンスを含むドキュメントを生成しましょう。</p>
-<div class="admonition-todo admonition" id="id17">
-<p class="admonition-title">課題</p>
-<p>make htmlした結果を画像で乗せる</p>
+<h3>APIリファレンス入のドキュメントを生成する<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>sphinx-autodocコマンドでbotの関数にあるdocstringを含むリファレンスを作成しました。sphinxのビルドを行いリファレンスを含むドキュメントを生成しましょう。</p>
+<img alt="_images/sphinx_3.png" src="_images/sphinx_3.png" />
+<p>toctreeディレクティブに <code class="docutils literal notranslate"><span class="pre">modules</span></code> を追加した結果、モジュールの一覧の目次が作成されています。</p>
 </div>
 </div>
-</div>
-<div class="section" id="id18">
-<h2>テーマを変更しよう<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id13">
+<h2>テーマを変更しよう<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>最後に見栄えを自由に変更できるテーマについて説明します。</p>
 <p>Sphinxは公式同梱のテーマ以外にも、サードパーティのテーマも充実しています。</p>
 <p>今回はドキュメントホスティングサービスとして有名な、Read The Docsが提供しているSphinxテーマである <code class="docutils literal notranslate"><span class="pre">sphinx-rtd-theme</span></code> を適用してみましょう。</p>
@@ -286,10 +336,7 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <p>SphixnのテーマはPythonパッケージとして提供されています。</p>
 <p>それではテーマを変更してみましょう。方法は公式サイトに掲載されているので、そちらを確認しつつ導入します。</p>
 <p>変更すると以下のように、ドキュメントページのデザインが変わります。</p>
-<div class="admonition-todo admonition" id="id19">
-<p class="admonition-title">課題</p>
-<p>変更したページをスクリーンショットで撮影</p>
-</div>
+<img alt="_images/sphinx_4.png" src="_images/sphinx_4.png" />
 </div>
 </div>
 
@@ -313,14 +360,14 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="prepare.html">チュートリアル開始前の準備</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vscode.html">VSCodeとLive Shareの設定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode.html">VS CodeとLive Shareの設定</a></li>
 <li class="toctree-l1"><a class="reference internal" href="slackbot.html">Slackbotの作成</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytest.html">PyTestでテストケースを導入する</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytest.html">pytestでテストケースを導入する</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Sphinxでドキュメントを書こう</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id1">Sphinxの始め方</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#slackbot">Slackbotのドキュメントを書こう</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#autodocapi">autodoc拡張機能を使ったAPIリファレンス作成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id18">テーマを変更しよう</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">テーマを変更しよう</a></li>
 </ul>
 </li>
 </ul>
@@ -329,7 +376,7 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="pytest.html" title="前の章へ">PyTestでテストケースを導入する</a></li>
+      <li>Previous: <a href="pytest.html" title="前の章へ">pytestでテストケースを導入する</a></li>
   </ul></li>
 </ul>
 </div>

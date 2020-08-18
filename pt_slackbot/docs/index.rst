@@ -6,6 +6,15 @@
 Welcome to pt_slackbot ドキュメント's documentation!
 ====================================================
 
+
+このドキュメントは？
+============================
+
+`PyCon JP 2020 チュートリアル <https://pycon.jp/2020/tutorial/>`_ でハンズオン中のSlackbotの使い方ドキュメントです。
+
+目次
+=======
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:

@@ -1,11 +1,11 @@
-========================
-VSCodeとLive Shareの設定
-========================
+================================================
+VS CodeとLive Shareの設定
+================================================
 
 VS Codeの設定
 ================================
 
-VS CodeでPythonを扱ったことがない方、初めてVS Codeを利用する方の設定を説明します。
+VS CodeでPythonを扱ったことがない方、はじめてVS Codeを利用する方の設定を説明します。
 
 またLive Shareの設定方法も説明します。
 
@@ -21,13 +21,13 @@ VS CodeでPythonを扱ったことがない方、初めてVS Codeを利用する
 ワークスペースの設定
 ================================
 
-VS Codeにはワークスペースという概念があります。
+VS Codeにはワークスペースという概念があります。ディレクトリを開くとそのディレクトリをワークスペースとして認識し、VS Codeのアプリとしての設定（ユーザー設定）とは別に、ワークスペースごとに設定を変更できます。
 
-.. todo:: ワークスペースの公式ヘルプ
+ワークスペースの設定は ``.vscode/settings.json`` を作成することで有効にできます。
 
-Python拡張機能にも専用の設定があり、ワークスペース内で設定を行うことで＊＊＊
+- `Visual Studio Code User and Workspace Settings <https://code.visualstudio.com/docs/getstarted/settings>`_
 
-``.vscode/settings.json`` に以下の設定を追加します。
+Python拡張機能で利用できる設定を追加します。リンターやフォーマッターの有効化をしています。``.vscode/settings.json`` に以下の設定を追加します。
 
 .. code-block:: json
 
@@ -39,9 +39,7 @@ Python拡張機能にも専用の設定があり、ワークスペース内で�
     "python.linting.enabled": true,
   }
 
-この設定は、いくつかのPythonパッケージの依存があります。これらはpip経由でインストール可能で、「prepare」の仮想環境作成時にインストールされます。
-
-.. todo:: 環境構築のpipインストール部分のリンクを作成する
+この設定は、いくつかのPythonパッケージの依存があります。これらはpip経由でインストール可能で、 :doc:`/slackbot`  の「ローカル開発環境の用意」の仮想環境作成時にインストールしています。
 
 - `psf/black: The uncompromising Python code formatter <https://github.com/psf/black>`_
 - `PyCQA / flake8 · GitLab <https://gitlab.com/pycqa/flake8>`_
@@ -49,11 +47,11 @@ Python拡張機能にも専用の設定があり、ワークスペース内で�
 Live Shareによるチュートリアルサポート
 ================================================================
 
-Visual Studio Live Shareは、Visual StudioやVS Codeでソースコードをリアルタイムに複数人で共有、編集しデバッグをすることが出来ます
+Visual Studio Live Shareは、Visual StudioやVS Codeでソースコードをリアルタイムに複数人で共有、編集しデバッグができます。
 
 `概要 - Visual Studio Live Share - Visual Studio Live Share | Microsoft Docs <https://docs.microsoft.com/ja-jp/visualstudio/liveshare/>`_
 
-チュートリアルでは、各参加者のVS Codeの状況を講師, TAがリアルタイムでコードのデバッグを手助けできます。
+チュートリアルでは、各参加者のVS Codeの状況を講師とTAがリアルタイムでコードのデバッグを手助けできます。
 
 この章ではサポートを受けたい方向けに、Live Shareのセットアップ方法を紹介します。
 
@@ -63,30 +61,27 @@ Live Shareは参加者のVS Codeの状況を講師、TAがリアルタイムで�
 LiveShare拡張のインストール
 --------------------------------------------------------------
 
-ストアからインストール出来ます。
+ストアからインストールします。
 
 `Live Share - Visual Studio Marketplace <https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare>`_
 
-セッションの作成
+コラボレーションセッションの作成
 ------------------------------------------------------------
 
-各参加者皆さんのVSCodeでLiveshareのセッションを講師とTAが参加する必要があり、その時に必要な招待URLを教えてもらう必要があります。
+各参加者皆さんのVS Codeで、Live Shareのコラボレーションセッションに講師とTAは参加する必要があります。その時に必要な招待URLを作成していただく必要があります。
 
-`セキュリティ-Visual Studio Live Share - Visual Studio Live Share | Microsoft Docs <https://docs.microsoft.com/ja-jp/visualstudio/liveshare/reference/security>`_
+Live Share拡張をインストールすると、自動的にWelcomeタブが表示されますが閉じてもらって構いません
 
-
-インストールすると、自動的にWelcomeタブが表示されますが閉じてもらって構いません
-
-ウィンドウ↓の Live Shareマークをクリックして、GitHubアカウントでログインします。
+VS Codeウィンドウの下部にあるLive Shareマークをクリックして、GitHubアカウントでログインします。
 
 .. image:: ./doc-img/vscode_1.png
 .. image:: ./doc-img/vscode_2.png
 
-その後自動的にコラボレーションセッションがスタートします。自動的にクリップボードに招待リンク（URL）がコピーされるので控えてください。
+その後自動的にコラボレーションセッションがスタート、クリップボードへ招待リンク（URL）がコピーされるので、控えてください。
 
 .. image:: ./doc-img/vscode_3.png
 
-最後に講師にURLを伝えてください。伝え方はチュートリアル当日に方法をお伝えします。
+最後に講師へURLを伝えてください。伝え方はチュートリアル当日に方法をお伝えします。
 
 URLをブラウザで開くとこのようにブラウザでの参加方法が表示されます。
 
