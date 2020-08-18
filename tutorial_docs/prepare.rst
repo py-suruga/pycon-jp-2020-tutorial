@@ -49,11 +49,10 @@ pythonコマンドが実行できるか確認します。Windows 10ならPowerSh
 チュートリアル資料を取得する
 ================================================================================
 
-SlackbotチュートリアルはGitHub上のリポジトリで作成しています。以下のURLからDLしてください。
+Slackbotチュートリアルは `GitHub上のリポジトリ <https://github.com/py-suruga/pycon-jp-2020-tutorial>`_  を使い作成しています。以下のURLからDLしてください。
 
-gitリポジトリ: https://github.com/py-suruga/pycon-jp-2020-tutorial.git
-
-リポジトリのZip: https://github.com/py-suruga/pycon-jp-2020-tutorial/archive/master.zip
+- gitリポジトリ: https://github.com/py-suruga/pycon-jp-2020-tutorial.git
+- リポジトリのZip: https://github.com/py-suruga/pycon-jp-2020-tutorial/archive/master.zip
 
 チュートリアル資料の展開先は、普段お使いのユーザーディレクトリのどこかで構いません。
 
