@@ -316,7 +316,7 @@ pt_slackbot&gt; sphinx-apidoc.exe -f -o ./docs ./ /tests
 </div>
 <p>このコマンドで生成したリファレンスは <code class="docutils literal notranslate"><span class="pre">botrun.rst</span></code>、<code class="docutils literal notranslate"><span class="pre">botfunc.rst</span></code>、<code class="docutils literal notranslate"><span class="pre">modules.rst</span></code> の３つのファイルになります。このファイルは <code class="docutils literal notranslate"><span class="pre">docs</span></code> フォルダ内に生成されます。</p>
 <img alt="_images/sphinx_2.png" src="_images/sphinx_2.png" />
-<p>最後に、既存のSphinxドキュメントにapidocで生成したリファレンスの目次を追加しましょう。</p>
+<p>最後に、既存のSphinxドキュメントにapidocで生成したリファレンスの目次を追加しましょう。 toctreeディレクティブに <code class="docutils literal notranslate"><span class="pre">modules</span></code> を追加します。</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>目次
 =======
 
@@ -325,7 +325,7 @@ pt_slackbot&gt; sphinx-apidoc.exe -f -o ./docs ./ /tests
     :caption: Contents:
 
     slackbot_usage
-    modules .. これが追加したリファレンスの目次
+    modules  # 追加したリファレンスの目次
 </pre></div>
 </div>
 </div>
