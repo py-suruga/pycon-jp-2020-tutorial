@@ -2,7 +2,7 @@
 Sphinxでドキュメントを書こう
 ================================================================================
 
-SphinxはPythonの公式ドキュメントやサードパーティライブラリ、またほかの言語や書籍にも利用されるドキュメンテーションツールです。
+SphinxはPythonの公式ドキュメントやサードパーティライブラリ、またほかの言語や書籍にも利用されるドキュメンテーションツールです。HTMLやPDFでドキュメントを生成できます。
 
 公式サイト: `Overview — Sphinx 4.0.0+ documentation <https://www.sphinx-doc.org/en/master/>`_
 
@@ -68,11 +68,17 @@ Sphinxはドキュメントを作成するひな形の環境を用意する ``sp
 
     (pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot> cd .\docs\
 
-- 用意したドキュメントひな形の紹介: 構造の作り方
+今回のSlackbotのドキュメントは以下のような構造で作成します。チュートリアルで利用するディレクトリやファイルに付いて解説します。
 
-今回のSlackbotのドキュメントは以下のような構造で作成します。
+::
 
-.. todo:: ファイルツリーを用意する。ファイルの後に意味をコメントする
+    ./pt_slackbot/docs
+    ├── Makefile # sphinxのドキュメント生成をmakeコマンドで行うときのmakefile
+    ├── make.bat # makefileのWindowsバージョン
+    ├── _build # ビルドされた結果が入るディレクトリ
+    ├── conf.py # Sphinxの設定ファイル
+    ├── index.rst # 最初に生成されるrstファイル。HTMLでビルドした場合のindex.html相当
+
 
 Slackbotのドキュメントを書こう
 ==============================================================================================
