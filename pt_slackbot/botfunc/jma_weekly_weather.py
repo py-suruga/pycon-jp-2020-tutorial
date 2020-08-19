@@ -138,7 +138,7 @@ def get_jma_xml_files():
 
 def get_weekly_weather(station_name: str) -> str:
     """
-    
+
     Args:
         station_name: KISYODAI_STATION_MAPSにある地域名
 
