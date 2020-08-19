@@ -86,6 +86,21 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">SlackBotの使いかた</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#wgreet-bot">wgreet: 挨拶bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">利用イメージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">コマンドの入力方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#connpassonline-connpassbot">connpassonline: connpass検索bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">利用イメージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">コマンドの入力方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tenki-bot">tenki: 天気bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">利用イメージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">コマンドの入力方法</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#bot">各botのリファレンス</a></li>
 </ul>
 </li>
@@ -161,9 +176,62 @@
 <p>SlackBotは3つの機能があります。</p>
 <ul class="simple">
 <li><p>wgreet: 世界の挨拶をランダムで返すbot</p></li>
-<li><p>connpass: connpassで <code class="docutils literal notranslate"><span class="pre">Python</span></code>, <code class="docutils literal notranslate"><span class="pre">オンライン</span></code> の検索結果を返すbot</p></li>
+<li><p>connpassonline: connpassで <code class="docutils literal notranslate"><span class="pre">Python</span></code>, <code class="docutils literal notranslate"><span class="pre">オンライン</span></code> の検索結果を返すbot</p></li>
 <li><p>tenki: 気象庁XMLサービスから地域の週間天気予報を返すbot</p></li>
 </ul>
+<div class="section" id="wgreet-bot">
+<h2>wgreet: 挨拶bot<a class="headerlink" href="#wgreet-bot" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>世界のあいさつをランダムで返してくれます。</p>
+<p>現在対応している国は以下の通りです。</p>
+<ul class="simple">
+<li><p>日本🇯🇵</p></li>
+<li><p>アメリカ🇺🇸</p></li>
+<li><p>中国🇨🇳</p></li>
+</ul>
+<div class="section" id="id1">
+<h3>利用イメージ<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<img alt="_images/slackbot_aisatu.jpg" src="_images/slackbot_aisatu.jpg" />
+</div>
+<div class="section" id="id2">
+<h3>コマンドの入力方法<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>wgreet
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="connpassonline-connpassbot">
+<h2>connpassonline: connpass検索bot<a class="headerlink" href="#connpassonline-connpassbot" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Connpass から 「Pyhton」と「オンライン」のキーワードでマッチする結果を最大20件返してくれます。</p>
+<p>年月の指定が必須で、指定した年月で開催されるイベントを検索します。</p>
+<div class="section" id="id3">
+<h3>利用イメージ<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<img alt="_images/slackbot_connpassonline.jpg" src="_images/slackbot_connpassonline.jpg" />
+</div>
+<div class="section" id="id4">
+<h3>コマンドの入力方法<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>connpassonline yyyymm
+
+# 例
+
+connpassonline 202008
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="tenki-bot">
+<h2>tenki: 天気bot<a class="headerlink" href="#tenki-bot" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>地域を指定すると、気象庁XMLサービスから週間天気予報を返してくれます。</p>
+<div class="section" id="id5">
+<h3>利用イメージ<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<img alt="_images/slackbot_tenki.jpg" src="_images/slackbot_tenki.jpg" />
+</div>
+<div class="section" id="id6">
+<h3>コマンドの入力方法<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>tenki 静岡
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="bot">
 <h2>各botのリファレンス<a class="headerlink" href="#bot" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>こちらから参照できます。</p>
