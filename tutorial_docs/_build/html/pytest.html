@@ -240,13 +240,23 @@
 <h2>SlackBotのテストケースを書いてみよう<a class="headerlink" href="#slackbot" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>チュートリアルで作成しているSlackbotのテストを書いてみましょう。</p>
 <p>SlackbotはSlackワークスペースとの連携が必要になりますが、このテストはそういった外部サービスとの連携テストを想定していません。botとして返答する情報が正しいかの単体テストを作成します。</p>
+<div class="section" id="id5">
+<h3>下準備<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pt_slackbot</span></code> ディレクトリ内に <code class="docutils literal notranslate"><span class="pre">tests</span></code> ディレクトリを作成します(作成はVS Codeやターミナル経由でも良いです）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests</span></code> ディレクトリに <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>　ファイルを作成します</p></li>
+</ul>
+</div>
+<div class="section" id="bot">
+<h3>各botのテストケースについて<a class="headerlink" href="#bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>挨拶bot: ランダムな返答をする関数をmonkeypatchで置き換える</p></li>
 <li><p>connpass bot: jsonの取得をmonkeypatchで置き換え</p></li>
 <li><p>天気bot: 気象庁xmlの取得をmonkeypatchで置き換え、parametarizeで地域の追加</p></li>
 </ul>
-<p>この章で使う資料</p>
+<p>この章で使う資料は以下のURL（パス）から参照できます。</p>
 <p><a class="reference external" href="https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/pytest-1">pycon-jp-2020-tutorial/tutorial_docs/step/pytest-1</a></p>
+</div>
 </div>
 </div>
 

@@ -175,10 +175,20 @@ SlackBotのテストケースを書いてみよう
 
 SlackbotはSlackワークスペースとの連携が必要になりますが、このテストはそういった外部サービスとの連携テストを想定していません。botとして返答する情報が正しいかの単体テストを作成します。
 
+
+下準備
+-------------
+
+- ``pt_slackbot`` ディレクトリ内に ``tests`` ディレクトリを作成します(作成はVS Codeやターミナル経由でも良いです）
+- ``tests`` ディレクトリに ``__init__.py``　ファイルを作成します
+
+各botのテストケースについて
+---------------------------------------
+
 - 挨拶bot: ランダムな返答をする関数をmonkeypatchで置き換える
 - connpass bot: jsonの取得をmonkeypatchで置き換え
 - 天気bot: 気象庁xmlの取得をmonkeypatchで置き換え、parametarizeで地域の追加
 
-この章で使う資料
+この章で使う資料は以下のURL（パス）から参照できます。
 
-`pycon-jp-2020-tutorial/tutorial_docs/step/pytest-1 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/pytest-1>`_ 
+`pycon-jp-2020-tutorial/tutorial_docs/step/pytest-1 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/pytest-1>`_
