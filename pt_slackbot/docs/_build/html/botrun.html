@@ -157,8 +157,25 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="botrun-module">
-<h1>botrun module<a class="headerlink" href="#botrun-module" title="このヘッドラインへのパーマリンク">¶</a></h1>
+  <div class="section" id="module-botrun">
+<span id="botrun-module"></span><h1>botrun module<a class="headerlink" href="#module-botrun" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<dl class="py function">
+<dt id="botrun.error_handler">
+<code class="sig-prename descclassname">botrun.</code><code class="sig-name descname">error_handler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">err</span></em><span class="sig-paren">)</span><a class="headerlink" href="#botrun.error_handler" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="botrun.handle_message_and_botrun">
+<code class="sig-prename descclassname">botrun.</code><code class="sig-name descname">handle_message_and_botrun</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event_data</span><span class="p">:</span> <span class="n">dict</span></em><span class="sig-paren">)</span><a class="headerlink" href="#botrun.handle_message_and_botrun" title="この定義へのパーマリンク">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">パラメータ</dt>
+<dd class="field-odd"><p><strong>event_data</strong> -- SlackEventAdapterから取得するSlackのイベント情報</p>
+</dd>
+</dl>
+<p>Slack Events APIのイベントをハンドリングし、botを実行します。</p>
+<p>各botは botfuncモジュールに同梱し、 <code class="docutils literal notranslate"><span class="pre">call_function</span></code> 関数を実装する必要があります。</p>
+</dd></dl>
+
 </div>
 
 
