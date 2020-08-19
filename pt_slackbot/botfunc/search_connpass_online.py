@@ -4,7 +4,7 @@ import copy
 import requests
 
 
-def request_connpass_api(ym) -> dict:
+def request_connpass_api(ym: str) -> dict:
     """
 
     Args:
@@ -20,7 +20,8 @@ def request_connpass_api(ym) -> dict:
     keywords = ["オンライン", "Python"]
 
     # connpass apiよりイベント情報を取得する
-    # keywordを複数入れるので、
+    # keywordを複数入れるので、リストを追加している。
+    # ref: https://requests.readthedocs.io/en/latest/user/quickstart/#passing-parameters-in-urls
     payload = {"keyword": keywords, "count": 20, "ym": ym}
     r = requests.get(api_url, params=payload)
 
@@ -66,5 +67,5 @@ def search_online_event(ym: str) -> str:
     return "\n".join(result_lines)
 
 
-def call_function(arg: str) -> str:
+def call_function(arg: str = "") -> str:
     return search_online_event(arg)

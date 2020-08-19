@@ -193,9 +193,11 @@ Slackbotの説明文を書いてみよう
 
     - 各botの見出し
     - botの簡単な説明: これは自由に決めてもらっても良し
+
       - 挨拶bot: 対応している国の一覧をリストで用意
       - connpass bot: 検索結果の概要を文章で載せる
       - 天気bot :追加した地域の一覧
+
     - 画像の挿入: tutorial_docs/slackbotの終盤にある画像ファイルをコピーしてpt_slackbot/docs内にコピー
 
 最後に ``index.rst`` のtoctreeディレクティブに ``slackbot_usage`` を追加します。 rstファイルの拡張子を外したファイル名のみにしてください。

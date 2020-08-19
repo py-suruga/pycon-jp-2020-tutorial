@@ -2,7 +2,6 @@
 
 from datetime import datetime
 from pathlib import Path
-from typing import Union
 
 from bs4 import BeautifulSoup
 
@@ -16,10 +15,7 @@ KISYODAI_STATION_MAPS = {
 }
 
 
-def get_weekly_weather(station_name: str) -> Union[str, None]:
-    """
-    天気予報の結果を取得する
-    """
+def get_weekly_weather(station_name: str) -> str:
     # KISYODAI_STATION_MAPSをループして、該当の地域かをチェック
     weekly_weather_xml_soup = None
     for kisyodai_name, station_list in KISYODAI_STATION_MAPS.items():
@@ -66,14 +62,6 @@ def get_weekly_weather(station_name: str) -> Union[str, None]:
     return "\n".join(result_lines)
 
 
-def call_function(match_group: Union[str, None]) -> Union[str, None]:
-    """
-    botの結果を返すfunction
-    """
-    # 気象庁の週間天気予報電文XMLをDL
+def call_function(arg: str = "") -> str:
 
-    result = get_weekly_weather(match_group)
-
-    if result is None:
-        return None
-    return result
+    return get_weekly_weather(arg)

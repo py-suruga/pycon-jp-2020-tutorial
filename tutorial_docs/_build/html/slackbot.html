@@ -87,29 +87,51 @@
 <img alt="_images/slackbot_1-6.png" src="_images/slackbot_1-6.png" />
 <p>次に、右上の「Basic Information」へ戻り、「App Credentials」の中にある「Signing Secret」を控えます。</p>
 <img alt="_images/slackbot_1-7.png" src="_images/slackbot_1-7.png" />
+<p>先程集めた2つのトークンをローカル開発環境の環境変数として登録します。</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Windows10: PowerShell
+
+&gt; $env:SLACK_BOT_TOKEN = &quot;XXXXXXXXXXXXXXXXXXXXXXXX&quot;
+&gt; $env:SLACK_SIGNING_SECRET = &quot;XXXXXXXXXXXXXXXXXXXXXXXXXX&quot;
+
+# -----
+
+# macOS
+&gt; export SLACK_SIGNING_SECRET=XXXXXXXXXXXXXXXXXXXXXXXX
+&gt; export SLACK_BOT_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXX
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>Windows10はスタートメニューから「環境変数を編集」と検索するとGUIから設定可能です。コマンドプロンプトの場合はSETコマンドを利用してください。</p>
+</div>
 <p>次にngrokコマンドを使い、SlackBotを外部公開します。</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ngrok http <span class="m">3000</span>
-python ./pt_slackbot/botrun.py
+<p>まずは以下のngrokコマンドを実行して、内部では3000ポートのhttpサービスをngrokの公開URLへ登録します。</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ngrok http 3000
 </pre></div>
 </div>
 <p>ngrokコマンドを起動すると以下のような情報が表示されます。ngrokのサービスへサインアップしていない場合は外部公開のセッションは8時間の限定公開になります。</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ngrok by @inconshreveable                                                                                                                       <span class="o">(</span>Ctrl+C to quit<span class="o">)</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ngrok by @inconshreveable                                                                                                                       (Ctrl+C to quit)
 
 Session Status                online
-Session Expires               <span class="m">7</span> hours, <span class="m">58</span> minutes
-Version                       <span class="m">2</span>.3.35
-Region                        United States <span class="o">(</span>us<span class="o">)</span>
+Session Expires               7 hours, 58 minutes
+Version                       2.3.35
+Region                        United States (us)
 Web Interface                 http://127.0.0.1:4040
 Forwarding                    http://df702078ccde.ngrok.io -&gt; http://localhost:3000
 Forwarding                    https://df702078ccde.ngrok.io -&gt; http://localhost:3000
 
 Connections                   ttl     opn     rt1     rt5     p50     p90
-                              <span class="m">0</span>       <span class="m">0</span>       <span class="m">0</span>.00    <span class="m">0</span>.00    <span class="m">0</span>.00    <span class="m">0</span>.00
+                              0       0       0.00    0.00    0.00    0.00
 </pre></div>
 </div>
 <p>Web InterfaceのURLへアクセスすると、公開したURLのアクセス履歴が見れるようになります。</p>
 <img alt="_images/slackbot_1-8.png" src="_images/slackbot_1-8.png" />
-<p>SlackBotがSlackワークスペースへのやりとりをおこなうURLを生成したので、Slackアプリの設定を続けます。</p>
+<p>次にslackbotを起動します。チュートリアル開始当初は、<code class="docutils literal notranslate"><span class="pre">pt_slackbot</span></code> ディレクトリには <code class="docutils literal notranslate"><span class="pre">botrun.py</span></code> ファイルのみがあります。こちらをpythonコマンドで実行します。</p>
+<p>このときにngrokコマンドを実行しているターミナルとは別のターミナルを使い起動してください。</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python ./pt_slackbot/botrun.py
+</pre></div>
+</div>
+<p>SlackBotがSlackワークスペースへのやりとりをおこなうURLを生成して、bot側と連携させたので、Slackアプリの設定を続けます。</p>
 <p>Slack Event APIを使い、Slackワークスペース上に起きたイベントを、Slackbotが動作するサーバー（ここではngrokで公開しているローカル環境）へ伝えることができます。
 ここで2つの設定を行います。</p>
 <ol class="arabic simple">
@@ -185,39 +207,46 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 <li><p>もちろん自由に言葉を変えてもらっても良し</p></li>
 </ul>
 </div></blockquote>
-<div class="admonition-todo admonition" id="id6">
-<p class="admonition-title">課題</p>
-<p>2020-08-13 ステップごとのコードのリンクを用意する</p>
-</div>
 <div class="section" id="bot">
 <h4>挨拶botの実装ステップ<a class="headerlink" href="#bot" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <blockquote>
 <div><ol class="arabic simple">
-<li><p>まずslackevetsapiのexampleをそのまま乗せておいて、そのbotで受け答えできるか調べてみる</p></li>
+<li><p>slackevetsapiのexampleをそのまま乗せておいて、そのbotで受け答えできるか確認します。</p></li>
 <li><p>次に、その中でテーブルを作って、ランダムで返す関数を用意</p></li>
-<li><p>最後に挨拶をかえす部分をモジュール化する -&gt; 伏線:テストとリファレンスを書きやすくする</p></li>
+<li><p>最後に挨拶をかえす部分をモジュール化する</p></li>
 </ol>
 </div></blockquote>
+<p>利用する資料:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-1">pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-1</a></p></li>
+<li><p><a class="reference external" href="https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-2">pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-2</a></p></li>
+<li><p><a class="reference external" href="https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-3">pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-3</a></p></li>
+</ul>
 </div>
 </div>
-<div class="section" id="connpass-api-connpass-bot">
-<h3>connpass APIを利用してオンラインイベントを検索する <strong>connpass</strong> bot<a class="headerlink" href="#connpass-api-connpass-bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="connpass-api-connpassonline-bot">
+<h3>connpass APIを利用してオンラインイベントを検索する <strong>connpassonline</strong> bot<a class="headerlink" href="#connpass-api-connpassonline-bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ここではconnpassを例にイベント検索用のREST APIを使ってイベントの検索を行います。</p>
 <p>チュートリアルでは「Python」と「オンライン」というキーワードを元に検索をした結果を20件一覧に表示する機能を実装しています。</p>
 <img alt="_images/slackbot_1-14.jpg" src="_images/slackbot_1-14.jpg" />
-<p>コマンドの実行方法は <code class="docutils literal notranslate"><span class="pre">connpass</span> <span class="pre">[yyyymm]</span></code> と入力します。yyyymmは年月の意味で、 <code class="docutils literal notranslate"><span class="pre">connpass</span> <span class="pre">202008</span></code> と入力すると、2020年8月に関係する、Python, オンラインをキーワードにした検索結果が表示されます。</p>
+<p>コマンドの実行方法は <code class="docutils literal notranslate"><span class="pre">connpassonline</span> <span class="pre">[yyyymm]</span></code> と入力します。yyyymmは年月の意味で、 <code class="docutils literal notranslate"><span class="pre">connpassonline</span> <span class="pre">202008</span></code> と入力すると、2020年8月に関係する、Python, オンラインをキーワードにした検索結果が表示されます。</p>
 <p>このbotの趣旨は以下になります。</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>requests + jsonでAPIから取得したjsonのパースを体験する</p></li>
 </ul>
 </div></blockquote>
-<div class="section" id="connpassbot">
-<h4>connpassbotの実装ステップ<a class="headerlink" href="#connpassbot" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="connpassonlinebot">
+<h4>connpassonlinebotの実装ステップ<a class="headerlink" href="#connpassonlinebot" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <ol class="arabic simple">
-<li><p>共通化した手法を元に、connpassbotを作る。最初は1関数にすべてのせる</p></li>
-<li><p>APIリクエストとbotの答えを返す関数を別途作り、分離していく</p></li>
+<li><p>共通化した手法を元に、connpassonline botを作る。最初は1関数に処理をすべて入れています。</p></li>
+<li><p>APIリクエストとbotの答えを返す関数をそれぞれで呼び出せるように分離します。</p></li>
 </ol>
+<p>利用する資料:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-4">pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-4</a></p></li>
+<li><p><a class="reference external" href="https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-5">pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-5</a></p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="xml-tenki-bot">
@@ -236,13 +265,18 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 <li><p>BeautifulSoup4を使ってxmlのパースをする</p></li>
 <li><p>対応地域を追加してbotの拡張をしてもらう</p></li>
 </ol>
+<p>利用する資料:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-6">pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-6</a></p></li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">注釈</p>
 <p>今回の天気情報の元は気象庁が無料で公開しているxmlファイルを利用しました。
 当初はLivedoor 天気から提供されている REST APIを用いる予定でしたが、 2020/7/31にサービスが終了となったため、急遽気象庁XMLサービスを利用しています。</p>
 <p><a class="reference external" href="https://help.livedoor.com/weather/index.html">天気情報 ヘルプ - livedoor ヘルプ</a></p>
 <p>気象庁XMLサービスは天気予報以外にも、多数の予報や災害情報の提供もされているので、より多彩なbot作成ができると思います。
-ただxmlを扱うのは少し難儀でもありますね。</p>
+ただxmlを扱うのは少し複雑です。</p>
+<p><a class="reference external" href="https://aitc.jp/">先端IT活用推進コンソーシアム</a> が公開している <a class="reference external" href="http://api.aitc.jp/jmardb-api/help">気象庁防災情報 XML 検索 API</a> では気象庁のXMLデータを元にしたREST APIを公開しています。このAPIはxmlではなくjson形式が扱えます。</p>
 </div>
 </div>
 </div>
