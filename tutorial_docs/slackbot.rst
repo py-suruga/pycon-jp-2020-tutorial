@@ -80,16 +80,31 @@ Slackアプリの作成と設定
 .. image:: ./doc-img/slackbot_1-7.png
 
 
+.. todo:: botのトークンを設定する項目を追加する。win(powershell), macそれぞれ
+
+先程集めた2つのトークンをローカル開発環境へ登録します。
+
+.. code-block:: none
+
+    # windows: powershell
+
+
+    # -----
+    # mac
+    export SLACK_SIGNING_SECRET=XXXXXXXXXXXXXXXXXXXXXXXX
+    export SLACK_BOT_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXX   
+
 次にngrokコマンドを使い、SlackBotを外部公開します。
 
-.. code-block:: bash
+まずは以下のngrokコマンドを実行して、内部では3000ポートのhttpサービスをngrokの公開URLへ登録します。
+
+.. code-block:: none
 
     ngrok http 3000
-    python ./pt_slackbot/botrun.py
 
 ngrokコマンドを起動すると以下のような情報が表示されます。ngrokのサービスへサインアップしていない場合は外部公開のセッションは8時間の限定公開になります。
 
-.. code-block:: bash
+.. code-block:: none
 
   ngrok by @inconshreveable                                                                                                                       (Ctrl+C to quit)
 
@@ -109,7 +124,15 @@ Web InterfaceのURLへアクセスすると、公開したURLのアクセス履�
 .. image:: ./doc-img/slackbot_1-8.png
 
 
-SlackBotがSlackワークスペースへのやりとりをおこなうURLを生成したので、Slackアプリの設定を続けます。
+次にslackbotを起動します。チュートリアル開始当初は、``pt_slackbot`` ディレクトリには ``botrun.py`` ファイルのみがあります。こちらをpythonコマンドで実行します。
+
+このときにngrokコマンドを実行しているターミナルとは別のターミナルを使い起動してください。 
+
+.. code-block:: none
+
+    python ./pt_slackbot/botrun.py
+
+SlackBotがSlackワークスペースへのやりとりをおこなうURLを生成して、bot側と連携させたので、Slackアプリの設定を続けます。
 
 Slack Event APIを使い、Slackワークスペース上に起きたイベントを、Slackbotが動作するサーバー（ここではngrokで公開しているローカル環境）へ伝えることができます。
 ここで2つの設定を行います。

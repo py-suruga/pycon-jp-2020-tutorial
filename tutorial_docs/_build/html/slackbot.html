@@ -87,29 +87,48 @@
 <img alt="_images/slackbot_1-6.png" src="_images/slackbot_1-6.png" />
 <p>次に、右上の「Basic Information」へ戻り、「App Credentials」の中にある「Signing Secret」を控えます。</p>
 <img alt="_images/slackbot_1-7.png" src="_images/slackbot_1-7.png" />
+<div class="admonition-todo admonition" id="id4">
+<p class="admonition-title">課題</p>
+<p>botのトークンを設定する項目を追加する。win(powershell), macそれぞれ</p>
+</div>
+<p>先程集めた2つのトークンをローカル開発環境へ登録します。</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># windows: powershell
+
+
+# -----
+# mac
+export SLACK_SIGNING_SECRET=XXXXXXXXXXXXXXXXXXXXXXXX
+export SLACK_BOT_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXX
+</pre></div>
+</div>
 <p>次にngrokコマンドを使い、SlackBotを外部公開します。</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ngrok http <span class="m">3000</span>
-python ./pt_slackbot/botrun.py
+<p>まずは以下のngrokコマンドを実行して、内部では3000ポートのhttpサービスをngrokの公開URLへ登録します。</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ngrok http 3000
 </pre></div>
 </div>
 <p>ngrokコマンドを起動すると以下のような情報が表示されます。ngrokのサービスへサインアップしていない場合は外部公開のセッションは8時間の限定公開になります。</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ngrok by @inconshreveable                                                                                                                       <span class="o">(</span>Ctrl+C to quit<span class="o">)</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ngrok by @inconshreveable                                                                                                                       (Ctrl+C to quit)
 
 Session Status                online
-Session Expires               <span class="m">7</span> hours, <span class="m">58</span> minutes
-Version                       <span class="m">2</span>.3.35
-Region                        United States <span class="o">(</span>us<span class="o">)</span>
+Session Expires               7 hours, 58 minutes
+Version                       2.3.35
+Region                        United States (us)
 Web Interface                 http://127.0.0.1:4040
 Forwarding                    http://df702078ccde.ngrok.io -&gt; http://localhost:3000
 Forwarding                    https://df702078ccde.ngrok.io -&gt; http://localhost:3000
 
 Connections                   ttl     opn     rt1     rt5     p50     p90
-                              <span class="m">0</span>       <span class="m">0</span>       <span class="m">0</span>.00    <span class="m">0</span>.00    <span class="m">0</span>.00    <span class="m">0</span>.00
+                              0       0       0.00    0.00    0.00    0.00
 </pre></div>
 </div>
 <p>Web InterfaceのURLへアクセスすると、公開したURLのアクセス履歴が見れるようになります。</p>
 <img alt="_images/slackbot_1-8.png" src="_images/slackbot_1-8.png" />
-<p>SlackBotがSlackワークスペースへのやりとりをおこなうURLを生成したので、Slackアプリの設定を続けます。</p>
+<p>次にslackbotを起動します。チュートリアル開始当初は、<code class="docutils literal notranslate"><span class="pre">pt_slackbot</span></code> ディレクトリには <code class="docutils literal notranslate"><span class="pre">botrun.py</span></code> ファイルのみがあります。こちらをpythonコマンドで実行します。</p>
+<p>このときにngrokコマンドを実行しているターミナルとは別のターミナルを使い起動してください。</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python ./pt_slackbot/botrun.py
+</pre></div>
+</div>
+<p>SlackBotがSlackワークスペースへのやりとりをおこなうURLを生成して、bot側と連携させたので、Slackアプリの設定を続けます。</p>
 <p>Slack Event APIを使い、Slackワークスペース上に起きたイベントを、Slackbotが動作するサーバー（ここではngrokで公開しているローカル環境）へ伝えることができます。
 ここで2つの設定を行います。</p>
 <ol class="arabic simple">
@@ -136,8 +155,8 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 <img alt="_images/slackbot_1-12-0.png" src="_images/slackbot_1-12-0.png" />
 <img alt="_images/slackbot_1-12-1.png" src="_images/slackbot_1-12-1.png" />
 <p>ここまででSlackBotを動作させる準備が整いました。</p>
-<div class="section" id="id4">
-<h3>SlackBotのフロー<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id5">
+<h3>SlackBotのフロー<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ここでは、SlackBotがどのようにslackワークスペースとやり取りを行うか解説します。</p>
 <img alt="_images/slackbot_1-12-2.png" src="_images/slackbot_1-12-2.png" />
 <p>SlackbotはWEBで扱われている技術でサービスとbotのアプリがやり取りを行います。今回のはSlack公式で提供されているEvents APIとWeb APIの2つを利用します。</p>
@@ -170,8 +189,8 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 </div>
 </div>
 </div>
-<div class="section" id="id5">
-<h2>チュートリアルで実装するSlackBotについて<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id6">
+<h2>チュートリアルで実装するSlackBotについて<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>このチュートリアルでは、3つのSlackBotを実装します。人工無能な挨拶を返すbotから、APIを利用してインタラクティブな結果を返すようにします。</p>
 <div class="section" id="wgreet-bot">
 <h3>世界の挨拶をランダムで返す  <strong>wgreet</strong> bot<a class="headerlink" href="#wgreet-bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -185,10 +204,6 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 <li><p>もちろん自由に言葉を変えてもらっても良し</p></li>
 </ul>
 </div></blockquote>
-<div class="admonition-todo admonition" id="id6">
-<p class="admonition-title">課題</p>
-<p>2020-08-13 ステップごとのコードのリンクを用意する</p>
-</div>
 <div class="section" id="bot">
 <h4>挨拶botの実装ステップ<a class="headerlink" href="#bot" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <blockquote>
@@ -289,7 +304,7 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Slackbotの作成</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id2">ローカル開発環境の用意</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#slack">Slackアプリの作成と設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">チュートリアルで実装するSlackBotについて</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">チュートリアルで実装するSlackBotについて</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pytest.html">pytestでテストケースを導入する</a></li>
