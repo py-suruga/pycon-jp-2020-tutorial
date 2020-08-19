@@ -79,20 +79,23 @@ Slackアプリの作成と設定
 
 .. image:: ./doc-img/slackbot_1-7.png
 
-
-.. todo:: botのトークンを設定する項目を追加する。win(powershell), macそれぞれ
-
-先程集めた2つのトークンをローカル開発環境へ登録します。
+先程集めた2つのトークンをローカル開発環境の環境変数として登録します。
 
 .. code-block:: none
 
-    # windows: powershell
+    # Windows10: PowerShell
 
+    > $env:SLACK_BOT_TOKEN = "XXXXXXXXXXXXXXXXXXXXXXXX"
+    > $env:SLACK_SIGNING_SECRET = "XXXXXXXXXXXXXXXXXXXXXXXXXX"
 
     # -----
-    # mac
-    export SLACK_SIGNING_SECRET=XXXXXXXXXXXXXXXXXXXXXXXX
-    export SLACK_BOT_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXX   
+
+    # macOS
+    > export SLACK_SIGNING_SECRET=XXXXXXXXXXXXXXXXXXXXXXXX
+    > export SLACK_BOT_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXX
+
+.. note::
+    Windows10はスタートメニューから「環境変数を編集」と検索するとGUIから設定可能です。コマンドプロンプトの場合はSETコマンドを利用してください。
 
 次にngrokコマンドを使い、SlackBotを外部公開します。
 
@@ -126,7 +129,7 @@ Web InterfaceのURLへアクセスすると、公開したURLのアクセス履�
 
 次にslackbotを起動します。チュートリアル開始当初は、``pt_slackbot`` ディレクトリには ``botrun.py`` ファイルのみがあります。こちらをpythonコマンドで実行します。
 
-このときにngrokコマンドを実行しているターミナルとは別のターミナルを使い起動してください。 
+このときにngrokコマンドを実行しているターミナルとは別のターミナルを使い起動してください。
 
 .. code-block:: none
 
@@ -244,7 +247,7 @@ Slackbotのコード内ではFlaskのインスタンスを作成して、サー�
   2. 次に、その中でテーブルを作って、ランダムで返す関数を用意
   3. 最後に挨拶をかえす部分をモジュール化する
 
-利用する資料: 
+利用する資料:
 
 - `pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-1 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-1>`_
 - `pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-2 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-2>`_
@@ -271,7 +274,7 @@ connpassonlinebotの実装ステップ
 1. 共通化した手法を元に、connpassonline botを作る。最初は1関数に処理をすべて入れています。
 2. APIリクエストとbotの答えを返す関数をそれぞれで呼び出せるように分離します。
 
-利用する資料: 
+利用する資料:
 
 - `pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-4 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-4>`_
 - `pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-5 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-5>`_
@@ -298,7 +301,7 @@ tenkibotの実装ステップ
 1. BeautifulSoup4を使ってxmlのパースをする
 2. 対応地域を追加してbotの拡張をしてもらう
 
-利用する資料: 
+利用する資料:
 
 - `pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-6 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-6>`_
 

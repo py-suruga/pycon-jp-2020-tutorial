@@ -87,19 +87,22 @@
 <img alt="_images/slackbot_1-6.png" src="_images/slackbot_1-6.png" />
 <p>次に、右上の「Basic Information」へ戻り、「App Credentials」の中にある「Signing Secret」を控えます。</p>
 <img alt="_images/slackbot_1-7.png" src="_images/slackbot_1-7.png" />
-<div class="admonition-todo admonition" id="id4">
-<p class="admonition-title">課題</p>
-<p>botのトークンを設定する項目を追加する。win(powershell), macそれぞれ</p>
-</div>
-<p>先程集めた2つのトークンをローカル開発環境へ登録します。</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># windows: powershell
+<p>先程集めた2つのトークンをローカル開発環境の環境変数として登録します。</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Windows10: PowerShell
 
+&gt; $env:SLACK_BOT_TOKEN = &quot;XXXXXXXXXXXXXXXXXXXXXXXX&quot;
+&gt; $env:SLACK_SIGNING_SECRET = &quot;XXXXXXXXXXXXXXXXXXXXXXXXXX&quot;
 
 # -----
-# mac
-export SLACK_SIGNING_SECRET=XXXXXXXXXXXXXXXXXXXXXXXX
-export SLACK_BOT_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXX
+
+# macOS
+&gt; export SLACK_SIGNING_SECRET=XXXXXXXXXXXXXXXXXXXXXXXX
+&gt; export SLACK_BOT_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXX
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>Windows10はスタートメニューから「環境変数を編集」と検索するとGUIから設定可能です。コマンドプロンプトの場合はSETコマンドを利用してください。</p>
 </div>
 <p>次にngrokコマンドを使い、SlackBotを外部公開します。</p>
 <p>まずは以下のngrokコマンドを実行して、内部では3000ポートのhttpサービスをngrokの公開URLへ登録します。</p>
@@ -155,8 +158,8 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 <img alt="_images/slackbot_1-12-0.png" src="_images/slackbot_1-12-0.png" />
 <img alt="_images/slackbot_1-12-1.png" src="_images/slackbot_1-12-1.png" />
 <p>ここまででSlackBotを動作させる準備が整いました。</p>
-<div class="section" id="id5">
-<h3>SlackBotのフロー<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id4">
+<h3>SlackBotのフロー<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ここでは、SlackBotがどのようにslackワークスペースとやり取りを行うか解説します。</p>
 <img alt="_images/slackbot_1-12-2.png" src="_images/slackbot_1-12-2.png" />
 <p>SlackbotはWEBで扱われている技術でサービスとbotのアプリがやり取りを行います。今回のはSlack公式で提供されているEvents APIとWeb APIの2つを利用します。</p>
@@ -189,8 +192,8 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 </div>
 </div>
 </div>
-<div class="section" id="id6">
-<h2>チュートリアルで実装するSlackBotについて<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id5">
+<h2>チュートリアルで実装するSlackBotについて<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>このチュートリアルでは、3つのSlackBotを実装します。人工無能な挨拶を返すbotから、APIを利用してインタラクティブな結果を返すようにします。</p>
 <div class="section" id="wgreet-bot">
 <h3>世界の挨拶をランダムで返す  <strong>wgreet</strong> bot<a class="headerlink" href="#wgreet-bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -304,7 +307,7 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Slackbotの作成</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id2">ローカル開発環境の用意</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#slack">Slackアプリの作成と設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id6">チュートリアルで実装するSlackBotについて</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">チュートリアルで実装するSlackBotについて</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pytest.html">pytestでテストケースを導入する</a></li>
