@@ -22,5 +22,5 @@ def get_greeting() -> str:
     return "{}ノアイサツデス :robot_face: 「{}」".format(kokki, greetword)
 
 
-def call_function(arg: str) -> str:
+def call_function(arg: str = "") -> str:
     return get_greeting()

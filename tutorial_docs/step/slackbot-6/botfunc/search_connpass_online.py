@@ -1,17 +1,10 @@
 # coding:utf-8
-
 import copy
-from typing import Union
 
 import requests
 
 
-def request_connpass_api(ym):
-    """
-    connpass APIへのリクエストを行う。
-    connpassで、"Python"に関係する"オンライン"イベントを検索する。
-    年月を指定して、その年月から関係するイベントから先頭20件を取得する
-    """
+def request_connpass_api(ym) -> dict:
     api_url = "https://connpass.com/api/v1/event/"
     keywords = ["オンライン", "Python"]
 
@@ -24,19 +17,14 @@ def request_connpass_api(ym):
     return r.json()
 
 
-def search_online_event(ym: str) -> Union[str, None]:
-    """
-    request_connpass_apiで受け取った結果をbotの戻り文字列として生成する
-    """
-
+def search_online_event(ym: str) -> str:
     # jsonをパースする
     result = request_connpass_api(ym)
-    events: list = copy.copy(result["events"])
+    events = copy.copy(result["events"])
 
-    # オンラインイベントのみを抽出する。
-
+    # 結果が無い場合は空文字を返す
     if not events:
-        return None
+        return ""
 
     events.sort(key=lambda x: x["started_at"])
 
@@ -56,13 +44,5 @@ def search_online_event(ym: str) -> Union[str, None]:
     return "\n".join(result_lines)
 
 
-def call_function(match_group: Union[str, None]) -> Union[str, None]:
-    """
-    botの結果を返すfunction
-    """
-
-    result = search_online_event(match_group)
-
-    if result is None:
-        return None
-    return result
+def call_function(arg: str = "") -> str:
+    return search_online_event(arg)

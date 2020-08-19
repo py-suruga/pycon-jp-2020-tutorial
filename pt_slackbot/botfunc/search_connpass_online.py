@@ -66,5 +66,5 @@ def search_online_event(ym: str) -> str:
     return "\n".join(result_lines)
 
 
-def call_function(arg: str) -> str:
+def call_function(arg: str = "") -> str:
     return search_online_event(arg)
