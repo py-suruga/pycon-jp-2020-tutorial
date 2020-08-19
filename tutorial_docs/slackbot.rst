@@ -288,4 +288,6 @@ tenkibotの実装ステップ
     `天気情報 ヘルプ - livedoor ヘルプ <https://help.livedoor.com/weather/index.html>`_
 
     気象庁XMLサービスは天気予報以外にも、多数の予報や災害情報の提供もされているので、より多彩なbot作成ができると思います。
-    ただxmlを扱うのは少し難儀でもありますね。
+    ただxmlを扱うのは少し複雑です。
+
+    `先端IT活用推進コンソーシアム <https://aitc.jp/>`_ が公開している `気象庁防災情報 XML 検索 API <http://api.aitc.jp/jmardb-api/help>`_ では気象庁のXMLデータを元にしたREST APIを公開しています。このAPIはxmlではなくjson形式が扱えます。
