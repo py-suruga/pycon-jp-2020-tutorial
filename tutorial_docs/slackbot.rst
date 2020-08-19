@@ -228,7 +228,7 @@ Slackbotのコード内ではFlaskのインスタンスを作成して、サー�
 - `pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-2 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-2>`_
 - `pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-3 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-3>`_
 
-connpass APIを利用してオンラインイベントを検索する **connpass** bot
+connpass APIを利用してオンラインイベントを検索する **connpassonline** bot
 --------------------------------------------------------------------------------
 
 ここではconnpassを例にイベント検索用のREST APIを使ってイベントの検索を行います。
@@ -237,17 +237,17 @@ connpass APIを利用してオンラインイベントを検索する **connpass
 
 .. image:: ./doc-img/slackbot_1-14.jpg
 
-コマンドの実行方法は ``connpass [yyyymm]`` と入力します。yyyymmは年月の意味で、 ``connpass 202008`` と入力すると、2020年8月に関係する、Python, オンラインをキーワードにした検索結果が表示されます。
+コマンドの実行方法は ``connpassonline [yyyymm]`` と入力します。yyyymmは年月の意味で、 ``connpassonline 202008`` と入力すると、2020年8月に関係する、Python, オンラインをキーワードにした検索結果が表示されます。
 
 このbotの趣旨は以下になります。
 
   - requests + jsonでAPIから取得したjsonのパースを体験する
 
-connpassbotの実装ステップ
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+connpassonlinebotの実装ステップ
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. 共通化した手法を元に、connpassbotを作る。最初は1関数にすべてのせる
-2. APIリクエストとbotの答えを返す関数を別途作り、分離していく
+1. 共通化した手法を元に、connpassonline botを作る。最初は1関数に処理をすべて入れています。
+2. APIリクエストとbotの答えを返す関数をそれぞれで呼び出せるように分離します。
 
 利用する資料: 
 
