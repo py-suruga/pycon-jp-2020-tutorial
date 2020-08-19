@@ -178,3 +178,7 @@ SlackbotはSlackワークスペースとの連携が必要になりますが、�
 - 挨拶bot: ランダムな返答をする関数をmonkeypatchで置き換える
 - connpass bot: jsonの取得をmonkeypatchで置き換え
 - 天気bot: 気象庁xmlの取得をmonkeypatchで置き換え、parametarizeで地域の追加
+
+この章で使う資料
+
+`pycon-jp-2020-tutorial/tutorial_docs/step/pytest-1 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/pytest-1>`_ 
