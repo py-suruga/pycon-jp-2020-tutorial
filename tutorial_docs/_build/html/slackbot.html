@@ -92,6 +92,10 @@
 python ./pt_slackbot/botrun.py
 </pre></div>
 </div>
+<div class="admonition-todo admonition" id="id4">
+<p class="admonition-title">課題</p>
+<p>ngrokとpythonはターミナルを別々にして起動すること</p>
+</div>
 <p>ngrokコマンドを起動すると以下のような情報が表示されます。ngrokのサービスへサインアップしていない場合は外部公開のセッションは8時間の限定公開になります。</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ngrok by @inconshreveable                                                                                                                       <span class="o">(</span>Ctrl+C to quit<span class="o">)</span>
 
@@ -136,8 +140,8 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 <img alt="_images/slackbot_1-12-0.png" src="_images/slackbot_1-12-0.png" />
 <img alt="_images/slackbot_1-12-1.png" src="_images/slackbot_1-12-1.png" />
 <p>ここまででSlackBotを動作させる準備が整いました。</p>
-<div class="section" id="id4">
-<h3>SlackBotのフロー<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id5">
+<h3>SlackBotのフロー<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ここでは、SlackBotがどのようにslackワークスペースとやり取りを行うか解説します。</p>
 <img alt="_images/slackbot_1-12-2.png" src="_images/slackbot_1-12-2.png" />
 <p>SlackbotはWEBで扱われている技術でサービスとbotのアプリがやり取りを行います。今回のはSlack公式で提供されているEvents APIとWeb APIの2つを利用します。</p>
@@ -170,8 +174,8 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 </div>
 </div>
 </div>
-<div class="section" id="id5">
-<h2>チュートリアルで実装するSlackBotについて<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id6">
+<h2>チュートリアルで実装するSlackBotについて<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>このチュートリアルでは、3つのSlackBotを実装します。人工無能な挨拶を返すbotから、APIを利用してインタラクティブな結果を返すようにします。</p>
 <div class="section" id="wgreet-bot">
 <h3>世界の挨拶をランダムで返す  <strong>wgreet</strong> bot<a class="headerlink" href="#wgreet-bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -185,7 +189,7 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 <li><p>もちろん自由に言葉を変えてもらっても良し</p></li>
 </ul>
 </div></blockquote>
-<div class="admonition-todo admonition" id="id6">
+<div class="admonition-todo admonition" id="id7">
 <p class="admonition-title">課題</p>
 <p>2020-08-13 ステップごとのコードのリンクを用意する</p>
 </div>
@@ -193,11 +197,17 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 <h4>挨拶botの実装ステップ<a class="headerlink" href="#bot" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <blockquote>
 <div><ol class="arabic simple">
-<li><p>まずslackevetsapiのexampleをそのまま乗せておいて、そのbotで受け答えできるか調べてみる</p></li>
+<li><p>slackevetsapiのexampleをそのまま乗せておいて、そのbotで受け答えできるか確認します。</p></li>
 <li><p>次に、その中でテーブルを作って、ランダムで返す関数を用意</p></li>
-<li><p>最後に挨拶をかえす部分をモジュール化する -&gt; 伏線:テストとリファレンスを書きやすくする</p></li>
+<li><p>最後に挨拶をかえす部分をモジュール化する</p></li>
 </ol>
 </div></blockquote>
+<p>利用する資料:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-1">pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-1</a></p></li>
+<li><p><a class="reference external" href="https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-2">pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-2</a></p></li>
+<li><p><a class="reference external" href="https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-3">pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-3</a></p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="connpass-api-connpass-bot">
@@ -218,6 +228,11 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 <li><p>共通化した手法を元に、connpassbotを作る。最初は1関数にすべてのせる</p></li>
 <li><p>APIリクエストとbotの答えを返す関数を別途作り、分離していく</p></li>
 </ol>
+<p>利用する資料:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-4">pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-4</a></p></li>
+<li><p><a class="reference external" href="https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-5">pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-5</a></p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="xml-tenki-bot">
@@ -236,6 +251,10 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 <li><p>BeautifulSoup4を使ってxmlのパースをする</p></li>
 <li><p>対応地域を追加してbotの拡張をしてもらう</p></li>
 </ol>
+<p>利用する資料:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-6">pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-6</a></p></li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">注釈</p>
 <p>今回の天気情報の元は気象庁が無料で公開しているxmlファイルを利用しました。
@@ -273,7 +292,7 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Slackbotの作成</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id2">ローカル開発環境の用意</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#slack">Slackアプリの作成と設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">チュートリアルで実装するSlackBotについて</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">チュートリアルで実装するSlackBotについて</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pytest.html">pytestでテストケースを導入する</a></li>

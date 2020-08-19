@@ -87,6 +87,8 @@ Slackアプリの作成と設定
     ngrok http 3000
     python ./pt_slackbot/botrun.py
 
+.. todo:: ngrokとpythonはターミナルを別々にして起動すること
+
 ngrokコマンドを起動すると以下のような情報が表示されます。ngrokのサービスへサインアップしていない場合は外部公開のセッションは8時間の限定公開になります。
 
 .. code-block:: bash
@@ -218,9 +220,15 @@ Slackbotのコード内ではFlaskのインスタンスを作成して、サー�
 挨拶botの実装ステップ
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  1. まずslackevetsapiのexampleをそのまま乗せておいて、そのbotで受け答えできるか調べてみる
+  1. slackevetsapiのexampleをそのまま乗せておいて、そのbotで受け答えできるか確認します。
   2. 次に、その中でテーブルを作って、ランダムで返す関数を用意
-  3. 最後に挨拶をかえす部分をモジュール化する -> 伏線:テストとリファレンスを書きやすくする
+  3. 最後に挨拶をかえす部分をモジュール化する
+
+利用する資料: 
+
+- `pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-1 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-1>`_
+- `pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-2 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-2>`_
+- `pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-3 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-3>`_
 
 connpass APIを利用してオンラインイベントを検索する **connpass** bot
 --------------------------------------------------------------------------------
@@ -243,6 +251,11 @@ connpassbotの実装ステップ
 1. 共通化した手法を元に、connpassbotを作る。最初は1関数にすべてのせる
 2. APIリクエストとbotの答えを返す関数を別途作り、分離していく
 
+利用する資料: 
+
+- `pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-4 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-4>`_
+- `pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-5 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-5>`_
+
 
 気象庁のXML電文を使って地域の天気を返す **tenki** bot
 --------------------------------------------------------------------------------
@@ -264,6 +277,11 @@ tenkibotの実装ステップ
 
 1. BeautifulSoup4を使ってxmlのパースをする
 2. 対応地域を追加してbotの拡張をしてもらう
+
+利用する資料: 
+
+- `pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-6 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-6>`_
+
 
 .. note:: 今回の天気情報の元は気象庁が無料で公開しているxmlファイルを利用しました。
     当初はLivedoor 天気から提供されている REST APIを用いる予定でしたが、 2020/7/31にサービスが終了となったため、急遽気象庁XMLサービスを利用しています。
