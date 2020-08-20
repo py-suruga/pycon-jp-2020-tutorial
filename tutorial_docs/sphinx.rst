@@ -187,18 +187,10 @@ Slackbotの説明文を書いてみよう
 
 ``slackbot_usage.rst`` ファイルを作成して、botの使い方を書いていきます。
 
-.. todo::
-    この章では、tutorial_docsにある文章や画像をコピペして作成してみる。
-    入力の手間を減らしたり、ビルド時の失敗をある程度減らす狙いがある
+こちらの資料を見ながら写経したり、自由に記載してみてください。
 
-    - 各botの見出し
-    - botの簡単な説明: これは自由に決めてもらっても良し
+`pycon-jp-2020-tutorial/tutorial_docs/step/sphinx-1 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/sphinx-1>`_
 
-      - 挨拶bot: 対応している国の一覧をリストで用意
-      - connpass bot: 検索結果の概要を文章で載せる
-      - 天気bot :追加した地域の一覧
-
-    - 画像の挿入: tutorial_docs/slackbotの終盤にある画像ファイルをコピーしてpt_slackbot/docs内にコピー
 
 最後に ``index.rst`` のtoctreeディレクティブに ``slackbot_usage`` を追加します。 rstファイルの拡張子を外したファイル名のみにしてください。
 
