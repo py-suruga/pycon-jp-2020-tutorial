@@ -24,7 +24,7 @@ pytestを使ったテストケースは ``pytest`` コマンドでテストの�
 テストの失敗
 ---------------------
 
-.. literalinclude:: ./step/pytest-0/test_hello_pytest_1.py
+.. literalinclude:: ./step/pytest-1/test_hello_pytest_1.py
 
 
 特徴的な部分としては、 pythonのassert文を使ってテストケースを定義します。
@@ -37,13 +37,13 @@ pytestを使ったテストケースは ``pytest`` コマンドでテストの�
 
 ::
 
-  PS C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs> pytest .\step\pytest-0\test_hello_pytest.py
+  PS C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\tutorial_docs> pytest .\step\pytest-1\test_hello_pytest.py
   ============================================================= test session starts =============================================================
   platform win32 -- Python 3.7.3, pytest-6.0.1, py-1.9.0, pluggy-0.13.1
-  rootdir: C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs
+  rootdir: C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\tutorial_docs
   collected 1 item
 
-  step\pytest-0\test_hello_pytest.py F                                                                                                     [100%]
+  step\pytest-1\test_hello_pytest.py F                                                                                                     [100%]
 
   ================================================================== FAILURES ===================================================================
   _________________________________________________________________ test_pytest _________________________________________________________________
@@ -52,9 +52,9 @@ pytestを使ったテストケースは ``pytest`` コマンドでテストの�
   >       assert 1 == 0
   E       assert 1 == 0
 
-  step\pytest-0\test_hello_pytest.py:2: AssertionError
+  step\pytest-1\test_hello_pytest.py:2: AssertionError
   =========================================================== short test summary info ===========================================================
-  FAILED step/pytest-0/test_hello_pytest.py::test_pytest - assert 1 == 0
+  FAILED step/pytest-1/test_hello_pytest.py::test_pytest - assert 1 == 0
   ============================================================== 1 failed in 0.11s ==============================================================
 
 失敗すると、どの部分で失敗したかが確認できます。
@@ -62,17 +62,17 @@ pytestを使ったテストケースは ``pytest`` コマンドでテストの�
 コード自体のエラーも同時に表示されます。
 
 
-.. literalinclude:: ./step/pytest-0/test_hello_pytest_2.py
+.. literalinclude:: ./step/pytest-1/test_hello_pytest_2.py
 
 ::
 
-  PS C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs> pytest .\step\pytest-0\test_hello_pytest_2.py
+  PS C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\tutorial_docs> pytest .\step\pytest-1\test_hello_pytest_2.py
   ============================================================= test session starts =============================================================
   platform win32 -- Python 3.7.3, pytest-6.0.1, py-1.9.0, pluggy-0.13.1
-  rootdir: C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs
+  rootdir: C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\tutorial_docs
   collected 1 item
 
-  step\pytest-0\test_hello_pytest_2.py F                                                                                                   [100%]
+  step\pytest-1\test_hello_pytest_2.py F                                                                                                   [100%]
 
   ================================================================== FAILURES ===================================================================
   _________________________________________________________________ test_pytest _________________________________________________________________
@@ -82,9 +82,9 @@ pytestを使ったテストケースは ``pytest`` コマンドでテストの�
   >       test_val = 1 / 0
   E       ZeroDivisionError: division by zero
 
-  step\pytest-0\test_hello_pytest_2.py:3: ZeroDivisionError
+  step\pytest-1\test_hello_pytest_2.py:3: ZeroDivisionError
   =========================================================== short test summary info ===========================================================
-  FAILED step/pytest-0/test_hello_pytest_2.py::test_pytest - ZeroDivisionError: division by zero
+  FAILED step/pytest-1/test_hello_pytest_2.py::test_pytest - ZeroDivisionError: division by zero
   ============================================================== 1 failed in 0.14s ==============================================================
 
 テストの成功
@@ -93,19 +93,19 @@ pytestを使ったテストケースは ``pytest`` コマンドでテストの�
 先ほどのサンプルをテストが通るように変更してみましょう
 
 
-.. literalinclude:: ./step/pytest-0/test_hello_pytest_3.py
+.. literalinclude:: ./step/pytest-1/test_hello_pytest_3.py
 
 実行すると成功した様子が確認できます。
 
 ::
 
-  PS C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs> pytest .\step\pytest-0\test_hello_pytest_3.py
+  PS C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\tutorial_docs> pytest .\step\pytest-1\test_hello_pytest_3.py
   ============================================================= test session starts =============================================================
   platform win32 -- Python 3.7.3, pytest-6.0.1, py-1.9.0, pluggy-0.13.1
-  rootdir: C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs
+  rootdir: C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\tutorial_docs
   collected 1 item
 
-  step\pytest-0\test_hello_pytest_3.py .                                                                                                   [100%]
+  step\pytest-1\test_hello_pytest_3.py .                                                                                                   [100%]
 
   ============================================================== 1 passed in 0.03s ==============================================================
 
@@ -113,14 +113,14 @@ pytestは ``-v`` オプションでテスト関数やクラスの一覧も表示
 
 ::
 
-  PS C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs> pytest .\step\pytest-0\test_hello_pytest_3.py -v
+  PS C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\tutorial_docs> pytest .\step\pytest-1\test_hello_pytest_3.py -v
   ============================================================= test session starts =============================================================
-  platform win32 -- Python 3.7.3, pytest-6.0.1, py-1.9.0, pluggy-0.13.1 -- c:\users\hiroshi\documents\workspace\personal\pycon-jp-2020-tutorial\.venv\scripts\python.exe
+  platform win32 -- Python 3.7.3, pytest-6.0.1, py-1.9.0, pluggy-0.13.1 -- c:\users\hiroshi\documents\pycon-jp-2020-tutorial\.venv\scripts\python.exe
   cachedir: .pytest_cache
-  rootdir: C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\tutorial_docs
+  rootdir: C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\tutorial_docs
   collected 1 item
 
-  step/pytest-0/test_hello_pytest_3.py::test_pytest PASSED                                                                                 [100%]
+  step/pytest-1/test_hello_pytest_3.py::test_pytest PASSED                                                                                 [100%]
 
   ============================================================== 1 passed in 0.09s ==============================================================
 
@@ -145,7 +145,7 @@ parametrizeはパラメーターを一括で扱える機能です。
 
 `Parametrizing fixtures and test functions — pytest documentation <https://docs.pytest.org/en/stable/parametrize.html>`_
 
-.. literalinclude:: ./step/pytest-0/test_parametrize.py
+.. literalinclude:: ./step/pytest-1/test_parametrize.py
 
 fixture
 ------------------
@@ -154,7 +154,7 @@ fixtureはテストする機能を実行する前の準備や終了処理を共�
 
 `pytest fixtures: explicit, modular, scalable — pytest documentation <https://docs.pytest.org/en/stable/fixture.html>`_
 
-.. literalinclude:: ./step/pytest-0/test_fixture_load_json.py
+.. literalinclude:: ./step/pytest-1/test_fixture_load_json.py
 
 monkeypatch
 ----------------------
@@ -165,7 +165,7 @@ monkeypatchはpythonのUnittest.mockのような機能です。モックとな�
 
 公式の冒頭にあるサンプルコードを動かしてみましょう
 
-.. literalinclude:: ./step/pytest-0/test_monkeypatch_function.py
+.. literalinclude:: ./step/pytest-1/test_monkeypatch_function.py
 
 
 SlackBotのテストケースを書いてみよう
@@ -191,4 +191,4 @@ SlackbotはSlackワークスペースとの連携が必要になりますが、�
 
 この章で使う資料は以下のURL（パス）から参照できます。
 
-`pycon-jp-2020-tutorial/tutorial_docs/step/pytest-1 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/pytest-1>`_
+`pycon-jp-2020-tutorial/tutorial_docs/step/pytest-2 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/pytest-2>`_

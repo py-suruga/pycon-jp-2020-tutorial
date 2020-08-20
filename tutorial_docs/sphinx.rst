@@ -28,7 +28,7 @@ Sphinxはドキュメントを作成するひな形の環境を用意する ``sp
 
 .. code-block:: none
 
-    (pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot> sphinx-quickstart.exe .\docs\
+    (pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackbot> sphinx-quickstart.exe .\docs\
     Welcome to the Sphinx 3.1.2 quickstart utility.
 
     Please enter values for the following settings (just press Enter to
@@ -54,17 +54,17 @@ Sphinxはドキュメントを作成するひな形の環境を用意する ``sp
     https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-language.
     > Project language [en]: ja
 
-    Creating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackboCreating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackboCreating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot\docs\Makefile.
-    Creating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot\docs\make.bat.
+    Creating file C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackboCreating file C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackboCreating file C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackbot\docs\Makefile.
+    Creating file C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackbot\docs\make.bat.
 
     Finished: An initial directory structure has been created.
 
-    You should now populate your master file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot\docs\index.rst and create other documentation
+    You should now populate your master file C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackbot\docs\index.rst and create other documentation
     source files. Use the Makefile to build the docs, like so:
     make builder
     where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
 
-    (pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot> cd .\docs\
+    (pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackbot> cd .\docs\
 
 今回のSlackbotのドキュメントは以下のような構造で作成します。チュートリアルで利用するディレクトリやファイルに付いて解説します。
 
