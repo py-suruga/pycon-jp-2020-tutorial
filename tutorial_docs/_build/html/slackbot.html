@@ -37,38 +37,6 @@
   <div class="section" id="slackbot">
 <h1>Slackbotの作成<a class="headerlink" href="#slackbot" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>チュートリアルで扱うSlackbotを実装するために、開発環境やSlackのAPI利用方法を説明し、ステップを踏みながらbotを作成していきましょう。</p>
-<div class="admonition-todo admonition" id="id1">
-<p class="admonition-title">課題</p>
-<p>ローカル開発環境はprepare側に乗せたほうが説明しやすいと思う</p>
-</div>
-<div class="section" id="id2">
-<h2>ローカル開発環境の用意<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Slackbotを作成するために、Pythonの開発環境を用意します。</p>
-<p>Pythonはシステムにインストールされた実行環境以外の仮想環境を用意できます。仮想環境を作ることでシステム側の環境を汚すこと無く開発環境の構築ができます。</p>
-<p>仮想環境は以下のコマンドで作成します</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="p">[</span><span class="n">Username</span><span class="p">]</span>\<span class="n">Document</span>\<span class="n">pyconjp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>
-<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="o">.</span><span class="n">venv</span>
-</pre></div>
-</div>
-<p>仮想環境を利用するときには、以下のコマンドを実行します</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.\.venv\Scripts\activate.bat
-# 仮想環境上に必要なパッケージをインストールします
-(.venv) &gt; pip install -r requirements.txt
-# 開発環境で利用するパッケージのインストールも行います。
-(.venv) &gt; pip install -r dev_requirements.txt
-</pre></div>
-</div>
-<p>仮想環境を終了する場合は以下のコマンドを実行します。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span><span class="n">deactivate</span>
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">注釈</p>
-<p>このチュートリアルを用意するためにPipenvを利用したので、Pipenvでの環境作成も行えます。
-このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。</p>
-<p><a class="reference external" href="https://pipenv.pypa.io/en/latest/#install-pipenv-today">Pipenv: Python Dev Workflow for Humans — pipenv 2020.8.13.dev0 documentation</a></p>
-</div>
-</div>
 <div class="section" id="slack">
 <h2>Slackアプリの作成と設定<a class="headerlink" href="#slack" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>まず初めにBotとなるSlackアプリをSlack上で作成します。</p>
@@ -158,8 +126,8 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 <img alt="_images/slackbot_1-12-0.png" src="_images/slackbot_1-12-0.png" />
 <img alt="_images/slackbot_1-12-1.png" src="_images/slackbot_1-12-1.png" />
 <p>ここまででSlackBotを動作させる準備が整いました。</p>
-<div class="section" id="id4">
-<h3>SlackBotのフロー<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id2">
+<h3>SlackBotのフロー<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ここでは、SlackBotがどのようにslackワークスペースとやり取りを行うか解説します。</p>
 <img alt="_images/slackbot_1-12-2.png" src="_images/slackbot_1-12-2.png" />
 <p>SlackbotはWEBで扱われている技術でサービスとbotのアプリがやり取りを行います。今回のはSlack公式で提供されているEvents APIとWeb APIの2つを利用します。</p>
@@ -192,8 +160,8 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 </div>
 </div>
 </div>
-<div class="section" id="id5">
-<h2>チュートリアルで実装するSlackBotについて<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id3">
+<h2>チュートリアルで実装するSlackBotについて<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>このチュートリアルでは、3つのSlackBotを実装します。人工無能な挨拶を返すbotから、APIを利用してインタラクティブな結果を返すようにします。</p>
 <div class="section" id="wgreet-bot">
 <h3>世界の挨拶をランダムで返す  <strong>wgreet</strong> bot<a class="headerlink" href="#wgreet-bot" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -305,9 +273,8 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 <li class="toctree-l1"><a class="reference internal" href="prepare.html">チュートリアル開始前の準備</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vscode.html">VS CodeとLive Shareの設定</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Slackbotの作成</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id2">ローカル開発環境の用意</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#slack">Slackアプリの作成と設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">チュートリアルで実装するSlackBotについて</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">チュートリアルで実装するSlackBotについて</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pytest.html">pytestでテストケースを導入する</a></li>

@@ -28,7 +28,7 @@ Sphinxはドキュメントを作成するひな形の環境を用意する ``sp
 
 .. code-block:: none
 
-    (pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot> sphinx-quickstart.exe .\docs\
+    (pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackbot> sphinx-quickstart.exe .\docs\
     Welcome to the Sphinx 3.1.2 quickstart utility.
 
     Please enter values for the following settings (just press Enter to
@@ -54,17 +54,17 @@ Sphinxはドキュメントを作成するひな形の環境を用意する ``sp
     https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-language.
     > Project language [en]: ja
 
-    Creating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackboCreating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackboCreating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot\docs\Makefile.
-    Creating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot\docs\make.bat.
+    Creating file C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackboCreating file C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackboCreating file C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackbot\docs\Makefile.
+    Creating file C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackbot\docs\make.bat.
 
     Finished: An initial directory structure has been created.
 
-    You should now populate your master file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot\docs\index.rst and create other documentation
+    You should now populate your master file C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackbot\docs\index.rst and create other documentation
     source files. Use the Makefile to build the docs, like so:
     make builder
     where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
 
-    (pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot> cd .\docs\
+    (pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackbot> cd .\docs\
 
 今回のSlackbotのドキュメントは以下のような構造で作成します。チュートリアルで利用するディレクトリやファイルに付いて解説します。
 
@@ -187,18 +187,10 @@ Slackbotの説明文を書いてみよう
 
 ``slackbot_usage.rst`` ファイルを作成して、botの使い方を書いていきます。
 
-.. todo::
-    この章では、tutorial_docsにある文章や画像をコピペして作成してみる。
-    入力の手間を減らしたり、ビルド時の失敗をある程度減らす狙いがある
+こちらの資料を見ながら写経したり、自由に記載してみてください。
 
-    - 各botの見出し
-    - botの簡単な説明: これは自由に決めてもらっても良し
+`pycon-jp-2020-tutorial/tutorial_docs/step/sphinx-1 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/sphinx-1>`_
 
-      - 挨拶bot: 対応している国の一覧をリストで用意
-      - connpass bot: 検索結果の概要を文章で載せる
-      - 天気bot :追加した地域の一覧
-
-    - 画像の挿入: tutorial_docs/slackbotの終盤にある画像ファイルをコピーしてpt_slackbot/docs内にコピー
 
 最後に ``index.rst`` のtoctreeディレクティブに ``slackbot_usage`` を追加します。 rstファイルの拡張子を外したファイル名のみにしてください。
 
@@ -222,7 +214,7 @@ Sphinxには、Pythonのdocstringからクラスや関数の使い方を半自�
 docstirngを書こう
 ---------------------------
 
-autodocを使うためには、pythonのクラスや関数にdocstringを追加する必要があります。
+autodoc拡張を使うためには、pythonのクラスや関数にdocstringを追加する必要があります。
 
 docstringはPythonのクラスや関数に書き込めるドキュメントです。文字列リテラルという ``"""クオーテーション3つでくくった文字列"""`` で表現します。
 
@@ -251,6 +243,149 @@ docstringはPythonのドキュメンテーションに深くかかわる機能�
     hello_docstring()
         この部分に文字列を入れるとdocstringとして扱われます。
 
+docstringのスタイル
+----------------------------------------------------
+
+docstringの記述方法にはいくつかのスタイルがあります。標準ではこのようなスタイルになります。
+
+.. code-block:: python
+
+    def search_online_event(ym):
+        """
+        :param ym: connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す
+        :type str: str # 文字列
+        :returns: botに渡す文字列を返します
+        :rtype: str
+
+        request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します
+        """
+        # 以降処理が続く..
+
+この他にも、GoogleやNumpyプロジェクトが提唱するスタイルもあります。それぞれ特徴がありますが、このチュートリアルでは Googleスタイルを扱います。
+
+`GoogleスタイルのPython Docstringsの例 — Sphinx 1.6.7 ドキュメント <https://www.sphinx-doc.org/ja/1.6/ext/example_google.html#example-google>`_
+
+Googleスタイルはシンプルな表現であるため、docstringを最初に書く際にはオススメです。
+
+.. code-block:: python
+
+    def search_online_event(ym):
+        """
+        Args:
+            ym : connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す
+        Returns:
+            botに渡す文字列を返します
+
+        request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します
+        """
+        # 以降処理が続く..
+
+
+.. note:: 
+    Numpyスタイルの紹介もします。Numpyスタイルは縦に長くなりますが、テキストのみでも読みやすいのが特徴です。
+
+    `NumPyスタイルPython Docstringsの例 — Sphinx 1.6.7 ドキュメント <https://www.sphinx-doc.org/ja/1.6/ext/example_numpy.html#example-numpy>`_
+    
+    .. code-block:: python
+
+        def search_online_event(ym):
+            """
+            Parameters
+            ----------
+            ym : str
+                connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す
+            
+            Returns
+            -------
+            str
+                botに渡す文字列を返します
+
+            request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します
+            """
+            # 以降処理が続く..
+
+docstringと型アノテーション
+----------------------------------------------------
+
+docstringは、もともと関数/メソッドの引数（Args）の説明や戻り値（Returns）等に型の種類を宣言できます。この型宣言自体はPython側に直接影響は有りません（Pythonは動的型定義の言語です）。
+
+しかし予め定義することでPythonに対応したIDEや型チェッカー( `Mypy <https://mypy.readthedocs.io/en/stable/index.html>`_ 等）を使うことで入力補完機能やチェッカーによる警告機能を使うことができます。
+
+.. code-block:: python
+
+    # Googleスタイルです
+    def search_online_event(ym):
+        """
+        Args:
+            ym (str): connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す
+        Returns:
+            str: botに渡す文字列を返します
+
+        request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します
+        """
+        # 以降処理が続く..
+        
+Python3から型アノテーションという、定義時に型を明言する機能が追加されました。Python3.0から関数の引数や戻り値に対してのアノテーションが扱えます。
+
+`PEP 3107 -- Function Annotations | Python.org <https://www.python.org/dev/peps/pep-3107/>`_
+
+Sphinxの現行バージョンとautodoc拡張は型アノテーションを使うことで、宣言している型の種類を出力できるようになります。
+
+.. code-block:: python
+
+    # Googleスタイルです
+    def search_online_event(ym: str) -> str:
+        """
+        Args:
+            ym : connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す
+        Returns:
+            botに渡す文字列を返します
+
+        request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します
+        """
+
+        # 以降処理が続く..
+
+.. note::
+    docstringの標準なスタイルでの型宣言, 型アノテーションを用いた例も紹介します。
+
+    docstringに型宣言もありバージョン
+
+    .. code-block:: python
+    
+        def search_online_event(ym):
+            """
+            :param ym: connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す
+            :type str: str # 文字列
+            :returns: botに渡す文字列を返します
+            :rtype: str
+
+            request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します
+            """
+            # 以降処理が続く..
+            
+    型アノテーションバージョン
+
+    .. code-block:: python
+
+        def search_online_event(ym: str) -> str:
+            """
+            :param ym: connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す
+            :returns: botに渡す文字列を返します
+
+            request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します
+            """
+            # 以降処理が続く..
+
+
+.. .. note:: このチュートリアルではVS Code+Python拡張を利用しているため、型宣言を行うと補完されやすくなります。
+
+..     .. vs code の補完のリンク
+
+..     また、mypyなどの型チェッカーの扱いはしませんが、大型なプロジェクトで作業を行う際にCIにチェッカー機能を設定すると、不明瞭なデータ型の扱いを防ぐ事もできます。
+
+..     `Using mypy with an existing codebase — Mypy 0.782 documentation <https://mypy.readthedocs.io/en/stable/existing_code.html#continuous-integration>`_
+
 
 botの関数にdocstringを用意する
 ---------------------------------------------------
@@ -260,16 +395,17 @@ botの各関数にdocstringを追加しましょう。例として挨拶botとco
 - 挨拶bot: ランダムに天気情報を返す関数
 - connpassbot: jsonの取得関数、botが答える文字列生成の関数
 
-.. note:: そのほかの関数は、終わりに模範解答からコピーして実行して生成された結果を確認しましょう。
+
+こちらの資料を見ながら写経しましょう。説明文は自由に変更するのも良いでしょう。
+
+`pycon-jp-2020-tutorial/tutorial_docs/step/sphinx-1 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/sphinx-1>`_
+
+
+.. note:: そのほかの関数は、模範解答からファイルをコピーしましょう。
 
     - 天気bot: xml取得関数、botが答える文字列生成の関数
     - botrunのメッセージハンドル（botの登録方法を記載する）
 
-.. todo::
-
-    - 挨拶botとconnpassbotの模範解答=step/sphinxディレクトリに作成する
-    - noteにtype annotationの組み合わせ例を書く
-    - docstringはGoogleスタイルで行うのでnapoleonの導入も必要: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations
 
 Sphinxの設定
 ---------------------------
@@ -299,6 +435,10 @@ autodoc拡張機能はSphinxの設定で有効にする必要があります。S
 
 次に、conf.pyのextensions（空のリスト）に、 ``"sphinx.ext.autodoc", "sphinx.ext.napoleon"`` の2つの文字列を追加します。
 
+- ``sphinx.ext.autodoc``: autodoc拡張
+- ``sphinx.ext.napoleon``: autodoc拡張でdocstringを扱うときのGoogle/Numpyスタイル対応
+
+
 .. code-block:: python
 
     # -- General configuration ---------------------------------------------------
@@ -310,10 +450,10 @@ autodoc拡張機能はSphinxの設定で有効にする必要があります。S
     extensions = ["sphinx.ext.autodoc", "sphinx.ext.napoleon"]
 
 
-autodocで半自動的にリファレンスを作成する: sphinx-apidocコマンド
+autodoc拡張で半自動的にリファレンスを作成する: sphinx-apidocコマンド
 ------------------------------------------------------------------------------------------------------------------------------
 
-docstringの用意と設定を変更したので、autodocを使ってリファレンスを生成してみましょう。
+docstringの用意と設定を変更したので、autodoc拡張を使ってリファレンスを生成してみましょう。
 
 .. code-block:: none
 
