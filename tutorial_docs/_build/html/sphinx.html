@@ -227,17 +227,7 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 </div>
 <div class="section" id="docstring">
 <h3>docstringのスタイル<a class="headerlink" href="#docstring" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>docstringの記述方法にはいくつかのスタイルがあります。標準では*** となります。</p>
-<p>この他にも、GoogleやNumpyプロジェクトが提唱するスタイルもあります。この2つのスタイルはnapoleon拡張機能を有効にする必要があります。</p>
-<p>このチュートリアルでは Googleスタイルを扱います。</p>
-<ul class="simple">
-<li><p>docstringはGoogleスタイルで行うのでnapoleonの導入も必要: <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations">https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations</a></p></li>
-</ul>
-</div>
-<div class="section" id="id10">
-<h3>docstringと型アノテーション<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>docstringは、もともと関数/メソッドの引数（Args）の説明や戻り値（Returns）等に型の種類を指定できます。この指定はPython側に直接影響は有りません（Pythonは動的型定義の言語です）。</p>
-<p>しかし予め定義することでPythonに対応したIDEや型チェッカー( <a class="reference external" href="https://mypy.readthedocs.io/en/stable/index.html">Mypy</a> 等）を使うことで入力補完機能やチェッカーによる警告機能を使うことができます。</p>
+<p>docstringの記述方法にはいくつかのスタイルがあります。標準ではこのようなスタイルになります。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">search_online_event</span><span class="p">(</span><span class="n">ym</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    :param ym: connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す</span>
@@ -250,11 +240,96 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
     <span class="c1"># 以降処理が続く..</span>
 </pre></div>
 </div>
+<p>この他にも、GoogleやNumpyプロジェクトが提唱するスタイルもあります。それぞれ特徴がありますが、このチュートリアルでは Googleスタイルを扱います。</p>
+<p><a class="reference external" href="https://www.sphinx-doc.org/ja/1.6/ext/example_google.html#example-google">GoogleスタイルのPython Docstringsの例 — Sphinx 1.6.7 ドキュメント</a></p>
+<p>Googleスタイルはシンプルな表現であるため、docstringを最初に書く際にはオススメです。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">search_online_event</span><span class="p">(</span><span class="n">ym</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Args:</span>
+<span class="sd">        ym : connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        botに渡す文字列を返します</span>
+
+<span class="sd">    request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 以降処理が続く..</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>Numpyスタイルの紹介もします。Numpyスタイルは縦に長くなりますが、テキストのみでも読みやすいのが特徴です。</p>
+<p><a class="reference external" href="https://www.sphinx-doc.org/ja/1.6/ext/example_numpy.html#example-numpy">NumPyスタイルPython Docstringsの例 — Sphinx 1.6.7 ドキュメント</a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">search_online_event</span><span class="p">(</span><span class="n">ym</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ym : str</span>
+<span class="sd">        connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    str</span>
+<span class="sd">        botに渡す文字列を返します</span>
+
+<span class="sd">    request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 以降処理が続く..</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id10">
+<h3>docstringと型アノテーション<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>docstringは、もともと関数/メソッドの引数（Args）の説明や戻り値（Returns）等に型の種類を宣言できます。この型宣言自体はPython側に直接影響は有りません（Pythonは動的型定義の言語です）。</p>
+<p>しかし予め定義することでPythonに対応したIDEや型チェッカー( <a class="reference external" href="https://mypy.readthedocs.io/en/stable/index.html">Mypy</a> 等）を使うことで入力補完機能やチェッカーによる警告機能を使うことができます。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Googleスタイルです</span>
+<span class="k">def</span> <span class="nf">search_online_event</span><span class="p">(</span><span class="n">ym</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Args:</span>
+<span class="sd">        ym (str): connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        str: botに渡す文字列を返します</span>
+
+<span class="sd">    request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 以降処理が続く..</span>
+</pre></div>
+</div>
 <p>Python3から型アノテーションという、定義時に型を明言する機能が追加されました。Python3からは関数の引数や戻り値に対してのアノテーションが扱えます。</p>
 <p><a class="reference external" href="https://www.python.org/dev/peps/pep-3107/">PEP 3107 -- Function Annotations | Python.org</a></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ``:type str:`` や ``:rtypr:`` を外すことができる</span>
-
+<p>Sphinxの現行バージョンとautodoc拡張は型アノテーションを使うことで、宣言している型の種類を出力できるようになります。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Googleスタイルです</span>
 <span class="k">def</span> <span class="nf">search_online_event</span><span class="p">(</span><span class="n">ym</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Args:</span>
+<span class="sd">        ym : connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        botに渡す文字列を返します</span>
+
+<span class="sd">    request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># 以降処理が続く..</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>docstringの標準なスタイルでの型宣言, 型アノテーションを用いた例も紹介します。</p>
+<p>docstringに型宣言もありバージョン</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">search_online_event</span><span class="p">(</span><span class="n">ym</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :param ym: connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す</span>
+<span class="sd">    :type str: str # 文字列</span>
+<span class="sd">    :returns: botに渡す文字列を返します</span>
+<span class="sd">    :rtype: str</span>
+
+<span class="sd">    request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 以降処理が続く..</span>
+</pre></div>
+</div>
+<p>型アノテーションバージョン</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">search_online_event</span><span class="p">(</span><span class="n">ym</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    :param ym: connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す</span>
 <span class="sd">    :returns: botに渡す文字列を返します</span>
@@ -264,12 +339,6 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
     <span class="c1"># 以降処理が続く..</span>
 </pre></div>
 </div>
-<p>autodoc拡張は型アノテーションを自動的に処理します。</p>
-<div class="admonition note">
-<p class="admonition-title">注釈</p>
-<p>このチュートリアルではVS Code+Python拡張を利用しているため、型宣言を行うと補完されやすくなります。</p>
-<p>また、mypyなどの型チェッカーの扱いはしませんが、大型なプロジェクトで作業を行う際にCIにチェッカー機能を設定すると、不明瞭なデータ型の扱いを防ぐ事もできます。</p>
-<p><a class="reference external" href="https://mypy.readthedocs.io/en/stable/existing_code.html#continuous-integration">Using mypy with an existing codebase — Mypy 0.782 documentation</a></p>
 </div>
 </div>
 <div class="section" id="botdocstring">
@@ -283,7 +352,7 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <p><a class="reference external" href="https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/sphinx-1">pycon-jp-2020-tutorial/tutorial_docs/step/sphinx-1</a></p>
 <div class="admonition note">
 <p class="admonition-title">注釈</p>
-<p>そのほかの関数は、終わりに模範解答からコピーして実行して生成された結果を確認しましょう。</p>
+<p>そのほかの関数は、模範解答からファイルをコピーしましょう。</p>
 <ul class="simple">
 <li><p>天気bot: xml取得関数、botが答える文字列生成の関数</p></li>
 <li><p>botrunのメッセージハンドル（botの登録方法を記載する）</p></li>
@@ -314,6 +383,10 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 </pre></div>
 </div>
 <p>次に、conf.pyのextensions（空のリスト）に、 <code class="docutils literal notranslate"><span class="pre">&quot;sphinx.ext.autodoc&quot;,</span> <span class="pre">&quot;sphinx.ext.napoleon&quot;</span></code> の2つの文字列を追加します。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code>: autodoc拡張</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code>: autodoc拡張でdocstringを扱うときのGoogle/Numpyスタイル対応</p></li>
+</ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -- General configuration ---------------------------------------------------</span>
 
 <span class="c1"># Add any Sphinx extension module names here, as strings. They can be</span>
