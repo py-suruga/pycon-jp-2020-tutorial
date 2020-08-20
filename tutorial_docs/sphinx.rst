@@ -214,7 +214,7 @@ Sphinxには、Pythonのdocstringからクラスや関数の使い方を半自�
 docstirngを書こう
 ---------------------------
 
-autodocを使うためには、pythonのクラスや関数にdocstringを追加する必要があります。
+autodoc拡張を使うためには、pythonのクラスや関数にdocstringを追加する必要があります。
 
 docstringはPythonのクラスや関数に書き込めるドキュメントです。文字列リテラルという ``"""クオーテーション3つでくくった文字列"""`` で表現します。
 
@@ -302,10 +302,10 @@ autodoc拡張機能はSphinxの設定で有効にする必要があります。S
     extensions = ["sphinx.ext.autodoc", "sphinx.ext.napoleon"]
 
 
-autodocで半自動的にリファレンスを作成する: sphinx-apidocコマンド
+autodoc拡張で半自動的にリファレンスを作成する: sphinx-apidocコマンド
 ------------------------------------------------------------------------------------------------------------------------------
 
-docstringの用意と設定を変更したので、autodocを使ってリファレンスを生成してみましょう。
+docstringの用意と設定を変更したので、autodoc拡張を使ってリファレンスを生成してみましょう。
 
 .. code-block:: none
 
