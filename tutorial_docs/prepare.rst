@@ -72,6 +72,44 @@ GitHubから取得したチュートリアルの資料には多数のディレ�
     └── tutorial_docs # チュートリアルドキュメントの中身
         └── step # チュートリアルで順を追ってハンズオンをするときのステップごとに使う資料
 
+ローカル開発環境の用意
+================================================================================
+
+Slackbotを作成するために、Pythonの開発環境を用意します。
+
+Pythonはシステムにインストールされた実行環境以外の仮想環境を用意できます。仮想環境を作ることでシステム側の環境を汚すこと無く開発環境の構築ができます。
+
+仮想環境は以下のコマンドで作成します
+
+::
+
+  cd C:\Users\[Username]\Document\pyconjp-2020-tutorial
+  python -m venv .venv
+
+仮想環境を利用するときには、以下のコマンドを実行します
+
+.. code-block:: none
+
+
+  .\.venv\Scripts\activate.bat
+  # 仮想環境上に必要なパッケージをインストールします
+  (.venv) > pip install -r requirements.txt
+  # 開発環境で利用するパッケージのインストールも行います。
+  (.venv) > pip install -r dev_requirements.txt
+
+仮想環境を終了する場合は以下のコマンドを実行します。
+
+::
+
+  (.venv)deactivate
+
+.. note::
+  このチュートリアルを用意するためにPipenvを利用したので、Pipenvでの環境作成も行えます。
+  このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。
+
+  `Pipenv: Python Dev Workflow for Humans — pipenv 2020.8.13.dev0 documentation <https://pipenv.pypa.io/en/latest/#install-pipenv-today>`_
+
+
 利用するサービスの準備
 ================================================================================
 
