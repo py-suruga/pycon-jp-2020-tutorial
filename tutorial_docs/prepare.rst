@@ -40,10 +40,19 @@ Pythonの動作確認
 
 pythonコマンドが実行できるか確認します。Windows 10ならPowerShellかコマンドプロンプト、macOSならターミナルアプリを起動して以下のコマンドを実行しましょう。ここではPowerShellを利用して確認します。
 
+Windows 10の場合は以下のコマンドを実行します。
+
 ::
 
   PS pycon-jp-2020-tutorial> python --version
   Python 3.7.8
+
+macOSの場合は以下のコマンドを実行します。macOS標準のPythonを使用する場合は ``python`` コマンドの代わりに ``python3`` コマンドを使います。
+
+::
+
+  $ python3 --version
+  Python 3.8.5
 
 
 チュートリアル資料を取得する
@@ -56,7 +65,7 @@ Slackbotチュートリアルは `GitHub上のリポジトリ <https://github.co
 
 チュートリアル資料の展開先は、普段お使いのユーザーディレクトリのどこかで構いません。
 
-今回のチュートリアルでは ``C:\Users\[Username]\Document\pyconjp-2020-tutorial`` を作業するディレクトリ位置として説明します。
+今回のチュートリアルでは、Windowsでは ``C:\Users\[Username]\Document\pyconjp-2020-tutorial`` 、macOSでは ``~/document/pyconjp-2020-tutorial`` を作業するディレクトリ位置として説明します。
 
 各ディレクトリ、ファイルの意味
 -----------------------------------------------------------
@@ -79,12 +88,19 @@ Slackbotを作成するために、Pythonの開発環境を用意します。
 
 Pythonはシステムにインストールされた実行環境以外の仮想環境を用意できます。仮想環境を作ることでシステム側の環境を汚すこと無く開発環境の構築ができます。
 
-仮想環境は以下のコマンドで作成します
+仮想環境はWindows 10の場合は以下のコマンドで作成します。
 
 ::
 
   cd C:\Users\[Username]\Document\pyconjp-2020-tutorial
   python -m venv .venv
+
+macOSの場合は以下のコマンドで作成します。ここで仮想環境を作成すると、以後は ``python3`` コマンドの代わりに ``python`` コマンドでPythonを実行できます。
+
+::
+
+  $ cd ~/document/pyconjp-2020-tutorial
+  $ python3 -m venv .venv
 
 仮想環境を利用するときには、以下のコマンドを実行します
 
