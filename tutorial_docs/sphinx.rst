@@ -1,8 +1,8 @@
 ================================================================================
-Sphinx
+Sphinxでドキュメントを書こう
 ================================================================================
 
-SphinxはPythonの公式ドキュメントやサードパーティライブラリ、またほかの言語や書籍にも利用されるドキュメンテーションツールです。
+SphinxはPythonの公式ドキュメントやサードパーティライブラリ、またほかの言語や書籍にも利用されるドキュメンテーションツールです。HTMLやPDFでドキュメントを生成できます。
 
 公式サイト: `Overview — Sphinx 4.0.0+ documentation <https://www.sphinx-doc.org/en/master/>`_
 
@@ -18,9 +18,7 @@ Sphinxはドキュメントの書きやすさや豊富な拡張、テーマが�
 Sphinxの始め方
 ============================
 
-- sphinx-quickstartでひな形的なドキュメントの構成を用意する
-
-Sphinxもローカル開発環境を作成した段階でインストールされています。もしsphinx-quickstartというコマンドが見つからない場合はpipコマンドでインストールします。
+Sphinxもローカル開発環境を作成した段階でインストールされています。もし ``sphinx-quickstart`` というコマンドが見つからない場合はpipコマンドでインストールします。
 
 ::
 
@@ -28,9 +26,9 @@ Sphinxもローカル開発環境を作成した段階でインストールさ�
 
 Sphinxはドキュメントを作成するひな形の環境を用意する ``sphinx-quickstart`` コマンドがあります。こちらを利用してひな形を作りましょう
 
-.. code-block:: 
+.. code-block:: none
 
-    (pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot> sphinx-quickstart.exe .\docs\
+    (pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackbot> sphinx-quickstart.exe .\docs\
     Welcome to the Sphinx 3.1.2 quickstart utility.
 
     Please enter values for the following settings (just press Enter to
@@ -56,44 +54,105 @@ Sphinxはドキュメントを作成するひな形の環境を用意する ``sp
     https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-language.
     > Project language [en]: ja
 
-    Creating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackboCreating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackboCreating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot\docs\Makefile.
-    Creating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot\docs\make.bat.
+    Creating file C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackboCreating file C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackboCreating file C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackbot\docs\Makefile.
+    Creating file C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackbot\docs\make.bat.
 
     Finished: An initial directory structure has been created.
 
-    You should now populate your master file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot\docs\index.rst and create other documentation
+    You should now populate your master file C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackbot\docs\index.rst and create other documentation
     source files. Use the Makefile to build the docs, like so:
     make builder
     where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
 
-    (pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot> cd .\docs\
+    (pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackbot> cd .\docs\
 
-- 用意したドキュメントひな形の紹介: 構造の作り方
+今回のSlackbotのドキュメントは以下のような構造で作成します。チュートリアルで利用するディレクトリやファイルに付いて解説します。
 
-今回のSlackbotのドキュメントは以下のような構造で作成します。
+::
 
-.. todo:: ファイルツリーを用意する。ファイルの後に意味をコメントする
+    ./pt_slackbot/docs
+    ├── Makefile # sphinxのドキュメント生成をmakeコマンドで行うときのmakefile
+    ├── make.bat # makefileのWindowsバージョン
+    ├── _build # ビルドされた結果が入るディレクトリ
+    ├── conf.py # Sphinxの設定ファイル
+    ├── index.rst # 最初に生成されるrstファイル。HTMLでビルドした場合のindex.html相当
+
 
 Slackbotのドキュメントを書こう
 ==============================================================================================
 
 それでは、Slackbotのドキュメントを書きましょう。あらかじめ用意してあるファイルをコピーして説明文を載せていきましょう。
 
-.. todo:: ドキュメントの編集: SlackBotの使い方についての足らない部分を書いてドキュメントのビルドを行う
+Sphinxではドキュメントの作成に、RestructuredTextというプレーンテキスト形式の軽量マークアップ言語を利用します。短縮名として「reST」とも言われます。
 
-.. todo:: 挨拶や天気の追加した情報を、各自思いのままに入れてもらう。orいくつかパターンを用意する？
+RestructuredTextには、記法やディレクティブという概念があります。記法は見出しやリストやURLリンクなどの文章の装飾や意味合いの定義を付け加えます。ディレクティブも文章の意味合いを定義するものに使いますが、文章を書く上で便利な機能を提供しています。
 
-ドキュメントをhtmlで生成する場合は ``sphinx-quickstart``　コマンドが生成したmakeファイルを使うと簡単に生成できます。
+Sphinxは標準でも多数の記法、ディレクティブに対応しています。またサードパーティが提供する拡張機能も利用できます。
+
+Sphinxはじめの一歩
+-------------------------------------
+
+いくつかの記法を利用してindex.rstファイルへ試しに書いてみましょう。
+
+見出し
+~~~~~~~~~~
+
+.. code-block:: none
+
+    見出し1
+    ==========
+
+    見出し2
+    ----------
+
+リンク
+~~~~~~~~~~
+
+.. code-block:: none
+
+    `Title <http://link>`_
+
+リスト
+~~~~~~~~~~
+
+.. code-block:: none
+
+  - 箇条書きは 「-」
+
+画像
+~~~~~~~~~~
+
+.. code-block:: none
+
+    .. image:: path
+
+
+コードブロック
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: none
+
+    .. code-block:: python
+
+        >>>print("hello Sphinx!!")
+
+
+そのほかの記法 : `早わかり reStructuredText — Quick reStructuredText 0.1 documentation <https://quick-restructuredtext.readthedocs.io/en/latest/>`_
+
+ドキュメントの生成
+----------------------------------
+
+ドキュメントをhtmlで生成する場合は ``sphinx-quickstart`` コマンドが生成したmakeファイルを使うと簡単に生成できます。
 
 ::
 
     #win10ならmake.bat
     > make.bat html
 
-    #macOSなら makefileがそのまま扱えます
+    #macOSならmakefileがそのまま扱えます
     > make html
 
-生成されたhtmlは pythonの簡易httpサーバーを利用してブラウザで確認できます。
+生成されたhtmlはPythonの簡易httpサーバーを利用してブラウザで確認できます。
 
 ::
 
@@ -101,57 +160,249 @@ Slackbotのドキュメントを書こう
     > cd _build/html
     > python -m http.server 8080
 
+.. image:: ./doc-img/sphinx_1.png
+
 Windows 10の場合は、ファイヤーウォールの許可が表示されるので、適切な設定をしたうえで許可をしてください。（プライベートネットワークのみにすることをオススメします）
 
-.. todo:: ブラウザの表示した結果をだす
+toctreeディレクティブ
+--------------------------------------------------------
+
+sphinxはドキュメントの構造を自動的に生成可能なツールです。ドキュメントの目次を作成したいときにはtoctreeディレクティブを利用します。
+
+``index.rst`` には最初からtoctreeディレクティブが自動的に生成されます。
+
+.. code-block:: none
+
+    .. toctree::
+        :maxdepth: 2
+        :caption: Contents:
+
+        # この行から目次に追加したいrstファイルの名称を追加する
+
+
+Slackbotの説明文を書いてみよう
+--------------------------------------------------------
+
+このチュートリアルで作成しているSlackbotの使い方をドキュメントとして書いてみましょう。
+
+``slackbot_usage.rst`` ファイルを作成して、botの使い方を書いていきます。
+
+こちらの資料を見ながら写経したり、自由に記載してみてください。
+
+`pycon-jp-2020-tutorial/tutorial_docs/step/sphinx-1 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/sphinx-1>`_
+
+
+最後に ``index.rst`` のtoctreeディレクティブに ``slackbot_usage`` を追加します。 rstファイルの拡張子を外したファイル名のみにしてください。
+
+.. code-block:: none
+
+    .. toctree::
+        :maxdepth: 2
+        :caption: Contents:
+
+        slackbot_usage # .rst の拡張子はつけない
 
 autodoc拡張機能を使ったAPIリファレンス作成
 ==============================================================================================
 
-Sphinxには、Pythonのライブラリ＊＊＊
+Sphinxには、Pythonのdocstringからクラスや関数の使い方を半自動的にリファレンスとして取り込む、autodoc拡張機能があります。
 
 `sphinx.ext.autodoc -- docstringからのドキュメントの取り込み — Sphinx 4.0.0+/ba0e5d0ec ドキュメント <https://www.sphinx-doc.org/ja/master/usage/extensions/autodoc.html>`_
 
+ここからは、botで定義した関数のリファレンスを作成してみましょう。
 
 docstirngを書こう
 ---------------------------
 
-autodocを使うためには、pythonのクラスや関数にdocstringを追加する必要があります。
+autodoc拡張を使うためには、pythonのクラスや関数にdocstringを追加する必要があります。
 
-docstringはPythonのクラスや関数に書き込めるドキュメントです。文字列リテラルという ``"""クオーテーション三つでくくった文字列"""`` で表現します。
+docstringはPythonのクラスや関数に書き込めるドキュメントです。文字列リテラルという ``"""クオーテーション3つでくくった文字列"""`` で表現します。
 
-.. note:: 
-    **docstring**
-        クラス、関数、モジュールの最初の式である文字列リテラルです。
-        そのスイートの実行時には無視されますが、コンパイラによって識別され、そのクラス、関数、モジュールの __doc__ 属性として保存されます。
-        イントロスペクションできる（訳注: 属性として参照できる）ので、オブジェクトのドキュメントを書く標準的な場所です。
+.. note::
+    docstringはPython公式ドキュメントで厳密な定義があります。
 
     https://docs.python.org/ja/3/glossary.html?highlight=docstring
-
 
 docstringの例は以下の通りです。
 
 .. code-block:: python
 
-    def hello_docstring():
-        """
+    >>> def hello_docstring():
+    ...     """
+    ...     この部分に文字列を入れるとdocstringとして扱われます。
+    ...     """
+    ...     pass
+
+docstringはPythonのドキュメンテーションに深くかかわる機能です。Python内でも呼び出すことが可能で、help関数を使うことで、関数やクラスのdocstringを参照できます。
+
+.. code-block:: python
+
+    >>> help(hello_docstring)
+    Help on function hello_docstring in module __main__:
+
+    hello_docstring()
         この部分に文字列を入れるとdocstringとして扱われます。
+
+docstringのスタイル
+----------------------------------------------------
+
+docstringの記述方法にはいくつかのスタイルがあります。標準ではこのようなスタイルになります。
+
+.. code-block:: python
+
+    def search_online_event(ym):
         """
-        pass
+        :param ym: connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す
+        :type str: str # 文字列
+        :returns: botに渡す文字列を返します
+        :rtype: str
 
-.. todo:: 
+        request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します
+        """
+        # 以降処理が続く..
 
-    - noteにtype annotationの組み合わせ例を書く
-    - docstringはGoogleスタイルで行うのでnapoleonの導入も必要: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations
+この他にも、GoogleやNumpyプロジェクトが提唱するスタイルもあります。それぞれ特徴がありますが、このチュートリアルでは Googleスタイルを扱います。
 
-botの各関数にdocstringを追加しましょう。
+`GoogleスタイルのPython Docstringsの例 — Sphinx 1.6.7 ドキュメント <https://www.sphinx-doc.org/ja/1.6/ext/example_google.html#example-google>`_
+
+Googleスタイルはシンプルな表現であるため、docstringを最初に書く際にはオススメです。
+
+.. code-block:: python
+
+    def search_online_event(ym):
+        """
+        Args:
+            ym : connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す
+        Returns:
+            botに渡す文字列を返します
+
+        request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します
+        """
+        # 以降処理が続く..
+
+
+.. note:: 
+    Numpyスタイルの紹介もします。Numpyスタイルは縦に長くなりますが、テキストのみでも読みやすいのが特徴です。
+
+    `NumPyスタイルPython Docstringsの例 — Sphinx 1.6.7 ドキュメント <https://www.sphinx-doc.org/ja/1.6/ext/example_numpy.html#example-numpy>`_
+    
+    .. code-block:: python
+
+        def search_online_event(ym):
+            """
+            Parameters
+            ----------
+            ym : str
+                connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す
+            
+            Returns
+            -------
+            str
+                botに渡す文字列を返します
+
+            request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します
+            """
+            # 以降処理が続く..
+
+docstringと型アノテーション
+----------------------------------------------------
+
+docstringは、もともと関数/メソッドの引数（Args）の説明や戻り値（Returns）等に型の種類を宣言できます。この型宣言自体はPython側に直接影響は有りません（Pythonは動的型定義の言語です）。
+
+しかし予め定義することでPythonに対応したIDEや型チェッカー( `Mypy <https://mypy.readthedocs.io/en/stable/index.html>`_ 等）を使うことで入力補完機能やチェッカーによる警告機能を使うことができます。
+
+.. code-block:: python
+
+    # Googleスタイルです
+    def search_online_event(ym):
+        """
+        Args:
+            ym (str): connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す
+        Returns:
+            str: botに渡す文字列を返します
+
+        request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します
+        """
+        # 以降処理が続く..
+        
+Python3から型アノテーションという、定義時に型を明言する機能が追加されました。Python3.0から関数の引数や戻り値に対してのアノテーションが扱えます。
+
+`PEP 3107 -- Function Annotations | Python.org <https://www.python.org/dev/peps/pep-3107/>`_
+
+Sphinxの現行バージョンとautodoc拡張は型アノテーションを使うことで、宣言している型の種類を出力できるようになります。
+
+.. code-block:: python
+
+    # Googleスタイルです
+    def search_online_event(ym: str) -> str:
+        """
+        Args:
+            ym : connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す
+        Returns:
+            botに渡す文字列を返します
+
+        request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します
+        """
+
+        # 以降処理が続く..
+
+.. note::
+    docstringの標準なスタイルでの型宣言, 型アノテーションを用いた例も紹介します。
+
+    docstringに型宣言もありバージョン
+
+    .. code-block:: python
+    
+        def search_online_event(ym):
+            """
+            :param ym: connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す
+            :type str: str # 文字列
+            :returns: botに渡す文字列を返します
+            :rtype: str
+
+            request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します
+            """
+            # 以降処理が続く..
+            
+    型アノテーションバージョン
+
+    .. code-block:: python
+
+        def search_online_event(ym: str) -> str:
+            """
+            :param ym: connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す
+            :returns: botに渡す文字列を返します
+
+            request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します
+            """
+            # 以降処理が続く..
+
+
+.. .. note:: このチュートリアルではVS Code+Python拡張を利用しているため、型宣言を行うと補完されやすくなります。
+
+..     .. vs code の補完のリンク
+
+..     また、mypyなどの型チェッカーの扱いはしませんが、大型なプロジェクトで作業を行う際にCIにチェッカー機能を設定すると、不明瞭なデータ型の扱いを防ぐ事もできます。
+
+..     `Using mypy with an existing codebase — Mypy 0.782 documentation <https://mypy.readthedocs.io/en/stable/existing_code.html#continuous-integration>`_
+
+
+botの関数にdocstringを用意する
+---------------------------------------------------
+
+botの各関数にdocstringを追加しましょう。例として挨拶botとconnpassbotのdocstringを書きます。
 
 - 挨拶bot: ランダムに天気情報を返す関数
+- connpassbot: jsonの取得関数、botが答える文字列生成の関数
 
 
-.. todo:: そのほかの関数は、終わりに模範解答からコピーして実行して生成された結果を見ていく
-    
-    - connpassbot: jsonの取得関数、botが答える文字列生成の関数
+こちらの資料を見ながら写経しましょう。説明文は自由に変更するのも良いでしょう。
+
+`pycon-jp-2020-tutorial/tutorial_docs/step/sphinx-1 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/sphinx-1>`_
+
+
+.. note:: そのほかの関数は、模範解答からファイルをコピーしましょう。
+
     - 天気bot: xml取得関数、botが答える文字列生成の関数
     - botrunのメッセージハンドル（botの登録方法を記載する）
 
@@ -159,23 +410,86 @@ botの各関数にdocstringを追加しましょう。
 Sphinxの設定
 ---------------------------
 
-- apidocの設定(conf.pyでextentionsやsys.pathにpythonのモジュールパスを入れる）
+autodoc拡張機能はSphinxの設定で有効にする必要があります。Sphinxの設定は ``sphinx-quickstart`` コマンドで作成したひな形にあるconf.pyを変更します。
+
+.. code-block:: python
+
+    # -- Path setup --------------------------------------------------------------
+
+    # If extensions (or modules to document with autodoc) are in another directory,
+    # add these directories to sys.path here. If the directory is relative to the
+    # documentation root, use os.path.abspath to make it absolute, like shown here.
+    #
+
+    # import os
+    # import sys
+
+    # sys.path.insert(0, os.path.abspath('.'))
+
+    # TODO:2020-08-15 この部分はsphinx-quickstartで生成されたコードから変更しています。
+    # チュートリアル全体でpathlibを扱っているのでpathlibでパスを生成しています。
+    from pathlib import Path
+    import sys
+
+    sys.path.insert(0, str(Path("../")))
+
+次に、conf.pyのextensions（空のリスト）に、 ``"sphinx.ext.autodoc", "sphinx.ext.napoleon"`` の2つの文字列を追加します。
+
+- ``sphinx.ext.autodoc``: autodoc拡張
+- ``sphinx.ext.napoleon``: autodoc拡張でdocstringを扱うときのGoogle/Numpyスタイル対応
 
 
-autodocで半自動的にリファレンスを作成する: sphinx-apidocコマンド
+.. code-block:: python
+
+    # -- General configuration ---------------------------------------------------
+
+    # Add any Sphinx extension module names here, as strings. They can be
+    # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
+    # ones.
+    # extensions = []
+    extensions = ["sphinx.ext.autodoc", "sphinx.ext.napoleon"]
+
+
+autodoc拡張で半自動的にリファレンスを作成する: sphinx-apidocコマンド
 ------------------------------------------------------------------------------------------------------------------------------
 
-docstringの用意と設定を変更したので、autodocを使ってリファレンスを生成してみましょう。
+docstringの用意と設定を変更したので、autodoc拡張を使ってリファレンスを生成してみましょう。
 
-.. todo::
-    - sphinx-apidocでapidocのひな形を作成
-    - make htmlで生成しよう
+.. code-block:: none
 
-APIリファレンスが入ったドキュメントを生成する
-======================================================================
+    # /testsディレクトリは除外する指定をしています。
+    # sphinx-apidoc -f（上書き） -o（出力先ディレクトリの指定） [出力先ディレクトリのパス] [autodocで生成したいPythonモジュールのパス] [除外するパス]
 
-実行したautodocの結果は***にあります。それをSlackBotのドキュメントの一部として組み込みます。
+    pt_slackbot> sphinx-apidoc.exe -f -o ./docs ./ /tests
 
+    # 以下に生成の結果が表示される
+
+このコマンドで生成したリファレンスは ``botrun.rst``、``botfunc.rst``、``modules.rst`` の3つのファイルになります。このファイルは ``docs`` ディレクトリ内に生成されます。
+
+.. image:: ./doc-img/sphinx_2.png
+
+最後に、既存のSphinxドキュメントにapidocで生成したリファレンスの目次を追加しましょう。 toctreeディレクティブに ``modules`` を追加します。
+
+.. code-block:: none
+
+    目次
+    =======
+
+    .. toctree::
+        :maxdepth: 2
+        :caption: Contents:
+
+        slackbot_usage
+        modules  # 追加したリファレンスの目次
+
+APIリファレンス入のドキュメントを生成する
+------------------------------------------------------------------------------------------------------------------------------
+
+sphinx-autodocコマンドでbotの関数にあるdocstringを含むリファレンスを作成しました。sphinxのビルドを行いリファレンスを含むドキュメントを生成しましょう。
+
+.. image:: ./doc-img/sphinx_3.png
+
+toctreeディレクティブに ``modules`` を追加した結果、モジュールの一覧の目次が作成されています。
 
 テーマを変更しよう
 =================================
@@ -194,4 +508,4 @@ SphixnのテーマはPythonパッケージとして提供されています。
 
 変更すると以下のように、ドキュメントページのデザインが変わります。
 
-.. todo:: 変更したページをスクリーンショットで撮影
+.. image:: ./doc-img/sphinx_4.png

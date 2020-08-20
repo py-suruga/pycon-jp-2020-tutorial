@@ -4,53 +4,16 @@ Slackbotの作成
 
 チュートリアルで扱うSlackbotを実装するために、開発環境やSlackのAPI利用方法を説明し、ステップを踏みながらbotを作成していきましょう。
 
-.. todo:: ローカル開発環境はprepare側に乗せたほうが説明しやすいと思う
-
-ローカル開発環境の用意
-================================================================================
-
-Slackbotを作成するために、Pythonの開発環境を用意します。
-
-Pythonはシステムにインストールされた実行環境以外の仮想環境を用意できます。仮想環境を作ることでシステム側の環境を汚すこと無く開発環境の構築ができます。
-
-仮想環境は以下のコマンドで作成します
-
-::
-
-  cd C:\Users\[Username]\Document\pyconjp-2020-tutorial
-  python -m venv .venv
-
-仮想環境を利用するときには、以下のコマンドを実行します
-
-::
-
-  .\.venv\Scripts\activate.bat
-  rem 仮想環境上に必要なパッケージをインストールします
-  (.venv) > pip install -r requirements.txt
-
-仮想環境を終了する場合は以下のコマンドを実行します。
-
-::
-
-  (.venv)deactivate
-
-.. note ::
-  このチュートリアルを用意するためにPipenvを利用したので、Pipenvでの環境作成も行えます。
-  このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。
-
-  `Pipenv: Python Dev Workflow for Humans — pipenv 2020.8.13.dev0 documentation <https://pipenv.pypa.io/en/latest/#install-pipenv-today>`_
-
-
 Slackアプリの作成と設定
 ================================================================================
 
 まず初めにBotとなるSlackアプリをSlack上で作成します。
 
-「Create a Slack App」からApp Nameにアプリ名を入力します。
+`こちらのリンク <https://api.slack.com/apps?new_app=1>`_ からアプリ作成画面に進みます。
 
 .. image:: ./doc-img/slackbot_1-1.png
 
-Slack WorkSpaceはハンズオン用に新たに取得したワークスペースを利用してください。
+アプリ名はこの例では ``pt_slackbot-20200807`` としていますが、アプリ名については自由に変更可能です。
 
 アプリが作成できたら、「OAuth & Permissions」の「Scopes」>「Bot Token Scopes」にスコープの設定を行います。
 
@@ -76,37 +39,63 @@ Slack WorkSpaceはハンズオン用に新たに取得したワークスペー�
 
 .. image:: ./doc-img/slackbot_1-7.png
 
+先程集めた2つのトークンをローカル開発環境の環境変数として登録します。
+
+.. code-block:: none
+
+    # Windows10: PowerShell
+
+    > $env:SLACK_BOT_TOKEN = "XXXXXXXXXXXXXXXXXXXXXXXX"
+    > $env:SLACK_SIGNING_SECRET = "XXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+    # -----
+
+    # macOS
+    > export SLACK_SIGNING_SECRET=XXXXXXXXXXXXXXXXXXXXXXXX
+    > export SLACK_BOT_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXX
+
+.. note::
+    Windows10はスタートメニューから「環境変数を編集」と検索するとGUIから設定可能です。コマンドプロンプトの場合はSETコマンドを利用してください。
 
 次にngrokコマンドを使い、SlackBotを外部公開します。
 
-.. code-block:: bash
+まずは以下のngrokコマンドを実行して、内部では3000ポートのhttpサービスをngrokの公開URLへ登録します。
+
+.. code-block:: none
 
     ngrok http 3000
-    python ./pt_slackbot/botrun.py
 
 ngrokコマンドを起動すると以下のような情報が表示されます。ngrokのサービスへサインアップしていない場合は外部公開のセッションは8時間の限定公開になります。
 
-.. code-block:: bash
+.. code-block:: none
 
   ngrok by @inconshreveable                                                                                                                       (Ctrl+C to quit)
-                                                                                                                                                                
-  Session Status                online                                                                                                                            
-  Session Expires               7 hours, 58 minutes                                                                                                               
-  Version                       2.3.35                                                                                                                            
-  Region                        United States (us)                                                                                                                
-  Web Interface                 http://127.0.0.1:4040                                                                                                             
-  Forwarding                    http://df702078ccde.ngrok.io -> http://localhost:3000                                                                             
-  Forwarding                    https://df702078ccde.ngrok.io -> http://localhost:3000                                                                            
-                                                                                                                                                                  
-  Connections                   ttl     opn     rt1     rt5     p50     p90                                                                                       
-                                0       0       0.00    0.00    0.00    0.00        
+
+  Session Status                online
+  Session Expires               7 hours, 58 minutes
+  Version                       2.3.35
+  Region                        United States (us)
+  Web Interface                 http://127.0.0.1:4040
+  Forwarding                    http://df702078ccde.ngrok.io -> http://localhost:3000
+  Forwarding                    https://df702078ccde.ngrok.io -> http://localhost:3000
+
+  Connections                   ttl     opn     rt1     rt5     p50     p90
+                                0       0       0.00    0.00    0.00    0.00
 
 Web InterfaceのURLへアクセスすると、公開したURLのアクセス履歴が見れるようになります。
 
 .. image:: ./doc-img/slackbot_1-8.png
 
 
-SlackBotがSlackワークスペースへのやりとりをおこなうURLを生成したので、Slackアプリの設定を続けます。
+次にslackbotを起動します。チュートリアル開始当初は、``pt_slackbot`` ディレクトリには ``botrun.py`` ファイルのみがあります。こちらをpythonコマンドで実行します。
+
+このときにngrokコマンドを実行しているターミナルとは別のターミナルを使い起動してください。
+
+.. code-block:: none
+
+    python ./pt_slackbot/botrun.py
+
+SlackBotがSlackワークスペースへのやりとりをおこなうURLを生成して、bot側と連携させたので、Slackアプリの設定を続けます。
 
 Slack Event APIを使い、Slackワークスペース上に起きたイベントを、Slackbotが動作するサーバー（ここではngrokで公開しているローカル環境）へ伝えることができます。
 ここで2つの設定を行います。
@@ -122,8 +111,8 @@ Slack Event APIが起きたイベントをサーバーに伝えるためのエ�
 
 .. image:: ./doc-img/slackbot_1-9.png
 
-:: 
-    
+::
+
     https://[ngrokが自動的に割り振るランダムな文字列].ngrok.io/slack/events
 
 次に、イベントの種類を登録します。イベントには種類があり、あらかじめアプリで取得したいイベントの種類を登録する必要があります。
@@ -158,7 +147,7 @@ SlackBotのフロー
 
 ここでは、SlackBotがどのようにslackワークスペースとやり取りを行うか解説します。
 
-.. todo:: SlackBotのシステム概要を説明: どんな技術が利用されているか。ざっくりで。(pysuruga-13-handsonの資料流用）
+.. image:: ./doc-img/slackbot_1-12-2.png
 
 SlackbotはWEBで扱われている技術でサービスとbotのアプリがやり取りを行います。今回のはSlack公式で提供されているEvents APIとWeb APIの2つを利用します。
 
@@ -177,7 +166,7 @@ Slackbotのコード内ではFlaskのインスタンスを作成して、サー�
 
 .. note:: SlackのAPIはほかにもあります。
     代表例はincoming webhook（URLにパラメーターを付与するとslackワークスペースにメッセージを送れる）, RealTime Messeging API(websocketを利用したリアルタイムにSlackワークスペースとアプリがやり取り可能）になります。
-    
+
     今回はそれらについては解説しませんが、参考情報を残します。
 
     - `Sending messages using Incoming Webhooks | Slack <https://api.slack.com/messaging/webhooks>`_
@@ -210,16 +199,21 @@ Slackbotのコード内ではFlaskのインスタンスを作成して、サー�
   - 英語、中国、など5つぐらいの言語の挨拶をコメントアウトで用意。参加者に選んで実装してもらう
   - もちろん自由に言葉を変えてもらっても良し
 
-.. todo:: 2020-08-13 ステップごとのコードのリンクを用意する
 
 挨拶botの実装ステップ
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  1. まずslackevetsapiのexampleをそのまま乗せておいて、そのbotで受け答えできるか調べてみる
+  1. slackevetsapiのexampleをそのまま乗せておいて、そのbotで受け答えできるか確認します。
   2. 次に、その中でテーブルを作って、ランダムで返す関数を用意
-  3. 最後に挨拶をかえす部分をモジュール化する -> 伏線:テストとリファレンスを書きやすくする
+  3. 最後に挨拶をかえす部分をモジュール化する
 
-connpass APIを利用してオンラインイベントを検索する **connpass** bot
+利用する資料:
+
+- `pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-1 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-1>`_
+- `pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-2 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-2>`_
+- `pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-3 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-3>`_
+
+connpass APIを利用してオンラインイベントを検索する **connpassonline** bot
 --------------------------------------------------------------------------------
 
 ここではconnpassを例にイベント検索用のREST APIを使ってイベントの検索を行います。
@@ -228,17 +222,22 @@ connpass APIを利用してオンラインイベントを検索する **connpass
 
 .. image:: ./doc-img/slackbot_1-14.jpg
 
-コマンドの実行方法は ``connpass [yyyymm]`` と入力します。yyyymmは年月の意味で、 ``connpass 202008`` と入力すると、2020年8月に関係する、Python, オンラインをキーワードにした検索結果が表示されます。
+コマンドの実行方法は ``connpassonline [yyyymm]`` と入力します。yyyymmは年月の意味で、 ``connpassonline 202008`` と入力すると、2020年8月に関係する、Python, オンラインをキーワードにした検索結果が表示されます。
 
 このbotの趣旨は以下になります。
 
   - requests + jsonでAPIから取得したjsonのパースを体験する
 
-connpassbotの実装ステップ
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+connpassonlinebotの実装ステップ
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. 共通化した手法を元に、connpassbotを作る。最初は1関数にすべてのせる
-2. APIリクエストとbotの答えを返す関数を別途作り、分離していく
+1. 共通化した手法を元に、connpassonline botを作る。最初は1関数に処理をすべて入れています。
+2. APIリクエストとbotの答えを返す関数をそれぞれで呼び出せるように分離します。
+
+利用する資料:
+
+- `pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-4 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-4>`_
+- `pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-5 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-5>`_
 
 
 気象庁のXML電文を使って地域の天気を返す **tenki** bot
@@ -254,14 +253,18 @@ connpassbotの実装ステップ
 
 このbotの趣旨は以下になります。
 
-- requests + bs4を使ってxmlを取得しパースを体験する
+- BeautifulSoup4を使ってxmlを取得しパースを体験する
 
 tenkibotの実装ステップ
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. （すでにxmlのDLしたものを扱います）
-2. requests + bs4を使ってxmlのパースをする
-3. 対応地域を追加してbotの拡張をしてもらう
+1. BeautifulSoup4を使ってxmlのパースをする
+2. 対応地域を追加してbotの拡張をしてもらう
+
+利用する資料:
+
+- `pycon-jp-2020-tutorial/tutorial_docs/step/slackbot-6 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/slackbot-6>`_
+
 
 .. note:: 今回の天気情報の元は気象庁が無料で公開しているxmlファイルを利用しました。
     当初はLivedoor 天気から提供されている REST APIを用いる予定でしたが、 2020/7/31にサービスが終了となったため、急遽気象庁XMLサービスを利用しています。
@@ -270,4 +273,6 @@ tenkibotの実装ステップ
     `天気情報 ヘルプ - livedoor ヘルプ <https://help.livedoor.com/weather/index.html>`_
 
     気象庁XMLサービスは天気予報以外にも、多数の予報や災害情報の提供もされているので、より多彩なbot作成ができると思います。
-    ただxmlを扱うのは少し難儀でもありますね。
+    ただxmlを扱うのは少し複雑です。
+
+    `先端IT活用推進コンソーシアム <https://aitc.jp/>`_ が公開している `気象庁防災情報 XML 検索 API <http://api.aitc.jp/jmardb-api/help>`_ では気象庁のXMLデータを元にしたREST APIを公開しています。このAPIはxmlではなくjson形式が扱えます。

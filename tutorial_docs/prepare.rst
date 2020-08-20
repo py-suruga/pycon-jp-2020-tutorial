@@ -24,11 +24,11 @@ Pythonは各OSによってインストール方法が違いますが、基本的
 インストール方法は `環境構築ガイド（python.jp） <https://www.python.jp/install/install.html>`_ を参照ください。
 
 - Win10: `Windows 環境のPython - python.jp <https://www.python.jp/install/windows/index.html>`_
-  
+
   - Windows 10では公式インストーラーの利用をオススメします
 
 - macOS: `macOS環境のPython - python.jp <https://www.python.jp/install/macos/index.html>`_
-  
+
   - macOS Catalinaでは標準のpython, またHomebrewというパッケージマネージャーを用いてのインストールをオススメします。
 
 ※: その他OSの場合でも、公式のインストーラーやパッケージマネージャーからのインストールできます。
@@ -49,15 +49,66 @@ pythonコマンドが実行できるか確認します。Windows 10ならPowerSh
 チュートリアル資料を取得する
 ================================================================================
 
-SlackbotチュートリアルはGitHub上のリポジトリで作成しています。以下のURLからDLしてください。
+Slackbotチュートリアルは `GitHub上のリポジトリ <https://github.com/py-suruga/pycon-jp-2020-tutorial>`_  を使い作成しています。以下のURLからDLしてください。
 
-gitリポジトリ: https://github.com/py-suruga/pycon-jp-2020-tutorial.git
-
-リポジトリのZip: https://github.com/py-suruga/pycon-jp-2020-tutorial/archive/master.zip
+- gitリポジトリ: https://github.com/py-suruga/pycon-jp-2020-tutorial.git
+- リポジトリのZip: https://github.com/py-suruga/pycon-jp-2020-tutorial/archive/master.zip
 
 チュートリアル資料の展開先は、普段お使いのユーザーディレクトリのどこかで構いません。
 
 今回のチュートリアルでは ``C:\Users\[Username]\Document\pyconjp-2020-tutorial`` を作業するディレクトリ位置として説明します。
+
+各ディレクトリ、ファイルの意味
+-----------------------------------------------------------
+
+GitHubから取得したチュートリアルの資料には多数のディレクトリがあります。チュートリアルで利用するディレクトリやファイルの意味を解説します。
+
+::
+
+    ./
+    ├── dev_requirements.txt # チュートリアルで利用した開発用のPythonパッケージリスト
+    ├── requirements.txt # Slackbotで利用するPythonパッケージリスト
+    ├── pt_slackbot # チュートリアルで作成するSlackbotパッケージの置き場所
+    └── tutorial_docs # チュートリアルドキュメントの中身
+        └── step # チュートリアルで順を追ってハンズオンをするときのステップごとに使う資料
+
+ローカル開発環境の用意
+================================================================================
+
+Slackbotを作成するために、Pythonの開発環境を用意します。
+
+Pythonはシステムにインストールされた実行環境以外の仮想環境を用意できます。仮想環境を作ることでシステム側の環境を汚すこと無く開発環境の構築ができます。
+
+仮想環境は以下のコマンドで作成します
+
+::
+
+  cd C:\Users\[Username]\Document\pyconjp-2020-tutorial
+  python -m venv .venv
+
+仮想環境を利用するときには、以下のコマンドを実行します
+
+.. code-block:: none
+
+
+  .\.venv\Scripts\activate.bat
+  # 仮想環境上に必要なパッケージをインストールします
+  (.venv) > pip install -r requirements.txt
+  # 開発環境で利用するパッケージのインストールも行います。
+  (.venv) > pip install -r dev_requirements.txt
+
+仮想環境を終了する場合は以下のコマンドを実行します。
+
+::
+
+  (.venv)deactivate
+
+.. note::
+  このチュートリアルを用意するためにPipenvを利用したので、Pipenvでの環境作成も行えます。
+  このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。
+
+  `Pipenv: Python Dev Workflow for Humans — pipenv 2020.8.13.dev0 documentation <https://pipenv.pypa.io/en/latest/#install-pipenv-today>`_
+
 
 利用するサービスの準備
 ================================================================================
@@ -88,7 +139,7 @@ SlackBotはSlackワークスペース上で起きた出来事（メッセージ�
 
 ツールのDL先: `ngrok - download <https://ngrok.com/download>`_
 
-各OS向けのダウンロードリンクからzipファイルをDLして、zipファイル内にある``ngrok.exe`` という実行ファイルをチュートリアルの作業用のディレクトリへ配置します。
+各OS向けのダウンロードリンクからzipファイルをDLして、zipファイル内にある ``ngrok.exe`` という実行ファイルをチュートリアルの作業用のディレクトリへ配置します。
 
 .. image:: ./doc-img/ngrok_1.png
 
@@ -122,4 +173,4 @@ Python向けの拡張機能もあり、Microsoftが公開しているものやOS
 VS CodeとLive Shareの設定
 ------------------------------
 
-こちらのページで追記します: :doc:`/vscode` 
+こちらのページで追記します: :doc:`/vscode`
