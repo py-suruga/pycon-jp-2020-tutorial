@@ -325,7 +325,7 @@ docstringは、もともと関数/メソッドの引数（Args）の説明や戻
         """
         # 以降処理が続く..
         
-Python3から型アノテーションという、定義時に型を明言する機能が追加されました。Python3からは関数の引数や戻り値に対してのアノテーションが扱えます。
+Python3から型アノテーションという、定義時に型を明言する機能が追加されました。Python3.0から関数の引数や戻り値に対してのアノテーションが扱えます。
 
 `PEP 3107 -- Function Annotations | Python.org <https://www.python.org/dev/peps/pep-3107/>`_
 
