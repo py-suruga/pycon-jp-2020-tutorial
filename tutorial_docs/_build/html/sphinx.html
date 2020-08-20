@@ -51,7 +51,7 @@
 </pre></div>
 </div>
 <p>Sphinxはドキュメントを作成するひな形の環境を用意する <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> コマンドがあります。こちらを利用してひな形を作りましょう</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot&gt; sphinx-quickstart.exe .\docs\
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackbot&gt; sphinx-quickstart.exe .\docs\
 Welcome to the Sphinx 3.1.2 quickstart utility.
 
 Please enter values for the following settings (just press Enter to
@@ -77,17 +77,17 @@ For a list of supported codes, see
 https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-language.
 &gt; Project language [en]: ja
 
-Creating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackboCreating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackboCreating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot\docs\Makefile.
-Creating file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot\docs\make.bat.
+Creating file C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackboCreating file C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackboCreating file C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackbot\docs\Makefile.
+Creating file C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackbot\docs\make.bat.
 
 Finished: An initial directory structure has been created.
 
-You should now populate your master file C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot\docs\index.rst and create other documentation
+You should now populate your master file C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackbot\docs\index.rst and create other documentation
 source files. Use the Makefile to build the docs, like so:
 make builder
 where &quot;builder&quot; is one of the supported builders, e.g. html, latex or linkcheck.
 
-(pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\workspace\personal\pycon-jp-2020-tutorial\pt_slackbot&gt; cd .\docs\
+(pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackbot&gt; cd .\docs\
 </pre></div>
 </div>
 <p>今回のSlackbotのドキュメントは以下のような構造で作成します。チュートリアルで利用するディレクトリやファイルに付いて解説します。</p>
@@ -182,22 +182,8 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <h3>Slackbotの説明文を書いてみよう<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>このチュートリアルで作成しているSlackbotの使い方をドキュメントとして書いてみましょう。</p>
 <p><code class="docutils literal notranslate"><span class="pre">slackbot_usage.rst</span></code> ファイルを作成して、botの使い方を書いていきます。</p>
-<div class="admonition-todo admonition" id="id10">
-<p class="admonition-title">課題</p>
-<p>この章では、tutorial_docsにある文章や画像をコピペして作成してみる。
-入力の手間を減らしたり、ビルド時の失敗をある程度減らす狙いがある</p>
-<ul class="simple">
-<li><p>各botの見出し</p></li>
-<li><p>botの簡単な説明: これは自由に決めてもらっても良し</p>
-<ul>
-<li><p>挨拶bot: 対応している国の一覧をリストで用意</p></li>
-<li><p>connpass bot: 検索結果の概要を文章で載せる</p></li>
-<li><p>天気bot :追加した地域の一覧</p></li>
-</ul>
-</li>
-<li><p>画像の挿入: tutorial_docs/slackbotの終盤にある画像ファイルをコピーしてpt_slackbot/docs内にコピー</p></li>
-</ul>
-</div>
+<p>こちらの資料を見ながら写経したり、自由に記載してみてください。</p>
+<p><a class="reference external" href="https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/sphinx-1">pycon-jp-2020-tutorial/tutorial_docs/step/sphinx-1</a></p>
 <p>最後に <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> のtoctreeディレクティブに <code class="docutils literal notranslate"><span class="pre">slackbot_usage</span></code> を追加します。 rstファイルの拡張子を外したファイル名のみにしてください。</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. toctree::
     :maxdepth: 2
@@ -215,7 +201,7 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <p>ここからは、botで定義した関数のリファレンスを作成してみましょう。</p>
 <div class="section" id="docstirng">
 <h3>docstirngを書こう<a class="headerlink" href="#docstirng" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>autodocを使うためには、pythonのクラスや関数にdocstringを追加する必要があります。</p>
+<p>autodoc拡張を使うためには、pythonのクラスや関数にdocstringを追加する必要があります。</p>
 <p>docstringはPythonのクラスや関数に書き込めるドキュメントです。文字列リテラルという <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;クオーテーション3つでくくった文字列&quot;&quot;&quot;</span></code> で表現します。</p>
 <div class="admonition note">
 <p class="admonition-title">注釈</p>
@@ -239,6 +225,53 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 </pre></div>
 </div>
 </div>
+<div class="section" id="docstring">
+<h3>docstringのスタイル<a class="headerlink" href="#docstring" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>docstringの記述方法にはいくつかのスタイルがあります。標準では*** となります。</p>
+<p>この他にも、GoogleやNumpyプロジェクトが提唱するスタイルもあります。この2つのスタイルはnapoleon拡張機能を有効にする必要があります。</p>
+<p>このチュートリアルでは Googleスタイルを扱います。</p>
+<ul class="simple">
+<li><p>docstringはGoogleスタイルで行うのでnapoleonの導入も必要: <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations">https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations</a></p></li>
+</ul>
+</div>
+<div class="section" id="id10">
+<h3>docstringと型アノテーション<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>docstringは、もともと関数/メソッドの引数（Args）の説明や戻り値（Returns）等に型の種類を指定できます。この指定はPython側に直接影響は有りません（Pythonは動的型定義の言語です）。</p>
+<p>しかし予め定義することでPythonに対応したIDEや型チェッカー( <a class="reference external" href="https://mypy.readthedocs.io/en/stable/index.html">Mypy</a> 等）を使うことで入力補完機能やチェッカーによる警告機能を使うことができます。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">search_online_event</span><span class="p">(</span><span class="n">ym</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :param ym: connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す</span>
+<span class="sd">    :type str: str # 文字列</span>
+<span class="sd">    :returns: botに渡す文字列を返します</span>
+<span class="sd">    :rtype: str</span>
+
+<span class="sd">    request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 以降処理が続く..</span>
+</pre></div>
+</div>
+<p>Python3から型アノテーションという、定義時に型を明言する機能が追加されました。Python3からは関数の引数や戻り値に対してのアノテーションが扱えます。</p>
+<p><a class="reference external" href="https://www.python.org/dev/peps/pep-3107/">PEP 3107 -- Function Annotations | Python.org</a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ``:type str:`` や ``:rtypr:`` を外すことができる</span>
+
+<span class="k">def</span> <span class="nf">search_online_event</span><span class="p">(</span><span class="n">ym</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :param ym: connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す</span>
+<span class="sd">    :returns: botに渡す文字列を返します</span>
+
+<span class="sd">    request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 以降処理が続く..</span>
+</pre></div>
+</div>
+<p>autodoc拡張は型アノテーションを自動的に処理します。</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>このチュートリアルではVS Code+Python拡張を利用しているため、型宣言を行うと補完されやすくなります。</p>
+<p>また、mypyなどの型チェッカーの扱いはしませんが、大型なプロジェクトで作業を行う際にCIにチェッカー機能を設定すると、不明瞭なデータ型の扱いを防ぐ事もできます。</p>
+<p><a class="reference external" href="https://mypy.readthedocs.io/en/stable/existing_code.html#continuous-integration">Using mypy with an existing codebase — Mypy 0.782 documentation</a></p>
+</div>
+</div>
 <div class="section" id="botdocstring">
 <h3>botの関数にdocstringを用意する<a class="headerlink" href="#botdocstring" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>botの各関数にdocstringを追加しましょう。例として挨拶botとconnpassbotのdocstringを書きます。</p>
@@ -246,20 +279,14 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <li><p>挨拶bot: ランダムに天気情報を返す関数</p></li>
 <li><p>connpassbot: jsonの取得関数、botが答える文字列生成の関数</p></li>
 </ul>
+<p>こちらの資料を見ながら写経しましょう。説明文は自由に変更するのも良いでしょう。</p>
+<p><a class="reference external" href="https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/sphinx-1">pycon-jp-2020-tutorial/tutorial_docs/step/sphinx-1</a></p>
 <div class="admonition note">
 <p class="admonition-title">注釈</p>
 <p>そのほかの関数は、終わりに模範解答からコピーして実行して生成された結果を確認しましょう。</p>
 <ul class="simple">
 <li><p>天気bot: xml取得関数、botが答える文字列生成の関数</p></li>
 <li><p>botrunのメッセージハンドル（botの登録方法を記載する）</p></li>
-</ul>
-</div>
-<div class="admonition-todo admonition" id="id11">
-<p class="admonition-title">課題</p>
-<ul class="simple">
-<li><p>挨拶botとconnpassbotの模範解答=step/sphinxディレクトリに作成する</p></li>
-<li><p>noteにtype annotationの組み合わせ例を書く</p></li>
-<li><p>docstringはGoogleスタイルで行うのでnapoleonの導入も必要: <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations">https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations</a></p></li>
 </ul>
 </div>
 </div>
@@ -298,8 +325,8 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 </div>
 </div>
 <div class="section" id="autodoc-sphinx-apidoc">
-<h3>autodocで半自動的にリファレンスを作成する: sphinx-apidocコマンド<a class="headerlink" href="#autodoc-sphinx-apidoc" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>docstringの用意と設定を変更したので、autodocを使ってリファレンスを生成してみましょう。</p>
+<h3>autodoc拡張で半自動的にリファレンスを作成する: sphinx-apidocコマンド<a class="headerlink" href="#autodoc-sphinx-apidoc" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>docstringの用意と設定を変更したので、autodoc拡張を使ってリファレンスを生成してみましょう。</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># /testsディレクトリは除外する指定をしています。
 # sphinx-apidoc -f（上書き） -o（出力先ディレクトリの指定） [出力先ディレクトリのパス] [autodocで生成したいPythonモジュールのパス] [除外するパス]
 

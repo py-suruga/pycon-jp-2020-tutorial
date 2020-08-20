@@ -243,6 +243,72 @@ docstringはPythonのドキュメンテーションに深くかかわる機能�
     hello_docstring()
         この部分に文字列を入れるとdocstringとして扱われます。
 
+docstringのスタイル
+----------------------------------------------------
+
+docstringの記述方法にはいくつかのスタイルがあります。標準では*** となります。
+
+この他にも、GoogleやNumpyプロジェクトが提唱するスタイルもあります。この2つのスタイルはnapoleon拡張機能を有効にする必要があります。
+
+.. googleスタイル例
+
+.. sphinx公式のgoogleスタイル例
+
+.. numpyスタイル例
+
+.. sphinx公式のgoogleスタイル例
+
+このチュートリアルでは Googleスタイルを扱います。
+
+- docstringはGoogleスタイルで行うのでnapoleonの導入も必要: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations
+
+docstringと型アノテーション
+----------------------------------------------------
+
+docstringは、もともと関数/メソッドの引数（Args）の説明や戻り値（Returns）等に型の種類を指定できます。この指定はPython側に直接影響は有りません（Pythonは動的型定義の言語です）。
+
+しかし予め定義することでPythonに対応したIDEや型チェッカー( `Mypy <https://mypy.readthedocs.io/en/stable/index.html>`_ 等）を使うことで入力補完機能やチェッカーによる警告機能を使うことができます。
+
+.. code-block:: python
+
+    def search_online_event(ym):
+        """
+        :param ym: connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す
+        :type str: str # 文字列
+        :returns: botに渡す文字列を返します
+        :rtype: str
+
+        request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します
+        """
+        # 以降処理が続く..
+        
+Python3から型アノテーションという、定義時に型を明言する機能が追加されました。Python3からは関数の引数や戻り値に対してのアノテーションが扱えます。
+
+`PEP 3107 -- Function Annotations | Python.org <https://www.python.org/dev/peps/pep-3107/>`_
+
+.. code-block:: python
+
+    # ``:type str:`` や ``:rtypr:`` を外すことができる
+    
+    def search_online_event(ym: str) -> str:
+        """
+        :param ym: connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す
+        :returns: botに渡す文字列を返します
+
+        request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します
+        """
+        # 以降処理が続く..
+
+autodoc拡張は型アノテーションを自動的に処理します。
+
+.. note:: このチュートリアルではVS Code+Python拡張を利用しているため、型宣言を行うと補完されやすくなります。
+
+    .. vs code の補完のリンク
+
+    また、mypyなどの型チェッカーの扱いはしませんが、大型なプロジェクトで作業を行う際にCIにチェッカー機能を設定すると、不明瞭なデータ型の扱いを防ぐ事もできます。
+
+    `Using mypy with an existing codebase — Mypy 0.782 documentation <https://mypy.readthedocs.io/en/stable/existing_code.html#continuous-integration>`_
+
 
 botの関数にdocstringを用意する
 ---------------------------------------------------
@@ -252,16 +318,17 @@ botの各関数にdocstringを追加しましょう。例として挨拶botとco
 - 挨拶bot: ランダムに天気情報を返す関数
 - connpassbot: jsonの取得関数、botが答える文字列生成の関数
 
+
+こちらの資料を見ながら写経しましょう。説明文は自由に変更するのも良いでしょう。
+
+`pycon-jp-2020-tutorial/tutorial_docs/step/sphinx-1 <https://github.com/py-suruga/pycon-jp-2020-tutorial/tree/master/tutorial_docs/step/sphinx-1>`_
+
+
 .. note:: そのほかの関数は、終わりに模範解答からコピーして実行して生成された結果を確認しましょう。
 
     - 天気bot: xml取得関数、botが答える文字列生成の関数
     - botrunのメッセージハンドル（botの登録方法を記載する）
 
-.. todo::
-
-    - 挨拶botとconnpassbotの模範解答=step/sphinxディレクトリに作成する
-    - noteにtype annotationの組み合わせ例を書く
-    - docstringはGoogleスタイルで行うのでnapoleonの導入も必要: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html?highlight=google#type-annotations
 
 Sphinxの設定
 ---------------------------
