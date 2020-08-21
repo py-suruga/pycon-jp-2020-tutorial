@@ -68,9 +68,28 @@
 <div class="section" id="id3">
 <h3>Pythonの動作確認<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>pythonコマンドが実行できるか確認します。Windows 10ならPowerShellかコマンドプロンプト、macOSならターミナルアプリを起動して以下のコマンドを実行しましょう。ここではPowerShellを利用して確認します。</p>
+<p>Windows 10の場合は以下のコマンドを実行します。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span><span class="o">&gt;</span> <span class="n">python</span> <span class="o">--</span><span class="n">version</span>
 <span class="n">Python</span> <span class="mf">3.7</span><span class="o">.</span><span class="mi">8</span>
 </pre></div>
+</div>
+<p>macOSの場合は以下のコマンドを実行します。macOS標準のPythonを使用する場合は <code class="docutils literal notranslate"><span class="pre">python</span></code> コマンドの代わりに <code class="docutils literal notranslate"><span class="pre">python3</span></code> コマンドを使います。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python3 --version
+Python 3.8.5
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>pythonコマンドについて</p>
+<p>pythonコマンドはシステムにPythonの実行環境が一つ入っている場合には、pythonコマンドはインストールされている実行環境のPythonが実行されます。</p>
+<p>しかし、複数のPythonのマイナーバージョンをインストールした場合、OSやインストール方法によって呼び出し方が少し違います。そのため、Pythonを始めようとしたときには、インストールするPythonのバージョンは最新のものを一つのみにすることをオススメします。</p>
+<ul class="simple">
+<li><p>python2系がある場合はpython2, python3系がある場合はpython3 といったコマンド名で実行できます。</p></li>
+<li><p>（注意: Windowsで公式インストーラー版をインストールした場合、python3コマンドはありません。ですがpython3.exeが実行でき、MicrosoftStore版のインストールをアナウンスされます）</p></li>
+</ul>
+<p>Windowsの場合はpy.exeというランチャーからシステムにインストールしたpythonのバージョンを指定して起動できます。（インストールの方法によりpy.exeランチャーがインストールされない場合があります）</p>
+<p><a class="reference external" href="https://docs.python.org/ja/3/using/windows.html#python-launcher-for-windows">3. Windows で Python を使う — Python 3.8.5 ドキュメント</a></p>
+<p>macOSやLinux系では、マイナーバージョンまで含めたPythonコマンドを実行できます。python3.7 python3.8 といった指定でpythonのバージョンごとに実行が可能です。</p>
 </div>
 </div>
 </div>
@@ -82,11 +101,11 @@
 <li><p>リポジトリのZip: <a class="reference external" href="https://github.com/py-suruga/pycon-jp-2020-tutorial/archive/master.zip">https://github.com/py-suruga/pycon-jp-2020-tutorial/archive/master.zip</a></p></li>
 </ul>
 <p>チュートリアル資料の展開先は、普段お使いのユーザーディレクトリのどこかで構いません。</p>
-<p>今回のチュートリアルでは <code class="docutils literal notranslate"><span class="pre">C:\Users\[Username]\Document\pyconjp-2020-tutorial</span></code> を作業するディレクトリ位置として説明します。</p>
+<p>今回のチュートリアルでは、Windowsでは <code class="docutils literal notranslate"><span class="pre">C:\Users\[Username]\Document\pyconjp-2020-tutorial</span></code> 、macOSでは <code class="docutils literal notranslate"><span class="pre">~/document/pyconjp-2020-tutorial</span></code> を作業するディレクトリ位置として説明します。</p>
 <div class="section" id="id5">
 <h3>各ディレクトリ、ファイルの意味<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>GitHubから取得したチュートリアルの資料には多数のディレクトリがあります。チュートリアルで利用するディレクトリやファイルの意味を解説します。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>./
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pycon-jp-2020-tutorial/
 ├── dev_requirements.txt # チュートリアルで利用した開発用のPythonパッケージリスト
 ├── requirements.txt # Slackbotで利用するPythonパッケージリスト
 ├── pt_slackbot # チュートリアルで作成するSlackbotパッケージの置き場所
@@ -100,21 +119,35 @@
 <h2>ローカル開発環境の用意<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Slackbotを作成するために、Pythonの開発環境を用意します。</p>
 <p>Pythonはシステムにインストールされた実行環境以外の仮想環境を用意できます。仮想環境を作ることでシステム側の環境を汚すこと無く開発環境の構築ができます。</p>
-<p>仮想環境は以下のコマンドで作成します</p>
+<p>仮想環境はWindows 10の場合は以下のコマンドで作成します。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="p">[</span><span class="n">Username</span><span class="p">]</span>\<span class="n">Document</span>\<span class="n">pyconjp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>
 <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="o">.</span><span class="n">venv</span>
 </pre></div>
 </div>
+<p>macOSの場合は以下のコマンドで作成します。ここで仮想環境を作成すると、以後は <code class="docutils literal notranslate"><span class="pre">python3</span></code> コマンドの代わりに <code class="docutils literal notranslate"><span class="pre">python</span></code> コマンドでPythonを実行できます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/document/pyconjp-2020-tutorial
+$ python3 -m venv .venv
+</pre></div>
+</div>
 <p>仮想環境を利用するときには、以下のコマンドを実行します</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.\.venv\Scripts\activate.bat
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Windows:Powershellで仮想環境を利用する
+&gt; .\.venv\Scripts\activate
+
+# Windows:コマンドプロンプトで仮想環境を利用する
+&gt; .\.venv\Scripts\activate.bat
+
+# macOSで仮想環境を利用する
+$ source .venv/bin/activate
+
+# 以下Ｗindows, Mac共通
 # 仮想環境上に必要なパッケージをインストールします
-(.venv) &gt; pip install -r requirements.txt
+(.venv)&gt; pip install -r requirements.txt
 # 開発環境で利用するパッケージのインストールも行います。
-(.venv) &gt; pip install -r dev_requirements.txt
+(.venv)&gt; pip install -r dev_requirements.txt
 </pre></div>
 </div>
 <p>仮想環境を終了する場合は以下のコマンドを実行します。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span><span class="n">deactivate</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">deactivate</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -123,9 +156,14 @@
 このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。</p>
 <p><a class="reference external" href="https://pipenv.pypa.io/en/latest/#install-pipenv-today">Pipenv: Python Dev Workflow for Humans — pipenv 2020.8.13.dev0 documentation</a></p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>Windowsでは利用できませんが、macOSやLinux系ではpyenvという、pythonの複数バージョンを管理するツールがあります。複数バージョンを扱う必要がある場合には便利ですが、Pythonを初めて使う場合には必要とは言えません。</p>
+<p>詳しくはpython.jpの <a class="reference external" href="https://www.python.jp/install/docs/install_plan.html">Pythonのインストール方針</a> にて解説されています。</p>
 </div>
-<div class="section" id="id7">
-<h2>利用するサービスの準備<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+<div class="section" id="id8">
+<h2>利用するサービスの準備<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>チュートリアルで課題となるSlackbotを作成する上で必須となるサービスや、開発時に利用するサービスの登録が必要になります。</p>
 <ul class="simple">
 <li><p>Slackワークスペース</p></li>
@@ -157,8 +195,8 @@
 <p>詳細: <a class="reference external" href="https://ngrok.com/docs#getting-started-authtoken">https://ngrok.com/docs#getting-started-authtoken</a></p>
 </div>
 </div>
-<div class="section" id="id9">
-<h3>GitHubアカウント作成<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id10">
+<h3>GitHubアカウント作成<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>GitHubアカウントの作成も必須としています。</p>
 <p>操作で利用するエディターであるVS Codeの共有機能LiveShare拡張を利用するときに、アカウントが必要となりますので、こちらも作成します。</p>
 <p><a class="reference external" href="https://github.com/join">Join GitHub · GitHub</a></p>
@@ -199,7 +237,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#python">Pythonのセットアップ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id4">チュートリアル資料を取得する</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id6">ローカル開発環境の用意</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id7">利用するサービスの準備</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">利用するサービスの準備</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#visual-studio-code">エディターの設定:Visual Studio Code</a></li>
 </ul>
 </li>

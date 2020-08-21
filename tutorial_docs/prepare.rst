@@ -54,6 +54,20 @@ macOSの場合は以下のコマンドを実行します。macOS標準のPython�
   $ python3 --version
   Python 3.8.5
 
+.. note:: pythonコマンドについて
+
+  pythonコマンドはシステムにPythonの実行環境が一つ入っている場合には、pythonコマンドはインストールされている実行環境のPythonが実行されます。
+
+  しかし、複数のPythonのマイナーバージョンをインストールした場合、OSやインストール方法によって呼び出し方が少し違います。そのため、Pythonを始めようとしたときには、インストールするPythonのバージョンは最新のものを一つのみにすることをオススメします。
+
+  - python2系がある場合はpython2, python3系がある場合はpython3 といったコマンド名で実行できます。
+  - （注意: Windowsで公式インストーラー版をインストールした場合、python3コマンドはありません。ですがpython3.exeが実行でき、MicrosoftStore版のインストールをアナウンスされます）
+
+  Windowsの場合はpy.exeというランチャーからシステムにインストールしたpythonのバージョンを指定して起動できます。（インストールの方法によりpy.exeランチャーがインストールされない場合があります）
+
+  `3. Windows で Python を使う — Python 3.8.5 ドキュメント <https://docs.python.org/ja/3/using/windows.html#python-launcher-for-windows>`_
+
+  macOSやLinux系では、マイナーバージョンまで含めたPythonコマンドを実行できます。python3.7 python3.8 といった指定でpythonのバージョンごとに実行が可能です。
 
 チュートリアル資料を取得する
 ================================================================================
@@ -74,7 +88,7 @@ GitHubから取得したチュートリアルの資料には多数のディレ�
 
 ::
 
-    ./
+    pycon-jp-2020-tutorial/
     ├── dev_requirements.txt # チュートリアルで利用した開発用のPythonパッケージリスト
     ├── requirements.txt # Slackbotで利用するPythonパッケージリスト
     ├── pt_slackbot # チュートリアルで作成するSlackbotパッケージの置き場所
@@ -106,24 +120,37 @@ macOSの場合は以下のコマンドで作成します。ここで仮想環境
 
 .. code-block:: none
 
+  # Windows:Powershellで仮想環境を利用する
+  > .\.venv\Scripts\activate
 
-  .\.venv\Scripts\activate.bat
+  # Windows:コマンドプロンプトで仮想環境を利用する
+  > .\.venv\Scripts\activate.bat
+
+  # macOSで仮想環境を利用する
+  $ source .venv/bin/activate
+
+  # 以下Ｗindows, Mac共通
   # 仮想環境上に必要なパッケージをインストールします
-  (.venv) > pip install -r requirements.txt
+  (.venv)> pip install -r requirements.txt
   # 開発環境で利用するパッケージのインストールも行います。
-  (.venv) > pip install -r dev_requirements.txt
+  (.venv)> pip install -r dev_requirements.txt
 
 仮想環境を終了する場合は以下のコマンドを実行します。
 
 ::
 
-  (.venv)deactivate
+  (.venv)> deactivate
 
 .. note::
   このチュートリアルを用意するためにPipenvを利用したので、Pipenvでの環境作成も行えます。
   このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。
 
   `Pipenv: Python Dev Workflow for Humans — pipenv 2020.8.13.dev0 documentation <https://pipenv.pypa.io/en/latest/#install-pipenv-today>`_
+
+.. note::
+  Windowsでは利用できませんが、macOSやLinux系ではpyenvという、pythonの複数バージョンを管理するツールがあります。複数バージョンを扱う必要がある場合には便利ですが、Pythonを初めて使う場合には必要とは言えません。
+
+  詳しくはpython.jpの `Pythonのインストール方針 <https://www.python.jp/install/docs/install_plan.html>`_ にて解説されています。
 
 
 利用するサービスの準備
