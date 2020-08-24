@@ -39,7 +39,7 @@ Python拡張機能で利用できる設定を追加します。リンターや�
     "python.linting.enabled": true,
   }
 
-この設定は、いくつかのPythonパッケージの依存があります。これらはpip経由でインストール可能で、 :doc:`/slackbot`  の「ローカル開発環境の用意」の仮想環境作成時にインストールしています。
+この設定は、いくつかのPythonパッケージの依存があります。これらはpip経由でインストール可能で、 :doc:`/prepare` -「ローカル開発環境の用意」の仮想環境作成時にインストールしています。
 
 - `psf/black: The uncompromising Python code formatter <https://github.com/psf/black>`_
 - `PyCQA / flake8 · GitLab <https://gitlab.com/pycqa/flake8>`_
