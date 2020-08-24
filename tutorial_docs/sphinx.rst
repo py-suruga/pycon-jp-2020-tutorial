@@ -22,7 +22,7 @@ Sphinxもローカル開発環境を作成した段階でインストールさ�
 
 ::
 
-    pip install -U Sphinx
+    (.venv)> pip install -U Sphinx
 
 Sphinxはドキュメントを作成するひな形の環境を用意する ``sphinx-quickstart`` コマンドがあります。こちらを利用してひな形を作りましょう
 
@@ -281,11 +281,11 @@ Googleスタイルはシンプルな表現であるため、docstringを最初�
         # 以降処理が続く..
 
 
-.. note:: 
+.. note::
     Numpyスタイルの紹介もします。Numpyスタイルは縦に長くなりますが、テキストのみでも読みやすいのが特徴です。
 
     `NumPyスタイルPython Docstringsの例 — Sphinx 1.6.7 ドキュメント <https://www.sphinx-doc.org/ja/1.6/ext/example_numpy.html#example-numpy>`_
-    
+
     .. code-block:: python
 
         def search_online_event(ym):
@@ -294,7 +294,7 @@ Googleスタイルはシンプルな表現であるため、docstringを最初�
             ----------
             ym : str
                 connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す
-            
+
             Returns
             -------
             str
@@ -324,7 +324,7 @@ docstringは、もともと関数/メソッドの引数（Args）の説明や戻
         request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します
         """
         # 以降処理が続く..
-        
+
 Python3から型アノテーションという、定義時に型を明言する機能が追加されました。Python3.0から関数の引数や戻り値に対してのアノテーションが扱えます。
 
 `PEP 3107 -- Function Annotations | Python.org <https://www.python.org/dev/peps/pep-3107/>`_
@@ -352,7 +352,7 @@ Sphinxの現行バージョンとautodoc拡張は型アノテーションを使�
     docstringに型宣言もありバージョン
 
     .. code-block:: python
-    
+
         def search_online_event(ym):
             """
             :param ym: connpassのAPIに渡す ymパラメータ。 yyyymm の6文字で年月を表す
@@ -363,7 +363,7 @@ Sphinxの現行バージョンとautodoc拡張は型アノテーションを使�
             request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します
             """
             # 以降処理が続く..
-            
+
     型アノテーションバージョン
 
     .. code-block:: python
@@ -376,16 +376,6 @@ Sphinxの現行バージョンとautodoc拡張は型アノテーションを使�
             request_connpass_apiで受け取ったレスポンスを元にbotに渡す文字列を生成します
             """
             # 以降処理が続く..
-
-
-.. .. note:: このチュートリアルではVS Code+Python拡張を利用しているため、型宣言を行うと補完されやすくなります。
-
-..     .. vs code の補完のリンク
-
-..     また、mypyなどの型チェッカーの扱いはしませんが、大型なプロジェクトで作業を行う際にCIにチェッカー機能を設定すると、不明瞭なデータ型の扱いを防ぐ事もできます。
-
-..     `Using mypy with an existing codebase — Mypy 0.782 documentation <https://mypy.readthedocs.io/en/stable/existing_code.html#continuous-integration>`_
-
 
 botの関数にdocstringを用意する
 ---------------------------------------------------
