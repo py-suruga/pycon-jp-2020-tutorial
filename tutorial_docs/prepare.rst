@@ -56,7 +56,7 @@ macOSの場合は以下のコマンドを実行します。macOS標準のPython�
 
 .. note:: pythonコマンドについて
 
-  pythonコマンドはシステムにPythonの実行環境が一つ入っている場合には、pythonコマンドはインストールされている実行環境のPythonが実行されます。
+  pythonコマンドは、システム内にPython実行環境が一つのみの場合、その実行環境を利用します。
 
   しかし、複数のPythonのマイナーバージョンをインストールした場合、OSやインストール方法によって呼び出し方が少し違います。そのため、Pythonを始めようとしたときには、インストールするPythonのバージョンは最新のものを一つのみにすることをオススメします。
 
@@ -95,12 +95,12 @@ GitHubから取得したチュートリアルの資料には多数のディレ�
     └── tutorial_docs # チュートリアルドキュメントの中身
         └── step # チュートリアルで順を追ってハンズオンをするときのステップごとに使う資料
 
-ローカル開発環境の用意
+Pythonの仮想環境を用意する
 ================================================================================
 
-Slackbotを作成するために、Pythonの開発環境を用意します。
+Slackbotを作成するために、Pythonの仮想環境を用意します。
 
-Pythonはシステムにインストールされた実行環境以外の仮想環境を用意できます。仮想環境を作ることでシステム側の環境を汚すこと無く開発環境の構築ができます。
+Pythonはシステムにインストールされた実行環境以外の仮想環境を用意できます。仮想環境を作ることでシステム側環境と分離することができます。
 
 仮想環境はWindows 10の場合は以下のコマンドで作成します。
 
@@ -121,7 +121,7 @@ macOSの場合は以下のコマンドで作成します。ここで仮想環境
 .. code-block:: none
 
   # Windows:Powershellで仮想環境を利用する
-  > .\.venv\Scripts\activate
+  > .\.venv\Scripts\activate.ps1
 
   # Windows:コマンドプロンプトで仮想環境を利用する
   > .\.venv\Scripts\activate.bat
@@ -132,12 +132,25 @@ macOSの場合は以下のコマンドで作成します。ここで仮想環境
   # 以下Ｗindows, Mac共通
   # 仮想環境上に必要なパッケージをインストールします
   (.venv)> pip install -r requirements.txt
-  # 開発環境で利用するパッケージのインストールも行います。
+
+  # Slackbotを開発するときに利用したパッケージのインストールも行います。
   (.venv)> pip install -r dev_requirements.txt
+
+.. note::
+  WindowsとPowershellでvenvを利用するときに、activate.ps1（Powershellのスクリプト）を実行するときにはユーザー実行ポリシーの変更が必要になります。この変更は一度変更することでその先は実行する必要はありません。
+
+  以下を実行した後に ``Windows:Powershellで仮想環境を利用する`` の部分を実行してください。
+
+  .. code-block:: none
+
+    Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+  参考: `6. サードパーティ製パッケージと venv — Python Boot Camp Text 2016.04.28 ドキュメント <https://pycamp.pycon.jp/textbook/6_venv.html#id12>`_
+
 
 仮想環境を終了する場合は以下のコマンドを実行します。
 
-::
+.. code-block:: none
 
   (.venv)> deactivate
 
@@ -176,7 +189,7 @@ ngrokの利用準備
 
 `ngrok <https://ngrok.com/>`_ は、ローカルサーバーを一時的に外部公開するプロキシサービスです。
 
-SlackBotはSlackワークスペース上で起きた出来事（メッセージやメンション、リアクションなど、イベントと呼ばれる）を、Bot側で受け取るURLが必要となります。ローカル開発環境で作成したBotアプリを一時的にSlack側からアクセスできるようにします。
+SlackBotはSlackワークスペース上で起きた出来事（メッセージやメンション、リアクションなど、イベントと呼ばれる）を、Bot側で受け取るURLが必要となります。ローカルで作成したBotアプリを一時的にSlack側からアクセスできるようにします。
 
 サーバーを公開する際に利用するCLIツールをインストールします。
 
