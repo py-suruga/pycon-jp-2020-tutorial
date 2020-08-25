@@ -92,6 +92,7 @@ GitHubから取得したチュートリアルの資料には多数のディレ�
     ├── dev_requirements.txt # チュートリアルで利用した開発用のPythonパッケージリスト
     ├── requirements.txt # Slackbotで利用するPythonパッケージリスト
     ├── pt_slackbot # チュートリアルで作成するSlackbotパッケージの置き場所
+    ├── pt_slackbot_sample # pt_slackbotの最終完成版。講師が困ったときの資料用です
     └── tutorial_docs # チュートリアルドキュメントの中身
         └── step # チュートリアルで順を追ってハンズオンをするときのステップごとに使う資料
 
