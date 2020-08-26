@@ -201,11 +201,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>この設定は、いくつかのPythonパッケージの依存があります。これらはpip経由でインストール可能で、 <a class="reference internal" href="prepare.html"><span class="doc">チュートリアル開始前の準備</span></a> -「ローカル開発環境の用意」の仮想環境作成時にインストールしています。</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/psf/black">psf/black: The uncompromising Python code formatter</a></p></li>
-<li><p><a class="reference external" href="https://gitlab.com/pycqa/flake8">PyCQA / flake8 · GitLab</a></p></li>
-</ul>
+<p>この設定は、いくつかのPythonパッケージの依存があります。これらはpip経由でインストール可能で、 <a class="reference internal" href="prepare.html"><span class="doc">チュートリアル開始前の準備</span></a> -「ローカル開発環境の用意」の仮想環境作成時にインストールしています。ここではflake8とblackというツールを利用しています。</p>
 <div class="section" id="id3">
 <h3>リンターとフォーマッター<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>PythonではPEP8と呼ばれるコーディング規約があります。PEP8に準拠することで、複数人で書かれたPythonのソースコードスタイルを統一して、可読性を上げたり、修正や機能追加をしやすくすることが出来ます。</p>
@@ -215,8 +211,18 @@
 </ul>
 <p>ですが、人がPEP8を覚えたり確認する作業は大変なことです。そのため、コーディング規約を自動的にチェックしたり、修正するツールがあります。</p>
 <p>自動的にチェックするツールをリンター（Linter）と呼びます。静的解析手法とも呼びます。リンターはソースコードをインタプリタやコンパイラなどの実行環境ではなく、コードの内容を元にエラーやコーディング規約と違いがないかを調べて指摘をするツールです。</p>
+<p>flake8はPEP8のチェック、コードのエラーを警告、プログラムの複雑性のチェック という機能があるツール三種類をひとまとめで利用できるラッパーになります。</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gitlab.com/pycqa/flake8">PyCQA / flake8 · GitLab</a></p></li>
+</ul>
 <p>フォーマッター（Formatter）は、ソースコードのスタイルを自動的にコーディング規約に修正するツールです。</p>
 <p>PEP8を人が事細かに守るのは難しいものです。人それぞれでソースコードの書き方の違いもあります。それらを決めたスタイルを元に自動的に修正することで、ソースコードの可読性を維持できます。</p>
+<p>blackはPEP8のフォーマッターですが、PEP8では言及されていない表現についてもBlack code styleを元にソースコードの整形を行います（つまりblackも一つのコードスタイルです）</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/psf/black">psf/black: The uncompromising Python code formatter</a></p></li>
+<li><p>blackのコードスタイルについては公式に記載されています: <a class="reference external" href="https://github.com/psf/black/blob/master/docs/the_black_code_style.md">black/the_black_code_style.md at master · psf/black</a></p></li>
+<li><p><a class="reference external" href="https://www.slideshare.net/aodag/python-172432039">Pythonでの開発を効率的に進めるためのツール設定</a></p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="live-share">

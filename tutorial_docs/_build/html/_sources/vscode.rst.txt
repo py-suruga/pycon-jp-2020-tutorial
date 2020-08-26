@@ -39,14 +39,10 @@ Python拡張機能で利用できる設定を追加します。リンターや�
     "python.linting.enabled": true,
   }
 
-この設定は、いくつかのPythonパッケージの依存があります。これらはpip経由でインストール可能で、 :doc:`/prepare` -「ローカル開発環境の用意」の仮想環境作成時にインストールしています。
-
-- `psf/black: The uncompromising Python code formatter <https://github.com/psf/black>`_
-- `PyCQA / flake8 · GitLab <https://gitlab.com/pycqa/flake8>`_
+この設定は、いくつかのPythonパッケージの依存があります。これらはpip経由でインストール可能で、 :doc:`/prepare` -「ローカル開発環境の用意」の仮想環境作成時にインストールしています。ここではflake8とblackというツールを利用しています。
 
 リンターとフォーマッター
 ----------------------------------------
-
 
 PythonではPEP8と呼ばれるコーディング規約があります。PEP8に準拠することで、複数人で書かれたPythonのソースコードスタイルを統一して、可読性を上げたり、修正や機能追加をしやすくすることが出来ます。
 
@@ -57,9 +53,19 @@ PythonではPEP8と呼ばれるコーディング規約があります。PEP8に
 
 自動的にチェックするツールをリンター（Linter）と呼びます。静的解析手法とも呼びます。リンターはソースコードをインタプリタやコンパイラなどの実行環境ではなく、コードの内容を元にエラーやコーディング規約と違いがないかを調べて指摘をするツールです。
 
+flake8はPEP8のチェック、コードのエラーを警告、プログラムの複雑性のチェック という機能があるツール三種類をひとまとめで利用できるラッパーになります。
+
+- `PyCQA / flake8 · GitLab <https://gitlab.com/pycqa/flake8>`_
+
 フォーマッター（Formatter）は、ソースコードのスタイルを自動的にコーディング規約に修正するツールです。
 
 PEP8を人が事細かに守るのは難しいものです。人それぞれでソースコードの書き方の違いもあります。それらを決めたスタイルを元に自動的に修正することで、ソースコードの可読性を維持できます。
+
+blackはPEP8のフォーマッターですが、PEP8では言及されていない表現についてもBlack code styleを元にソースコードの整形を行います（つまりblackも一つのコードスタイルです）
+
+- `psf/black: The uncompromising Python code formatter <https://github.com/psf/black>`_
+- blackのコードスタイルについては公式に記載されています: `black/the_black_code_style.md at master · psf/black <https://github.com/psf/black/blob/master/docs/the_black_code_style.md>`_
+- `Pythonでの開発を効率的に進めるためのツール設定 <https://www.slideshare.net/aodag/python-172432039>`_
 
 Live Shareによるチュートリアルサポート
 ================================================================
