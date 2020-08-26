@@ -33,4 +33,5 @@ def test_search_online_event(mocking_connpass_json):
     # 引数は実質意味がないです
     result = search_connpass_online.search_online_event("202008")
 
+    # connpass apiレスポンスからjson -> 置き換えたjson生成の関数 でbotの返答文字列が生成されている
     assert "connpassで検索したオンラインに関係する" in result
