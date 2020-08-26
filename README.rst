@@ -52,14 +52,14 @@ Contributors
 
 - Python駿河, Unagi.py
 
-    - yoshi_corleone
-    - b7craft
+    - b7craft（レビュー、当日TA）
+    - Chuui（当日TA）
+    - yoshi_corleone（レビュー）
     - Y.Hatake
-    - Chuui
 
 - PyCon JP チュートリアルスタッフ皆様
 
-    - @huideyeren
+    - @huideyeren（ドキュメント修正）
 
 - レビュー感謝
 
