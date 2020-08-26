@@ -89,13 +89,16 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">VS CodeとLive Shareの設定</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#vs-code">VS Codeの設定</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id1">利用する拡張機能</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">ワークスペースの設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#live-share">Live Shareによるチュートリアルサポート</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#liveshare">LiveShare拡張のインストール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">コラボレーションセッションの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">ワークスペースの設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">リンターとフォーマッター</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">チュートリアル当日の流れ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#live-share">Live Shareによるチュートリアルサポート</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#liveshare">LiveShare拡張のインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">コラボレーションセッションの作成</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">チュートリアル当日の流れ</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="slackbot.html">Slackbotの作成</a></li>
@@ -198,11 +201,29 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>この設定は、いくつかのPythonパッケージの依存があります。これらはpip経由でインストール可能で、 <a class="reference internal" href="prepare.html"><span class="doc">チュートリアル開始前の準備</span></a> -「ローカル開発環境の用意」の仮想環境作成時にインストールしています。</p>
+<p>この設定は、いくつかのPythonパッケージの依存があります。これらはpip経由でインストール可能で、 <a class="reference internal" href="prepare.html"><span class="doc">チュートリアル開始前の準備</span></a> -「ローカル開発環境の用意」の仮想環境作成時にインストールしています。ここではflake8とblackというツールを利用しています。</p>
+<div class="section" id="id3">
+<h3>リンターとフォーマッター<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>PythonではPEP8と呼ばれるコーディング規約があります。PEP8に準拠することで、複数人で書かれたPythonのソースコードスタイルを統一して、可読性を上げたり、修正や機能追加をしやすくすることが出来ます。</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/psf/black">psf/black: The uncompromising Python code formatter</a></p></li>
+<li><p><a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP 8 -- Style Guide for Python Code | Python.org</a></p></li>
+<li><p><a class="reference external" href="https://pep8-ja.readthedocs.io/ja/latest/">はじめに — pep8-ja 1.0 ドキュメント</a></p></li>
+</ul>
+<p>ですが、人がPEP8を覚えたり確認する作業は大変なことです。そのため、コーディング規約を自動的にチェックしたり、修正するツールがあります。</p>
+<p>自動的にチェックするツールをリンター（Linter）と呼びます。静的解析手法とも呼びます。リンターはソースコードをインタプリタやコンパイラなどの実行環境ではなく、コードの内容を元にエラーやコーディング規約と違いがないかを調べて指摘をするツールです。</p>
+<p>flake8はPEP8のチェック、コードのエラーを警告、プログラムの複雑性のチェック という機能があるツール三種類をひとまとめで利用できるラッパーになります。</p>
+<ul class="simple">
 <li><p><a class="reference external" href="https://gitlab.com/pycqa/flake8">PyCQA / flake8 · GitLab</a></p></li>
 </ul>
+<p>フォーマッター（Formatter）は、ソースコードのスタイルを自動的にコーディング規約に修正するツールです。</p>
+<p>PEP8を人が事細かに守るのは難しいものです。人それぞれでソースコードの書き方の違いもあります。それらを決めたスタイルを元に自動的に修正することで、ソースコードの可読性を維持できます。</p>
+<p>blackはPEP8のフォーマッターですが、PEP8では言及されていない表現についてもBlack code styleを元にソースコードの整形を行います（つまりblackも一つのコードスタイルです）</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/psf/black">psf/black: The uncompromising Python code formatter</a></p></li>
+<li><p>blackのコードスタイルについては公式に記載されています: <a class="reference external" href="https://github.com/psf/black/blob/master/docs/the_black_code_style.md">black/the_black_code_style.md at master · psf/black</a></p></li>
+<li><p><a class="reference external" href="https://www.slideshare.net/aodag/python-172432039">Pythonでの開発を効率的に進めるためのツール設定</a></p></li>
+</ul>
+</div>
 </div>
 <div class="section" id="live-share">
 <h2>Live Shareによるチュートリアルサポート<a class="headerlink" href="#live-share" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -216,8 +237,8 @@
 <p>ストアからインストールします。</p>
 <p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare">Live Share - Visual Studio Marketplace</a></p>
 </div>
-<div class="section" id="id3">
-<h3>コラボレーションセッションの作成<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id4">
+<h3>コラボレーションセッションの作成<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>各参加者皆さんのVS Codeで、Live Shareのコラボレーションセッションに講師とTAは参加する必要があります。その時に必要な招待URLを作成していただく必要があります。</p>
 <p>Live Share拡張をインストールすると、自動的にWelcomeタブが表示されますが閉じてもらって構いません</p>
 <p>VS Codeウィンドウの下部にあるLive Shareマークをクリックして、GitHubアカウントでログインします。</p>
@@ -230,9 +251,9 @@
 <img alt="_images/vscode_4.png" src="_images/vscode_4.png" />
 </div>
 </div>
-<div class="section" id="id4">
-<h2>チュートリアル当日の流れ<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>当日は 8/30 9:30 から環境構築の相談時間を設けます。その時に「セッションの作成」の作業をしてもらい、コラボレーションの招待リンクを伝えてください。</p>
+<div class="section" id="id5">
+<h2>チュートリアル当日の流れ<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>当日は 8/30 9:30 から環境構築の相談時間を設けます。その時に「コラボレーションセッションの作成」の作業をしてもらい、コラボレーションの招待リンクを伝えてください。</p>
 </div>
 </div>
 

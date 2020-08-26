@@ -45,16 +45,22 @@ PyCon JP 2020 チュートリアル「Pythonの開発エコシステムを学ぼ
 - pt_slackbot_sample: チュートリアルで扱うソースコード, テストコード, Sphinxの例で扱うSlackbotのドキュメントがあります
 - pt_slackbot: チュートリアルで実際に作業をするディレクトリです。最初に作業をするファイルが入っています
 
-謝辞
+Contributors
 ========================================
 
-このドキュメントの作成にあたっては以下の方々、ご協力いただきました。この場をお借りして感謝申し上げます。
+このドキュメントの作成にあたっては以下の方々にご協力いただきました。この場をお借りして感謝申し上げます。
 
 - Python駿河, Unagi.py
 
-    - yoshi_corleone
-    - b7craft
+    - b7craft（レビュー、当日TA）
+    - Chuui（当日TA）
+    - yoshi_corleone（レビュー）
     - Y.Hatake
-    - Chuui
 
 - PyCon JP チュートリアルスタッフ皆様
+
+    - @huideyeren（ドキュメント修正）
+
+- レビュー感謝
+
+  - @takanory
