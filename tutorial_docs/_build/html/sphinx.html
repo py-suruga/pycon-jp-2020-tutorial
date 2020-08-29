@@ -104,17 +104,18 @@
 <li class="toctree-l3"><a class="reference internal" href="#id9">Slackbotの説明文を書いてみよう</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">休憩5🍪☕</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#autodocapi">autodoc拡張機能を使ったAPIリファレンス作成</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#docstirng">docstirngを書こう</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#docstring">docstringのスタイル</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id10">docstringと型アノテーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">docstringと型アノテーション</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#botdocstring">botの関数にdocstringを用意する</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id12">Sphinxの設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">Sphinxの設定</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#autodoc-sphinx-apidoc">autodoc拡張で半自動的にリファレンスを作成する: sphinx-apidocコマンド</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#api">APIリファレンス入のドキュメントを生成する</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id13">テーマを変更しよう</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id14">テーマを変更しよう</a></li>
 </ul>
 </li>
 </ul>
@@ -252,8 +253,8 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <div class="section" id="slackbot">
 <h2>Slackbotのドキュメントを書こう<a class="headerlink" href="#slackbot" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>それでは、Slackbotのドキュメントを書きましょう。あらかじめ用意してあるファイルをコピーして説明文を載せていきましょう。</p>
-<p>Sphinxではドキュメントの作成に、RestructuredTextというプレーンテキスト形式の軽量マークアップ言語を利用します。短縮名として「reST」とも言われます。</p>
-<p>RestructuredTextには、記法やディレクティブという概念があります。記法は見出しやリストやURLリンクなどの文章の装飾や意味合いの定義を付け加えます。ディレクティブも文章の意味合いを定義するものに使いますが、文章を書く上で便利な機能を提供しています。</p>
+<p>Sphinxではドキュメントの作成に、reStructuredTextというプレーンテキスト形式の軽量マークアップ言語を利用します。短縮名として「reST」とも言われます。</p>
+<p>reStructuredTextには、記法やディレクティブという概念があります。記法は見出しやリストやURLリンクなどの文章の装飾や意味合いの定義を付け加えます。ディレクティブも文章の意味合いを定義するものに使いますが、文章を書く上で便利な機能を提供しています。</p>
 <p>Sphinxは標準でも多数の記法、ディレクティブに対応しています。またサードパーティが提供する拡張機能も利用できます。</p>
 <div class="section" id="id2">
 <h3>Sphinxはじめの一歩<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -343,6 +344,12 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 </div>
 </div>
 </div>
+<div class="section" id="id10">
+<h2>休憩5🍪☕<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>以上まで、sphinxの環境用意とreStructuredTextの簡単な記法を扱いました。その他にも様々な機能が備わっているので、公式ドキュメントをぜひのぞいてみましょう。</p>
+<p>...といっていると頭を使いすぎてしまうと思うので、ここで休憩にします。おやつとコーヒーでリフレッシュしましょう。</p>
+<img alt="_images/oyatu-3.jpg" src="_images/oyatu-3.jpg" />
+</div>
 <div class="section" id="autodocapi">
 <h2>autodoc拡張機能を使ったAPIリファレンス作成<a class="headerlink" href="#autodocapi" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Sphinxには、Pythonのdocstringからクラスや関数の使い方を半自動的にリファレンスとして取り込む、autodoc拡張機能があります。</p>
@@ -427,8 +434,8 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 </div>
 </div>
 </div>
-<div class="section" id="id10">
-<h3>docstringと型アノテーション<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id11">
+<h3>docstringと型アノテーション<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>docstringは、もともと関数/メソッドの引数（Args）の説明や戻り値（Returns）等に型の種類を宣言できます。この型宣言自体はPython側に直接影響は有りません（Pythonは動的型定義の言語です）。</p>
 <p>しかし予め定義することでPythonに対応したIDEや型チェッカー( <a class="reference external" href="https://mypy.readthedocs.io/en/stable/index.html">Mypy</a> 等）を使うことで入力補完機能やチェッカーによる警告機能を使うことができます。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Googleスタイルです</span>
@@ -508,8 +515,8 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 </ul>
 </div>
 </div>
-<div class="section" id="id12">
-<h3>Sphinxの設定<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id13">
+<h3>Sphinxの設定<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>autodoc拡張機能はSphinxの設定で有効にする必要があります。Sphinxの設定は <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> コマンドで作成したひな形にあるconf.pyを変更します。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -- Path setup --------------------------------------------------------------</span>
 
@@ -579,8 +586,8 @@ pt_slackbot&gt; sphinx-apidoc.exe -f -o ./docs ./ /tests
 <p>toctreeディレクティブに <code class="docutils literal notranslate"><span class="pre">modules</span></code> を追加した結果、モジュールの一覧の目次が作成されています。</p>
 </div>
 </div>
-<div class="section" id="id13">
-<h2>テーマを変更しよう<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id14">
+<h2>テーマを変更しよう<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>最後に見栄えを自由に変更できるテーマについて説明します。</p>
 <p>Sphinxは公式同梱のテーマ以外にも、サードパーティのテーマも充実しています。</p>
 <p>今回はドキュメントホスティングサービスとして有名な、Read The Docsが提供しているSphinxテーマである <code class="docutils literal notranslate"><span class="pre">sphinx-rtd-theme</span></code> を適用してみましょう。</p>
