@@ -52,8 +52,8 @@ Contributors
 
 - Python駿河, Unagi.py
 
-    - b7craft（レビュー、当日TA）
-    - Chuui（当日TA）
+    - Nakanishi（b7craft: レビュー、当日TA）
+    - Nakai（Nakaishi_j: 当日TA）
     - yoshi_corleone（レビュー）
     - Y.Hatake
 
