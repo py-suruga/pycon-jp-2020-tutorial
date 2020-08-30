@@ -55,7 +55,7 @@ Sphinxはドキュメントを作成するひな形の環境を用意する ``sp
     The project name will occur in several places in the built documentation.
     > Project name: pt_slackbot ドキュメント
     > Author name(s): Hiroshi Sano
-    > Project release []: 2020.07.24
+    > Project release []: 2020.08.30
 
     If the documents are to be written in a language other than English,
     you can select a language here by its language code. Sphinx will then
@@ -115,6 +115,11 @@ Sphinxはじめの一歩
 
     見出し2
     ----------
+
+.. note::
+    見出し（セクション）を定義するときのライン（アンダーライン）は "``= - ` : ' " ~ ^ _ * + # < >``" が利用できます。見出しのレベルはアンダーライン記号の出現順で記号自体にレベルの概念はありませんが、Pythonドキュメントの慣例があります。詳しくはsphinxのドキュメントにて
+
+    ref: `reStructuredText入門 — Sphinx 4.0.0+/5ade6b721 ドキュメント <https://www.sphinx-doc.org/ja/master/usage/restructuredtext/basics.html#sections>`_
 
 リンク
 ~~~~~~~~~~

@@ -61,7 +61,12 @@ Slackアプリの作成と設定
 
 .. code-block:: none
 
-    ngrok http 3000
+    # Windows 10の場合
+    (.venv) pycon-jp-2020-tutorial$ ngrok.exe http 3000
+
+
+    # macOSの場合
+    (.venv) pycon-jp-2020-tutorial$ ngrok http 3000
 
 ngrokコマンドを起動すると以下のような情報が表示されます。ngrokのサービスへサインアップしていない場合は外部公開のセッションは8時間の限定公開になります。
 
@@ -95,13 +100,14 @@ Web InterfaceのURLへアクセスすると、公開したURLのアクセス履�
 
 SlackBotがSlackワークスペースへのやりとりをおこなうURLを生成して、bot側と連携させたので、Slackアプリの設定を続けます。
 
-Slack Event APIを使い、Slackワークスペース上に起きたイベントを、Slackbotが動作するサーバー（ここではngrokで公開しているローカル環境）へ伝えることができます。
-ここで2つの設定を行います。
+Slack Events APIを使い、Slackワークスペース上に起きたイベントを、Slackbotが動作するサーバー（ここではngrokで公開しているローカル環境）へ伝えることができます。ここで2つの設定を行います。
 
 1. Slack Event APIがイベント情報を送る先となるエンドポイントURL
 2. イベントの種類
 
-Slack Event APIが起きたイベントをサーバーに伝えるためのエンドポイントURLを設定します。
+Slack Events APIが起きたイベントをサーバーに伝えるためのエンドポイントURLを設定します。
+
+（このEvents APIのエンドポイントURLについての説明は後半で後述します）
 
 「Event Subscriptions」ページの「Enable Events」にある、右上のボタンをOnにします。
 

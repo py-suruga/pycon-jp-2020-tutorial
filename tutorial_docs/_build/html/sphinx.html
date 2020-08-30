@@ -201,7 +201,18 @@
 </pre></div>
 </div>
 <p>Sphinxはドキュメントを作成するひな形の環境を用意する <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> コマンドがあります。こちらを利用してひな形を作りましょう</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackbot&gt; sphinx-quickstart.exe .\docs\
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Windows10の例
+
+(.venv) pycon-jp-2020-tutorial&gt; cd pt_slackbot
+\pt_slackbot&gt; sphinx-quickstart.exe .\docs\
+
+# macOSの例
+
+(.venv) pycon-jp-2020-tutorial$ cd pt_slackbot
+pt_slackbot&gt; sphinx-quickstart ./docs/
+
+# 以下Windowsの実行例
+
 Welcome to the Sphinx 3.1.2 quickstart utility.
 
 Please enter values for the following settings (just press Enter to
@@ -217,7 +228,7 @@ Either, you use a directory &quot;_build&quot; within the root path, or you sepa
 The project name will occur in several places in the built documentation.
 &gt; Project name: pt_slackbot ドキュメント
 &gt; Author name(s): Hiroshi Sano
-&gt; Project release []: 2020.07.24
+&gt; Project release []: 2020.08.30
 
 If the documents are to be written in a language other than English,
 you can select a language here by its language code. Sphinx will then
@@ -241,7 +252,7 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 </pre></div>
 </div>
 <p>今回のSlackbotのドキュメントは以下のような構造で作成します。チュートリアルで利用するディレクトリやファイルに付いて解説します。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>./pt_slackbot/docs
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.\pt_slackbot\docs
 ├── Makefile # sphinxのドキュメント生成をmakeコマンドで行うときのmakefile
 ├── make.bat # makefileのWindowsバージョン
 ├── _build # ビルドされた結果が入るディレクトリ
@@ -267,6 +278,11 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 見出し2
 ----------
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>見出し（セクション）を定義するときのライン（アンダーライン）は &quot;<code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">-</span> <span class="pre">`</span> <span class="pre">:</span> <span class="pre">'</span> <span class="pre">&quot;</span> <span class="pre">~</span> <span class="pre">^</span> <span class="pre">_</span> <span class="pre">*</span> <span class="pre">+</span> <span class="pre">#</span> <span class="pre">&lt;</span> <span class="pre">&gt;</span></code>&quot; が利用できます。見出しのレベルはアンダーライン記号の出現順で記号自体にレベルの概念はありませんが、Pythonドキュメントの慣例があります。詳しくはsphinxのドキュメントにて</p>
+<p>ref: <a class="reference external" href="https://www.sphinx-doc.org/ja/master/usage/restructuredtext/basics.html#sections">reStructuredText入門 — Sphinx 4.0.0+/5ade6b721 ドキュメント</a></p>
 </div>
 </div>
 <div class="section" id="id4">
@@ -300,17 +316,26 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <div class="section" id="id8">
 <h3>ドキュメントの生成<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ドキュメントをhtmlで生成する場合は <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> コマンドが生成したmakeファイルを使うと簡単に生成できます。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#win10ならmake.bat</span>
-<span class="o">&gt;</span> <span class="n">make</span><span class="o">.</span><span class="n">bat</span> <span class="n">html</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Windows 10ならmake.bat
+(.venv) pt_slackbot&gt; cd docs
+(.venv) docs&gt; .\make.bat html
 
-<span class="c1">#macOSならmakefileがそのまま扱えます</span>
-<span class="o">&gt;</span> <span class="n">make</span> <span class="n">html</span>
+# macOSならmakefileがそのまま扱えます
+(.venv)pt_slackbot$ cd docs
+(.venv)docs$ make html
 </pre></div>
 </div>
-<p>生成されたhtmlはPythonの簡易httpサーバーを利用してブラウザで確認できます。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ポート指定することでhttpサーバーのポートを変更できます。今回は8080版を利用しています。</span>
-<span class="o">&gt;</span> <span class="n">cd</span> <span class="n">_build</span><span class="o">/</span><span class="n">html</span>
-<span class="o">&gt;</span> <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">http</span><span class="o">.</span><span class="n">server</span> <span class="mi">8080</span>
+<p>生成されたhtmlはPythonの簡易httpサーバーを利用してブラウザで確認できます。別のターミナルを開いて実行してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># 別のターミナルを開いて実行してください。VS Codeなら「ターミナルの分割」機能が便利です。
+# ポート指定することでhttpサーバーのポートを変更できます。今回は8080版を利用しています。
+
+# Windows 10
+(.venv) pt_slackbot&gt; cd _build\html
+(.venv) html&gt; python -m http.server 8080
+
+# macOS
+(.venv) pt_slackbot$ cd _build/html
+(.venv) html&amp; python -m http.server 8080
 </pre></div>
 </div>
 <img alt="_images/sphinx_1.png" src="_images/sphinx_1.png" />
@@ -560,9 +585,14 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 # sphinx-apidoc -f（上書き） -o（出力先ディレクトリの指定） [出力先ディレクトリのパス] [autodocで生成したいPythonモジュールのパス] [除外するパス]
 
 # 現在位置が、pt_slackbot\docs のはずなので、pt_slackbotのディレクトリに戻ります
-&gt; cd ..\
 
-\pt_slackbot&gt; sphinx-apidoc.exe -f -o ./docs ./ ./tests
+# Windows 10の場合
+(.venv)docs&gt; cd ..\
+(.venv)pt_slackbot&gt; sphinx-apidoc.exe -f -o .\docs .\ .\tests
+
+# macOSの場合
+(.venv)docs&amp; cd ../
+(.venv)pt_slackbot&amp; sphinx-apidoc -f -o ./docs ./ ./tests
 
 # 以下に生成の結果が表示される
 </pre></div>

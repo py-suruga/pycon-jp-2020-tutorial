@@ -149,6 +149,28 @@ pytestは ``-v`` オプションでテスト関数やクラスの一覧も表示
 
   ============================================================== 1 passed in 0.09s ==============================================================
 
+.. note::
+  pytestコマンドのオプションは様々な物があります。 例えば `-rA` は すべてのテスト結果のショートサマリーが見れます。テスト結果とテストの失敗やエラー情報がテストごとに1～2行で表されます。
+
+  ::
+
+    (.venv) \step\pytest-1> pytest -ra
+
+    # テスト結果を割愛して最後のショートサマリの箇所を引用
+
+    ================================================================= short test summary info ==================================================================
+    PASSED test_fixture_load_json.py::test_check_val1
+    PASSED test_fixture_load_json.py::test_check_val2
+    PASSED test_hello_pytest_3.py::test_pytest
+    PASSED test_monkeypatch_function.py::test_getssh
+    PASSED test_parametrize.py::test_eval[3+5-8]
+    PASSED test_parametrize.py::test_eval[2+4-6]
+    FAILED test_hello_pytest_1.py::test_pytest - assert 1 == 2
+    FAILED test_hello_pytest_2.py::test_pytest - ZeroDivisionError: division by zero
+    FAILED test_parametrize.py::test_eval[6*9-42] - AssertionError: assert 54 == 42
+
+  `Usage and Invocations — pytest documentation <https://docs.pytest.org/en/stable/usage.html#detailed-summary-report>`_
+
 pytestの機能
 ===================================
 
