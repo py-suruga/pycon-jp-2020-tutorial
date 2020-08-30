@@ -559,7 +559,10 @@ where &quot;builder&quot; is one of the supported builders, e.g. html, latex or 
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># /testsディレクトリは除外する指定をしています。
 # sphinx-apidoc -f（上書き） -o（出力先ディレクトリの指定） [出力先ディレクトリのパス] [autodocで生成したいPythonモジュールのパス] [除外するパス]
 
-pt_slackbot&gt; sphinx-apidoc.exe -f -o ./docs ./ /tests
+# 現在位置が、pt_slackbot\docs のはずなので、pt_slackbotのディレクトリに戻ります
+&gt; cd ..\
+
+\pt_slackbot&gt; sphinx-apidoc.exe -f -o ./docs ./ ./tests
 
 # 以下に生成の結果が表示される
 </pre></div>
