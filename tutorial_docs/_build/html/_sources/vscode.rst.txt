@@ -17,6 +17,25 @@ VS CodeでPythonを扱ったことがない方、はじめてVS Codeを利用す
 - `Python - Visual Studio Marketplace <https://marketplace.visualstudio.com/items?itemName=ms-python.python>`_
 - `reStructuredText - Visual Studio Marketplace <https://marketplace.visualstudio.com/items?itemName=lextudio.restructuredtext>`_
 
+.. note::
+  Python拡張機能をインストールすると、Python実行環境（インタプリタ）が促される場合があります。
+
+  :doc:`prepare.rst` でPyhtonの仮想環境をインストールされていると自動的に仮想環境が設定されます。
+
+  もし設定されない場合は、次の「ワークスペースの設定」で ``.vscode/settings.json`` に以下を設定します。今回は相対パスの例ですが、自動的に設定された場合は絶対パスで設定されることがあります。
+
+  .. code-block:: none
+
+    // Windows 10の場合
+    {
+      "python.pythonPath": ".venv\\Scripts\\python.exe"
+    }
+
+    // macOSの場合
+
+    {
+      "python.pythonPath": ".venv/bin/python"
+    }
 
 ワークスペースの設定
 ================================
@@ -29,15 +48,18 @@ VS Codeにはワークスペースという概念があります。ディレク�
 
 Python拡張機能で利用できる設定を追加します。リンターやフォーマッターの有効化をしています。``.vscode/settings.json`` に以下の設定を追加します。
 
-.. code-block:: json
+.. code-block:: none
 
   {
+    // この部分にpython.pythonPath があります。
     "python.formatting.provider": "black",
     "editor.formatOnSave": true,
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
     "python.linting.enabled": true,
   }
+
+
 
 この設定は、いくつかのPythonパッケージの依存があります。これらはpip経由でインストール可能で、 :doc:`/prepare` -「ローカル開発環境の用意」の仮想環境作成時にインストールしています。ここではflake8とblackというツールを利用しています。
 

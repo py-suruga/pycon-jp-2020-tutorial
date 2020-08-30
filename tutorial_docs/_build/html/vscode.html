@@ -183,6 +183,24 @@
 <li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python - Visual Studio Marketplace</a></p></li>
 <li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=lextudio.restructuredtext">reStructuredText - Visual Studio Marketplace</a></p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>Python拡張機能をインストールすると、Python実行環境（インタプリタ）が促される場合があります。</p>
+<p><span class="xref std std-doc">prepare.rst</span> でPyhtonの仮想環境をインストールされていると自動的に仮想環境が設定されます。</p>
+<p>もし設定されない場合は、次の「ワークスペースの設定」で <code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code> に以下を設定します。今回は相対パスの例ですが、自動的に設定された場合は絶対パスで設定されることがあります。</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>// Windows 10の場合
+{
+  &quot;python.pythonPath&quot;: &quot;.venv\\Scripts\\python.exe&quot;
+}
+
+// macOSの場合
+
+{
+  &quot;python.pythonPath&quot;: &quot;.venv/bin/python&quot;
+}
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="id2">
 <h2>ワークスペースの設定<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -192,13 +210,14 @@
 <li><p><a class="reference external" href="https://code.visualstudio.com/docs/getstarted/settings">Visual Studio Code User and Workspace Settings</a></p></li>
 </ul>
 <p>Python拡張機能で利用できる設定を追加します。リンターやフォーマッターの有効化をしています。<code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code> に以下の設定を追加します。</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;python.formatting.provider&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;editor.formatOnSave&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="nt">&quot;python.linting.pylintEnabled&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="nt">&quot;python.linting.flake8Enabled&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="nt">&quot;python.linting.enabled&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-<span class="p">}</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{
+  // この部分にpython.pythonPath があります。
+  &quot;python.formatting.provider&quot;: &quot;black&quot;,
+  &quot;editor.formatOnSave&quot;: true,
+  &quot;python.linting.pylintEnabled&quot;: false,
+  &quot;python.linting.flake8Enabled&quot;: true,
+  &quot;python.linting.enabled&quot;: true,
+}
 </pre></div>
 </div>
 <p>この設定は、いくつかのPythonパッケージの依存があります。これらはpip経由でインストール可能で、 <a class="reference internal" href="prepare.html"><span class="doc">チュートリアル開始前の準備</span></a> -「ローカル開発環境の用意」の仮想環境作成時にインストールしています。ここではflake8とblackというツールを利用しています。</p>
