@@ -28,7 +28,18 @@ Sphinxはドキュメントを作成するひな形の環境を用意する ``sp
 
 .. code-block:: none
 
-    (pycon-jp-2020-tutorial) PS C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\pt_slackbot> sphinx-quickstart.exe .\docs\
+    # Windows10の例
+
+    (.venv) pycon-jp-2020-tutorial> cd pt_slackbot
+    \pt_slackbot> sphinx-quickstart.exe .\docs\
+
+    # macOSの例
+
+    (.venv) pycon-jp-2020-tutorial$ cd pt_slackbot
+    pt_slackbot> sphinx-quickstart ./docs/
+
+    # 以下Windowsの実行例
+
     Welcome to the Sphinx 3.1.2 quickstart utility.
 
     Please enter values for the following settings (just press Enter to
@@ -70,7 +81,7 @@ Sphinxはドキュメントを作成するひな形の環境を用意する ``sp
 
 ::
 
-    ./pt_slackbot/docs
+    .\pt_slackbot\docs
     ├── Makefile # sphinxのドキュメント生成をmakeコマンドで行うときのmakefile
     ├── make.bat # makefileのWindowsバージョン
     ├── _build # ビルドされた結果が入るディレクトリ
@@ -146,19 +157,29 @@ Sphinxはじめの一歩
 
 ::
 
-    #win10ならmake.bat
-    > make.bat html
+    # Windows 10ならmake.bat
+    (.venv) pt_slackbot> cd docs
+    (.venv) docs> .\make.bat html
 
-    #macOSならmakefileがそのまま扱えます
-    > make html
+    # macOSならmakefileがそのまま扱えます
+    (.venv)pt_slackbot$ cd docs
+    (.venv)docs$ make html
 
-生成されたhtmlはPythonの簡易httpサーバーを利用してブラウザで確認できます。
+生成されたhtmlはPythonの簡易httpサーバーを利用してブラウザで確認できます。別のターミナルを開いて実行してください。
 
 ::
 
+    # 別のターミナルを開いて実行してください。VS Codeなら「ターミナルの分割」機能が便利です。
     # ポート指定することでhttpサーバーのポートを変更できます。今回は8080版を利用しています。
-    > cd _build/html
-    > python -m http.server 8080
+
+    # Windows 10
+    (.venv) pt_slackbot> cd _build\html
+    (.venv) html> python -m http.server 8080
+
+    # macOS
+    (.venv) pt_slackbot$ cd _build/html
+    (.venv) html& python -m http.server 8080
+
 
 .. image:: ./doc-img/sphinx_1.png
 
@@ -461,9 +482,14 @@ docstringの用意と設定を変更したので、autodoc拡張を使ってリ�
     # sphinx-apidoc -f（上書き） -o（出力先ディレクトリの指定） [出力先ディレクトリのパス] [autodocで生成したいPythonモジュールのパス] [除外するパス]
 
     # 現在位置が、pt_slackbot\docs のはずなので、pt_slackbotのディレクトリに戻ります
-    > cd ..\
 
-    \pt_slackbot> sphinx-apidoc.exe -f -o ./docs ./ ./tests
+    # Windows 10の場合
+    (.venv)docs> cd ..\
+    (.venv)pt_slackbot> sphinx-apidoc.exe -f -o .\docs .\ .\tests
+
+    # macOSの場合
+    (.venv)docs& cd ../
+    (.venv)pt_slackbot& sphinx-apidoc -f -o ./docs ./ ./tests
 
     # 以下に生成の結果が表示される
 

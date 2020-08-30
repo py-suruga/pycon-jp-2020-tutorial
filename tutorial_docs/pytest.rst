@@ -37,7 +37,13 @@ pytestを使ったテストケースは ``pytest`` コマンドでテストの�
 
 ::
 
-  PS C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\tutorial_docs> pytest .\step\pytest-1\test_hello_pytest.py
+  # Windows 10の場合
+  (.venv)tutorial_docs> pytest .\step\pytest-1\test_hello_pytest.py
+
+  # macOSの場合
+  (.venv)tutorial_docs& pytest ./step/pytest-1/test_hello_pytest.py
+
+  # テスト結果はWindows 10の例
   ============================================================= test session starts =============================================================
   platform win32 -- Python 3.7.3, pytest-6.0.1, py-1.9.0, pluggy-0.13.1
   rootdir: C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\tutorial_docs
@@ -66,7 +72,14 @@ pytestを使ったテストケースは ``pytest`` コマンドでテストの�
 
 ::
 
-  PS C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\tutorial_docs> pytest .\step\pytest-1\test_hello_pytest_2.py
+
+  # Windows 10の場合
+  (.venv)tutorial_docs> pytest .\step\pytest-1\test_hello_pytest_2.py
+
+  # macOSの場合
+  (.venv)tutorial_docs& pytest ./step/pytest-1/test_hello_pytest_2.py
+
+  # テスト結果はWindows 10の例
   ============================================================= test session starts =============================================================
   platform win32 -- Python 3.7.3, pytest-6.0.1, py-1.9.0, pluggy-0.13.1
   rootdir: C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\tutorial_docs
@@ -99,7 +112,13 @@ pytestを使ったテストケースは ``pytest`` コマンドでテストの�
 
 ::
 
-  PS C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\tutorial_docs> pytest .\step\pytest-1\test_hello_pytest_3.py
+  # Windows 10の場合
+  (.venv)tutorial_docs> pytest .\step\pytest-1\test_hello_pytest_3.py
+
+  # macOSの場合
+  (.venv)tutorial_docs& pytest ./step/pytest-1/test_hello_pytest_3.py
+
+  # テスト結果はWindows 10の例
   ============================================================= test session starts =============================================================
   platform win32 -- Python 3.7.3, pytest-6.0.1, py-1.9.0, pluggy-0.13.1
   rootdir: C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\tutorial_docs
@@ -113,7 +132,13 @@ pytestは ``-v`` オプションでテスト関数やクラスの一覧も表示
 
 ::
 
-  PS C:\Users\hiroshi\Documents\pycon-jp-2020-tutorial\tutorial_docs> pytest .\step\pytest-1\test_hello_pytest_3.py -v
+  # Windows 10の場合
+  (.venv)tutorial_docs> pytest -v .\step\pytest-1\test_hello_pytest_3.py
+
+  # macOSの場合
+  (.venv)tutorial_docs& pytest -v ./step/pytest-1/test_hello_pytest_3.py
+
+  # テスト結果はWindows 10の例
   ============================================================= test session starts =============================================================
   platform win32 -- Python 3.7.3, pytest-6.0.1, py-1.9.0, pluggy-0.13.1 -- c:\users\hiroshi\documents\pycon-jp-2020-tutorial\.venv\scripts\python.exe
   cachedir: .pytest_cache
@@ -176,12 +201,29 @@ pytestコマンドは自動的にテストファイルを探す
 
 ::
 
-  (.venv) > cd ./tutorial_docs/step/pytest-1
-  (.venv) > pytest
+
+  # Windows 10の場合
+  (.venv) tutorial_docs> cd .\tutorial_docs\step\pytest-1
+  (.venv) pytest-1> pytest
+
+  # macOSの場合
+  (.venv) tutorial_docs$ cd ./tutorial_docs/step/pytest-1
+  (.venv) pytest-1$ pytest
+
 
 上記までの説明で利用したテストファイルが実行されます。成功、失敗するテストがいくつかあるか確認してみましょう。
 
-確認が終わったら、 元のディレクトリに移動してください　``cd ../../../`` で戻れるはずです。
+確認が終わったら、 cdコマンドでtutorial_docsディレクトリまで移動してください。
+
+::
+
+  # Windows 10の場合
+  (.venv) pytest-1> cd ..\..\..\
+  (.venv) tutorial_docs>
+
+  # macOSの場合
+  (.venv) pytest-1$ cd ../../../
+  (.venv) tutorial_docs$
 
 休憩3🧘‍♂️
 ===============

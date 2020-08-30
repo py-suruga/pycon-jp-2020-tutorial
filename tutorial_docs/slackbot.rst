@@ -61,7 +61,12 @@ Slackアプリの作成と設定
 
 .. code-block:: none
 
-    ngrok http 3000
+    # Windows 10の場合
+    (.venv) pycon-jp-2020-tutorial$ ngrok.exe http 3000
+
+
+    # macOSの場合
+    (.venv) pycon-jp-2020-tutorial$ ngrok http 3000
 
 ngrokコマンドを起動すると以下のような情報が表示されます。ngrokのサービスへサインアップしていない場合は外部公開のセッションは8時間の限定公開になります。
 
