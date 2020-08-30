@@ -202,7 +202,13 @@
 <a class="reference external" href="https://docs.python.org/ja/3/reference/simple_stmts.html#assert">https://docs.python.org/ja/3/reference/simple_stmts.html#assert</a></p>
 </div>
 <p>このテストは失敗します。pytestコマンドで実行してみましょう。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">tutorial_docs</span><span class="o">&gt;</span> <span class="n">pytest</span> <span class="o">.</span>\<span class="n">step</span>\<span class="n">pytest</span><span class="o">-</span><span class="mi">1</span>\<span class="n">test_hello_pytest</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Windows 10の場合</span>
+<span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span><span class="n">tutorial_docs</span><span class="o">&gt;</span> <span class="n">pytest</span> <span class="o">.</span>\<span class="n">step</span>\<span class="n">pytest</span><span class="o">-</span><span class="mi">1</span>\<span class="n">test_hello_pytest</span><span class="o">.</span><span class="n">py</span>
+
+<span class="c1"># macOSの場合</span>
+<span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span><span class="n">tutorial_docs</span><span class="o">&amp;</span> <span class="n">pytest</span> <span class="o">./</span><span class="n">step</span><span class="o">/</span><span class="n">pytest</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">test_hello_pytest</span><span class="o">.</span><span class="n">py</span>
+
+<span class="c1"># テスト結果はWindows 10の例</span>
 <span class="o">=============================================================</span> <span class="n">test</span> <span class="n">session</span> <span class="n">starts</span> <span class="o">=============================================================</span>
 <span class="n">platform</span> <span class="n">win32</span> <span class="o">--</span> <span class="n">Python</span> <span class="mf">3.7</span><span class="o">.</span><span class="mi">3</span><span class="p">,</span> <span class="n">pytest</span><span class="o">-</span><span class="mf">6.0</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="n">py</span><span class="o">-</span><span class="mf">1.9</span><span class="o">.</span><span class="mi">0</span><span class="p">,</span> <span class="n">pluggy</span><span class="o">-</span><span class="mf">0.13</span><span class="o">.</span><span class="mi">1</span>
 <span class="n">rootdir</span><span class="p">:</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">tutorial_docs</span>
@@ -231,7 +237,13 @@
     <span class="k">assert</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">test_val</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">tutorial_docs</span><span class="o">&gt;</span> <span class="n">pytest</span> <span class="o">.</span>\<span class="n">step</span>\<span class="n">pytest</span><span class="o">-</span><span class="mi">1</span>\<span class="n">test_hello_pytest_2</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Windows 10の場合</span>
+<span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span><span class="n">tutorial_docs</span><span class="o">&gt;</span> <span class="n">pytest</span> <span class="o">.</span>\<span class="n">step</span>\<span class="n">pytest</span><span class="o">-</span><span class="mi">1</span>\<span class="n">test_hello_pytest_2</span><span class="o">.</span><span class="n">py</span>
+
+<span class="c1"># macOSの場合</span>
+<span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span><span class="n">tutorial_docs</span><span class="o">&amp;</span> <span class="n">pytest</span> <span class="o">./</span><span class="n">step</span><span class="o">/</span><span class="n">pytest</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">test_hello_pytest_2</span><span class="o">.</span><span class="n">py</span>
+
+<span class="c1"># テスト結果はWindows 10の例</span>
 <span class="o">=============================================================</span> <span class="n">test</span> <span class="n">session</span> <span class="n">starts</span> <span class="o">=============================================================</span>
 <span class="n">platform</span> <span class="n">win32</span> <span class="o">--</span> <span class="n">Python</span> <span class="mf">3.7</span><span class="o">.</span><span class="mi">3</span><span class="p">,</span> <span class="n">pytest</span><span class="o">-</span><span class="mf">6.0</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="n">py</span><span class="o">-</span><span class="mf">1.9</span><span class="o">.</span><span class="mi">0</span><span class="p">,</span> <span class="n">pluggy</span><span class="o">-</span><span class="mf">0.13</span><span class="o">.</span><span class="mi">1</span>
 <span class="n">rootdir</span><span class="p">:</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">tutorial_docs</span>
@@ -262,7 +274,13 @@
 </pre></div>
 </div>
 <p>実行すると成功した様子が確認できます。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">tutorial_docs</span><span class="o">&gt;</span> <span class="n">pytest</span> <span class="o">.</span>\<span class="n">step</span>\<span class="n">pytest</span><span class="o">-</span><span class="mi">1</span>\<span class="n">test_hello_pytest_3</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Windows 10の場合</span>
+<span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span><span class="n">tutorial_docs</span><span class="o">&gt;</span> <span class="n">pytest</span> <span class="o">.</span>\<span class="n">step</span>\<span class="n">pytest</span><span class="o">-</span><span class="mi">1</span>\<span class="n">test_hello_pytest_3</span><span class="o">.</span><span class="n">py</span>
+
+<span class="c1"># macOSの場合</span>
+<span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span><span class="n">tutorial_docs</span><span class="o">&amp;</span> <span class="n">pytest</span> <span class="o">./</span><span class="n">step</span><span class="o">/</span><span class="n">pytest</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">test_hello_pytest_3</span><span class="o">.</span><span class="n">py</span>
+
+<span class="c1"># テスト結果はWindows 10の例</span>
 <span class="o">=============================================================</span> <span class="n">test</span> <span class="n">session</span> <span class="n">starts</span> <span class="o">=============================================================</span>
 <span class="n">platform</span> <span class="n">win32</span> <span class="o">--</span> <span class="n">Python</span> <span class="mf">3.7</span><span class="o">.</span><span class="mi">3</span><span class="p">,</span> <span class="n">pytest</span><span class="o">-</span><span class="mf">6.0</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="n">py</span><span class="o">-</span><span class="mf">1.9</span><span class="o">.</span><span class="mi">0</span><span class="p">,</span> <span class="n">pluggy</span><span class="o">-</span><span class="mf">0.13</span><span class="o">.</span><span class="mi">1</span>
 <span class="n">rootdir</span><span class="p">:</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">tutorial_docs</span>
@@ -274,7 +292,13 @@
 </pre></div>
 </div>
 <p>pytestは <code class="docutils literal notranslate"><span class="pre">-v</span></code> オプションでテスト関数やクラスの一覧も表示できます。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">hiroshi</span>\<span class="n">Documents</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="n">tutorial_docs</span><span class="o">&gt;</span> <span class="n">pytest</span> <span class="o">.</span>\<span class="n">step</span>\<span class="n">pytest</span><span class="o">-</span><span class="mi">1</span>\<span class="n">test_hello_pytest_3</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">v</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Windows 10の場合</span>
+<span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span><span class="n">tutorial_docs</span><span class="o">&gt;</span> <span class="n">pytest</span> <span class="o">-</span><span class="n">v</span> <span class="o">.</span>\<span class="n">step</span>\<span class="n">pytest</span><span class="o">-</span><span class="mi">1</span>\<span class="n">test_hello_pytest_3</span><span class="o">.</span><span class="n">py</span>
+
+<span class="c1"># macOSの場合</span>
+<span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span><span class="n">tutorial_docs</span><span class="o">&amp;</span> <span class="n">pytest</span> <span class="o">-</span><span class="n">v</span> <span class="o">./</span><span class="n">step</span><span class="o">/</span><span class="n">pytest</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">test_hello_pytest_3</span><span class="o">.</span><span class="n">py</span>
+
+<span class="c1"># テスト結果はWindows 10の例</span>
 <span class="o">=============================================================</span> <span class="n">test</span> <span class="n">session</span> <span class="n">starts</span> <span class="o">=============================================================</span>
 <span class="n">platform</span> <span class="n">win32</span> <span class="o">--</span> <span class="n">Python</span> <span class="mf">3.7</span><span class="o">.</span><span class="mi">3</span><span class="p">,</span> <span class="n">pytest</span><span class="o">-</span><span class="mf">6.0</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="n">py</span><span class="o">-</span><span class="mf">1.9</span><span class="o">.</span><span class="mi">0</span><span class="p">,</span> <span class="n">pluggy</span><span class="o">-</span><span class="mf">0.13</span><span class="o">.</span><span class="mi">1</span> <span class="o">--</span> <span class="n">c</span><span class="p">:</span>\<span class="n">users</span>\<span class="n">hiroshi</span>\<span class="n">documents</span>\<span class="n">pycon</span><span class="o">-</span><span class="n">jp</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="n">tutorial</span>\<span class="o">.</span><span class="n">venv</span>\<span class="n">scripts</span>\<span class="n">python</span><span class="o">.</span><span class="n">exe</span>
 <span class="n">cachedir</span><span class="p">:</span> <span class="o">.</span><span class="n">pytest_cache</span>
@@ -285,6 +309,27 @@
 
 <span class="o">==============================================================</span> <span class="mi">1</span> <span class="n">passed</span> <span class="ow">in</span> <span class="mf">0.09</span><span class="n">s</span> <span class="o">==============================================================</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>pytestコマンドのオプションは様々な物があります。 例えば <cite>-rA</cite> は すべてのテスト結果のショートサマリーが見れます。テスト結果とテストの失敗やエラー情報がテストごとに1～2行で表されます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span> \<span class="n">step</span>\<span class="n">pytest</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span> <span class="n">pytest</span> <span class="o">-</span><span class="n">ra</span>
+
+<span class="c1"># テスト結果を割愛して最後のショートサマリの箇所を引用</span>
+
+<span class="o">=================================================================</span> <span class="n">short</span> <span class="n">test</span> <span class="n">summary</span> <span class="n">info</span> <span class="o">==================================================================</span>
+<span class="n">PASSED</span> <span class="n">test_fixture_load_json</span><span class="o">.</span><span class="n">py</span><span class="p">::</span><span class="n">test_check_val1</span>
+<span class="n">PASSED</span> <span class="n">test_fixture_load_json</span><span class="o">.</span><span class="n">py</span><span class="p">::</span><span class="n">test_check_val2</span>
+<span class="n">PASSED</span> <span class="n">test_hello_pytest_3</span><span class="o">.</span><span class="n">py</span><span class="p">::</span><span class="n">test_pytest</span>
+<span class="n">PASSED</span> <span class="n">test_monkeypatch_function</span><span class="o">.</span><span class="n">py</span><span class="p">::</span><span class="n">test_getssh</span>
+<span class="n">PASSED</span> <span class="n">test_parametrize</span><span class="o">.</span><span class="n">py</span><span class="p">::</span><span class="n">test_eval</span><span class="p">[</span><span class="mi">3</span><span class="o">+</span><span class="mi">5</span><span class="o">-</span><span class="mi">8</span><span class="p">]</span>
+<span class="n">PASSED</span> <span class="n">test_parametrize</span><span class="o">.</span><span class="n">py</span><span class="p">::</span><span class="n">test_eval</span><span class="p">[</span><span class="mi">2</span><span class="o">+</span><span class="mi">4</span><span class="o">-</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">FAILED</span> <span class="n">test_hello_pytest_1</span><span class="o">.</span><span class="n">py</span><span class="p">::</span><span class="n">test_pytest</span> <span class="o">-</span> <span class="k">assert</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">2</span>
+<span class="n">FAILED</span> <span class="n">test_hello_pytest_2</span><span class="o">.</span><span class="n">py</span><span class="p">::</span><span class="n">test_pytest</span> <span class="o">-</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span> <span class="n">division</span> <span class="n">by</span> <span class="n">zero</span>
+<span class="n">FAILED</span> <span class="n">test_parametrize</span><span class="o">.</span><span class="n">py</span><span class="p">::</span><span class="n">test_eval</span><span class="p">[</span><span class="mi">6</span><span class="o">*</span><span class="mi">9</span><span class="o">-</span><span class="mi">42</span><span class="p">]</span> <span class="o">-</span> <span class="ne">AssertionError</span><span class="p">:</span> <span class="k">assert</span> <span class="mi">54</span> <span class="o">==</span> <span class="mi">42</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://docs.pytest.org/en/stable/usage.html#detailed-summary-report">Usage and Invocations — pytest documentation</a></p>
 </div>
 </div>
 </div>
@@ -382,12 +427,26 @@
 <h2>pytestコマンドは自動的にテストファイルを探す<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>またpytestは自動的にテストとして実行可能なファイルを探します。プロジェクトのディレクトリ上でpytestコマンドを実行させるだけで簡単にテストの実行が出来ます。</p>
 <p><code class="docutils literal notranslate"><span class="pre">./tutorial_docs/step/pytest-1</span></code> というディレクトリに上記までに扱ったテストファイルがありますが、ここではディレクトリにカレントディレクトリを移動させてpytestの実行をしてみましょう。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">cd</span> <span class="o">./</span><span class="n">tutorial_docs</span><span class="o">/</span><span class="n">step</span><span class="o">/</span><span class="n">pytest</span><span class="o">-</span><span class="mi">1</span>
-<span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">pytest</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Windows 10の場合
+(.venv) tutorial_docs&gt; cd .\tutorial_docs\step\pytest-1
+(.venv) pytest-1&gt; pytest
+
+# macOSの場合
+(.venv) tutorial_docs$ cd ./tutorial_docs/step/pytest-1
+(.venv) pytest-1$ pytest
 </pre></div>
 </div>
 <p>上記までの説明で利用したテストファイルが実行されます。成功、失敗するテストがいくつかあるか確認してみましょう。</p>
-<p>確認が終わったら、 元のディレクトリに移動してください　<code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">../../../</span></code> で戻れるはずです。</p>
+<p>確認が終わったら、 cdコマンドでtutorial_docsディレクトリまで移動してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Windows 10の場合
+(.venv) pytest-1&gt; cd ..\..\..\
+(.venv) tutorial_docs&gt;
+
+# macOSの場合
+(.venv) pytest-1$ cd ../../../
+(.venv) tutorial_docs$
+</pre></div>
+</div>
 </div>
 <div class="section" id="id6">
 <h2>休憩3🧘‍♂️<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>

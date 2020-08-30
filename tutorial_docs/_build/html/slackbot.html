@@ -216,7 +216,12 @@
 </div>
 <p>次にngrokコマンドを使い、SlackBotを外部公開します。</p>
 <p>まずは以下のngrokコマンドを実行して、内部では3000ポートのhttpサービスをngrokの公開URLへ登録します。</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ngrok http 3000
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Windows 10の場合
+(.venv) pycon-jp-2020-tutorial$ ngrok.exe http 3000
+
+
+# macOSの場合
+(.venv) pycon-jp-2020-tutorial$ ngrok http 3000
 </pre></div>
 </div>
 <p>ngrokコマンドを起動すると以下のような情報が表示されます。ngrokのサービスへサインアップしていない場合は外部公開のセッションは8時間の限定公開になります。</p>
@@ -242,13 +247,13 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 </pre></div>
 </div>
 <p>SlackBotがSlackワークスペースへのやりとりをおこなうURLを生成して、bot側と連携させたので、Slackアプリの設定を続けます。</p>
-<p>Slack Event APIを使い、Slackワークスペース上に起きたイベントを、Slackbotが動作するサーバー（ここではngrokで公開しているローカル環境）へ伝えることができます。
-ここで2つの設定を行います。</p>
+<p>Slack Events APIを使い、Slackワークスペース上に起きたイベントを、Slackbotが動作するサーバー（ここではngrokで公開しているローカル環境）へ伝えることができます。ここで2つの設定を行います。</p>
 <ol class="arabic simple">
 <li><p>Slack Event APIがイベント情報を送る先となるエンドポイントURL</p></li>
 <li><p>イベントの種類</p></li>
 </ol>
-<p>Slack Event APIが起きたイベントをサーバーに伝えるためのエンドポイントURLを設定します。</p>
+<p>Slack Events APIが起きたイベントをサーバーに伝えるためのエンドポイントURLを設定します。</p>
+<p>（このEvents APIのエンドポイントURLについての説明は後半で後述します）</p>
 <p>「Event Subscriptions」ページの「Enable Events」にある、右上のボタンをOnにします。</p>
 <p>「Request URL」にエンドポイントURLを設定します。ngrokのアプリ上でbotアプリが待機しているアドレスを入力します。</p>
 <img alt="_images/slackbot_1-9.png" src="_images/slackbot_1-9.png" />
